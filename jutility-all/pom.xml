@@ -1,0 +1,85 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.jutility</groupId>
+	<artifactId>jutility-all</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+
+	<name>jUtility Library Bundle</name>
+	<description>The jutility-all bundle provides a full assembly of the
+		modules of the jUtility library.
+	</description>
+	<url>http://jutility.org</url>
+
+
+	<parent>
+		<groupId>org.jutility</groupId>
+		<artifactId>jutility</artifactId>
+		<version>0.1.0-SNAPSHOT</version>
+		<relativePath>../</relativePath>
+	</parent>
+
+	<inceptionYear>2013</inceptionYear>
+
+	<packaging>pom</packaging>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- Java Version -->
+		<java.version>1.8</java.version>
+
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.4.1</version>
+				<configuration>
+					<appendAssemblyId>false</appendAssemblyId>
+					
+					<descriptors>
+						<descriptor>assembly.xml</descriptor>
+					</descriptors>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id> <!-- this is used for inheritance merges -->
+						<phase>package</phase> <!-- bind to the packaging phase -->
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+	</build>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.jutility</groupId>
+			<artifactId>jutility-common</artifactId>
+			<version>0.1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jutility</groupId>
+			<artifactId>jutility-io</artifactId>
+			<version>0.1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jutility</groupId>
+			<artifactId>jutility-javafx</artifactId>
+			<version>0.1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jutility</groupId>
+			<artifactId>jutility-math</artifactId>
+			<version>0.1.0-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+
+</project>
