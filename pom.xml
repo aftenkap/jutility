@@ -14,11 +14,11 @@
 	<packaging>pom</packaging>
 	
 	<modules>
-		<module>../jutility-common</module>
-		<module>../jutility-incubation</module>
-		<module>../jutility-io</module>
-		<module>../jutility-javafx</module>
-		<module>../jutility-math</module>
+		<module>jutility-common</module>
+		<module>jutility-incubation</module>
+		<module>jutility-io</module>
+		<module>jutility-javafx</module>
+		<module>jutility-math</module>
 	</modules>
 
 
