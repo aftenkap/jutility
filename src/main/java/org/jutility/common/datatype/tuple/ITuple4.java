@@ -3,6 +3,8 @@ package org.jutility.common.datatype.tuple;
 
 import org.jutility.common.datatype.tuple.ITuple;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+
 
 /**
  * The generic {@link ITuple4} interface provides a contract for all classes
@@ -14,6 +16,9 @@ import org.jutility.common.datatype.tuple.ITuple;
  * @param <T>
  *            the type of the tuple.
  */
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = Tuple4.class, name = "Tuple4")
+})
 public interface ITuple4<T>
         extends ITuple<T> {
 

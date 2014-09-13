@@ -8,6 +8,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+
 
 
 /**
@@ -20,6 +22,12 @@ import javax.xml.bind.annotation.XmlType;
  * @param <T>
  *            the type of the tuple.
  */
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = Tuple.class, name = "Tuple"),
+    @JsonSubTypes.Type(value = Tuple2.class, name = "Tuple2"),
+    @JsonSubTypes.Type(value = Tuple3.class, name = "Tuple3"),
+    @JsonSubTypes.Type(value = Tuple4.class, name = "Tuple4")
+})
 @XmlRootElement(name = "TupleBase")
 @XmlType(name = "TupleBase")
 public abstract class TupleBase<T>
@@ -208,6 +216,7 @@ public abstract class TupleBase<T>
      * 
      * @see org.jutility.datatypes.tuple.ITuple#toArray()
      */
+    @SuppressWarnings("unchecked")
     @Override
     public T[] toArray() {
 
