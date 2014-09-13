@@ -5,6 +5,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 
 /**
@@ -31,6 +33,7 @@ public class Tuple4<T>
      * @see org.jutility.datatypes.tuple.ITuple4#getX()
      */
     @Override
+    @JsonProperty(required = true, value = "X")
     @XmlElement(name = "X")
     public T getX() {
 
@@ -65,6 +68,7 @@ public class Tuple4<T>
      * @see org.jutility.datatypes.tuple.ITuple4#getY()
      */
     @Override
+    @JsonProperty(required = true, value = "Y")
     @XmlElement(name = "Y")
     public T getY() {
 
@@ -105,6 +109,7 @@ public class Tuple4<T>
      * @see org.jutility.datatypes.tuple.ITuple4#getZ()
      */
     @Override
+    @JsonProperty(required = true, value = "Z")
     @XmlElement(name = "Z")
     public T getZ() {
 
@@ -144,6 +149,7 @@ public class Tuple4<T>
      * @see org.jutility.datatypes.tuple.ITuple4#getW()
      */
     @Override
+    @JsonProperty(required = true, value = "W")
     @XmlElement(name = "W")
     public T getW() {
 
@@ -225,6 +231,7 @@ public class Tuple4<T>
      *            whether or not the constructor is invoked during
      *            serialization.
      */
+    @SuppressWarnings("unchecked")
     protected Tuple4(final T x, final T y, final T z, final T w,
             final Class<? extends T> type, final boolean serialization) {
 

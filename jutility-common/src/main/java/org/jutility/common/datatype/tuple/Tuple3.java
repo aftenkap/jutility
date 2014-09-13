@@ -142,6 +142,7 @@ public class Tuple3<T>
      * @param type
      *            The type of this tuple.
      */
+    @SuppressWarnings("unchecked")
     public Tuple3(final T x, final T y, final T z, final Class<? extends T> type) {
 
         super(type, x, y, z);
@@ -163,6 +164,7 @@ public class Tuple3<T>
      *            whether or not the constructor is invoked during
      *            serialization.
      */
+    @SuppressWarnings("unchecked")
     protected Tuple3(final T x, final T y, final T z,
             final Class<? extends T> type, final boolean serialization) {
 
