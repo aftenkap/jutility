@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlType;
 import org.jutility.common.datatype.util.NumberComparator;
 import org.jutility.common.datatype.util.NumberUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 
 
@@ -143,12 +144,14 @@ public class Tuple4<T extends Number>
 
 
     @Override
+    @JsonIgnore
     public boolean isPoint() {
 
         return NumberComparator.equals(1, this.getW());
     }
 
     @Override
+    @JsonIgnore
     public boolean isVector() {
 
         return !this.isPoint();
