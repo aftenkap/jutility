@@ -5,7 +5,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 
@@ -19,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @param <T>
  *            the type of the tuple.
  */
+@JsonPropertyOrder(value =  { "type", "x", "y", "z", "w" })
 @XmlRootElement(name = "Tuple4")
 @XmlType(name = "Tuple4", propOrder = { "x", "y", "z", "w" })
 public class Tuple4<T>
@@ -26,6 +31,7 @@ public class Tuple4<T>
         implements ITuple4<T> {
 
 
+    private static Logger LOG = LoggerFactory.getLogger(Tuple4.class);
 
     /*
      * (non-Javadoc)
@@ -33,7 +39,7 @@ public class Tuple4<T>
      * @see org.jutility.datatypes.tuple.ITuple4#getX()
      */
     @Override
-    @JsonProperty(required = true, value = "X")
+    @JsonProperty(required = true, value = "x", index = 0)
     @XmlElement(name = "X")
     public T getX() {
 
@@ -49,16 +55,21 @@ public class Tuple4<T>
     @SuppressWarnings("unused")
     private void setX(T value) {
 
+        LOG.debug("Setting X value of Tuple4 to " + value);
         if (super.getComponents() != null) {
+
             if (super.getComponents().isEmpty()) {
+
                 super.getComponents().add(value);
             }
             else {
+
                 super.getComponents().set(0, value);
             }
         }
         else {
-            System.err.println("Shouldn't be here!");
+
+            LOG.error("Attempting to set X value of Tuple4 to null!");
         }
     }
 
@@ -68,7 +79,7 @@ public class Tuple4<T>
      * @see org.jutility.datatypes.tuple.ITuple4#getY()
      */
     @Override
-    @JsonProperty(required = true, value = "Y")
+    @JsonProperty(required = true, value = "y", index = 1)
     @XmlElement(name = "Y")
     public T getY() {
 
@@ -84,21 +95,26 @@ public class Tuple4<T>
     @SuppressWarnings("unused")
     private void setY(T value) {
 
+        LOG.debug("Setting Y value of Tuple4 to " + value);
         if (super.getComponents() != null) {
+
             if (super.getComponents().size() == 1) {
+
                 super.getComponents().add(value);
             }
             else if (super.getComponents().size() > 1) {
+
                 super.getComponents().set(1, value);
             }
             else {
 
-                System.err.println("Shouldn't be here either! "
+                LOG.error("Setting Y value of Tuple4 out of order. Size should be >= 1 but is "
                         + super.getComponents().size());
             }
         }
         else {
-            System.err.println("Shouldn't be here!");
+
+            LOG.error("Attempting to set Y value of Tuple4 to null!");
         }
     }
 
@@ -109,7 +125,7 @@ public class Tuple4<T>
      * @see org.jutility.datatypes.tuple.ITuple4#getZ()
      */
     @Override
-    @JsonProperty(required = true, value = "Z")
+    @JsonProperty(required = true, value = "z", index = 2)
     @XmlElement(name = "Z")
     public T getZ() {
 
@@ -125,21 +141,26 @@ public class Tuple4<T>
     @SuppressWarnings("unused")
     private void setZ(T value) {
 
+        LOG.debug("Setting Z value of Tuple4 to " + value);
         if (super.getComponents() != null) {
+            
             if (super.getComponents().size() == 2) {
+                
                 super.getComponents().add(value);
             }
             else if (super.getComponents().size() > 2) {
+                
                 super.getComponents().set(2, value);
             }
             else {
 
-                System.err.println("Shouldn't be here either! "
+                LOG.error("Setting Z value of Tuple4 out of order. Size should be >= 2 but is "
                         + super.getComponents().size());
             }
         }
         else {
-            System.err.println("Shouldn't be here!");
+
+            LOG.error("Attempting to set Z value of Tuple4 to null!");
         }
     }
 
@@ -149,7 +170,7 @@ public class Tuple4<T>
      * @see org.jutility.datatypes.tuple.ITuple4#getW()
      */
     @Override
-    @JsonProperty(required = true, value = "W")
+    @JsonProperty(required = true, value = "w", index = 3)
     @XmlElement(name = "W")
     public T getW() {
 
@@ -165,21 +186,26 @@ public class Tuple4<T>
     @SuppressWarnings("unused")
     private void setW(T value) {
 
+        LOG.debug("Setting W value of Tuple4 to " + value);
         if (super.getComponents() != null) {
+            
             if (super.getComponents().size() == 3) {
+                
                 super.getComponents().add(value);
             }
             else if (super.getComponents().size() > 3) {
+                
                 super.getComponents().set(3, value);
             }
             else {
 
-                System.err.println("Shouldn't be here either! "
+                LOG.error("Setting W value of Tuple4 out of order. Size should be >= 3 but is "
                         + super.getComponents().size());
             }
         }
         else {
-            System.err.println("Shouldn't be here!");
+
+            LOG.error("Attempting to set W value of Tuple4 to null!");
         }
     }
 
@@ -190,6 +216,10 @@ public class Tuple4<T>
     protected Tuple4() {
 
         super();
+        super.getComponents().add(null);
+        super.getComponents().add(null);
+        super.getComponents().add(null);
+        super.getComponents().add(null);
     }
 
     /**

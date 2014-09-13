@@ -10,6 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 
 
@@ -23,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
  * @param <T>
  *            the type of the tuple.
  */
+@JsonTypeInfo(use = Id.NAME, include = As.PROPERTY, property = "tupleType")
 @JsonSubTypes({
     @JsonSubTypes.Type(value = Tuple.class, name = "Tuple"),
     @JsonSubTypes.Type(value = Tuple2.class, name = "Tuple2"),
