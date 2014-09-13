@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 
 
@@ -66,6 +67,7 @@ public abstract class TupleBase<T>
      * @see org.jutility.datatypes.tuple.ITuple#getDimension()
      */
     @Override
+    @JsonIgnore
     public int getDimension() {
 
         if (this.components != null) {
