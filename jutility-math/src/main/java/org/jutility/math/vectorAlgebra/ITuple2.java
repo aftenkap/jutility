@@ -1,6 +1,9 @@
 package org.jutility.math.vectorAlgebra;
 
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+
+
 
 /**
  * The generic {@link ITuple2} interface provides a contract for all classes
@@ -14,6 +17,10 @@ package org.jutility.math.vectorAlgebra;
  * @param <T>
  *            the type of the tuple.
  */
+
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = Tuple2.class, name = "Tuple2")
+})
 public interface ITuple2<T extends Number>
         extends org.jutility.common.datatype.tuple.ITuple2<T> {
 

@@ -1,6 +1,9 @@
 package org.jutility.math.vectorAlgebra;
 
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+
+
 /**
  * The generic {@link IPoint4} interface provides a contract for all classes
  * implementing three-dimensional points in homogeneous coordinate
@@ -14,6 +17,9 @@ package org.jutility.math.vectorAlgebra;
  * @param <T>
  *            the type of the point.
  */
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = Point4.class, name = "Point4")
+})
 public interface IPoint4<T extends Number>
         extends ITuple4<T> {
 

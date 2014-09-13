@@ -1,5 +1,7 @@
 package org.jutility.math.vectorAlgebra;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+
 
 /**
  * The generic {@link IVector4} interface provides a contract for all classes
@@ -13,6 +15,9 @@ package org.jutility.math.vectorAlgebra;
  * @param <T>
  *            the type of the point.
  */
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = Vector4.class, name = "Vector4")
+})
 public interface IVector4<T extends Number>
         extends ITuple4<T> {
 
