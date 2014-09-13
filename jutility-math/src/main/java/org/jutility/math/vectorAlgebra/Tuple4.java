@@ -8,7 +8,11 @@ import org.jutility.common.datatype.util.NumberComparator;
 import org.jutility.common.datatype.util.NumberUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 
 
@@ -23,10 +27,12 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
  *            the type of the tuple.
  */
 
+@JsonTypeInfo(use = Id.NAME, include = As.PROPERTY, property = "tupleType")
 @JsonSubTypes({
     @JsonSubTypes.Type(value = Point4.class, name = "Point4"),
     @JsonSubTypes.Type(value = Vector4.class, name = "Vector4")
 })
+@JsonPropertyOrder(value =  { "type", "x", "y", "z", "w" })
 @XmlRootElement(name = "Tuple4")
 @XmlType(name = "Tuple4")
 public class Tuple4<T extends Number>
