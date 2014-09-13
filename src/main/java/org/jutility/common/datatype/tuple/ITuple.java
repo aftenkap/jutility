@@ -1,6 +1,9 @@
 package org.jutility.common.datatype.tuple;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 
 /**
@@ -13,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
  * @param <T>
  *            the type of the tuple.
  */
+@JsonTypeInfo(use = Id.NAME, include = As.PROPERTY, property = "tupleType")
 @JsonSubTypes({
     @JsonSubTypes.Type(value = Tuple.class, name = "Tuple")
 })
