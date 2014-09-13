@@ -1,5 +1,7 @@
 package org.jutility.math.vectorAlgebra;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+
 
 /**
  * The {@link IMatrix4} interface provides a contract for all classes
@@ -11,6 +13,9 @@ package org.jutility.math.vectorAlgebra;
  * @param <T>
  *            the type of the matrix
  */
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = Matrix4.class, name = "Matrix4")
+})
 public interface IMatrix4<T extends Number> {
 
     /**

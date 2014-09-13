@@ -21,9 +21,8 @@
 		<!-- Java Version -->
 		<java.version>1.6</java.version>
 
-		<!-- CSV Library -->
-		<net.sf.supercsv.version>2.2.0</net.sf.supercsv.version>
-
+        <!-- Jackson Version -->
+        <com.fasterxml.jackson-version>2.4.1</com.fasterxml.jackson-version>
 	</properties>
 
 
@@ -71,6 +70,30 @@
 			<artifactId>jutility-common</artifactId>
 			<version>0.1.0-SNAPSHOT</version>
 		</dependency>
+
+
+
+        <!-- Jackson JSON Processor -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${com.fasterxml.jackson-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${com.fasterxml.jackson-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${com.fasterxml.jackson-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-jaxb-annotations</artifactId>
+            <version>${com.fasterxml.jackson-version}</version>
+        </dependency>
 
 	</dependencies>
 </project>
