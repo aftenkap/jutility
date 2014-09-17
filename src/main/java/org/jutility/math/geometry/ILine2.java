@@ -1,7 +1,7 @@
 package org.jutility.math.geometry;
 
 
-import org.jutility.math.vectorAlgebra.IPoint4;
+import org.jutility.math.vectorAlgebra.IPoint2;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -10,9 +10,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 
 /**
- * The {@link ILine4} interface provides a contract for classes implementing
- * lines in three-dimensional space based on {@link IPoint4 Points} in
- * homogeneous representation.
+ * The {@link ILine2} interface provides a contract for classes implementing
+ * lines in two-dimensional space based on two-dimensional {@link IPoint2
+ * Points}.
  * 
  * @author Peter J. Radics
  * @version 1.0
@@ -21,9 +21,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
  * 
  */
 @JsonTypeInfo(use = Id.NAME, include = As.PROPERTY,
-        property = "implementingType")
-@JsonSubTypes({ @JsonSubTypes.Type(value = Line4.class, name = "Line4") })
-public interface ILine4<T extends Number> {
+property = "implementingType")
+@JsonSubTypes({ @JsonSubTypes.Type(value = Line2.class, name = "Line2") })
+public interface ILine2<T extends Number> {
 
     /**
      * Returns the type of the line.
@@ -37,7 +37,7 @@ public interface ILine4<T extends Number> {
      * 
      * @return the source.
      */
-    public abstract IPoint4<T> getSource();
+    public abstract IPoint2<T> getSource();
 
 
     /**
@@ -45,6 +45,6 @@ public interface ILine4<T extends Number> {
      * 
      * @return the sink
      */
-    public abstract IPoint4<T> getSink();
+    public abstract IPoint2<T> getSink();
 
 }

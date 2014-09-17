@@ -2,6 +2,9 @@ package org.jutility.math.geometry;
 
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 
 /**
@@ -14,6 +17,8 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
  *            the type of this translation.
  * 
  */
+@JsonTypeInfo(use = Id.NAME, include = As.PROPERTY,
+        property = "implementingType")
 @JsonSubTypes({ @JsonSubTypes.Type(value = Translation.class,
         name = "Translation") })
 public interface ITranslation<T extends Number> {

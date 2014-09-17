@@ -6,7 +6,7 @@ package org.jutility.math.geometry;
 
 import java.util.List;
 
-import org.jutility.math.vectorAlgebra.IPoint4;
+import org.jutility.math.vectorAlgebra.IPoint2;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -22,8 +22,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
  */
 @JsonTypeInfo(use = Id.NAME, include = As.PROPERTY,
         property = "implementingType")
-@JsonSubTypes({ @JsonSubTypes.Type(value = Polygon4.class, name = "Polygon4") })
-public interface IPolygon4<T extends Number> {
+@JsonSubTypes({ @JsonSubTypes.Type(value = Polygon2.class, name = "Polygon2") })
+public interface IPolygon2<T extends Number> {
 
     /**
      * Returns the type of the rectangle.
@@ -34,34 +34,34 @@ public interface IPolygon4<T extends Number> {
 
 
     /**
-     * Returns the {@link IPoint4 Points} of this {@link IPolygon4 Polygon}.
+     * Returns the {@link IPoint2 Points} of this {@link IPolygon2 Polygon}.
      * 
-     * @return the {@link IPoint4 Points} of this {@link IPolygon4 Polygon}.
+     * @return the {@link IPoint2 Points} of this {@link IPolygon2 Polygon}.
      */
-    public abstract List<IPoint4<T>> getPoints();
+    public abstract List<IPoint2<T>> getPoints();
 
     /**
-     * Adds a {@link IPoint4 Point} to the {@link IPoint4 Points} of this
-     * {@link IPolygon4 Polygon}.
-     * 
-     * @param point
-     *            the {@link IPoint4 Point} to add.
-     * @return whether or not the collection has been changed by this operation.
-     */
-    public abstract boolean addPoint(IPoint4<? extends Number> point);
-
-    /**
-     * Removes a {@link IPoint4 Point} from the {@link IPoint4 Points} of this
-     * {@link IPolygon4 Polygon}.
+     * Adds a {@link IPoint2 Point} to the {@link IPoint2 Points} of this
+     * {@link IPolygon2 Polygon}.
      * 
      * @param point
-     *            the {@link IPoint4 Point} to remove.
+     *            the {@link IPoint2 Point} to add.
      * @return whether or not the collection has been changed by this operation.
      */
-    public abstract boolean removePoint(IPoint4<? extends Number> point);
+    public abstract boolean addPoint(IPoint2<? extends Number> point);
 
     /**
-     * Clears the {@link IPoint4 Points} of this {@link IPolygon4 Polygon}.
+     * Removes a {@link IPoint2 Point} from the {@link IPoint2 Points} of this
+     * {@link IPolygon2 Polygon}.
+     * 
+     * @param point
+     *            the {@link IPoint2 Point} to remove.
+     * @return whether or not the collection has been changed by this operation.
+     */
+    public abstract boolean removePoint(IPoint2<? extends Number> point);
+
+    /**
+     * Clears the {@link IPoint2 Points} of this {@link IPolygon2 Polygon}.
      */
     public abstract void clearPoints();
 

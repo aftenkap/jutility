@@ -4,6 +4,9 @@ package org.jutility.math.geometry;
 import org.jutility.math.vectorAlgebra.IPoint2;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 
 /**
@@ -17,6 +20,8 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
  *            the type of the rectangle.
  * 
  */
+@JsonTypeInfo(use = Id.NAME, include = As.PROPERTY,
+property = "implementingType")
 @JsonSubTypes({ @JsonSubTypes.Type(value = Rectangle2.class,
         name = "Rectangle2") })
 public interface IRectangle2<T extends Number> {
