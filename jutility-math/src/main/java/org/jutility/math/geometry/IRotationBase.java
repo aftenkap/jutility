@@ -4,6 +4,9 @@ package org.jutility.math.geometry;
 import org.jutility.common.datatype.tuple.ITuple4;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 
 /**
@@ -15,6 +18,8 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
  * @param <T>
  *            The type of the rotation
  */
+@JsonTypeInfo(use = Id.NAME, include = As.PROPERTY,
+        property = "implementingType")
 @JsonSubTypes({ @JsonSubTypes.Type(value = Rotation.class, name = "Rotation") })
 public interface IRotationBase<T> {
 

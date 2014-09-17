@@ -13,8 +13,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.jutility.math.vectorAlgebra.IPoint4;
-import org.jutility.math.vectorAlgebra.Point4;
+import org.jutility.math.vectorAlgebra.IPoint2;
+import org.jutility.math.vectorAlgebra.Point2;
 
 
 /**
@@ -24,13 +24,13 @@ import org.jutility.math.vectorAlgebra.Point4;
  * @param <T>
  *            the type of the polygon.
  */
-@XmlRootElement(name = "Polygon4")
+@XmlRootElement(name = "Polygon2")
 @XmlType(name = "Polygon4")
-public class Polygon4<T extends Number>
-        implements IPolygon4<T> {
+public class Polygon2<T extends Number>
+        implements IPolygon2<T> {
 
-    @XmlElement(type = Point4.class)
-    private final List<IPoint4<T>>   points;
+    @XmlElement(type = Point2.class)
+    private final List<IPoint2<T>>   points;
 
     @XmlAttribute
     private final Class<? extends T> type;
@@ -52,23 +52,23 @@ public class Polygon4<T extends Number>
      * @see org.jutility.math.geometry.IPolygon4#getPoints()
      */
     @Override
-    public List<IPoint4<T>> getPoints() {
+    public List<IPoint2<T>> getPoints() {
 
         return Collections.unmodifiableList(this.points);
     }
 
     @Override
-    public boolean addPoint(IPoint4<? extends Number> point) {
+    public boolean addPoint(IPoint2<? extends Number> point) {
 
-        Point4<T> pointToAdd = new Point4<T>(point, this.type);
+        Point2<T> pointToAdd = new Point2<T>(point, this.type);
 
         return this.points.add(pointToAdd);
     }
 
     @Override
-    public boolean removePoint(IPoint4<? extends Number> point) {
+    public boolean removePoint(IPoint2<? extends Number> point) {
 
-        Point4<T> pointToRemove = new Point4<T>(point, this.type);
+        Point2<T> pointToRemove = new Point2<T>(point, this.type);
 
         return this.points.remove(pointToRemove);
     }
@@ -81,10 +81,10 @@ public class Polygon4<T extends Number>
 
 
     /**
-     * Creates a new instance of the {@code Polygon4} class. (Serialization
+     * Creates a new instance of the {@code Polygon2} class. (Serialization
      * Constructor)
      */
-    public Polygon4() {
+    public Polygon2() {
 
 
         this(null, null, true);
@@ -92,19 +92,19 @@ public class Polygon4<T extends Number>
 
 
     /**
-     * Creates a new instance of the {@code Polygon4} class.
+     * Creates a new instance of the {@code Polygon2} class.
      * 
      * @param type
      *            the type.
      */
-    public Polygon4(final Class<? extends T> type) {
+    public Polygon2(final Class<? extends T> type) {
 
 
         this(null, type, false);
     }
 
     /**
-     * Creates a new instance of the {@link Polygon4} class with the provided
+     * Creates a new instance of the {@link Polygon2} class with the provided
      * type and parameters.
      * 
      * @param points
@@ -112,14 +112,14 @@ public class Polygon4<T extends Number>
      * @param type
      *            the type.
      */
-    public <S extends Number> Polygon4(final List<IPoint4<S>> points,
+    public <S extends Number> Polygon2(final List<IPoint2<S>> points,
             final Class<? extends T> type) {
 
         this(points, type, false);
     }
 
     /**
-     * Creates a new instance of the {@link Polygon4} class with the provided
+     * Creates a new instance of the {@link Polygon2} class with the provided
      * type and parameters.
      * 
      * @param points
@@ -130,7 +130,7 @@ public class Polygon4<T extends Number>
      *            whether or not the constructor is invoked during
      *            serialization.
      */
-    public <S extends Number> Polygon4(final List<IPoint4<S>> points,
+    public <S extends Number> Polygon2(final List<IPoint2<S>> points,
             final Class<? extends T> type, final boolean serialization) {
 
         if (type == null && !serialization) {
@@ -140,15 +140,15 @@ public class Polygon4<T extends Number>
 
         }
 
-        this.points = new LinkedList<IPoint4<T>>();
+        this.points = new LinkedList<IPoint2<T>>();
         this.type = type;
 
         if (points != null && type != null) {
 
 
-            for (IPoint4<? extends Number> point : points) {
+            for (IPoint2<? extends Number> point : points) {
 
-                this.points.add(new Point4<T>(point, type));
+                this.points.add(new Point2<T>(point, type));
             }
         }
     }
@@ -160,7 +160,7 @@ public class Polygon4<T extends Number>
      * @param polygonToCopy
      *            the polygon to copy.
      */
-    public Polygon4(final IPolygon4<T> polygonToCopy) {
+    public Polygon2(final IPolygon2<T> polygonToCopy) {
 
         this(polygonToCopy, polygonToCopy.getType());
     }
@@ -173,7 +173,7 @@ public class Polygon4<T extends Number>
      * @param type
      *            the desired type of the rectangle to copy.
      */
-    public Polygon4(final IPolygon4<?> polygonToCopy,
+    public Polygon2(final IPolygon2<?> polygonToCopy,
             final Class<? extends T> type) {
 
         this(polygonToCopy.getPoints(), type);
@@ -188,7 +188,7 @@ public class Polygon4<T extends Number>
 
         builder.append("Polygon4 [ ");
 
-        for (IPoint4<T> point : this.points) {
+        for (IPoint2<T> point : this.points) {
 
             builder.append(point.toString());
         }
@@ -202,12 +202,12 @@ public class Polygon4<T extends Number>
     @Override
     public boolean equals(final Object obj) {
 
-        if (obj != null && obj instanceof IPolygon4<?>) {
-            IPolygon4<?> other = (IPolygon4<?>) obj;
+        if (obj != null && obj instanceof IPolygon2<?>) {
+            IPolygon2<?> other = (IPolygon2<?>) obj;
 
             boolean same = true;
 
-            for (IPoint4<?> point : other.getPoints()) {
+            for (IPoint2<?> point : other.getPoints()) {
 
                 if (!this.getPoints().contains(point)) {
 
@@ -227,7 +227,7 @@ public class Polygon4<T extends Number>
 
         int hash = 7;
 
-        for (IPoint4<T> point : this.getPoints()) {
+        for (IPoint2<T> point : this.getPoints()) {
 
             hash += 7 * point.hashCode();
         }
