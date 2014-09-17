@@ -3,16 +3,19 @@ package org.jutility.math.geometry;
 
 import org.jutility.common.datatype.tuple.ITuple4;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+
 
 /**
- * The {@link IRotationBase} interface provides a contract for classes implementing
- * axis-angle rotations.
+ * The {@link IRotationBase} interface provides a contract for classes
+ * implementing axis-angle rotations.
  * 
  * @author Peter J. Radics
  * @version 1.0
  * @param <T>
  *            The type of the rotation
  */
+@JsonSubTypes({ @JsonSubTypes.Type(value = Rotation.class, name = "Rotation") })
 public interface IRotationBase<T> {
 
     /**

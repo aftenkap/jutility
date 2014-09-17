@@ -1,5 +1,6 @@
 package org.jutility.math.vectorAlgebra;
 
+
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 
 
@@ -15,9 +16,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
  * @param <T>
  *            the type of the point.
  */
-@JsonSubTypes({
-    @JsonSubTypes.Type(value = Point2.class, name = "Point2")
-})
+@JsonSubTypes({ @JsonSubTypes.Type(value = Point2.class, name = "Point2") })
 public interface IPoint2<T extends Number>
         extends ITuple2<T> {
 

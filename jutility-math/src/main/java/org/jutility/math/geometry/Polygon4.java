@@ -200,7 +200,7 @@ public class Polygon4<T extends Number>
     @Override
     public boolean equals(final Object obj) {
 
-        if (obj != null && obj instanceof IRectangle4<?>) {
+        if (obj != null && obj instanceof IPolygon4<?>) {
             IPolygon4<?> other = (IPolygon4<?>) obj;
 
             boolean same = true;

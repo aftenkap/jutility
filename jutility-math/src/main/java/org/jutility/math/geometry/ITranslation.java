@@ -1,6 +1,9 @@
 package org.jutility.math.geometry;
 
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+
+
 /**
  * The {@link ITranslation} interface provides a contract for classes that
  * implement the translation of an object.
@@ -11,6 +14,8 @@ package org.jutility.math.geometry;
  *            the type of this translation.
  * 
  */
+@JsonSubTypes({ @JsonSubTypes.Type(value = Translation.class,
+        name = "Translation") })
 public interface ITranslation<T extends Number> {
 
     /**

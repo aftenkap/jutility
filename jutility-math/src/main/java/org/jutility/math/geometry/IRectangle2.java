@@ -3,6 +3,8 @@ package org.jutility.math.geometry;
 
 import org.jutility.math.vectorAlgebra.IPoint2;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+
 
 /**
  * The {@link IRectangle2} interface provides a contract for classes
@@ -15,6 +17,8 @@ import org.jutility.math.vectorAlgebra.IPoint2;
  *            the type of the rectangle.
  * 
  */
+@JsonSubTypes({ @JsonSubTypes.Type(value = Rectangle2.class,
+        name = "Rectangle2") })
 public interface IRectangle2<T extends Number> {
 
     /**

@@ -1,6 +1,10 @@
 package org.jutility.math.vectorAlgebra;
 
 
+import java.util.Comparator;
+
+import org.jutility.common.datatype.util.NumberComparator;
+
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 
 
@@ -18,9 +22,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
  *            the type of the tuple.
  */
 
-@JsonSubTypes({
-    @JsonSubTypes.Type(value = Tuple2.class, name = "Tuple2")
-})
+@JsonSubTypes({ @JsonSubTypes.Type(value = Tuple2.class, name = "Tuple2") })
 public interface ITuple2<T extends Number>
         extends org.jutility.common.datatype.tuple.ITuple2<T> {
 
@@ -39,4 +41,63 @@ public interface ITuple2<T extends Number>
      *         <code>false</code> otherwise.
      */
     public abstract boolean isVector();
+
+
+
+    /**
+     * Compares points by x, then y.
+     */
+    public static final Comparator<ITuple2<?>> byX =
+
+                                                   new Comparator<ITuple2<?>>() {
+
+                                                       @Override
+                                                       public int compare(
+                                                               ITuple2<?> lhs,
+                                                               ITuple2<?> rhs) {
+
+                                                           int comparison = NumberComparator
+                                                                   .compareTo(
+                                                                           lhs.getX(),
+                                                                           rhs.getX());
+
+                                                           if (comparison == 0) {
+
+                                                               return NumberComparator
+                                                                       .compareTo(
+                                                                               lhs.getY(),
+                                                                               rhs.getY());
+                                                           }
+
+                                                           return comparison;
+                                                       };
+                                                   };
+    /**
+     * Compares points by x, then y.
+     */
+    public static final Comparator<ITuple2<?>> byY =
+
+                                                   new Comparator<ITuple2<?>>() {
+
+                                                       @Override
+                                                       public int compare(
+                                                               ITuple2<?> lhs,
+                                                               ITuple2<?> rhs) {
+
+                                                           int comparison = NumberComparator
+                                                                   .compareTo(
+                                                                           lhs.getY(),
+                                                                           rhs.getY());
+
+                                                           if (comparison == 0) {
+
+                                                               return NumberComparator
+                                                                       .compareTo(
+                                                                               lhs.getX(),
+                                                                               rhs.getX());
+                                                           }
+
+                                                           return comparison;
+                                                       };
+                                                   };
 }

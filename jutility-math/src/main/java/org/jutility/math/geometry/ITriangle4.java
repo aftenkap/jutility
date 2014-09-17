@@ -3,6 +3,8 @@ package org.jutility.math.geometry;
 
 import org.jutility.math.vectorAlgebra.IPoint4;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+
 
 /**
  * The {@link ITriangle4} interface provides a contract for classes implementing
@@ -14,6 +16,8 @@ import org.jutility.math.vectorAlgebra.IPoint4;
  *            the type of the triangle.
  * 
  */
+//@JsonSubTypes({ @JsonSubTypes.Type(value = Triangle4.class,
+//name = "Triangle4") })
 public interface ITriangle4<T extends Number> {
 
     /**

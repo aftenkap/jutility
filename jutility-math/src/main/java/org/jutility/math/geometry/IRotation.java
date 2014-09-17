@@ -3,6 +3,8 @@ package org.jutility.math.geometry;
 
 import org.jutility.math.vectorAlgebra.IVector4;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+
 
 /**
  * The {@link IRotation} interface provides a contract for classes implementing
@@ -13,6 +15,7 @@ import org.jutility.math.vectorAlgebra.IVector4;
  * @param <T>
  *            The type of the rotation
  */
+@JsonSubTypes({ @JsonSubTypes.Type(value = Rotation.class, name = "Rotation") })
 public interface IRotation<T extends Number>
         extends IRotationBase<T> {
 

@@ -1,6 +1,9 @@
 package org.jutility.math.geometry;
 
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+
+
 /**
  * The {@link IScale} interface provides a contract for classes implementing
  * scaling in three dimensions.
@@ -11,6 +14,7 @@ package org.jutility.math.geometry;
  *            the type of the scale.
  * 
  */
+@JsonSubTypes({ @JsonSubTypes.Type(value = Scale.class, name = "Scale") })
 public interface IScale<T extends Number> {
 
     /**
