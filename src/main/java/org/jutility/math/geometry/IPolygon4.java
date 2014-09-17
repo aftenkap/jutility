@@ -8,6 +8,8 @@ import java.util.List;
 
 import org.jutility.math.vectorAlgebra.IPoint4;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+
 
 /**
  * @author Peter J. Radics
@@ -15,6 +17,7 @@ import org.jutility.math.vectorAlgebra.IPoint4;
  * @since 0.1
  * @param <T>
  */
+@JsonSubTypes({ @JsonSubTypes.Type(value = Polygon4.class, name = "Polygon4") })
 public interface IPolygon4<T extends Number> {
 
     /**

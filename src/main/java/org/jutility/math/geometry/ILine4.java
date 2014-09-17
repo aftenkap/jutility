@@ -3,6 +3,8 @@ package org.jutility.math.geometry;
 
 import org.jutility.math.vectorAlgebra.IPoint4;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+
 
 /**
  * The {@link ILine4} interface provides a contract for classes implementing
@@ -15,6 +17,7 @@ import org.jutility.math.vectorAlgebra.IPoint4;
  *            the type of the line.
  * 
  */
+@JsonSubTypes({ @JsonSubTypes.Type(value = Line4.class, name = "Line4") })
 public interface ILine4<T extends Number> {
 
     /**

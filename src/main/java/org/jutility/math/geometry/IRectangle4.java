@@ -3,11 +3,13 @@ package org.jutility.math.geometry;
 
 import org.jutility.math.vectorAlgebra.IPoint4;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+
 
 /**
- * The {@link IRectangle4} interface provides a contract for classes implementing
- * rectangles in three-dimensional space based on {@link IPoint4 Points} in
- * homogeneous representation.
+ * The {@link IRectangle4} interface provides a contract for classes
+ * implementing rectangles in three-dimensional space based on {@link IPoint4
+ * Points} in homogeneous representation.
  * 
  * @author Peter J. Radics
  * @version 1.0
@@ -15,6 +17,8 @@ import org.jutility.math.vectorAlgebra.IPoint4;
  *            the type of the rectangle.
  * 
  */
+@JsonSubTypes({ @JsonSubTypes.Type(value = Rectangle4.class,
+        name = "Rectangle4") })
 public interface IRectangle4<T extends Number> {
 
     /**
