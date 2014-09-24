@@ -227,8 +227,17 @@ public abstract class TupleBase<T>
     public T[] toArray() {
 
         if (!this.components.isEmpty()) {
-                        
-            return this.components.toArray(TupleBase.createArray(this.get(0)));
+            
+            T[] array = (T[])java.lang.reflect.Array.newInstance(this.type, this.components.size());
+            
+            int i = 0;
+            for (T component : this.components) {
+                
+                array[i] = component;
+                i++;
+            }
+            
+            return array;
         }
 
         return null;
@@ -278,22 +287,11 @@ public abstract class TupleBase<T>
         int hash = 7;
 
         for (T component : this.components) {
+            
             hash += 13 * component.hashCode();
         }
 
         return hash;
     }
 
-    /**
-     * Creates an array of a generic type from the provided elements.
-     * 
-     * @param elements
-     *            the elements comprising the desired array.
-     * @return an array containing all elements.
-     */
-    @SafeVarargs
-    private static <T> T[] createArray(final T... elements) {
-
-        return elements;
-    }
 }

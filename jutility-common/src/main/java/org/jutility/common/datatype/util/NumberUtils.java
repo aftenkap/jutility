@@ -3,8 +3,8 @@ package org.jutility.common.datatype.util;
 
 
 /**
- * The {@link NumberUtils} class provides utility methods for dealing with generic
- * {@link Number numbers}.
+ * The {@link NumberUtils} class provides utility methods for dealing with
+ * generic {@link Number numbers}.
  * 
  * @author Peter J. Radics
  * @version 0.1
@@ -147,13 +147,29 @@ public class NumberUtils {
     /**
      * Creates an array of a generic type from the provided elements.
      * 
+     * @param type
+     *            the type of the array.
+     * 
      * @param elements
      *            the elements comprising the desired array.
      * @return an array containing all elements.
      */
-    @SafeVarargs
-    public static <T> T[] createArray(final T... elements) {
+    public static <T> T[] createArray(final Class<? extends T> type,
+            final T... elements) {
 
-        return elements;
+
+        @SuppressWarnings("unchecked")
+        T[] array = (T[]) java.lang.reflect.Array.newInstance(type,
+                elements.length);
+
+        int i = 0;
+        for (T element : elements) {
+
+            array[i] = element;
+            i++;
+        }
+
+
+        return array;
     }
 }
