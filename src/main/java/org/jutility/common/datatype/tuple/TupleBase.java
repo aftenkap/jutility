@@ -227,8 +227,8 @@ public abstract class TupleBase<T>
     public T[] toArray() {
 
         if (!this.components.isEmpty()) {
-            
-            this.components.toArray(TupleBase.createArray(this.get(0)));
+                        
+            return this.components.toArray(TupleBase.createArray(this.get(0)));
         }
 
         return null;
