@@ -31,7 +31,8 @@ public class Point4fTest {
             fail("Shouldn't be able to copy vector into point: " + testVector);
         }
         catch (IllegalArgumentException e) {
-            assertEquals("Provided parameter is not a point!", e.getMessage());
+            assertEquals("Error copying Tuple " + Vector4f.I_UNIT_VECTOR
+                    + ": Provided parameter is not a point!", e.getMessage());
         }
     }
 

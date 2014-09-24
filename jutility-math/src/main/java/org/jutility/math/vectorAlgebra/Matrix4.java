@@ -249,7 +249,7 @@ public class Matrix4<T extends Number>
     public T[] toColumnMajorArray() {
 
         @SuppressWarnings("unchecked")
-        T array[] = NumberUtils.createArray(
+        T array[] = NumberUtils.createArray(this.type,
 
         this.getI().getX(), this.getI().getY(), this.getI().getZ(), this.getI()
                 .getW(),
@@ -278,7 +278,7 @@ public class Matrix4<T extends Number>
     public T[] toRowMajorArray() {
 
         @SuppressWarnings("unchecked")
-        T array[] = NumberUtils.createArray(
+        T array[] = NumberUtils.createArray(this.type,
 
         this.getI().getX(), this.getJ().getX(), this.getK().getX(), this.getS()
                 .getX(),
