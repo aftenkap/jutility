@@ -196,7 +196,7 @@ public class NumberComparator {
 
         Double difference = (lhs - rhsDouble);
 
-        if (difference < delta) {
+        if (Math.abs(difference) < delta) {
             return 0;
         }
         else if (difference < 0) {
@@ -219,7 +219,7 @@ public class NumberComparator {
 
         Double difference = (lhsDouble - rhs);
 
-        if (difference < delta) {
+        if (Math.abs(difference) < delta) {
             return 0;
         }
         else if (difference < 0) {
@@ -243,7 +243,7 @@ public class NumberComparator {
 
         Float difference = (lhs - rhsFloat);
 
-        if (difference < delta) {
+        if (Math.abs(difference) < delta) {
             return 0;
         }
         else if (difference < 0) {
@@ -266,7 +266,7 @@ public class NumberComparator {
 
         Float difference = (lhsDouble - rhs);
 
-        if (difference < delta) {
+        if (Math.abs(difference) < delta) {
             return 0;
         }
         else if (difference < 0) {

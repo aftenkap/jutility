@@ -17,11 +17,11 @@ public final class NumberConstants {
     /**
      * Precision for float comparisons.
      */
-    public static final float  DELTA_F = 0.0001f;
+    public static float  DELTA_F = 0.0001f;
 
     /**
      * Precision for double comparisons.
      */
-    public static final double DELTA_D = 0.0001;
+    public static double DELTA_D = 0.0001;
 
 }
