@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.jutility.common.datatype.range.Interval;
+import org.jutility.common.datatype.util.NumberConstants;
 
 
 /**
@@ -263,6 +264,7 @@ public class IntervalTest {
         System.out.println("contains (Interval)");
 
         testContains_Interval(intMin, intMax, intWithin, intSmaller, intLarger);
+        NumberConstants.DELTA_D = 0.00000000000001;
         testContains_Interval(doubleMin, doubleMax, doubleWithin,
                 doubleSmaller, doubleLarger);
 
@@ -448,8 +450,8 @@ public class IntervalTest {
             Interval<T> left, Interval<T> right, Boolean leftContainsRight,
             Boolean rightContainsLeft) {
 
-        assertEquals(left.contains(right), leftContainsRight);
-        assertEquals(right.contains(left), rightContainsLeft);
+        assertEquals(leftContainsRight, left.contains(right));
+        assertEquals(rightContainsLeft, right.contains(left));
     }
 
     private <T extends Number & Comparable<T>> void complexContainmentTest(

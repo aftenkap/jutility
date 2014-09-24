@@ -35,7 +35,7 @@ public class Matrix4fTest {
         }
         catch (IllegalArgumentException e) {
 
-            assertEquals("Cannot create a matrix with missing components!",
+            assertEquals("Cannot create a matrix with missing I component!",
                     e.getMessage());
         }
         try {
@@ -47,7 +47,7 @@ public class Matrix4fTest {
         }
         catch (IllegalArgumentException e) {
 
-            assertEquals("Cannot create a matrix with missing components!",
+            assertEquals("Cannot create a matrix with missing J component!",
                     e.getMessage());
         }
         try {
@@ -59,7 +59,7 @@ public class Matrix4fTest {
         }
         catch (IllegalArgumentException e) {
 
-            assertEquals("Cannot create a matrix with missing components!",
+            assertEquals("Cannot create a matrix with missing K component!",
                     e.getMessage());
         }
         try {
@@ -71,7 +71,7 @@ public class Matrix4fTest {
         }
         catch (IllegalArgumentException e) {
 
-            assertEquals("Cannot create a matrix with missing components!",
+            assertEquals("Cannot create a matrix with missing S component!",
                     e.getMessage());
         }
     }
@@ -136,8 +136,8 @@ public class Matrix4fTest {
 
         assertEquals(expected.length, actual.length);
         for (int i = 0; i < expected.length; i++) {
-            assertTrue(org.jutility.common.datatype.util.NumberComparator.equals(expected[i],
-                    actual[i]));
+            assertTrue(org.jutility.common.datatype.util.NumberComparator
+                    .equals(expected[i], actual[i]));
         }
 
     }
@@ -166,7 +166,8 @@ public class Matrix4fTest {
 
 
     /**
-     * Test method for {@link org.jutility.math.vectorAlgebra.Matrix4f#transpose()}.
+     * Test method for
+     * {@link org.jutility.math.vectorAlgebra.Matrix4f#transpose()}.
      */
     @Test
     public void testTranspose() {
@@ -190,7 +191,8 @@ public class Matrix4fTest {
 
 
     /**
-     * Test method for {@link org.jutility.math.vectorAlgebra.Matrix4f#toString()}.
+     * Test method for
+     * {@link org.jutility.math.vectorAlgebra.Matrix4f#toString()}.
      */
     @Test
     public void testToString() {
@@ -220,15 +222,16 @@ public class Matrix4fTest {
 
     /**
      * Test method for
-     * {@link org.jutility.math.vectorAlgebra.Matrix4f#equals(java.lang.Object)}.
+     * {@link org.jutility.math.vectorAlgebra.Matrix4f#equals(java.lang.Object)}
+     * .
      */
     @Test
     public void testEqualsObject() {
 
         for (float ux = -1; org.jutility.common.datatype.util.NumberComparator
                 .smallerOrEqual(ux, 1f); ux += 0.1) {
-            for (float uy = -1; org.jutility.common.datatype.util.NumberComparator.smallerOrEqual(
-                    uy, 1f); uy += 0.1) {
+            for (float uy = -1; org.jutility.common.datatype.util.NumberComparator
+                    .smallerOrEqual(uy, 1f); uy += 0.1) {
                 for (float uz = -1; org.jutility.common.datatype.util.NumberComparator
                         .smallerOrEqual(uz, 1f); uz += 0.1) {
                     for (float uw = -1; org.jutility.common.datatype.util.NumberComparator
@@ -253,7 +256,8 @@ public class Matrix4fTest {
 
 
     /**
-     * Test method for {@link org.jutility.math.vectorAlgebra.Matrix4f#hashCode()}.
+     * Test method for
+     * {@link org.jutility.math.vectorAlgebra.Matrix4f#hashCode()}.
      */
     @Test
     public void testHashCode() {
@@ -265,13 +269,44 @@ public class Matrix4fTest {
 
         Matrix4f testMatrix = new Matrix4f(i, j, k, s);
 
-        int hashCode = 7;
-        float[] thisMatrix = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
-                15, 16 };
+        int hashCode = 23;
+        float[] thisMatrix = { 1, 5, 9, 13, 2, 6, 10, 14, 3, 7, 11, 15, 4, 8,
+                12, 16 };
 
-        for (int index = 0; index < thisMatrix.length; index++) {
-            hashCode += new Float((thisMatrix[index])).hashCode();
+        int ihashCode = 7;
+        for (int index = 0; index < 4; index++) {
+
+            ihashCode += 13 * new Float(thisMatrix[index]).hashCode();
         }
+        ihashCode *= 29;
+
+
+        int jhashCode = 7;
+        for (int index = 4; index < 8; index++) {
+
+            jhashCode += 13 * new Float(thisMatrix[index]).hashCode();
+        }
+        jhashCode *= 31;
+
+
+        int khashCode = 7;
+        for (int index = 8; index < 12; index++) {
+
+            khashCode += 13 * new Float(thisMatrix[index]).hashCode();
+        }
+        khashCode *= 37;
+
+
+        int shashCode = 7;
+
+        for (int index = 12; index < 16; index++) {
+
+            shashCode += 13 * new Float(thisMatrix[index]).hashCode();
+        }
+        shashCode *= 39;
+
+
+        hashCode += ihashCode + jhashCode + khashCode + shashCode;
 
         assertEquals(hashCode, testMatrix.hashCode());
     }

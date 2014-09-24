@@ -31,10 +31,10 @@ public class Tuple4fTest {
                     for (float uw = -1; NumberComparator.smallerOrEqual(uw, 1f); uw += 0.1) {
                         Tuple4f testTuple = new Tuple4f(ux, uy, uz, uw);
 
-                        int expected = 5 + new Float(ux).hashCode()
-                                + new Float(uy).hashCode()
-                                + new Float(uz).hashCode()
-                                + new Float(uw).hashCode();
+                        int expected = 7 + 13 *new Float(ux).hashCode()
+                                + 13 *new Float(uy).hashCode()
+                                + 13 *new Float(uz).hashCode()
+                                + 13 *new Float(uw).hashCode();
                         assertEquals(expected, testTuple.hashCode());
                     }
                 }
@@ -57,7 +57,12 @@ public class Tuple4fTest {
                         Tuple4f testTuple = new Tuple4f(ux, uy, uz, uw);
 
                         Float expected[] = { ux, uy, uz, uw };
-                        assertArrayEquals(expected, testTuple.toArray(),
+                        Float actual[] = testTuple.toArray();
+                        
+                        assertNotNull(expected);
+                        assertNotNull(actual);
+                        
+                        assertArrayEquals(expected, actual,
                                 NumberConstants.DELTA_F);
                     }
                 }

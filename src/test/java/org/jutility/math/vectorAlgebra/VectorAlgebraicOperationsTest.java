@@ -20,12 +20,12 @@ import org.jutility.math.vectorAlgebra.VectorAlgebraicOperations;
  * Test harness for the NumberComparator class.
  * 
  * @author Peter J. Radics
- * @version 0.1
+ * @version STEP_SIZE
  */
 public class VectorAlgebraicOperationsTest
         extends VectorAlgebraicOperations {
 
-
+    private static double STEP_SIZE = 0.3333;
 
     /**
      * Test method for {@link VectorAlgebraicOperations#add(IVector4, IVector4)}
@@ -34,14 +34,16 @@ public class VectorAlgebraicOperationsTest
     @Test
     public void testAddIVector4IVector4() {
 
-        for (double v_x = -1f; NumberComparator.smallerOrEqual(v_x, 1.0); v_x += 0.1) {
-            for (double v_y = -1f; NumberComparator.smallerOrEqual(v_y, 1.0); v_y += 0.1) {
-                for (double v_z = -1f; NumberComparator.smallerOrEqual(v_z, 1.0); v_z += 0.1) {
-                    for (double w_x = -1f; NumberComparator.smallerOrEqual(w_x, 1.0); w_x += 0.1) {
-                        for (double w_y = -1f; NumberComparator.smallerOrEqual(w_y,
-                                1.0); w_y += 0.1) {
-                            for (double w_z = -1f; NumberComparator.smallerOrEqual(
-                                    w_z, 1.0); w_z += 0.1) {
+        for (double v_x = -1d; NumberComparator.smallerOrEqual(v_x, 1.0); v_x += STEP_SIZE) {
+            for (double v_y = -1d; NumberComparator.smallerOrEqual(v_y, 1.0); v_y += STEP_SIZE) {
+                for (double v_z = -1d; NumberComparator
+                        .smallerOrEqual(v_z, 1.0); v_z += STEP_SIZE) {
+                    for (double w_x = -1d; NumberComparator.smallerOrEqual(w_x,
+                            1.0); w_x += STEP_SIZE) {
+                        for (double w_y = -1d; NumberComparator.smallerOrEqual(
+                                w_y, 1.0); w_y += STEP_SIZE) {
+                            for (double w_z = -1d; NumberComparator
+                                    .smallerOrEqual(w_z, 1.0); w_z += STEP_SIZE) {
 
                                 Vector4d v = new Vector4d(v_x, v_y, v_z);
                                 Vector4d w = new Vector4d(w_x, w_y, w_z);
@@ -67,14 +69,16 @@ public class VectorAlgebraicOperationsTest
     @Test
     public void testAddIPoint4IVector4() {
 
-        for (double v_x = -1.0; NumberComparator.smallerOrEqual(v_x, 1.0); v_x += 0.1) {
-            for (double v_y = -1f; NumberComparator.smallerOrEqual(v_y, 1.0); v_y += 0.1) {
-                for (double v_z = -1f; NumberComparator.smallerOrEqual(v_z, 1.0); v_z += 0.1) {
-                    for (double w_x = -1f; NumberComparator.smallerOrEqual(w_x, 1.0); w_x += 0.1) {
-                        for (double w_y = -1f; NumberComparator.smallerOrEqual(w_y,
-                                1.0); w_y += 0.1) {
-                            for (double w_z = -1f; NumberComparator.smallerOrEqual(
-                                    w_z, 1.0); w_z += 0.1) {
+        for (double v_x = -1.0; NumberComparator.smallerOrEqual(v_x, 1.0); v_x += STEP_SIZE) {
+            for (double v_y = -1d; NumberComparator.smallerOrEqual(v_y, 1.0); v_y += STEP_SIZE) {
+                for (double v_z = -1d; NumberComparator
+                        .smallerOrEqual(v_z, 1.0); v_z += STEP_SIZE) {
+                    for (double w_x = -1d; NumberComparator.smallerOrEqual(w_x,
+                            1.0); w_x += STEP_SIZE) {
+                        for (double w_y = -1d; NumberComparator.smallerOrEqual(
+                                w_y, 1.0); w_y += STEP_SIZE) {
+                            for (double w_z = -1d; NumberComparator
+                                    .smallerOrEqual(w_z, 1.0); w_z += STEP_SIZE) {
 
                                 Point4d v = new Point4d(v_x, v_y, v_z);
                                 Vector4d w = new Vector4d(w_x, w_y, w_z);
@@ -99,14 +103,16 @@ public class VectorAlgebraicOperationsTest
     @Test
     public void testAddIVector4IPoint4() {
 
-        for (double v_x = -1.0; NumberComparator.smallerOrEqual(v_x, 1f); v_x += 0.1) {
-            for (double v_y = -1.0; NumberComparator.smallerOrEqual(v_y, 1.0); v_y += 0.1) {
-                for (double v_z = -1f; NumberComparator.smallerOrEqual(v_z, 1.0); v_z += 0.1) {
-                    for (double w_x = -1f; NumberComparator.smallerOrEqual(w_x, 1.0); w_x += 0.1) {
-                        for (double w_y = -1f; NumberComparator.smallerOrEqual(w_y,
-                                1.0); w_y += 0.1) {
-                            for (double w_z = -1f; NumberComparator.smallerOrEqual(
-                                    w_z, 1.0); w_z += 0.1) {
+        for (double v_x = -1.0; NumberComparator.smallerOrEqual(v_x, 1d); v_x += STEP_SIZE) {
+            for (double v_y = -1.0; NumberComparator.smallerOrEqual(v_y, 1.0); v_y += STEP_SIZE) {
+                for (double v_z = -1d; NumberComparator
+                        .smallerOrEqual(v_z, 1.0); v_z += STEP_SIZE) {
+                    for (double w_x = -1d; NumberComparator.smallerOrEqual(w_x,
+                            1.0); w_x += STEP_SIZE) {
+                        for (double w_y = -1d; NumberComparator.smallerOrEqual(
+                                w_y, 1.0); w_y += STEP_SIZE) {
+                            for (double w_z = -1d; NumberComparator
+                                    .smallerOrEqual(w_z, 1.0); w_z += STEP_SIZE) {
 
                                 Point4d v = new Point4d(v_x, v_y, v_z);
                                 Vector4d w = new Vector4d(w_x, w_y, w_z);
@@ -131,14 +137,16 @@ public class VectorAlgebraicOperationsTest
     @Test
     public void testSubtractIPoint4IPoint4() {
 
-        for (double v_x = -1.0; NumberComparator.smallerOrEqual(v_x, 1.0); v_x += 0.1) {
-            for (double v_y = -1f; NumberComparator.smallerOrEqual(v_y, 1.0); v_y += 0.1) {
-                for (double v_z = -1f; NumberComparator.smallerOrEqual(v_z, 1.0); v_z += 0.1) {
-                    for (double w_x = -1f; NumberComparator.smallerOrEqual(w_x, 1.0); w_x += 0.1) {
-                        for (double w_y = -1f; NumberComparator.smallerOrEqual(w_y,
-                                1.0); w_y += 0.1) {
-                            for (double w_z = -1f; NumberComparator.smallerOrEqual(
-                                    w_z, 1f); w_z += 0.1) {
+        for (double v_x = -1.0; NumberComparator.smallerOrEqual(v_x, 1.0); v_x += STEP_SIZE) {
+            for (double v_y = -1d; NumberComparator.smallerOrEqual(v_y, 1.0); v_y += STEP_SIZE) {
+                for (double v_z = -1d; NumberComparator
+                        .smallerOrEqual(v_z, 1.0); v_z += STEP_SIZE) {
+                    for (double w_x = -1d; NumberComparator.smallerOrEqual(w_x,
+                            1.0); w_x += STEP_SIZE) {
+                        for (double w_y = -1d; NumberComparator.smallerOrEqual(
+                                w_y, 1.0); w_y += STEP_SIZE) {
+                            for (double w_z = -1d; NumberComparator
+                                    .smallerOrEqual(w_z, 1d); w_z += STEP_SIZE) {
 
                                 Point4d v = new Point4d(v_x, v_y, v_z);
                                 Point4d w = new Point4d(w_x, w_y, w_z);
@@ -164,14 +172,16 @@ public class VectorAlgebraicOperationsTest
     @Test
     public void testSubtractIPoint4IVector4() {
 
-        for (double v_x = -1.0; NumberComparator.smallerOrEqual(v_x, 1.0); v_x += 0.1) {
-            for (double v_y = -1.0; NumberComparator.smallerOrEqual(v_y, 1.0); v_y += 0.1) {
-                for (double v_z = -1f; NumberComparator.smallerOrEqual(v_z, 1.0); v_z += 0.1) {
-                    for (double w_x = -1f; NumberComparator.smallerOrEqual(w_x, 1.0); w_x += 0.1) {
-                        for (double w_y = -1f; NumberComparator.smallerOrEqual(w_y,
-                                1.0); w_y += 0.1) {
-                            for (double w_z = -1f; NumberComparator.smallerOrEqual(
-                                    w_z, 1.0); w_z += 0.1) {
+        for (double v_x = -1.0; NumberComparator.smallerOrEqual(v_x, 1.0); v_x += STEP_SIZE) {
+            for (double v_y = -1.0; NumberComparator.smallerOrEqual(v_y, 1.0); v_y += STEP_SIZE) {
+                for (double v_z = -1d; NumberComparator
+                        .smallerOrEqual(v_z, 1.0); v_z += STEP_SIZE) {
+                    for (double w_x = -1d; NumberComparator.smallerOrEqual(w_x,
+                            1.0); w_x += STEP_SIZE) {
+                        for (double w_y = -1d; NumberComparator.smallerOrEqual(
+                                w_y, 1.0); w_y += STEP_SIZE) {
+                            for (double w_z = -1d; NumberComparator
+                                    .smallerOrEqual(w_z, 1.0); w_z += STEP_SIZE) {
 
                                 if (!NumberComparator.equals(v_z, w_z)) {
                                     Point4d v = new Point4d(v_x, v_y, v_z);
@@ -209,10 +219,12 @@ public class VectorAlgebraicOperationsTest
     @Test
     public void testMultiplyIVector4Number() {
 
-        for (double v_x = -1.0; NumberComparator.smallerOrEqual(v_x, 1.0); v_x += 0.1) {
-            for (double v_y = -1.0; NumberComparator.smallerOrEqual(v_y, 1.0); v_y += 0.1) {
-                for (double v_z = -1.0; NumberComparator.smallerOrEqual(v_z, 1.0); v_z += 0.1) {
-                    for (double s = -1.0; NumberComparator.smallerOrEqual(s, 1.0); s += 0.1) {
+        for (double v_x = -1.0; NumberComparator.smallerOrEqual(v_x, 1.0); v_x += STEP_SIZE) {
+            for (double v_y = -1.0; NumberComparator.smallerOrEqual(v_y, 1.0); v_y += STEP_SIZE) {
+                for (double v_z = -1.0; NumberComparator.smallerOrEqual(v_z,
+                        1.0); v_z += STEP_SIZE) {
+                    for (double s = -1.0; NumberComparator.smallerOrEqual(s,
+                            1.0); s += STEP_SIZE) {
 
                         Vector4d v = new Vector4d(v_x, v_y, v_z);
 
@@ -234,10 +246,12 @@ public class VectorAlgebraicOperationsTest
     @Test
     public void testMultiplyNumberIVector4() {
 
-        for (double v_x = -1.0; NumberComparator.smallerOrEqual(v_x, 1.0); v_x += 0.1) {
-            for (double v_y = -1f; NumberComparator.smallerOrEqual(v_y, 1.0); v_y += 0.1) {
-                for (double v_z = -1.0; NumberComparator.smallerOrEqual(v_z, 1.0); v_z += 0.1) {
-                    for (double s = -1f; NumberComparator.smallerOrEqual(s, 1.0); s += 0.1) {
+        for (double v_x = -1.0; NumberComparator.smallerOrEqual(v_x, 1.0); v_x += STEP_SIZE) {
+            for (double v_y = -1d; NumberComparator.smallerOrEqual(v_y, 1.0); v_y += STEP_SIZE) {
+                for (double v_z = -1.0; NumberComparator.smallerOrEqual(v_z,
+                        1.0); v_z += STEP_SIZE) {
+                    for (double s = -1d; NumberComparator
+                            .smallerOrEqual(s, 1.0); s += STEP_SIZE) {
 
                         Vector4d v = new Vector4d(v_x, v_y, v_z);
 
@@ -259,22 +273,23 @@ public class VectorAlgebraicOperationsTest
     @Test
     public void testMultiplyIMatrix4ITuple4() {
 
-        for (double v_x = -1f; NumberComparator.smallerOrEqual(v_x, 1f); v_x += 0.25f) {
-            for (double v_y = -1f; NumberComparator.smallerOrEqual(v_y, 1f); v_y += 0.25f) {
-                for (double v_z = -1f; NumberComparator.smallerOrEqual(v_z, 1f); v_z += 0.25f) {
-                    for (double v_w = -1f; NumberComparator.smallerOrEqual(v_w, 1f); v_w += 0.25f) {
+        for (double v_x = -1d; NumberComparator.smallerOrEqual(v_x, 1d); v_x += STEP_SIZE) {
+            for (double v_y = -1d; NumberComparator.smallerOrEqual(v_y, 1d); v_y += STEP_SIZE) {
+                for (double v_z = -1d; NumberComparator.smallerOrEqual(v_z, 1d); v_z += STEP_SIZE) {
+                    for (double v_w = -1d; NumberComparator.smallerOrEqual(v_w,
+                            1d); v_w += STEP_SIZE) {
 
 
                         Tuple4d v = new Tuple4d(v_x, v_y, v_z, v_w);
 
-                        for (double w_x = -1f; NumberComparator.smallerOrEqual(w_x,
-                                1f); w_x += 0.25f) {
-                            for (double w_y = -1f; NumberComparator.smallerOrEqual(
-                                    w_y, 1f); w_y += 0.25f) {
-                                for (double w_z = -1f; NumberComparator
-                                        .smallerOrEqual(w_z, 1f); w_z += 0.25f) {
-                                    for (double w_w = -1f; NumberComparator
-                                            .smallerOrEqual(w_w, 1f); w_w += 0.25f) {
+                        for (double w_x = -1d; NumberComparator.smallerOrEqual(
+                                w_x, 1d); w_x += STEP_SIZE) {
+                            for (double w_y = -1d; NumberComparator
+                                    .smallerOrEqual(w_y, 1d); w_y += STEP_SIZE) {
+                                for (double w_z = -1d; NumberComparator
+                                        .smallerOrEqual(w_z, 1d); w_z += STEP_SIZE) {
+                                    for (double w_w = -1d; NumberComparator
+                                            .smallerOrEqual(w_w, 1d); w_w += STEP_SIZE) {
 
                                         Tuple4d i = new Tuple4d(w_x, w_y, w_z,
                                                 w_w);
@@ -323,20 +338,21 @@ public class VectorAlgebraicOperationsTest
     @Test
     public void testMultiplyIMatrix4IPoint4() {
 
-        for (double v_x = -1f; NumberComparator.smallerOrEqual(v_x, 1f); v_x += 0.25f) {
-            for (double v_y = -1f; NumberComparator.smallerOrEqual(v_y, 1f); v_y += 0.25f) {
-                for (double v_z = -1f; NumberComparator.smallerOrEqual(v_z, 1f); v_z += 0.25f) {
+        for (double v_x = -1d; NumberComparator.smallerOrEqual(v_x, 1d); v_x += STEP_SIZE) {
+            for (double v_y = -1d; NumberComparator.smallerOrEqual(v_y, 1d); v_y += STEP_SIZE) {
+                for (double v_z = -1d; NumberComparator.smallerOrEqual(v_z, 1d); v_z += STEP_SIZE) {
 
 
                     Point4d v = new Point4d(v_x, v_y, v_z);
 
-                    for (double w_x = -1f; NumberComparator.smallerOrEqual(w_x, 1f); w_x += 0.25f) {
-                        for (double w_y = -1f; NumberComparator.smallerOrEqual(w_y,
-                                1f); w_y += 0.25f) {
-                            for (double w_z = -1f; NumberComparator.smallerOrEqual(
-                                    w_z, 1f); w_z += 0.25f) {
-                                for (double w_w = -1f; NumberComparator
-                                        .smallerOrEqual(w_w, 1f); w_w += 0.25f) {
+                    for (double w_x = -1d; NumberComparator.smallerOrEqual(w_x,
+                            1d); w_x += STEP_SIZE) {
+                        for (double w_y = -1d; NumberComparator.smallerOrEqual(
+                                w_y, 1d); w_y += STEP_SIZE) {
+                            for (double w_z = -1d; NumberComparator
+                                    .smallerOrEqual(w_z, 1d); w_z += STEP_SIZE) {
+                                for (double w_w = -1d; NumberComparator
+                                        .smallerOrEqual(w_w, 1d); w_w += STEP_SIZE) {
 
                                     Vector4d i = new Vector4d(w_x, w_y, w_z);
                                     Vector4d j = new Vector4d(w_y, w_z, w_w);
@@ -374,20 +390,21 @@ public class VectorAlgebraicOperationsTest
     @Test
     public void testMultiplyIMatrix4IVector4() {
 
-        for (double v_x = -1f; NumberComparator.smallerOrEqual(v_x, 1f); v_x += 0.25f) {
-            for (double v_y = -1f; NumberComparator.smallerOrEqual(v_y, 1f); v_y += 0.25f) {
-                for (double v_z = -1f; NumberComparator.smallerOrEqual(v_z, 1f); v_z += 0.25f) {
+        for (double v_x = -1d; NumberComparator.smallerOrEqual(v_x, 1d); v_x += STEP_SIZE) {
+            for (double v_y = -1d; NumberComparator.smallerOrEqual(v_y, 1d); v_y += STEP_SIZE) {
+                for (double v_z = -1d; NumberComparator.smallerOrEqual(v_z, 1d); v_z += STEP_SIZE) {
 
 
                     Vector4d v = new Vector4d(v_x, v_y, v_z);
 
-                    for (double w_x = -1f; NumberComparator.smallerOrEqual(w_x, 1f); w_x += 0.25f) {
-                        for (double w_y = -1f; NumberComparator.smallerOrEqual(w_y,
-                                1f); w_y += 0.25f) {
-                            for (double w_z = -1f; NumberComparator.smallerOrEqual(
-                                    w_z, 1f); w_z += 0.25f) {
-                                for (double w_w = -1f; NumberComparator
-                                        .smallerOrEqual(w_w, 1f); w_w += 0.25f) {
+                    for (double w_x = -1d; NumberComparator.smallerOrEqual(w_x,
+                            1d); w_x += STEP_SIZE) {
+                        for (double w_y = -1d; NumberComparator.smallerOrEqual(
+                                w_y, 1d); w_y += STEP_SIZE) {
+                            for (double w_z = -1d; NumberComparator
+                                    .smallerOrEqual(w_z, 1d); w_z += STEP_SIZE) {
+                                for (double w_w = -1d; NumberComparator
+                                        .smallerOrEqual(w_w, 1d); w_w += STEP_SIZE) {
 
                                     Vector4d i = new Vector4d(w_x, w_y, w_z);
                                     Vector4d j = new Vector4d(w_y, w_z, w_w);
@@ -424,12 +441,13 @@ public class VectorAlgebraicOperationsTest
     @Test
     public void testMultiplyIMatrix4IMatrix4() {
 
-        for (double w_x = -1f; NumberComparator.smallerOrEqual(w_x, 1f); w_x += 0.25f) {
-            for (double w_y = -1f; NumberComparator.smallerOrEqual(w_y, 1f); w_y += 0.25f) {
-                for (double w_z = -1f; NumberComparator.smallerOrEqual(w_z, 1f); w_z += 0.25f) {
-                    for (double w_w = -1f; NumberComparator.smallerOrEqual(w_w, 1f); w_w += 0.25f) {
-                        for (double alpha = -1f; NumberComparator.smallerOrEqual(
-                                alpha, 1f); alpha += 0.1f) {
+        for (double w_x = -1d; NumberComparator.smallerOrEqual(w_x, 1d); w_x += STEP_SIZE) {
+            for (double w_y = -1d; NumberComparator.smallerOrEqual(w_y, 1d); w_y += STEP_SIZE) {
+                for (double w_z = -1d; NumberComparator.smallerOrEqual(w_z, 1d); w_z += STEP_SIZE) {
+                    for (double w_w = -1d; NumberComparator.smallerOrEqual(w_w,
+                            1d); w_w += STEP_SIZE) {
+                        for (double alpha = -1d; NumberComparator
+                                .smallerOrEqual(alpha, 1d); alpha += STEP_SIZE) {
 
                             Tuple4d i1 = new Tuple4d(w_x, w_y, w_z, w_w);
                             Tuple4d j1 = new Tuple4d(w_y, w_z, w_w, w_x);

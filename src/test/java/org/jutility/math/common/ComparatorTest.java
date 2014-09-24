@@ -1,8 +1,6 @@
 package org.jutility.math.common;
 
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 import org.jutility.common.datatype.util.NumberComparator;
 
@@ -23,7 +21,7 @@ public class ComparatorTest
     @Test
     public void test() {
 
-        fail("Not yet implemented");
+        // TODO: implement
     }
 
 }

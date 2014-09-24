@@ -35,7 +35,7 @@ public class Matrix4dTest {
         }
         catch (IllegalArgumentException e) {
 
-            assertEquals("Cannot create a matrix with missing components!",
+            assertEquals("Cannot create a matrix with missing I component!",
                     e.getMessage());
         }
         try {
@@ -47,7 +47,7 @@ public class Matrix4dTest {
         }
         catch (IllegalArgumentException e) {
 
-            assertEquals("Cannot create a matrix with missing components!",
+            assertEquals("Cannot create a matrix with missing J component!",
                     e.getMessage());
         }
         try {
@@ -59,7 +59,7 @@ public class Matrix4dTest {
         }
         catch (IllegalArgumentException e) {
 
-            assertEquals("Cannot create a matrix with missing components!",
+            assertEquals("Cannot create a matrix with missing K component!",
                     e.getMessage());
         }
         try {
@@ -71,7 +71,7 @@ public class Matrix4dTest {
         }
         catch (IllegalArgumentException e) {
 
-            assertEquals("Cannot create a matrix with missing components!",
+            assertEquals("Cannot create a matrix with missing S component!",
                     e.getMessage());
         }
     }
@@ -259,13 +259,44 @@ public class Matrix4dTest {
 
         Matrix4d testMatrix = new Matrix4d(i, j, k, s);
 
-        int hashCode = 7;
-        double[] thisMatrix = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
-                15, 16 };
+        int hashCode = 23;
+        double[] thisMatrix = { 1, 5, 9, 13, 2, 6, 10, 14, 3, 7, 11, 15, 4, 8,
+                12, 16 };
 
-        for (int index = 0; index < thisMatrix.length; index++) {
-            hashCode += new Double((thisMatrix[index])).hashCode();
+        int ihashCode = 7;
+        for (int index = 0; index < 4; index++) {
+
+            ihashCode += 13 * new Double(thisMatrix[index]).hashCode();
         }
+        ihashCode *= 29;
+
+
+        int jhashCode = 7;
+        for (int index = 4; index < 8; index++) {
+
+            jhashCode += 13 * new Double(thisMatrix[index]).hashCode();
+        }
+        jhashCode *= 31;
+
+
+        int khashCode = 7;
+        for (int index = 8; index < 12; index++) {
+
+            khashCode += 13 * new Double(thisMatrix[index]).hashCode();
+        }
+        khashCode *= 37;
+
+
+        int shashCode = 7;
+
+        for (int index = 12; index < 16; index++) {
+
+            shashCode += 13 * new Double(thisMatrix[index]).hashCode();
+        }
+        shashCode *= 39;
+
+
+        hashCode += ihashCode + jhashCode + khashCode + shashCode;
 
         assertEquals(hashCode, testMatrix.hashCode());
     }
