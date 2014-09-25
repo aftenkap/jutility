@@ -239,9 +239,6 @@ public abstract class IntervalBase<T>
         int compareToUpperBound = this.compareTo(this.getUpperBound(),
                 otherInterval.getUpperBound());
 
-        System.out.println("Lower bound comparison: " + compareToLowerBound);
-        System.out.println("Upper bound comparison: " + compareToUpperBound);
-
         // if our lower bound is greater than the other interval's lower bound,
         // it cannot be contained in the interval.
         if (compareToLowerBound > 0) {
