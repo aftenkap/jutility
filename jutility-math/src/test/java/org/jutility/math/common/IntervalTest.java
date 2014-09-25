@@ -6,14 +6,20 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.jutility.common.datatype.range.Interval;
 import org.jutility.common.datatype.util.NumberConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
  * 
- * @author pr755870
+ * @author Peter J. Radics
+ * @version 0.1.0
+ * @since 0.0.1
  */
 public class IntervalTest {
 
+    private static Logger LOG = LoggerFactory.getLogger(IntervalTest.class);
+    
     private Integer intMin        = 0;
     private Integer intMax        = 2;
     private Integer intWithin     = 1;
@@ -33,12 +39,12 @@ public class IntervalTest {
     @Test
     public void testConstructor() {
 
-        System.out.println("Constructor");
+        LOG.info("Constructor");
 
         testConstructor(intMin, intMax);
         testConstructor(doubleMin, doubleMax);
 
-        System.out.println("\tSuccess.");
+        LOG.info("\tSuccess.");
 
     }
 
@@ -82,12 +88,12 @@ public class IntervalTest {
     @Test
     public void testGetContainsLowerBound() {
 
-        System.out.println("containsLowerBound");
+        LOG.info("containsLowerBound");
 
         testGetContainsLowerBound(intMin, intMax);
         testGetContainsLowerBound(doubleMin, doubleMax);
 
-        System.out.println("\tSuccess.");
+        LOG.info("\tSuccess.");
     }
 
     private <T extends Number & Comparable<T>> void testGetContainsLowerBound(
@@ -112,12 +118,12 @@ public class IntervalTest {
     @Test
     public void testGetContainsUpperBound() {
 
-        System.out.println("containsUpperBound");
+        LOG.info("containsUpperBound");
 
         testGetContainsUpperBound(intMin, intMax);
         testGetContainsUpperBound(doubleMin, doubleMax);
 
-        System.out.println("\tSuccess.");
+        LOG.info("\tSuccess.");
     }
 
     private <T extends Number & Comparable<T>> void testGetContainsUpperBound(
@@ -141,12 +147,12 @@ public class IntervalTest {
     @Test
     public void testGetLowerBound() {
 
-        System.out.println("getLowerBound");
+        LOG.info("getLowerBound");
 
         testGetLowerBound(intMin, intMax);
         testGetLowerBound(doubleMin, doubleMax);
 
-        System.out.println("\tSuccess.");
+        LOG.info("\tSuccess.");
     }
 
     private <T extends Number & Comparable<T>> void testGetLowerBound(T min,
@@ -166,12 +172,12 @@ public class IntervalTest {
     @Test
     public void testGetUpperBound() {
 
-        System.out.println("getUpperBound");
+        LOG.info("getUpperBound");
 
         testGetUpperBound(intMin, intMax);
         testGetUpperBound(doubleMin, doubleMax);
 
-        System.out.println("\tSuccess.");
+        LOG.info("\tSuccess.");
     }
 
     private <T extends Number & Comparable<T>> void testGetUpperBound(T min,
@@ -192,14 +198,14 @@ public class IntervalTest {
     @Test
     public void testContains_GenericType() {
 
-        System.out.println("contains (Generic Type)");
+        LOG.info("contains (Generic Type)");
 
         testContains_GenericType(intMin, intMax, intWithin, intSmaller,
                 intLarger);
         testContains_GenericType(doubleMin, doubleMax, doubleWithin,
                 doubleSmaller, doubleLarger);
 
-        System.out.println("\tSuccess.");
+        LOG.info("\tSuccess.");
     }
 
     private <T extends Number & Comparable<T>> void testContains_GenericType(
@@ -261,14 +267,14 @@ public class IntervalTest {
     @Test
     public void testContains_Interval() {
 
-        System.out.println("contains (Interval)");
+        LOG.info("contains (Interval)");
 
         testContains_Interval(intMin, intMax, intWithin, intSmaller, intLarger);
         NumberConstants.DELTA_D = 0.00000000000001;
         testContains_Interval(doubleMin, doubleMax, doubleWithin,
                 doubleSmaller, doubleLarger);
 
-        System.out.println("\tSuccess.");
+        LOG.info("\tSuccess.");
     }
 
     private <T extends Number & Comparable<T>> void testContains_Interval(
@@ -332,113 +338,113 @@ public class IntervalTest {
         Interval<T> maxLarger = new Interval<T>(max, larger);
 
 
-        System.out.println("minMax - smallerI");
+        LOG.debug("minMax - smallerI");
         complexContainmentTest(minMax, smallerI, false, false, false, false,
                 false, false, false, false, false, false, false, false, false,
                 false, false, false);
-        System.out.println("\nminMax - minI");
+        LOG.debug("minMax - minI");
         complexContainmentTest(minMax, minI, true, true, true, true, false,
                 false, false, false, true, true, true, true, false, false,
                 false, false);
-        System.out.println("\nminMax - withinI");
+        LOG.debug("minMax - withinI");
         complexContainmentTest(minMax, withinI, true, true, true, true, true,
                 true, true, true, true, true, true, true, true, true, true,
                 true);
-        System.out.println("\nminMax - maxI");
+        LOG.debug("minMax - maxI");
         complexContainmentTest(minMax, maxI, true, true, true, true, true,
                 true, true, true, false, false, false, false, false, false,
                 false, false);
-        System.out.println("\nminMax - largerI");
+        LOG.debug("minMax - largerI");
         complexContainmentTest(minMax, largerI, false, false, false, false,
                 false, false, false, false, false, false, false, false, false,
                 false, false, false);
 
-        System.out.println("\nsmallerMin - minMax");
+        LOG.debug("smallerMin - minMax");
         complexContainmentTest(smallerMin, minMax, false, false, false, false,
                 false, false, false, false, false, false, false, false, false,
                 false, false, false);
-        System.out.println("\nminMax - smallerMin");
+        LOG.debug("minMax - smallerMin");
         complexContainmentTest(minMax, smallerMin, false, false, false, false,
                 false, false, false, false, false, false, false, false, false,
                 false, false, false);
 
-        System.out.println("\nsmallerWithin - minMax");
+        LOG.debug("smallerWithin - minMax");
         complexContainmentTest(smallerWithin, minMax, false, false, false,
                 false, false, false, false, false, false, false, false, false,
                 false, false, false, false);
-        System.out.println("\nminMax - smallerWithin");
+        LOG.debug("minMax - smallerWithin");
         complexContainmentTest(minMax, smallerWithin, false, false, false,
                 false, false, false, false, false, false, false, false, false,
                 false, false, false, false);
 
-        System.out.println("\nsmallerMax - minMax");
+        LOG.debug("smallerMax - minMax");
         complexContainmentTest(smallerMax, minMax, true, true, true, true,
                 true, true, true, true, false, false, true, true, false, false,
                 true, true);
-        System.out.println("\nminMax - smallerMax");
+        LOG.debug("minMax - smallerMax");
         complexContainmentTest(minMax, smallerMax, false, false, false, false,
                 false, false, false, false, false, false, false, false, false,
                 false, false, false);
 
-        System.out.println("\nsmallerLarger - minMax");
+        LOG.debug("smallerLarger - minMax");
         complexContainmentTest(smallerLarger, minMax, true, true, true, true,
                 true, true, true, true, true, true, true, true, true, true,
                 true, true);
-        System.out.println("\nminMax - smallerLarger");
+        LOG.debug("minMax - smallerLarger");
         complexContainmentTest(minMax, smallerLarger, false, false, false,
                 false, false, false, false, false, false, false, false, false,
                 false, false, false, false);
 
-        System.out.println("\nminWithin - minMax");
+        LOG.debug("minWithin - minMax");
         complexContainmentTest(minWithin, minMax, false, false, false, false,
                 false, false, false, false, false, false, false, false, false,
                 false, false, false);
-        System.out.println("\nminMax - minWithin");
+        LOG.debug("minMax - minWithin");
         complexContainmentTest(minMax, minWithin, true, true, true, true,
                 false, true, false, true, true, true, true, true, false, true,
                 false, true);
 
-        System.out.println("\nminMaxClone - minMax");
+        LOG.debug("minMaxClone - minMax");
         complexContainmentTest(minMaxClone, minMax, true, true, true, true,
                 false, true, false, true, false, false, true, true, false,
                 false, false, true);
-        System.out.println("\nminMax - minMaxClone");
+        LOG.debug("minMax - minMaxClone");
         complexContainmentTest(minMax, minMaxClone, true, true, true, true,
                 false, true, false, true, false, false, true, true, false,
                 false, false, true);
 
-        System.out.println("\nminLarger - minMax");
+        LOG.debug("minLarger - minMax");
         complexContainmentTest(minLarger, minMax, true, true, true, true,
                 false, true, false, true, true, true, true, true, false, true,
                 false, true);
-        System.out.println("\nminMax - minLarger");
+        LOG.debug("minMax - minLarger");
         complexContainmentTest(minMax, minLarger, false, false, false, false,
                 false, false, false, false, false, false, false, false, false,
                 false, false, false);
 
-        System.out.println("\nwithinMax - minMax");
+        LOG.debug("withinMax - minMax");
         complexContainmentTest(withinMax, minMax, false, false, false, false,
                 false, false, false, false, false, false, false, false, false,
                 false, false, false);
-        System.out.println("\nminMax - withinMax");
+        LOG.debug("minMax - withinMax");
         complexContainmentTest(minMax, withinMax, true, true, true, true, true,
                 true, true, true, false, false, true, true, false, false, true,
                 true);
 
-        System.out.println("\nwithinLarger - minMax");
+        LOG.debug("withinLarger - minMax");
         complexContainmentTest(withinLarger, minMax, false, false, false,
                 false, false, false, false, false, false, false, false, false,
                 false, false, false, false);
-        System.out.println("\nminMax - withinLarger");
+        LOG.debug("minMax - withinLarger");
         complexContainmentTest(minMax, withinLarger, false, false, false,
                 false, false, false, false, false, false, false, false, false,
                 false, false, false, false);
 
-        System.out.println("\nmaxLarger - minMax");
+        LOG.debug("maxLarger - minMax");
         complexContainmentTest(maxLarger, minMax, false, false, false, false,
                 false, false, false, false, false, false, false, false, false,
                 false, false, false);
-        System.out.println("\nminMax - maxLarger");
+        LOG.debug("minMax - maxLarger");
         complexContainmentTest(minMax, maxLarger, false, false, false, false,
                 false, false, false, false, false, false, false, false, false,
                 false, false, false);
@@ -484,38 +490,38 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, true);
 
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.contains(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
                 + " Should be: " + leftULrightUL);
         assertEquals(leftCopy.contains(rightCopy), leftULrightUL);
 
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, true);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.contains(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
                 + " Should be: " + leftULrightU);
         assertEquals(leftCopy.contains(rightCopy), leftULrightU);
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, false);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.contains(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
                 + " Should be: " + leftULrightL);
         assertEquals(leftCopy.contains(rightCopy), leftULrightL);
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, false);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.contains(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
                 + " Should be: " + leftULright);
         assertEquals(leftCopy.contains(rightCopy), leftULright);
 
@@ -525,37 +531,37 @@ public class IntervalTest {
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, true);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.contains(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
                 + " Should be: " + leftUrightUL);
         assertEquals(leftCopy.contains(rightCopy), leftUrightUL);
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, true);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.contains(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
                 + " Should be: " + leftUrightU);
         assertEquals(leftCopy.contains(rightCopy), leftUrightU);
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, false);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.contains(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
                 + " Should be: " + leftUrightL);
         assertEquals(leftCopy.contains(rightCopy), leftUrightL);
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, false);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.contains(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
                 + " Should be: " + leftUright);
         assertEquals(leftCopy.contains(rightCopy), leftUright);
 
@@ -565,39 +571,39 @@ public class IntervalTest {
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, true);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.contains(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
                 + " Should be: " + leftLrightUL);
         assertEquals(leftCopy.contains(rightCopy), leftLrightUL);
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, true);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
 
-        System.out.println(" Result: " + leftCopy.contains(rightCopy)
+        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
                 + " Should be: " + leftLrightU);
         assertEquals(leftCopy.contains(rightCopy), leftLrightU);
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, false);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
 
-        System.out.println(" Result: " + leftCopy.contains(rightCopy)
+        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
                 + " Should be: " + leftLrightL);
         assertEquals(leftCopy.contains(rightCopy), leftLrightL);
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, false);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.contains(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
                 + " Should be: " + leftLright);
         assertEquals(leftCopy.contains(rightCopy), leftLright);
 
@@ -607,38 +613,38 @@ public class IntervalTest {
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, true);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.contains(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
                 + " Should be: " + leftrightUL);
         assertEquals(leftCopy.contains(rightCopy), leftrightUL);
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, true);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
 
-        System.out.println(" Result: " + leftCopy.contains(rightCopy)
+        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
                 + " Should be: " + leftrightU);
         assertEquals(leftCopy.contains(rightCopy), leftrightU);
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, false);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.contains(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
                 + " Should be: " + leftrightL);
         assertEquals(leftCopy.contains(rightCopy), leftrightL);
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, false);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.contains(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
                 + " Should be: " + leftright);
         assertEquals(leftCopy.contains(rightCopy), leftright);
 
@@ -651,13 +657,13 @@ public class IntervalTest {
     @Test
     public void testIntersects() {
 
-        System.out.println("intersects");
+        LOG.info("intersects");
 
         testIntersects(intMin, intMax, intWithin, intSmaller, intLarger);
         testIntersects(doubleMin, doubleMax, doubleWithin, doubleSmaller,
                 doubleLarger);
 
-        System.out.println("\tSuccess.");
+        LOG.info("\tSuccess.");
     }
 
 
@@ -723,113 +729,113 @@ public class IntervalTest {
         Interval<T> maxLarger = new Interval<T>(max, larger);
 
 
-        System.out.println("minMax - smallerI");
+        LOG.debug("minMax - smallerI");
         complexIntersectionTest(minMax, smallerI, false, false, false, false,
                 false, false, false, false, false, false, false, false, false,
                 false, false, false);
-        System.out.println("\nminMax - minI");
+        LOG.debug("minMax - minI");
         complexIntersectionTest(minMax, minI, true, true, true, true, false,
                 false, false, false, true, true, true, true, false, false,
                 false, false);
-        System.out.println("\nminMax - withinI");
+        LOG.debug("minMax - withinI");
         complexIntersectionTest(minMax, withinI, true, true, true, true, true,
                 true, true, true, true, true, true, true, true, true, true,
                 true);
-        System.out.println("\nminMax - maxI");
+        LOG.debug("minMax - maxI");
         complexIntersectionTest(minMax, maxI, true, true, true, true, true,
                 true, true, true, false, false, false, false, false, false,
                 false, false);
-        System.out.println("\nminMax - largerI");
+        LOG.debug("minMax - largerI");
         complexIntersectionTest(minMax, largerI, false, false, false, false,
                 false, false, false, false, false, false, false, false, false,
                 false, false, false);
 
-        System.out.println("\nsmallerMin - minMax");
+        LOG.debug("smallerMin - minMax");
         complexIntersectionTest(smallerMin, minMax, true, false, true, false,
                 true, false, true, false, false, false, false, false, false,
                 false, false, false);
-        System.out.println("\nminMax - smallerMin");
+        LOG.debug("minMax - smallerMin");
         complexIntersectionTest(minMax, smallerMin, true, true, false, false,
                 false, false, false, false, true, true, false, false, false,
                 false, false, false);
 
-        System.out.println("\nsmallerWithin - minMax");
+        LOG.debug("smallerWithin - minMax");
         complexIntersectionTest(smallerWithin, minMax, true, true, true, true,
                 true, true, true, true, true, true, true, true, true, true,
                 true, true);
-        System.out.println("\nminMax - smallerWithin");
+        LOG.debug("minMax - smallerWithin");
         complexIntersectionTest(minMax, smallerWithin, true, true, true, true,
                 true, true, true, true, true, true, true, true, true, true,
                 true, true);
 
-        System.out.println("\nsmallerMax - minMax");
+        LOG.debug("smallerMax - minMax");
         complexIntersectionTest(smallerMax, minMax, true, true, true, true,
                 true, true, true, true, true, true, true, true, true, true,
                 true, true);
-        System.out.println("\nminMax - smallerMax");
+        LOG.debug("minMax - smallerMax");
         complexIntersectionTest(minMax, smallerMax, true, true, true, true,
                 true, true, true, true, true, true, true, true, true, true,
                 true, true);
 
-        System.out.println("\nsmallerLarger - minMax");
+        LOG.debug("smallerLarger - minMax");
         complexIntersectionTest(smallerLarger, minMax, true, true, true, true,
                 true, true, true, true, true, true, true, true, true, true,
                 true, true);
-        System.out.println("\nminMax - smallerLarger");
+        LOG.debug("minMax - smallerLarger");
         complexIntersectionTest(minMax, smallerLarger, true, true, true, true,
                 true, true, true, true, true, true, true, true, true, true,
                 true, true);
 
-        System.out.println("\nminWithin - minMax");
+        LOG.debug("minWithin - minMax");
         complexIntersectionTest(minWithin, minMax, true, true, true, true,
                 true, true, true, true, true, true, true, true, true, true,
                 true, true);
-        System.out.println("\nminMax - minWithin");
+        LOG.debug("minMax - minWithin");
         complexIntersectionTest(minMax, minWithin, true, true, true, true,
                 true, true, true, true, true, true, true, true, true, true,
                 true, true);
 
-        System.out.println("\nminMaxClone - minMax");
+        LOG.debug("minMaxClone - minMax");
         complexIntersectionTest(minMaxClone, minMax, true, true, true, true,
                 true, true, true, true, true, true, true, true, true, true,
                 true, true);
-        System.out.println("\nminMax - minMaxClone");
+        LOG.debug("minMax - minMaxClone");
         complexIntersectionTest(minMax, minMaxClone, true, true, true, true,
                 true, true, true, true, true, true, true, true, true, true,
                 true, true);
 
-        System.out.println("\nminLarger - minMax");
+        LOG.debug("minLarger - minMax");
         complexIntersectionTest(minLarger, minMax, true, true, true, true,
                 true, true, true, true, true, true, true, true, true, true,
                 true, true);
-        System.out.println("\nminMax - minLarger");
+        LOG.debug("minMax - minLarger");
         complexIntersectionTest(minMax, minLarger, true, true, true, true,
                 true, true, true, true, true, true, true, true, true, true,
                 true, true);
 
-        System.out.println("\nwithinMax - minMax");
+        LOG.debug("withinMax - minMax");
         complexIntersectionTest(withinMax, minMax, true, true, true, true,
                 true, true, true, true, true, true, true, true, true, true,
                 true, true);
-        System.out.println("\nminMax - withinMax");
+        LOG.debug("minMax - withinMax");
         complexIntersectionTest(minMax, withinMax, true, true, true, true,
                 true, true, true, true, true, true, true, true, true, true,
                 true, true);
 
-        System.out.println("\nwithinLarger - minMax");
+        LOG.debug("withinLarger - minMax");
         complexIntersectionTest(withinLarger, minMax, true, true, true, true,
                 true, true, true, true, true, true, true, true, true, true,
                 true, true);
-        System.out.println("\nminMax - withinLarger");
+        LOG.debug("minMax - withinLarger");
         complexIntersectionTest(minMax, withinLarger, true, true, true, true,
                 true, true, true, true, true, true, true, true, true, true,
                 true, true);
 
-        System.out.println("\nmaxLarger - minMax");
+        LOG.debug("maxLarger - minMax");
         complexIntersectionTest(maxLarger, minMax, true, true, false, false,
                 false, false, false, false, true, true, false, false, false,
                 false, false, false);
-        System.out.println("\nminMax - maxLarger");
+        LOG.debug("minMax - maxLarger");
         complexIntersectionTest(minMax, maxLarger, true, false, true, false,
                 true, false, true, false, false, false, false, false, false,
                 false, false, false);
@@ -858,38 +864,38 @@ public class IntervalTest {
 
         Interval<T> rightCopy = new Interval<T>(right.getLowerBound(),
                 right.getUpperBound(), true, true);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.intersects(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
                 + " Should be: " + leftULrightUL);
         assertEquals(leftCopy.intersects(rightCopy), leftULrightUL);
 
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, true);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.intersects(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
                 + " Should be: " + leftULrightU);
         assertEquals(leftCopy.intersects(rightCopy), leftULrightU);
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, false);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.intersects(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
                 + " Should be: " + leftULrightL);
         assertEquals(leftCopy.intersects(rightCopy), leftULrightL);
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, false);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.intersects(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
                 + " Should be: " + leftULright);
         assertEquals(leftCopy.intersects(rightCopy), leftULright);
 
@@ -900,37 +906,37 @@ public class IntervalTest {
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, true);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.intersects(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
                 + " Should be: " + leftUrightUL);
         assertEquals(leftCopy.intersects(rightCopy), leftUrightUL);
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, true);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.intersects(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
                 + " Should be: " + leftUrightU);
         assertEquals(leftCopy.intersects(rightCopy), leftUrightU);
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, false);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.intersects(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
                 + " Should be: " + leftUrightL);
         assertEquals(leftCopy.intersects(rightCopy), leftUrightL);
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, false);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.intersects(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
                 + " Should be: " + leftUright);
         assertEquals(leftCopy.intersects(rightCopy), leftUright);
 
@@ -940,39 +946,39 @@ public class IntervalTest {
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, true);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.intersects(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
                 + " Should be: " + leftLrightUL);
         assertEquals(leftCopy.intersects(rightCopy), leftLrightUL);
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, true);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
 
-        System.out.println(" Result: " + leftCopy.intersects(rightCopy)
+        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
                 + " Should be: " + leftLrightU);
         assertEquals(leftCopy.intersects(rightCopy), leftLrightU);
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, false);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
 
-        System.out.println(" Result: " + leftCopy.intersects(rightCopy)
+        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
                 + " Should be: " + leftLrightL);
         assertEquals(leftCopy.intersects(rightCopy), leftLrightL);
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, false);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.intersects(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
                 + " Should be: " + leftLright);
         assertEquals(leftCopy.intersects(rightCopy), leftLright);
 
@@ -982,38 +988,38 @@ public class IntervalTest {
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, true);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.intersects(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
                 + " Should be: " + leftrightUL);
         assertEquals(leftCopy.intersects(rightCopy), leftrightUL);
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, true);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
 
-        System.out.println(" Result: " + leftCopy.intersects(rightCopy)
+        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
                 + " Should be: " + leftrightU);
         assertEquals(leftCopy.intersects(rightCopy), leftrightU);
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, false);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.intersects(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
                 + " Should be: " + leftrightL);
         assertEquals(leftCopy.intersects(rightCopy), leftrightL);
 
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, false);
-        System.out.print(i + ": ");
+        LOG.debug(i + ": ");
         i++;
-        System.out.print(rightCopy + " E " + leftCopy + "?");
-        System.out.println(" Result: " + leftCopy.intersects(rightCopy)
+        LOG.debug(rightCopy + " E " + leftCopy + "?");
+        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
                 + " Should be: " + leftright);
         assertEquals(leftCopy.intersects(rightCopy), leftright);
 
@@ -1026,13 +1032,13 @@ public class IntervalTest {
     @Test
     public void testIsContainedIn() {
 
-        System.out.println("isContainedIn");
+        LOG.info("isContainedIn");
 
         testIsContainedIn(intMin, intMax, intWithin, intSmaller, intLarger);
         testIsContainedIn(doubleMin, doubleMax, doubleWithin, doubleSmaller,
                 doubleLarger);
 
-        System.out.println("\tSuccess.");
+        LOG.info("\tSuccess.");
     }
 
     private <T extends Number & Comparable<T>> void testIsContainedIn(T min,
@@ -1057,13 +1063,13 @@ public class IntervalTest {
     @Test
     public void testEquals() {
 
-        System.out.println("equals");
+        LOG.info("equals");
 
         testEquals(intMin, intMax, intWithin, intSmaller, intLarger);
         testEquals(doubleMin, doubleMax, doubleWithin, doubleSmaller,
                 doubleLarger);
 
-        System.out.println("\tSuccess.");
+        LOG.info("\tSuccess.");
     }
 
     private <T extends Number & Comparable<T>> void testEquals(T min, T max,
@@ -1103,12 +1109,12 @@ public class IntervalTest {
     @Test
     public void testHashCode() {
 
-        System.out.println("hashCode");
+        LOG.info("hashCode");
 
         testHashCode(intMin, intMax);
         testHashCode(doubleMin, doubleMax);
 
-        System.out.println("\tSuccess.");
+        LOG.info("\tSuccess.");
     }
 
     private <T extends Number & Comparable<T>> void testHashCode(T min, T max) {
@@ -1127,12 +1133,12 @@ public class IntervalTest {
     @Test
     public void testToString() {
 
-        System.out.println("toString");
+        LOG.info("toString");
 
         testToString(intMin, intMax);
         testToString(doubleMin, doubleMax);
 
-        System.out.println("\tSuccess.");
+        LOG.info("\tSuccess.");
     }
 
     private <T extends Number & Comparable<T>> void testToString(T min, T max) {
