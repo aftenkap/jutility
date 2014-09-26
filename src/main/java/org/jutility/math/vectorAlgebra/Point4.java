@@ -4,8 +4,6 @@ package org.jutility.math.vectorAlgebra;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -27,7 +25,7 @@ public class Point4<T extends Number>
         extends Tuple4<T>
         implements IPoint4<T> {
 
-    private static Logger LOG = LoggerFactory.getLogger(Point4.class);
+//    private static Logger LOG = LoggerFactory.getLogger(Point4.class);
 
     /**
      * The origin.
@@ -104,8 +102,8 @@ public class Point4<T extends Number>
 
         if (!tuple.isPoint()) {
 
-            LOG.error("Error copying Tuple " + tuple
-                    + ": Provided parameter is not a point!");
+//            LOG.error("Error copying Tuple " + tuple
+//                    + ": Provided parameter is not a point!");
             throw new IllegalArgumentException(
                     "Error copying Tuple " + tuple
                     + ": Provided parameter is not a point!");
