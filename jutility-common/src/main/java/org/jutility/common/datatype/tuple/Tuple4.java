@@ -5,9 +5,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -31,7 +28,7 @@ public class Tuple4<T>
         implements ITuple4<T> {
 
 
-    private static Logger LOG = LoggerFactory.getLogger(Tuple4.class);
+//    private static Logger LOG = LoggerFactory.getLogger(Tuple4.class);
 
     /*
      * (non-Javadoc)
@@ -55,7 +52,7 @@ public class Tuple4<T>
     @SuppressWarnings("unused")
     private void setX(T value) {
 
-        LOG.debug("Setting X value of Tuple4 to " + value);
+//        LOG.debug("Setting X value of Tuple4 to " + value);
         if (super.getComponents() != null) {
 
             if (super.getComponents().isEmpty()) {
@@ -69,7 +66,7 @@ public class Tuple4<T>
         }
         else {
 
-            LOG.error("Attempting to set X value of Tuple4 to null!");
+//            LOG.error("Attempting to set X value of Tuple4 to null!");
         }
     }
 
@@ -95,7 +92,7 @@ public class Tuple4<T>
     @SuppressWarnings("unused")
     private void setY(T value) {
 
-        LOG.debug("Setting Y value of Tuple4 to " + value);
+//        LOG.debug("Setting Y value of Tuple4 to " + value);
         if (super.getComponents() != null) {
 
             if (super.getComponents().size() == 1) {
@@ -108,13 +105,13 @@ public class Tuple4<T>
             }
             else {
 
-                LOG.error("Setting Y value of Tuple4 out of order. Size should be >= 1 but is "
-                        + super.getComponents().size());
+//                LOG.error("Setting Y value of Tuple4 out of order. Size should be >= 1 but is "
+//                        + super.getComponents().size());
             }
         }
         else {
 
-            LOG.error("Attempting to set Y value of Tuple4 to null!");
+//            LOG.error("Attempting to set Y value of Tuple4 to null!");
         }
     }
 
@@ -141,7 +138,7 @@ public class Tuple4<T>
     @SuppressWarnings("unused")
     private void setZ(T value) {
 
-        LOG.debug("Setting Z value of Tuple4 to " + value);
+//        LOG.debug("Setting Z value of Tuple4 to " + value);
         if (super.getComponents() != null) {
             
             if (super.getComponents().size() == 2) {
@@ -154,13 +151,13 @@ public class Tuple4<T>
             }
             else {
 
-                LOG.error("Setting Z value of Tuple4 out of order. Size should be >= 2 but is "
-                        + super.getComponents().size());
+//                LOG.error("Setting Z value of Tuple4 out of order. Size should be >= 2 but is "
+//                        + super.getComponents().size());
             }
         }
         else {
 
-            LOG.error("Attempting to set Z value of Tuple4 to null!");
+//            LOG.error("Attempting to set Z value of Tuple4 to null!");
         }
     }
 
@@ -186,7 +183,7 @@ public class Tuple4<T>
     @SuppressWarnings("unused")
     private void setW(T value) {
 
-        LOG.debug("Setting W value of Tuple4 to " + value);
+//        LOG.debug("Setting W value of Tuple4 to " + value);
         if (super.getComponents() != null) {
             
             if (super.getComponents().size() == 3) {
@@ -199,13 +196,13 @@ public class Tuple4<T>
             }
             else {
 
-                LOG.error("Setting W value of Tuple4 out of order. Size should be >= 3 but is "
-                        + super.getComponents().size());
+//                LOG.error("Setting W value of Tuple4 out of order. Size should be >= 3 but is "
+//                        + super.getComponents().size());
             }
         }
         else {
 
-            LOG.error("Attempting to set W value of Tuple4 to null!");
+//            LOG.error("Attempting to set W value of Tuple4 to null!");
         }
     }
 
