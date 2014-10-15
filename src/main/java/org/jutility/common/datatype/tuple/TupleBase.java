@@ -131,7 +131,6 @@ public abstract class TupleBase<T>
      * @param type
      *            The type of this tuple.
      */
-    @SafeVarargs
     protected TupleBase(final Class<? extends T> type, T... components) {
 
         this(components, type, false);
@@ -149,7 +148,6 @@ public abstract class TupleBase<T>
      *            whether or not the constructor is invoked during
      *            serialization.
      */
-    @SafeVarargs
     protected TupleBase(final Class<? extends T> type,
             final boolean serialization, T... components) {
 
