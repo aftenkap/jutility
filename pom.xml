@@ -3,11 +3,17 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>jutility-incubation</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>jutility-incubation</name>
-	<url>http://maven.apache.org</url>
+	<url>http://jutility.org</url>
+
+    <parent>
+        <groupId>org.jutility</groupId>
+        <artifactId>jutility</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+        <relativePath>../</relativePath>
+    </parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -118,10 +124,5 @@
 		</dependency>
 
 	</dependencies>
-	<parent>
-		<groupId>org.jutility</groupId>
-		<artifactId>jutility</artifactId>
-		<version>0.1.0-SNAPSHOT</version>
-		<relativePath>../</relativePath>
-	</parent>
+
 </project>
