@@ -80,7 +80,7 @@ public interface ICell<T> {
 
 
     /**
-     * A {@link NumberComparator} for {@link ICell Cells} using row-major order.
+     * A {@link Comparator} for {@link ICell Cells} using row-major order.
      * 
      */
     public static Comparator<ICell<?>> rowMajorOrder    = new Comparator<ICell<?>>() {
@@ -99,7 +99,7 @@ public interface ICell<T> {
 
 
     /**
-     * A {@link NumberComparator} for {@link ICell Cells} using column-major order.
+     * A {@link Comparator} for {@link ICell Cells} using column-major order.
      */
     public static Comparator<ICell<?>> columnMajorOrder =
 

@@ -76,7 +76,7 @@ public class CellLocation
 
 
     /**
-     * A {@link NumberComparator} for {@link CellLocation CellLocations} using
+     * A {@link Comparator} for {@link CellLocation CellLocations} using
      * row-major order.
      * 
      */
@@ -126,7 +126,7 @@ public class CellLocation
 
 
     /**
-     * A {@link NumberComparator} for {@link CellLocation CellLocations} using
+     * A {@link Comparator} for {@link CellLocation CellLocations} using
      * column-major order.
      */
     public static Comparator<CellLocation> columnMajorOrder = new Comparator<CellLocation>() {
