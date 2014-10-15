@@ -82,24 +82,4 @@ public class ReflectionException
 
         super(message, cause);
     }
-
-
-    /**
-     * Creates a new instance of the {@link ReflectionException} class with the
-     * provided parameters.
-     * 
-     * @param message
-     *            the detail message.
-     * @param cause
-     *            the {@link Throwable cause} of the exception.
-     * @param enableSuppression
-     *            whether or not suppression is enabled or disabled.
-     * @param writableStackTrace
-     *            whether or not the stack trace should be writable.
-     */
-    public ReflectionException(String message, Throwable cause,
-            boolean enableSuppression, boolean writableStackTrace) {
-
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
 }

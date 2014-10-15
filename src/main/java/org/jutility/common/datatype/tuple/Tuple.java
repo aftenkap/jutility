@@ -73,7 +73,6 @@ public class Tuple<T>
      * @param type
      *            The type of this tuple.
      */
-    @SafeVarargs
     public Tuple(final Class<? extends T> type, T... components) {
 
         this(components, type, false);
@@ -91,7 +90,6 @@ public class Tuple<T>
      *            whether or not the constructor is invoked during
      *            serialization.
      */
-    @SafeVarargs
     protected Tuple(final Class<? extends T> type, final boolean serialization,
             T... components) {
 
