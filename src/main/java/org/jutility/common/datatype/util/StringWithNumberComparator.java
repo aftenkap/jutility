@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.jutility.common.datatype.util;
 
 
@@ -50,7 +47,7 @@ public class StringWithNumberComparator
      * recommended language is
      * "Note: this comparator imposes orderings that are inconsistent with equals."
      * 
-     * Specified by: {@link NumberComparator#compare} in {@link NumberComparator}
+     * Specified by: {@link Comparator#compare} in {@link Comparator}
      * 
      * @param lhs
      *            the first object to be compared.
