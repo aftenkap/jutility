@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.jutility.io.database;
 
 /*
@@ -72,19 +69,5 @@ public class DBSerializationException
     public DBSerializationException(String message, Throwable cause) {
 
         super(message, cause);
-    }
-
-    /**
-     * Creates a new instance of the {@link DBSerializationException} class.
-     * 
-     * @param message
-     * @param cause
-     * @param enableSuppression
-     * @param writableStackTrace
-     */
-    public DBSerializationException(String message, Throwable cause,
-            boolean enableSuppression, boolean writableStackTrace) {
-
-        super(message, cause, enableSuppression, writableStackTrace);
     }
 }
