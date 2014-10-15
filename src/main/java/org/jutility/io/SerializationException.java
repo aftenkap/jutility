@@ -85,25 +85,4 @@ public class SerializationException
 
         super(message, cause);
     }
-
-    /**
-     * Creates a new instance of a serialization exception with the provided
-     * message and cause. Provides ability to enable suppression and enable
-     * writing on the stack trace.
-     * 
-     * @param message
-     *            the exception message.
-     * @param cause
-     *            the cause of the exception.
-     * @param enableSuppression
-     *            whether or not suppression is enabled.
-     * @param writableStackTrace
-     *            whether or not the stack trace is writable.
-     */
-    public SerializationException(String message, Throwable cause,
-            boolean enableSuppression, boolean writableStackTrace) {
-
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
-
 }
