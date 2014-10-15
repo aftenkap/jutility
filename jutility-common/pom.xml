@@ -6,7 +6,7 @@
 	<packaging>jar</packaging>
 
 	<name>jutility-common</name>
-	<url>http://maven.apache.org</url>
+	<url>http://jutility.org</url>
 
 	<parent>
 		<groupId>org.jutility</groupId>
