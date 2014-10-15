@@ -118,7 +118,7 @@ public class StringWithNumberComparator
         }
 
 
-        return Integer.compare(lhsTokens.length, rhsTokens.length);
+        return  rhsTokens.length - lhsTokens.length;
     }
 
 }
