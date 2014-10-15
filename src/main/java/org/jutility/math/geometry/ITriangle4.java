@@ -23,7 +23,6 @@ package org.jutility.math.geometry;
 
 import org.jutility.math.vectorAlgebra.IPoint4;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;

@@ -501,7 +501,7 @@ public class IntervalTest {
                 rightContainsUpperBound);
 
 
-        int i = 1;
+//        int i = 1;
 
         leftCopy = new Interval<T>(leftCopy.getLowerBound(),
                 leftCopy.getUpperBound(), true, true);
@@ -509,7 +509,7 @@ public class IntervalTest {
                 rightCopy.getUpperBound(), true, true);
 
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
 //                + " Should be: " + leftULrightUL);
@@ -519,7 +519,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, true);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
 //                + " Should be: " + leftULrightU);
@@ -528,7 +528,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, false);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
 //                + " Should be: " + leftULrightL);
@@ -537,7 +537,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, false);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
 //                + " Should be: " + leftULright);
@@ -550,7 +550,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, true);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
 //                + " Should be: " + leftUrightUL);
@@ -559,7 +559,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, true);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
 //                + " Should be: " + leftUrightU);
@@ -568,7 +568,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, false);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
 //                + " Should be: " + leftUrightL);
@@ -577,7 +577,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, false);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
 //                + " Should be: " + leftUright);
@@ -590,7 +590,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, true);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
 //                + " Should be: " + leftLrightUL);
@@ -599,7 +599,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, true);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 
 //        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
@@ -609,7 +609,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, false);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 
 //        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
@@ -619,7 +619,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, false);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
 //                + " Should be: " + leftLright);
@@ -632,7 +632,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, true);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
 //                + " Should be: " + leftrightUL);
@@ -641,7 +641,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, true);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 
 //        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
@@ -651,7 +651,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, false);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
 //                + " Should be: " + leftrightL);
@@ -660,7 +660,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, false);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.contains(rightCopy)
 //                + " Should be: " + leftright);
@@ -875,7 +875,7 @@ public class IntervalTest {
             Boolean leftrightU, Boolean leftrightL, Boolean leftright) {
 
 
-        int i = 1;
+//        int i = 1;
 
         Interval<T> leftCopy = new Interval<T>(left.getLowerBound(),
                 left.getUpperBound(), true, true);
@@ -883,7 +883,7 @@ public class IntervalTest {
         Interval<T> rightCopy = new Interval<T>(right.getLowerBound(),
                 right.getUpperBound(), true, true);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
 //                + " Should be: " + leftULrightUL);
@@ -893,7 +893,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, true);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
 //                + " Should be: " + leftULrightU);
@@ -902,7 +902,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, false);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
 //                + " Should be: " + leftULrightL);
@@ -911,7 +911,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, false);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
 //                + " Should be: " + leftULright);
@@ -925,7 +925,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, true);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
 //                + " Should be: " + leftUrightUL);
@@ -934,7 +934,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, true);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
 //                + " Should be: " + leftUrightU);
@@ -943,7 +943,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, false);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
 //                + " Should be: " + leftUrightL);
@@ -952,7 +952,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, false);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
 //                + " Should be: " + leftUright);
@@ -965,7 +965,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, true);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
 //                + " Should be: " + leftLrightUL);
@@ -974,7 +974,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, true);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 
 //        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
@@ -984,7 +984,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, false);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 
 //        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
@@ -994,7 +994,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, false);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
 //                + " Should be: " + leftLright);
@@ -1007,7 +1007,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, true);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
 //                + " Should be: " + leftrightUL);
@@ -1016,7 +1016,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, true);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 
 //        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
@@ -1026,7 +1026,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, false);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
 //                + " Should be: " + leftrightL);
@@ -1035,7 +1035,7 @@ public class IntervalTest {
         rightCopy = new Interval<T>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, false);
 //        LOG.debug(i + ": ");
-        i++;
+//        i++;
 //        LOG.debug(rightCopy + " E " + leftCopy + "?");
 //        LOG.debug(" Result: " + leftCopy.intersects(rightCopy)
 //                + " Should be: " + leftright);

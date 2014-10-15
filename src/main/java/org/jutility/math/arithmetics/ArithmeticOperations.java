@@ -39,7 +39,6 @@ public class ArithmeticOperations {
      *            the numbers.
      * @return the sum of the numbers.
      */
-    @SafeVarargs
     public static <T extends Number> Number sum(T... numbers) {
 
         if (numbers.length == 0) {
@@ -69,7 +68,6 @@ public class ArithmeticOperations {
      *            the numbers.
      * @return the sum of the numbers.
      */
-    @SafeVarargs
     public static <T extends Number, S extends Number> S sum(
             Class<? extends S> returnType, T... numbers) {
 
@@ -98,7 +96,6 @@ public class ArithmeticOperations {
      *            the numbers.
      * @return the product of the numbers.
      */
-    @SafeVarargs
     public static <T extends Number> Number product(T... numbers) {
 
         if (numbers.length == 0) {
@@ -129,7 +126,6 @@ public class ArithmeticOperations {
      *            the numbers.
      * @return the product of the numbers.
      */
-    @SafeVarargs
     public static <T extends Number, S extends Number> S product(
             Class<? extends S> returnType, T... numbers) {
 
