@@ -4,7 +4,6 @@
 
 	<groupId>org.jutility</groupId>
 	<artifactId>jutility-all</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
 
 	<name>jUtility Library Bundle</name>
 	<description>The jutility-all bundle provides a full assembly of the
@@ -16,7 +15,7 @@
 	<parent>
 		<groupId>org.jutility</groupId>
 		<artifactId>jutility</artifactId>
-		<version>0.1.0-SNAPSHOT</version>
+		<version>0.1.1-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
 
