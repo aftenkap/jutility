@@ -36,7 +36,9 @@ import java.util.Set;
  */
 public class IOManager {
 
+    @SuppressWarnings("unused")
     private final Map<Class<?>, Class<? extends IConverter>> converters;
+    @SuppressWarnings("unused")
     private final Set<Class<? extends ISerializer>>          serializers;
 
 
@@ -73,6 +75,7 @@ public class IOManager {
      */
     public void registerSerializer(Class<? extends ISerializer> serializer) {
 
+        // TODO: implement
     }
 
     /**
@@ -83,13 +86,15 @@ public class IOManager {
      */
     public void unregisterSerializer(Class<? extends ISerializer> serializer) {
 
+        // TODO: implement
     }
 
-    private Object invokeStaticMethod(String name, Class<?> clazz) {
+//    private Object invokeStaticMethod(String name, Class<?> clazz) {
+//
+//        return this.invokeMethod(this.getMethod(name, clazz));
+//    }
 
-        return this.invokeMethod(this.getMethod(name, clazz));
-    }
-
+    @SuppressWarnings("unused")
     private Method getMethod(String name, Class<?> clazz) {
 
         Method method = null;
@@ -112,6 +117,7 @@ public class IOManager {
         return method;
     }
 
+    @SuppressWarnings("unused")
     private Object invokeMethod(Method method) {
 
         Object returnValue = null;
