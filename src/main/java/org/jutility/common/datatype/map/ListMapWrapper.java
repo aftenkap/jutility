@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.jutility.common.datatype.map;
 
 /*
@@ -244,6 +241,8 @@ public class ListMapWrapper<K, E>
     K getKey(E value) {
 
         try {
+            System.out.println("GetKey: " + this.keyProperty + " " + this.keyType);
+            
             return ReflectionUtils.getValue(value, this.keyProperty,
                     this.keyType);
         }
