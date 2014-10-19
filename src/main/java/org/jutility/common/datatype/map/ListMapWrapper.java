@@ -1,23 +1,19 @@
 package org.jutility.common.datatype.map;
 
+
 /*
- * #%L
- * jutility-common
- * %%
- * Copyright (C) 2013 - 2014 jutility.org
- * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * #%L jutility-common %% Copyright (C) 2013 - 2014 jutility.org %% Licensed
+ * under the Apache License, Version 2.0 (the "License"); you may not use this
+ * file except in compliance with the License. You may obtain a copy of the
+ * License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * #L%
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License. #L%
  */
 
 
@@ -30,6 +26,8 @@ import java.util.Map;
 
 import org.jutility.common.reflection.ReflectionException;
 import org.jutility.common.reflection.ReflectionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -44,17 +42,19 @@ public class ListMapWrapper<K, E>
         extends AbstractSequentialList<E>
         implements List<E> {
 
+    private static Logger   LOG = LoggerFactory.getLogger(ListMapWrapper.class);
+
     private final Class<K>  keyType;
     private final Map<K, E> map;
     private final String    keyProperty;
 
 
-    
+
     Map<K, E> getMap() {
 
         return this.map;
     }
-    
+
     /**
      * Creates a new instance of the {@link ListMapWrapper} class.
      * 
@@ -241,8 +241,8 @@ public class ListMapWrapper<K, E>
     K getKey(E value) {
 
         try {
-            System.out.println("GetKey: " + this.keyProperty + " " + this.keyType);
-            
+            LOG.debug("GetKey: " + this.keyProperty + " " + this.keyType);
+
             return ReflectionUtils.getValue(value, this.keyProperty,
                     this.keyType);
         }
