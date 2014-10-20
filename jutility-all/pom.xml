@@ -27,6 +27,8 @@
 
 		<!-- Java Version -->
 		<java.version>1.8</java.version>
+		
+		<jutility-version>0.1.1-SNAPSHOT</jutility-version>
 
 	</properties>
 
@@ -85,22 +87,22 @@
 		<dependency>
 			<groupId>org.jutility</groupId>
 			<artifactId>jutility-common</artifactId>
-			<version>0.1.0-SNAPSHOT</version>
+			<version>${jutility-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jutility</groupId>
 			<artifactId>jutility-io</artifactId>
-			<version>0.1.0-SNAPSHOT</version>
+			<version>${jutility-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jutility</groupId>
 			<artifactId>jutility-javafx</artifactId>
-			<version>0.1.0-SNAPSHOT</version>
+			<version>${jutility-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jutility</groupId>
 			<artifactId>jutility-math</artifactId>
-			<version>0.1.0-SNAPSHOT</version>
+			<version>${jutility-version}</version>
 		</dependency>
 	</dependencies>
 
