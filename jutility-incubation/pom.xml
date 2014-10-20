@@ -18,6 +18,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <jutility-version>0.1.1-SNAPSHOT</jutility-version>
+
 		<!-- Java Version -->
 		<java.version>1.6</java.version>
 
@@ -78,7 +80,7 @@
 		<dependency>
 			<groupId>org.jutility</groupId>
 			<artifactId>jutility-common</artifactId>
-			<version>0.1.0-SNAPSHOT</version>
+			<version>${jutility-version}</version>
 		</dependency>
 
 		<!-- Database Drivers -->
