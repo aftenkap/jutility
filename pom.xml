@@ -16,6 +16,8 @@
 	</parent>
 
 	<properties>
+	
+        <org.jutility-version>0.1.1-SNAPSHOT</org.jutility-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<!-- Java Version -->
