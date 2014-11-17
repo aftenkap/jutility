@@ -1,23 +1,19 @@
 package org.jutility.common.datatype.range;
 
+
 /*
- * #%L
- * jutility-common
- * %%
- * Copyright (C) 2013 - 2014 jutility.org
- * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * #%L jutility-common %% Copyright (C) 2013 - 2014 jutility.org %% Licensed
+ * under the Apache License, Version 2.0 (the "License"); you may not use this
+ * file except in compliance with the License. You may obtain a copy of the
+ * License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * #L%
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License. #L%
  */
 
 
@@ -90,19 +86,44 @@ public interface IInterval<T> {
     public abstract boolean contains(IInterval<T> otherInterval);
 
     /**
-     * Determines whether this interval intersects with the other interval.
+     * Determines whether this interval intersects with the other interval. <br>
      * 
-     * Let X = x,y; A = a,b be two intervals with x <= y and a <= b. The
-     * intervals trivially do not intersect, if it holds that b < x || a > y
-     * However, the relation changes to b <= x || a > y if either x nE X or b nE
-     * A. It changes to b < x || a >= y if either y nE X or a nE A. It changes
-     * to b <= x || a >= y if either x nE X or b nE A and y nE X or a nE A.
+     * Note that it is easier to determine whether two intervals do not
+     * intersect. <br>
+     * <br>
+     * Let {@code X = x,y; A = a,b} be two intervals with {@code x} &le; y and
+     * {@code a} &le; {@code b}. <br>
+     * The intervals trivially do not intersect, if
+     * <ul>
+     * <li>b &lt; x, or</li>
+     * <li>a &gt; y</li>
+     * </ul>
+     * <br>
+     * If either x &notin; X or b &notin; A, the intervals do not intersect if
+     * <ul>
+     * <li>b &le; x, or</li>
+     * <li>a &gt; y</li>
+     * </ul>
+     * <br>
+     * Similarly, if either y &notin; X or a &notin; A, the intervals do not
+     * intersect if
+     * <ul>
+     * <li>b &lt; x, or</li>
+     * <li>a &ge; y</li>
+     * </ul>
+     * <br>
+     * Finally, if either x &notin; X or b &notin; A and y &notin; X or a
+     * &notin; A, the intervals do not intersect if
+     * <ul>
+     * <li>b &le; x, or</li>
+     * <li>a &ge; y</li>
+     * </ul>
      * 
      * 
      * @param otherInterval
      *            The other interval.
-     * @return <code>true</code>, if the intervals intersect. Otherwise
-     *         <code>false</code>.
+     * @return {@code true}, if the intervals intersect. Otherwise {@code false}
+     *         .
      */
     public abstract Boolean intersects(IInterval<T> otherInterval);
 

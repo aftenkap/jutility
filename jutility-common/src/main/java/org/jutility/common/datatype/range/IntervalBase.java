@@ -52,22 +52,12 @@ public abstract class IntervalBase<T>
     private Boolean containsUpperBound;
 
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.math.common.IInterval#containsLowerBound()
-     */
     @Override
     public Boolean containsLowerBound() {
 
         return containsLowerBound;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.math.common.IInterval#containsUpperBound()
-     */
     @Override
     public Boolean containsUpperBound() {
 
@@ -75,22 +65,12 @@ public abstract class IntervalBase<T>
     }
 
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.math.common.IInterval#getLowerBound()
-     */
     @Override
     public T getLowerBound() {
 
         return lowerBound;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.math.common.IInterval#getUpperBound()
-     */
     @Override
     public T getUpperBound() {
 
@@ -210,11 +190,6 @@ public abstract class IntervalBase<T>
 
 
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.math.common.IInterval#contains(T)
-     */
     @Override
     public boolean contains(final T element) {
 
@@ -246,11 +221,6 @@ public abstract class IntervalBase<T>
     }
 
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.math.common.IInterval#contains(org.jutility.math.common.IInterval)
-     */
     @Override
     public boolean contains(IInterval<T> otherInterval) {
 
@@ -289,12 +259,6 @@ public abstract class IntervalBase<T>
         return true;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.jutility.math.common.IInterval#intersects(org.jutility.math.common.IInterval)
-     */
     @Override
     public Boolean intersects(final IInterval<T> otherInterval) {
 
