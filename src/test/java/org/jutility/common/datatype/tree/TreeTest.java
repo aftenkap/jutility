@@ -23,6 +23,7 @@ package org.jutility.common.datatype.tree;
 
 import static org.junit.Assert.*;
 
+import org.hamcrest.SelfDescribing;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
@@ -51,6 +52,7 @@ public class TreeTest {
     @Before
     public void setUp() {
 
+        SelfDescribing desc = null;
         stringTree = new Tree<String>();
         stringList = new ArrayList<String>();
 
