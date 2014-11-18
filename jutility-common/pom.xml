@@ -15,7 +15,7 @@
 		<groupId>org.jutility</groupId>
 		<artifactId>jutility</artifactId>
 		<version>0.1.1-SNAPSHOT</version>
-		<relativePath>../jutility</relativePath>
+		<relativePath>../</relativePath>
 	</parent>
 
 	<properties>
