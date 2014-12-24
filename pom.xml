@@ -7,7 +7,7 @@
 
 	<groupId>org.jutility</groupId>
 	<artifactId>jutility</artifactId>
-	<version>0.1.1-SNAPSHOT</version>
+	<version>0.1.2-SNAPSHOT</version>
 
 	<name>jUtility Library</name>
 	<url>http://jutility.org</url>
