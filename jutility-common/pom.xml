@@ -14,13 +14,13 @@
 	<parent>
 		<groupId>org.jutility</groupId>
 		<artifactId>jutility</artifactId>
-		<version>0.1.1-SNAPSHOT</version>
 		<relativePath>../</relativePath>
+		<version>0.1.2-SNAPSHOT</version>
 	</parent>
 
 	<properties>
 
-		<org.jutility-version>0.1.1-SNAPSHOT</org.jutility-version>
+		<org.jutility-version>0.1.2-SNAPSHOT</org.jutility-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<!-- Java Version -->
