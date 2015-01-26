@@ -1,8 +1,7 @@
-/**
- * 
- */
 package org.jutility.common.datatype.table;
 
+
+// @formatter:off
 /*
  * #%L
  * jutility-common
@@ -22,7 +21,7 @@ package org.jutility.common.datatype.table;
  * limitations under the License.
  * #L%
  */
-
+// @formatter:on
 
 
 import java.util.ArrayList;
@@ -37,18 +36,20 @@ import org.jutility.common.reflection.ReflectionUtils;
 
 
 /**
- * The generic {@link Table} class models a two-dimensional table of arbitrary
+ * The generic {@code Table} class models a two-dimensional table of arbitrary
  * data.
  * <p/>
  * The table is modeled as a {@link SortedSet} of {@link ICell Cells} to limit
  * the memory impact of sparse tables.
  * 
+ * @param <CELL>
+ *            the type of the cells contained in the table.
  * @param <T>
  *            the type of the table data.
  * 
  * @author Peter J. Radics
- * @version 0.1
- * @param <CELL>
+ * @version 0.1.2
+ * @since 0.0.1
  */
 public abstract class AbstractTable<CELL extends ICell<T>, T>
         implements ICellTable<CELL, T> {
