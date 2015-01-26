@@ -1,5 +1,7 @@
 package org.jutility.common.datatype.table;
 
+
+// @formatter:off
 /*
  * #%L
  * jutility-common
@@ -19,12 +21,11 @@ package org.jutility.common.datatype.table;
  * limitations under the License.
  * #L%
  */
-
+// @formatter:on
 
 import java.util.AbstractList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
 import java.util.TreeMap;
 
 
@@ -41,8 +42,7 @@ import java.util.TreeMap;
  */
 public class CellContainer<CELL extends ICell<T>, T>
         extends AbstractList<T>
-        implements Comparable<CellContainer<CELL, T>>, Iterable<T>,
-        List<T> {
+        implements Comparable<CellContainer<CELL, T>> {
 
     private final int                    index;
     private final TreeMap<Integer, CELL> entries;

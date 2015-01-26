@@ -1,5 +1,7 @@
 package org.jutility.common.datatype.table;
 
+
+// @formatter:off
 /*
  * #%L
  * jutility-common
@@ -19,7 +21,7 @@ package org.jutility.common.datatype.table;
  * limitations under the License.
  * #L%
  */
-
+// @formatter:on
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -27,15 +29,17 @@ import java.util.Iterator;
 
 
 /**
- * The generic {@link ICellTable} interface provides a contract for classes
+ * The generic {@code ICellTable} interface provides a contract for classes
  * modeling a two-dimensional table of arbitrary data.
  * 
+ * @param <CELL>
+ *            the type of the cells contained in the table.
  * @param <T>
  *            the type of the table data.
  * 
  * @author Peter J. Radics
- * @version 0.1
- * @param <CELL>
+ * @version 0.1.2
+ * @since 0.0.1
  */
 public interface ICellTable<CELL extends ICell<T>, T>
         extends ITable<T> {

@@ -1,5 +1,5 @@
 /**
- * The {@link org.jutility.datatypes.tree table} package provides support for
+ * The {@link org.jutility.common.datatype.table table} package provides support for
  * tables.
  * 
  * @author Peter J. Radics

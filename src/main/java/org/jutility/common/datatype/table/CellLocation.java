@@ -1,5 +1,7 @@
 package org.jutility.common.datatype.table;
 
+
+// @formatter:off
 /*
  * #%L
  * jutility-common
@@ -19,6 +21,7 @@ package org.jutility.common.datatype.table;
  * limitations under the License.
  * #L%
  */
+// @formatter:on
 import java.util.Comparator;
 
 import org.jutility.common.datatype.tuple.ITuple2;
@@ -31,7 +34,7 @@ import org.jutility.common.datatype.tuple.Tuple2;
  */
 public class CellLocation
         extends Tuple2<Integer>
-        implements ITuple2<Integer>, Comparable<CellLocation> {
+        implements Comparable<CellLocation> {
 
     /**
      * Returns the row index of a cell.
@@ -107,9 +110,9 @@ public class CellLocation
                                                                         CellLocation lhs,
                                                                         CellLocation rhs) {
 
-                                                                    int compareRows = rhs
+                                                                    int compareRows = lhs
                                                                             .getRow()
-                                                                            - lhs.getRow();
+                                                                            - rhs.getRow();
 
                                                                     // If rows
                                                                     // are
@@ -121,9 +124,9 @@ public class CellLocation
                                                                     // order.
                                                                     if (compareRows == 0) {
 
-                                                                        return rhs
+                                                                        return lhs
                                                                                 .getColumn()
-                                                                                - lhs.getColumn();
+                                                                                - rhs.getColumn();
                                                                     }
 
                                                                     // If rows
@@ -152,9 +155,9 @@ public class CellLocation
                                                                         CellLocation lhs,
                                                                         CellLocation rhs) {
 
-                                                                    int compareColumns = rhs
+                                                                    int compareColumns = lhs
                                                                             .getColumn()
-                                                                            - lhs.getColumn();
+                                                                            - rhs.getColumn();
 
 
                                                                     // If
@@ -168,9 +171,9 @@ public class CellLocation
                                                                     // order.
                                                                     if (compareColumns == 0) {
 
-                                                                        return rhs
+                                                                        return lhs
                                                                                 .getRow()
-                                                                                - lhs.getRow();
+                                                                                - rhs.getRow();
                                                                     }
 
                                                                     // If
