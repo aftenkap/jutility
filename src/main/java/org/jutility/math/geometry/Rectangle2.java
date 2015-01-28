@@ -1,5 +1,7 @@
 package org.jutility.math.geometry;
 
+
+// @formatter:off
 /*
  * #%L
  * jutility-math
@@ -19,19 +21,20 @@ package org.jutility.math.geometry;
  * limitations under the License.
  * #L%
  */
-
+//@formatter:on
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.jutility.math.arithmetics.ArithmeticOperations;
 import org.jutility.math.vectorAlgebra.IPoint2;
 import org.jutility.math.vectorAlgebra.Point2;
 
 
 /**
- * The generic {@link Rectangle2} class provides a reference implementation of
+ * The generic {@code Rectangle2} class provides a reference implementation of
  * the {@link IRectangle2} interface.
  *
  * @author Peter J. Radics
@@ -88,7 +91,7 @@ public class Rectangle2<T extends Number>
     }
 
     /**
-     * Creates a new instance of the {@link Rectangle2} class. (Serialization
+     * Creates a new instance of the {@code Rectangle2} class. (Serialization
      * Constructor)
      */
     protected Rectangle2() {
@@ -97,7 +100,29 @@ public class Rectangle2<T extends Number>
     }
 
     /**
-     * Creates a new instance of the {@link Rectangle2} class with the provided
+     * Creates a new instance of the {@code Rectangle2} class with the provided
+     * type and parameters.
+     * 
+     * @param x
+     *            the x coordinate of the top-left corner.
+     * @param y
+     *            the y coordinate of the top-left corner
+     * @param width
+     *            the width of the rectangle.
+     * @param height
+     *            the height of the rectangle.
+     * @param type
+     *            the type.
+     */
+    public Rectangle2(final Number x, final Number y, final Number width,
+            final Number height, Class<? extends T> type) {
+
+        this(new Point2<T>(x, y, type), new Point2<T>(ArithmeticOperations.add(
+                x, width), ArithmeticOperations.add(y, height), type), type);
+    }
+
+    /**
+     * Creates a new instance of the {@code Rectangle2} class with the provided
      * type and parameters.
      *
      * @param topLeftCorner
@@ -115,7 +140,7 @@ public class Rectangle2<T extends Number>
     }
 
     /**
-     * Creates a new instance of the {@link Rectangle2} class with the provided
+     * Creates a new instance of the {@code Rectangle2} class with the provided
      * type and parameters.
      *
      * @param topLeftCorner
