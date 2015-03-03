@@ -1,5 +1,7 @@
 package org.jutility.common.datatype.tree;
 
+
+// @formatter:off
 /*
  * #%L
  * jutility-common
@@ -9,9 +11,9 @@ package org.jutility.common.datatype.tree;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,7 +21,7 @@ package org.jutility.common.datatype.tree;
  * limitations under the License.
  * #L%
  */
-
+// @formatter:on
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -28,11 +30,14 @@ import java.util.NoSuchElementException;
 
 
 /**
- * @author Peter J. Radics
- * @version 0.1
+ * The {@code BTreeInOrderIterator} class provides an in-order iterator for a
+ * {@link BTree}.
+ *
  * @param <VALUE>
  *            the value type.
- * 
+ * @author Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.0
  */
 public class BTreeInOrderIterator<VALUE extends Comparable<VALUE>>
         implements Iterator<VALUE> {
@@ -46,7 +51,7 @@ public class BTreeInOrderIterator<VALUE extends Comparable<VALUE>>
 
     /**
      * Creates a new instance of the {@code BTreeInOrderIterator} class.
-     * 
+     *
      * @param tree
      *            the tree to iterate over.
      */
@@ -93,12 +98,12 @@ public class BTreeInOrderIterator<VALUE extends Comparable<VALUE>>
                             + "before.");
         }
 
-        this.tree.remove(currentValue);
+        this.tree.remove(this.currentValue);
         this.currentValue = null;
     }
 
 
-    private void enqueue(BTree<VALUE>.BTreeNode node) {
+    private void enqueue(final BTree<VALUE>.BTreeNode node) {
 
         if (!node.getChildren().isEmpty()) {
 
@@ -115,11 +120,10 @@ public class BTreeInOrderIterator<VALUE extends Comparable<VALUE>>
 
         }
         else {
-            for (VALUE entry : node.getEntries()) {
+            for (final VALUE entry : node.getEntries()) {
 
                 this.stack.add(entry);
             }
         }
     }
-
 }

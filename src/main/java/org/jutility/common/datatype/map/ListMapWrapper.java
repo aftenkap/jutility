@@ -1,26 +1,31 @@
 package org.jutility.common.datatype.map;
 
 
+//@formatter:off
 /*
- * #%L jutility-common %% Copyright (C) 2013 - 2014 jutility.org %% Licensed
- * under the Apache License, Version 2.0 (the "License"); you may not use this
- * file except in compliance with the License. You may obtain a copy of the
- * License at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ * #%L
+ * jutility-common
+ * %%
+ * Copyright (C) 2013 - 2014 jutility.org
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License. #L%
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
  */
-
+//@formatter:on
 
 import java.util.AbstractSequentialList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 
@@ -31,6 +36,9 @@ import org.slf4j.LoggerFactory;
 
 
 /**
+ * The {@code ListMapWrapper} class provides a {@link java.util.List List}
+ * wrapper around a {@link Map}.
+ *
  * @author Peter J. Radics
  * @param <K>
  *            the key type.
@@ -39,8 +47,7 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class ListMapWrapper<K, E>
-        extends AbstractSequentialList<E>
-        implements List<E> {
+        extends AbstractSequentialList<E> {
 
     private static Logger   LOG = LoggerFactory.getLogger(ListMapWrapper.class);
 
@@ -50,23 +57,28 @@ public class ListMapWrapper<K, E>
 
 
 
+    /**
+     * Returns the wrapped {@link Map}.
+     *
+     * @return the wrapped {@link Map}.
+     */
     Map<K, E> getMap() {
 
         return this.map;
     }
 
     /**
-     * Creates a new instance of the {@link ListMapWrapper} class.
-     * 
+     * Creates a new instance of the {@code ListMapWrapper} class.
+     *
      * @param map
-     *            the map to wrap.
+     *            the {@link Map} to wrap.
      * @param keyProperty
      *            the key property.
      * @param keyType
      *            the key type.
      */
-    public ListMapWrapper(final Map<K, E> map, String keyProperty,
-            Class<K> keyType) {
+    public ListMapWrapper(final Map<K, E> map, final String keyProperty,
+            final Class<K> keyType) {
 
 
         this.map = map;
@@ -76,7 +88,7 @@ public class ListMapWrapper<K, E>
 
 
     @Override
-    public ListIterator<E> listIterator(int index) {
+    public ListIterator<E> listIterator(final int index) {
 
         return new MappedListIterator<K, E>(this, index);
     }
@@ -101,7 +113,7 @@ public class ListMapWrapper<K, E>
 
         /**
          * Creates a new instance of the {@link MappedListIterator} class.
-         * 
+         *
          * @param listMapWrapper
          *            the listMapWrapper.
          */
@@ -135,7 +147,7 @@ public class ListMapWrapper<K, E>
 
             this.currentIndex++;
             this.currentKey = this.mapIterator.next();
-            return this.map.get(currentKey);
+            return this.map.get(this.currentKey);
         }
 
         @Override
@@ -175,7 +187,7 @@ public class ListMapWrapper<K, E>
         }
 
         @Override
-        public void set(E e) {
+        public void set(final E e) {
 
             if (this.currentKey == null) {
 
@@ -185,21 +197,21 @@ public class ListMapWrapper<K, E>
         }
 
         @Override
-        public void add(E e) {
+        public void add(final E e) {
 
-            Map<K, E> backupMap = new LinkedHashMap<K, E>();
+            final Map<K, E> backupMap = new LinkedHashMap<K, E>();
 
-            int current = this.currentIndex;
+            final int current = this.currentIndex;
             while (this.mapIterator.hasNext()) {
 
-                K key = this.mapIterator.next();
+                final K key = this.mapIterator.next();
                 backupMap.put(key, this.map.get(key));
                 this.mapIterator.remove();
             }
 
             this.map.put(this.listMapWrapper.getKey(e), e);
 
-            for (K key : backupMap.keySet()) {
+            for (final K key : backupMap.keySet()) {
 
                 this.map.put(key, backupMap.get(key));
             }
@@ -216,9 +228,9 @@ public class ListMapWrapper<K, E>
         private void advanceToIndex(final int index,
                 final boolean initialization) {
 
-            if (index > this.map.size() || index < 0) {
+            if ((index > this.map.size()) || (index < 0)) {
 
-                if (index != -1 || (index == -1 && !initialization)) {
+                if ((index != -1) || ((index == -1) && !initialization)) {
 
                     throw new IndexOutOfBoundsException("Index: " + index
                             + ", size: " + this.map.size());
@@ -238,15 +250,23 @@ public class ListMapWrapper<K, E>
 
     }
 
-    K getKey(E value) {
+    /**
+     * Returns the key for the provided value.
+     *
+     * @param value
+     *            the value.
+     * @return the key for the provided value.
+     */
+    K getKey(final E value) {
 
         try {
-            LOG.debug("GetKey: " + this.keyProperty + " " + this.keyType);
+            ListMapWrapper.LOG.debug("GetKey: " + this.keyProperty + " "
+                    + this.keyType);
 
             return ReflectionUtils.getValue(value, this.keyProperty,
                     this.keyType);
         }
-        catch (ReflectionException e) {
+        catch (final ReflectionException e) {
 
             throw new IllegalArgumentException(e);
         }

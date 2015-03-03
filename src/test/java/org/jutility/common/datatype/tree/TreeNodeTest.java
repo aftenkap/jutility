@@ -1,5 +1,7 @@
 package org.jutility.common.datatype.tree;
 
+
+//@formatter:off
 /*
  * #%L
  * jutility-common
@@ -9,9 +11,9 @@ package org.jutility.common.datatype.tree;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,23 +21,21 @@ package org.jutility.common.datatype.tree;
  * limitations under the License.
  * #L%
  */
-
-
-import static org.junit.Assert.*;
-
+//@formatter:on
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.jutility.common.datatype.tree.TreeNode;
 
 
 /**
  * Test class for TreeNode.
- * 
+ *
  * @author Peter J. Radics
- * @version 0.1
+ * @version 0.1.2
+ * @since 0.1.0
  */
 public class TreeNodeTest {
 
@@ -45,18 +45,21 @@ public class TreeNodeTest {
     private TreeNode<String> child;
 
     /**
+     * Set Up.
      */
     @Before
-    public void setUp(){
+    public void setUp() {
 
         this.testNode = new TreeNode<String>("A");
         this.parent = new TreeNode<String>("B");
-        this.child = new TreeNode<String>("C", parent);
+        this.child = new TreeNode<String>("C", this.parent);
     }
 
     /**
-     * Test method for {@link org.jutility.common.datatype.tree.TreeNode#TreeNode(Object)} and
-     * {@link org.jutility.common.datatype.tree.TreeNode#TreeNode(Object, TreeNode)}.
+     * Test method for
+     * {@link org.jutility.common.datatype.tree.TreeNode#TreeNode(Object)} and
+     * {@link org.jutility.common.datatype.tree.TreeNode#TreeNode(Object, TreeNode)}
+     * .
      */
     @SuppressWarnings("unused")
     @Test
@@ -66,173 +69,186 @@ public class TreeNodeTest {
         try {
             new TreeNode<String>(null);
         }
-        catch (Exception e) {
+        catch (final Exception e) {
             ex = e;
         }
 
-        assertNotNull(ex);
-        assertTrue(ex instanceof IllegalArgumentException);
-        assertEquals("Cannot create a tree node without a valid element!",
+        Assert.assertNotNull(ex);
+        Assert.assertTrue(ex instanceof IllegalArgumentException);
+        Assert.assertEquals(
+                "Cannot create a tree node without a valid element!",
                 ex.getMessage());
     }
 
     /**
-     * Test method for {@link org.jutility.common.datatype.tree.TreeNode#getElement()}.
+     * Test method for
+     * {@link org.jutility.common.datatype.tree.TreeNode#getElement()}.
      */
     @Test
     public void testGetElement() {
 
-        assertEquals("A", testNode.getElement());
-        assertEquals("B", parent.getElement());
-        assertEquals("C", child.getElement());
+        Assert.assertEquals("A", this.testNode.getElement());
+        Assert.assertEquals("B", this.parent.getElement());
+        Assert.assertEquals("C", this.child.getElement());
     }
 
 
     /**
-     * Test method for {@link org.jutility.common.datatype.tree.TreeNode#getParent()}.
+     * Test method for
+     * {@link org.jutility.common.datatype.tree.TreeNode#getParent()}.
      */
     @Test
     public void testGetParent() {
 
-        assertNull(testNode.getParent());
-        assertNull(parent.getParent());
-        assertEquals(parent, child.getParent());
+        Assert.assertNull(this.testNode.getParent());
+        Assert.assertNull(this.parent.getParent());
+        Assert.assertEquals(this.parent, this.child.getParent());
     }
 
     /**
      * Test method for
-     * {@link org.jutility.common.datatype.tree.TreeNode#addChild(org.jutility.common.datatype.tree.TreeNode)}z
-     * {@link org.jutility.common.datatype.tree.TreeNode#removeChild(org.jutility.common.datatype.tree.TreeNode)}z
-     * {@link org.jutility.common.datatype.tree.TreeNode#addChild(java.lang.Object)} and
-     * {@link org.jutility.common.datatype.tree.TreeNode#removeChild(java.lang.Object)}.
+     * {@link org.jutility.common.datatype.tree.TreeNode#addChild(org.jutility.common.datatype.tree.TreeNode)}
+     * z
+     * {@link org.jutility.common.datatype.tree.TreeNode#removeChild(org.jutility.common.datatype.tree.TreeNode)}
+     * z
+     * {@link org.jutility.common.datatype.tree.TreeNode#addChild(java.lang.Object)}
+     * and
+     * {@link org.jutility.common.datatype.tree.TreeNode#removeChild(java.lang.Object)}
+     * .
      */
     @Test
     public void testAddRemoveChildTreeNode() {
 
         Exception ex = null;
-        TreeNode<String> nullNode = null;
+        final TreeNode<String> nullNode = null;
 
         try {
-            parent.addChild(nullNode);
+            this.parent.addChild(nullNode);
         }
-        catch (Exception e) {
+        catch (final Exception e) {
             ex = e;
         }
 
-        assertNotNull(ex);
-        assertTrue(ex instanceof IllegalArgumentException);
-        assertEquals("Cannot contain null elements!", ex.getMessage());
+        Assert.assertNotNull(ex);
+        Assert.assertTrue(ex instanceof IllegalArgumentException);
+        Assert.assertEquals("Cannot contain null elements!", ex.getMessage());
 
 
-        parent.addChild(testNode);
-        List<TreeNode<String>> parentNodeChildren = parent.getChildren();
-        assertEquals(2, parentNodeChildren.size());
-        assertEquals(child, parentNodeChildren.get(0));
-        assertEquals(testNode, parentNodeChildren.get(1));
+        this.parent.addChild(this.testNode);
+        List<TreeNode<String>> parentNodeChildren = this.parent.getChildren();
+        Assert.assertEquals(2, parentNodeChildren.size());
+        Assert.assertEquals(this.child, parentNodeChildren.get(0));
+        Assert.assertEquals(this.testNode, parentNodeChildren.get(1));
 
-        assertEquals(parent, child.getParent());
-        assertEquals(parent, testNode.getParent());
+        Assert.assertEquals(this.parent, this.child.getParent());
+        Assert.assertEquals(this.parent, this.testNode.getParent());
 
 
         ex = null;
 
         try {
-            parent.removeChild(nullNode);
+            this.parent.removeChild(nullNode);
         }
-        catch (Exception e) {
+        catch (final Exception e) {
             ex = e;
         }
 
-        assertNotNull(ex);
-        assertTrue(ex instanceof IllegalArgumentException);
-        assertEquals("Cannot contain null elements!", ex.getMessage());
+        Assert.assertNotNull(ex);
+        Assert.assertTrue(ex instanceof IllegalArgumentException);
+        Assert.assertEquals("Cannot contain null elements!", ex.getMessage());
 
-        parent.removeChild(testNode);
+        this.parent.removeChild(this.testNode);
 
-        parentNodeChildren = parent.getChildren();
-        assertEquals(1, parentNodeChildren.size());
-        assertEquals(child, parentNodeChildren.get(0));
-
-
-        assertEquals(parent, child.getParent());
-        assertNull(testNode.getParent());
+        parentNodeChildren = this.parent.getChildren();
+        Assert.assertEquals(1, parentNodeChildren.size());
+        Assert.assertEquals(this.child, parentNodeChildren.get(0));
 
 
-        parent.removeChild(testNode);
+        Assert.assertEquals(this.parent, this.child.getParent());
+        Assert.assertNull(this.testNode.getParent());
 
-        parentNodeChildren = parent.getChildren();
-        assertEquals(1, parentNodeChildren.size());
-        assertEquals(child, parentNodeChildren.get(0));
+
+        this.parent.removeChild(this.testNode);
+
+        parentNodeChildren = this.parent.getChildren();
+        Assert.assertEquals(1, parentNodeChildren.size());
+        Assert.assertEquals(this.child, parentNodeChildren.get(0));
     }
 
     /**
      * Test method for
-     * {@link org.jutility.common.datatype.tree.TreeNode#addChild(org.jutility.common.datatype.tree.TreeNode)}z
-     * {@link org.jutility.common.datatype.tree.TreeNode#removeChild(org.jutility.common.datatype.tree.TreeNode)}z
-     * {@link org.jutility.common.datatype.tree.TreeNode#addChild(java.lang.Object)} and
-     * {@link org.jutility.common.datatype.tree.TreeNode#removeChild(java.lang.Object)}.
+     * {@link org.jutility.common.datatype.tree.TreeNode#addChild(org.jutility.common.datatype.tree.TreeNode)}
+     * z
+     * {@link org.jutility.common.datatype.tree.TreeNode#removeChild(org.jutility.common.datatype.tree.TreeNode)}
+     * z
+     * {@link org.jutility.common.datatype.tree.TreeNode#addChild(java.lang.Object)}
+     * and
+     * {@link org.jutility.common.datatype.tree.TreeNode#removeChild(java.lang.Object)}
+     * .
      */
     @Test
     public void testAddRemoveChildE() {
 
 
         Exception ex = null;
-        String nullNode = null;
+        final String nullNode = null;
 
         try {
-            parent.addChild(nullNode);
+            this.parent.addChild(nullNode);
         }
-        catch (Exception e) {
+        catch (final Exception e) {
             ex = e;
         }
 
-        assertNotNull(ex);
-        assertTrue(ex instanceof IllegalArgumentException);
-        assertEquals("Cannot create a tree node without a valid element!",
+        Assert.assertNotNull(ex);
+        Assert.assertTrue(ex instanceof IllegalArgumentException);
+        Assert.assertEquals(
+                "Cannot create a tree node without a valid element!",
                 ex.getMessage());
 
 
-        parent.addChild("E");
-        List<TreeNode<String>> parentNodeChildren = parent.getChildren();
-        assertEquals(2, parentNodeChildren.size());
-        assertEquals(child, parentNodeChildren.get(0));
+        this.parent.addChild("E");
+        List<TreeNode<String>> parentNodeChildren = this.parent.getChildren();
+        Assert.assertEquals(2, parentNodeChildren.size());
+        Assert.assertEquals(this.child, parentNodeChildren.get(0));
 
-        TreeNode<String> actualNode = parentNodeChildren.get(1);
-        assertEquals(new TreeNode<String>("E"), actualNode);
+        final TreeNode<String> actualNode = parentNodeChildren.get(1);
+        Assert.assertEquals(new TreeNode<String>("E"), actualNode);
 
-        assertEquals(parent, child.getParent());
-        assertEquals(parent, actualNode.getParent());
+        Assert.assertEquals(this.parent, this.child.getParent());
+        Assert.assertEquals(this.parent, actualNode.getParent());
 
 
         ex = null;
 
         try {
-            parent.removeChild(nullNode);
+            this.parent.removeChild(nullNode);
         }
-        catch (Exception e) {
+        catch (final Exception e) {
             ex = e;
         }
 
-        assertNotNull(ex);
-        assertTrue(ex instanceof IllegalArgumentException);
-        assertEquals("Cannot create a tree node without a valid element!",
+        Assert.assertNotNull(ex);
+        Assert.assertTrue(ex instanceof IllegalArgumentException);
+        Assert.assertEquals(
+                "Cannot create a tree node without a valid element!",
                 ex.getMessage());
 
-        parent.removeChild("E");
+        this.parent.removeChild("E");
 
-        parentNodeChildren = parent.getChildren();
-        assertEquals(1, parentNodeChildren.size());
-        assertEquals(child, parentNodeChildren.get(0));
+        parentNodeChildren = this.parent.getChildren();
+        Assert.assertEquals(1, parentNodeChildren.size());
+        Assert.assertEquals(this.child, parentNodeChildren.get(0));
 
-        assertEquals(parent, child.getParent());
-        assertNull(actualNode.getParent());
+        Assert.assertEquals(this.parent, this.child.getParent());
+        Assert.assertNull(actualNode.getParent());
 
 
-        parent.removeChild("E");
+        this.parent.removeChild("E");
 
-        parentNodeChildren = parent.getChildren();
-        assertEquals(1, parentNodeChildren.size());
-        assertEquals(child, parentNodeChildren.get(0));
+        parentNodeChildren = this.parent.getChildren();
+        Assert.assertEquals(1, parentNodeChildren.size());
+        Assert.assertEquals(this.child, parentNodeChildren.get(0));
     }
 
     /**
@@ -244,80 +260,81 @@ public class TreeNodeTest {
     public void testReplaceChildTreeNode() {
 
         Exception ex = null;
-        TreeNode<String> nullNode = null;
+        final TreeNode<String> nullNode = null;
 
         try {
-            parent.replaceChild(nullNode, nullNode);
+            this.parent.replaceChild(nullNode, nullNode);
         }
-        catch (Exception e) {
+        catch (final Exception e) {
             ex = e;
         }
 
-        assertNotNull(ex);
-        assertTrue(ex instanceof IllegalArgumentException);
-        assertEquals("Cannot contain null elements!", ex.getMessage());
+        Assert.assertNotNull(ex);
+        Assert.assertTrue(ex instanceof IllegalArgumentException);
+        Assert.assertEquals("Cannot contain null elements!", ex.getMessage());
 
         ex = null;
 
         try {
-            parent.replaceChild(child, nullNode);
+            this.parent.replaceChild(this.child, nullNode);
         }
-        catch (Exception e) {
+        catch (final Exception e) {
             ex = e;
         }
 
-        assertNotNull(ex);
-        assertTrue(ex instanceof IllegalArgumentException);
-        assertEquals("Cannot contain null elements!", ex.getMessage());
+        Assert.assertNotNull(ex);
+        Assert.assertTrue(ex instanceof IllegalArgumentException);
+        Assert.assertEquals("Cannot contain null elements!", ex.getMessage());
 
         ex = null;
 
         try {
-            parent.replaceChild(testNode, child);
+            this.parent.replaceChild(this.testNode, this.child);
         }
-        catch (Exception e) {
+        catch (final Exception e) {
             ex = e;
         }
 
-        assertNotNull(ex);
-        assertTrue(ex instanceof NoSuchElementException);
-        assertEquals("The provided child to be replaced could not be found!",
+        Assert.assertNotNull(ex);
+        Assert.assertTrue(ex instanceof NoSuchElementException);
+        Assert.assertEquals(
+                "The provided child to be replaced could not be found!",
                 ex.getMessage());
 
 
-        parent.replaceChild(child, testNode);
+        this.parent.replaceChild(this.child, this.testNode);
 
-        List<TreeNode<String>> parentNodeChildren = parent.getChildren();
-        assertEquals(1, parentNodeChildren.size());
-        assertEquals(testNode, parentNodeChildren.get(0));
+        List<TreeNode<String>> parentNodeChildren = this.parent.getChildren();
+        Assert.assertEquals(1, parentNodeChildren.size());
+        Assert.assertEquals(this.testNode, parentNodeChildren.get(0));
 
-        assertNull(child.getParent());
-        assertEquals(parent, testNode.getParent());
+        Assert.assertNull(this.child.getParent());
+        Assert.assertEquals(this.parent, this.testNode.getParent());
 
-        parent.replaceChild(testNode, testNode);
-        parentNodeChildren = parent.getChildren();
-        assertEquals(1, parentNodeChildren.size());
-        assertEquals(testNode, parentNodeChildren.get(0));
+        this.parent.replaceChild(this.testNode, this.testNode);
+        parentNodeChildren = this.parent.getChildren();
+        Assert.assertEquals(1, parentNodeChildren.size());
+        Assert.assertEquals(this.testNode, parentNodeChildren.get(0));
 
-        assertNull(child.getParent());
-        assertEquals(parent, testNode.getParent());
+        Assert.assertNull(this.child.getParent());
+        Assert.assertEquals(this.parent, this.testNode.getParent());
 
-        parent.addChild(child);
-        parentNodeChildren = parent.getChildren();
-        assertEquals(2, parentNodeChildren.size());
-        assertEquals(testNode, parentNodeChildren.get(0));
-        assertEquals(child, parentNodeChildren.get(1));
+        this.parent.addChild(this.child);
+        parentNodeChildren = this.parent.getChildren();
+        Assert.assertEquals(2, parentNodeChildren.size());
+        Assert.assertEquals(this.testNode, parentNodeChildren.get(0));
+        Assert.assertEquals(this.child, parentNodeChildren.get(1));
 
-        assertEquals(parent, child.getParent());
-        assertEquals(parent, testNode.getParent());
+        Assert.assertEquals(this.parent, this.child.getParent());
+        Assert.assertEquals(this.parent, this.testNode.getParent());
 
-        parent.replaceChild(testNode, child);
-        parentNodeChildren = parent.getChildren();
-        assertEquals(1, parentNodeChildren.size());
-        assertEquals(child, parentNodeChildren.get(0));
+        this.parent.replaceChild(this.testNode, this.child);
+        parentNodeChildren = this.parent.getChildren();
+        Assert.assertEquals(1, parentNodeChildren.size());
+        Assert.assertEquals(this.child, parentNodeChildren.get(0));
 
-        assertNull(testNode.getParent());
-        assertEquals(parent, child.getParent());
+        Assert.assertNull(this.testNode.getParent());
+        Assert.assertEquals(this.parent, this.child.getParent());
 
     }
 
@@ -332,111 +349,116 @@ public class TreeNodeTest {
         Exception ex = null;
 
         try {
-            parent.replaceChild("E", "C");
+            this.parent.replaceChild("E", "C");
         }
-        catch (Exception e) {
+        catch (final Exception e) {
             ex = e;
         }
 
-        assertNotNull(ex);
-        assertTrue(ex instanceof NoSuchElementException);
-        assertEquals("The provided child to be replaced could not be found!",
+        Assert.assertNotNull(ex);
+        Assert.assertTrue(ex instanceof NoSuchElementException);
+        Assert.assertEquals(
+                "The provided child to be replaced could not be found!",
                 ex.getMessage());
 
 
-        parent.replaceChild("C", "E");
+        this.parent.replaceChild("C", "E");
 
-        List<TreeNode<String>> parentNodeChildren = parent.getChildren();
-        assertEquals(1, parentNodeChildren.size());
+        List<TreeNode<String>> parentNodeChildren = this.parent.getChildren();
+        Assert.assertEquals(1, parentNodeChildren.size());
         TreeNode<String> actualNode = parentNodeChildren.get(0);
-        assertEquals(new TreeNode<String>("E"), actualNode);
+        Assert.assertEquals(new TreeNode<String>("E"), actualNode);
 
-        assertNull(child.getParent());
-        assertEquals(parent, actualNode.getParent());
+        Assert.assertNull(this.child.getParent());
+        Assert.assertEquals(this.parent, actualNode.getParent());
 
-        parent.replaceChild("E", "E");
-        parentNodeChildren = parent.getChildren();
-        assertEquals(1, parentNodeChildren.size());
+        this.parent.replaceChild("E", "E");
+        parentNodeChildren = this.parent.getChildren();
+        Assert.assertEquals(1, parentNodeChildren.size());
         TreeNode<String> newActualNode = parentNodeChildren.get(0);
-        assertEquals(actualNode, newActualNode);
-        assertNull(actualNode.getParent());
-        assertEquals(parent, newActualNode.getParent());
+        Assert.assertEquals(actualNode, newActualNode);
+        Assert.assertNull(actualNode.getParent());
+        Assert.assertEquals(this.parent, newActualNode.getParent());
 
 
-        parent.addChild("C");
-        parentNodeChildren = parent.getChildren();
-        assertEquals(2, parentNodeChildren.size());
+        this.parent.addChild("C");
+        parentNodeChildren = this.parent.getChildren();
+        Assert.assertEquals(2, parentNodeChildren.size());
         actualNode = parentNodeChildren.get(0);
         newActualNode = parentNodeChildren.get(1);
 
-        assertEquals(new TreeNode<String>("E"), actualNode);
-        assertEquals(new TreeNode<String>("C"), newActualNode);
+        Assert.assertEquals(new TreeNode<String>("E"), actualNode);
+        Assert.assertEquals(new TreeNode<String>("C"), newActualNode);
 
-        assertEquals(parent, actualNode.getParent());
-        assertEquals(parent, newActualNode.getParent());
+        Assert.assertEquals(this.parent, actualNode.getParent());
+        Assert.assertEquals(this.parent, newActualNode.getParent());
 
-        parent.replaceChild("E", "C");
+        this.parent.replaceChild("E", "C");
 
-        assertNull(actualNode.getParent());
-        assertNull(newActualNode.getParent());
+        Assert.assertNull(actualNode.getParent());
+        Assert.assertNull(newActualNode.getParent());
 
-        parentNodeChildren = parent.getChildren();
-        assertEquals(1, parentNodeChildren.size());
+        parentNodeChildren = this.parent.getChildren();
+        Assert.assertEquals(1, parentNodeChildren.size());
         actualNode = parentNodeChildren.get(0);
-        assertEquals(new TreeNode<String>("C"), actualNode);
+        Assert.assertEquals(new TreeNode<String>("C"), actualNode);
 
     }
 
     /**
-     * Test method for {@link org.jutility.common.datatype.tree.TreeNode#clearChildren()}.
+     * Test method for
+     * {@link org.jutility.common.datatype.tree.TreeNode#clearChildren()}.
      */
     @Test
     public void testClearChildren() {
 
-        parent.addChild(testNode);
-        List<TreeNode<String>> parentNodeChildren = parent.getChildren();
-        assertEquals(2, parentNodeChildren.size());
-        assertEquals(child, parentNodeChildren.get(0));
-        assertEquals(testNode, parentNodeChildren.get(1));
-        parent.clearChildren();
-        parentNodeChildren = parent.getChildren();
-        assertEquals(0, parentNodeChildren.size());
-        assertNull(child.getParent());
-        assertNull(testNode.getParent());
+        this.parent.addChild(this.testNode);
+        List<TreeNode<String>> parentNodeChildren = this.parent.getChildren();
+        Assert.assertEquals(2, parentNodeChildren.size());
+        Assert.assertEquals(this.child, parentNodeChildren.get(0));
+        Assert.assertEquals(this.testNode, parentNodeChildren.get(1));
+        this.parent.clearChildren();
+        parentNodeChildren = this.parent.getChildren();
+        Assert.assertEquals(0, parentNodeChildren.size());
+        Assert.assertNull(this.child.getParent());
+        Assert.assertNull(this.testNode.getParent());
     }
 
     /**
-     * Test method for {@link org.jutility.common.datatype.tree.TreeNode#equals(java.lang.Object)}
+     * Test method for
+     * {@link org.jutility.common.datatype.tree.TreeNode#equals(java.lang.Object)}
      * .
      */
     @Test
     public void testEqualsObject() {
 
-        assertEquals(new TreeNode<String>("A"), testNode);
-        assertFalse(testNode.equals(null));
-        assertFalse(testNode.equals("A"));
-        assertFalse(testNode.equals(parent));
+        Assert.assertEquals(new TreeNode<String>("A"), this.testNode);
+        Assert.assertFalse(this.testNode.equals(null));
+        Assert.assertFalse(this.testNode.equals("A"));
+        Assert.assertFalse(this.testNode.equals(this.parent));
     }
 
     /**
-     * Test method for {@link org.jutility.common.datatype.tree.TreeNode#toString()}.
+     * Test method for
+     * {@link org.jutility.common.datatype.tree.TreeNode#toString()}.
      */
     @Test
     public void testToString() {
 
-        assertEquals("A", testNode.toString());
-        assertEquals("B", parent.toString());
-        assertEquals("C", child.toString());
+        Assert.assertEquals("A", this.testNode.toString());
+        Assert.assertEquals("B", this.parent.toString());
+        Assert.assertEquals("C", this.child.toString());
     }
 
     /**
-     * Test method for {@link org.jutility.common.datatype.tree.TreeNode#hashCode()}.
+     * Test method for
+     * {@link org.jutility.common.datatype.tree.TreeNode#hashCode()}.
      */
     @Test
     public void testHashCode() {
 
-        assertEquals("A".hashCode(), testNode.hashCode());
-        assertEquals("B".hashCode(), parent.hashCode());
-        assertEquals("C".hashCode(), child.hashCode());
+        Assert.assertEquals("A".hashCode(), this.testNode.hashCode());
+        Assert.assertEquals("B".hashCode(), this.parent.hashCode());
+        Assert.assertEquals("C".hashCode(), this.child.hashCode());
     }
 }

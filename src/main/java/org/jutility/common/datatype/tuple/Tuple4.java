@@ -1,5 +1,7 @@
 package org.jutility.common.datatype.tuple;
 
+
+// @formatter:off
 /*
  * #%L
  * jutility-common
@@ -9,9 +11,9 @@ package org.jutility.common.datatype.tuple;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,11 +21,14 @@ package org.jutility.common.datatype.tuple;
  * limitations under the License.
  * #L%
  */
-
+// @formatter:on
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -33,14 +38,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 /**
  * The generic {@link Tuple4} class provides a reference base implementation of
  * the {@link ITuple4} interface.
- * 
- * @author Peter J. Radics
- * @version 1.0
- * 
+ *
  * @param <T>
  *            the type of the tuple.
+ *
+ * @author Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.0
  */
-@JsonPropertyOrder(value =  { "type", "x", "y", "z", "w" })
+@JsonPropertyOrder(value = { "type", "x", "y", "z", "w" })
 @XmlRootElement(name = "Tuple4")
 @XmlType(name = "Tuple4", propOrder = { "x", "y", "z", "w" })
 public class Tuple4<T>
@@ -48,13 +54,9 @@ public class Tuple4<T>
         implements ITuple4<T> {
 
 
-//    private static Logger LOG = LoggerFactory.getLogger(Tuple4.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Tuple4.class);
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.tuple.ITuple4#getX()
-     */
+
     @Override
     @JsonProperty(required = true, value = "x", index = 0)
     @XmlElement(name = "X")
@@ -65,14 +67,13 @@ public class Tuple4<T>
 
     /**
      * Setter for the x component (Serialization).
-     * 
+     *
      * @param value
      *            the new value.
      */
     @SuppressWarnings("unused")
-    private void setX(T value) {
+    private void setX(final T value) {
 
-//        LOG.debug("Setting X value of Tuple4 to " + value);
         if (super.getComponents() != null) {
 
             if (super.getComponents().isEmpty()) {
@@ -86,15 +87,12 @@ public class Tuple4<T>
         }
         else {
 
-//            LOG.error("Attempting to set X value of Tuple4 to null!");
+            Tuple4.LOG.error("TupleBase.getComponents() returns null value!");
+            throw new IllegalStateException(
+                    "TupleBase.getComponents() returns null value!");
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.tuple.ITuple4#getY()
-     */
     @Override
     @JsonProperty(required = true, value = "y", index = 1)
     @XmlElement(name = "Y")
@@ -105,14 +103,13 @@ public class Tuple4<T>
 
     /**
      * Setter for the y component (Serialization).
-     * 
+     *
      * @param value
      *            the new value.
      */
     @SuppressWarnings("unused")
-    private void setY(T value) {
+    private void setY(final T value) {
 
-//        LOG.debug("Setting Y value of Tuple4 to " + value);
         if (super.getComponents() != null) {
 
             if (super.getComponents().size() == 1) {
@@ -125,22 +122,24 @@ public class Tuple4<T>
             }
             else {
 
-//                LOG.error("Setting Y value of Tuple4 out of order. Size should be >= 1 but is "
-//                        + super.getComponents().size());
+                Tuple4.LOG.error("TupleBase has "
+                        + super.getComponents().size()
+                        + " components! Should be >= 1.");
+                throw new IllegalStateException("TupleBase has "
+                        + super.getComponents().size()
+                        + " components! Should be >= 1.");
             }
         }
         else {
 
-//            LOG.error("Attempting to set Y value of Tuple4 to null!");
+            Tuple4.LOG.error("TupleBase.getComponents() returns null value!");
+            throw new IllegalStateException(
+                    "TupleBase.getComponents() returns null value!");
         }
     }
 
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.tuple.ITuple4#getZ()
-     */
+
     @Override
     @JsonProperty(required = true, value = "z", index = 2)
     @XmlElement(name = "Z")
@@ -151,41 +150,41 @@ public class Tuple4<T>
 
     /**
      * Setter for the z component (Serialization).
-     * 
+     *
      * @param value
      *            the new value.
      */
     @SuppressWarnings("unused")
-    private void setZ(T value) {
+    private void setZ(final T value) {
 
-//        LOG.debug("Setting Z value of Tuple4 to " + value);
         if (super.getComponents() != null) {
-            
+
             if (super.getComponents().size() == 2) {
-                
+
                 super.getComponents().add(value);
             }
             else if (super.getComponents().size() > 2) {
-                
+
                 super.getComponents().set(2, value);
             }
             else {
 
-//                LOG.error("Setting Z value of Tuple4 out of order. Size should be >= 2 but is "
-//                        + super.getComponents().size());
+                Tuple4.LOG.error("TupleBase has "
+                        + super.getComponents().size()
+                        + " components! Should be >= 2.");
+                throw new IllegalStateException("TupleBase has "
+                        + super.getComponents().size()
+                        + " components! Should be >= 2.");
             }
         }
         else {
 
-//            LOG.error("Attempting to set Z value of Tuple4 to null!");
+            Tuple4.LOG.error("TupleBase.getComponents() returns null value!");
+            throw new IllegalStateException(
+                    "TupleBase.getComponents() returns null value!");
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.tuple.ITuple4#getW()
-     */
     @Override
     @JsonProperty(required = true, value = "w", index = 3)
     @XmlElement(name = "W")
@@ -196,33 +195,38 @@ public class Tuple4<T>
 
     /**
      * Setter for the w component (Serialization).
-     * 
+     *
      * @param value
      *            the new value.
      */
     @SuppressWarnings("unused")
-    private void setW(T value) {
+    private void setW(final T value) {
 
-//        LOG.debug("Setting W value of Tuple4 to " + value);
         if (super.getComponents() != null) {
-            
+
             if (super.getComponents().size() == 3) {
-                
+
                 super.getComponents().add(value);
             }
             else if (super.getComponents().size() > 3) {
-                
+
                 super.getComponents().set(3, value);
             }
             else {
 
-//                LOG.error("Setting W value of Tuple4 out of order. Size should be >= 3 but is "
-//                        + super.getComponents().size());
+                Tuple4.LOG.error("TupleBase has "
+                        + super.getComponents().size()
+                        + " components! Should be >= 3.");
+                throw new IllegalStateException("TupleBase has "
+                        + super.getComponents().size()
+                        + " components! Should be >= 3.");
             }
         }
         else {
 
-//            LOG.error("Attempting to set W value of Tuple4 to null!");
+            Tuple4.LOG.error("TupleBase.getComponents() returns null value!");
+            throw new IllegalStateException(
+                    "TupleBase.getComponents() returns null value!");
         }
     }
 
@@ -242,7 +246,7 @@ public class Tuple4<T>
     /**
      * Creates a new instance of the {@link Tuple4} class with the provided type
      * and values.
-     * 
+     *
      * @param x
      *            The X coordinate.
      * @param y
@@ -263,7 +267,7 @@ public class Tuple4<T>
     /**
      * Creates a new instance of the {@link Tuple4} class with the provided type
      * and values.
-     * 
+     *
      * @param x
      *            The X coordinate.
      * @param y
@@ -284,22 +288,38 @@ public class Tuple4<T>
 
         super(type, serialization, x, y, z, w);
 
-        if (x == null && !serialization) {
+        if ((x == null) && !serialization) {
+
+            Tuple4.LOG
+                    .error("Cannot create a four-dimensional tuple without an x "
+                            + "component!");
             throw new IllegalArgumentException(
                     "Cannot create a four-dimensional tuple without an x "
                             + "component!");
         }
-        if (y == null && !serialization) {
+        if ((y == null) && !serialization) {
+
+            Tuple4.LOG
+                    .error("Cannot create a four-dimensional tuple without an y "
+                            + "component!");
             throw new IllegalArgumentException(
                     "Cannot create a four-dimensional tuple without a y "
                             + "component!");
         }
-        if (z == null && !serialization) {
+        if ((z == null) && !serialization) {
+
+            Tuple4.LOG
+                    .error("Cannot create a four-dimensional tuple without an z "
+                            + "component!");
             throw new IllegalArgumentException(
                     "Cannot create a four-dimensional tuple without a z "
                             + "component!");
         }
-        if (w == null && !serialization) {
+        if ((w == null) && !serialization) {
+
+            Tuple4.LOG
+                    .error("Cannot create a four-dimensional tuple without a "
+                            + "homogeneous component!");
             throw new IllegalArgumentException(
                     "Cannot create a four-dimensional tuple without a "
                             + "homogeneous component!");
@@ -309,7 +329,7 @@ public class Tuple4<T>
 
     /**
      * Copy Constructor.
-     * 
+     *
      * @param tupleToCopy
      *            the tuple to copy.
      */
@@ -320,13 +340,13 @@ public class Tuple4<T>
 
     /**
      * Copy Constructor.
-     * 
+     *
      * @param tupleToCopy
      *            the tuple to copy.
      * @param type
      *            the desired return type of the tuple to copy.
      */
-    public Tuple4(final ITuple4<T> tupleToCopy, Class<? extends T> type) {
+    public Tuple4(final ITuple4<T> tupleToCopy, final Class<? extends T> type) {
 
         this(tupleToCopy.getX(), tupleToCopy.getY(), tupleToCopy.getZ(),
                 tupleToCopy.getW(), type, false);

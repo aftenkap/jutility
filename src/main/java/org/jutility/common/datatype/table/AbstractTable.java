@@ -1,7 +1,7 @@
 package org.jutility.common.datatype.table;
 
 
-// @formatter:off
+//@formatter:off
 /*
  * #%L
  * jutility-common
@@ -11,9 +11,9 @@ package org.jutility.common.datatype.table;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,8 +21,7 @@ package org.jutility.common.datatype.table;
  * limitations under the License.
  * #L%
  */
-// @formatter:on
-
+//@formatter:on
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -36,20 +35,21 @@ import org.jutility.common.reflection.ReflectionUtils;
 
 
 /**
- * The generic {@code Table} class models a two-dimensional table of arbitrary
- * data.
- * <p/>
+ * The abstract generic {@code Table} class models a two-dimensional table of
+ * arbitrary data.
+ * <p>
  * The table is modeled as a {@link SortedSet} of {@link ICell Cells} to limit
  * the memory impact of sparse tables.
- * 
+ * </p>
+ *
  * @param <CELL>
  *            the type of the cells contained in the table.
  * @param <T>
  *            the type of the table data.
- * 
+ *
  * @author Peter J. Radics
  * @version 0.1.2
- * @since 0.0.1
+ * @since 0.1.0
  */
 public abstract class AbstractTable<CELL extends ICell<T>, T>
         implements ICellTable<CELL, T> {
@@ -60,11 +60,6 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
     private IterationOrder                                 iterationOrder;
 
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ITable#getIterationOrder()
-     */
     @Override
     public IterationOrder getIterationOrder() {
 
@@ -72,21 +67,14 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
     }
 
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.jutility.datatypes.table.ITable#setIterationOrder(org.jutility.datatypes
-     * .table.Table.IterationOrder)
-     */
     @Override
-    public void setIterationOrder(IterationOrder iterationOrder) {
+    public void setIterationOrder(final IterationOrder iterationOrder) {
 
         this.iterationOrder = iterationOrder;
     }
 
     /**
-     * Creates a new instance of the {@link Table} class with
+     * Creates a new instance of the {@code AbstractTable} class with
      * {@link IterationOrder#ROW_MAJOR row-major IterationOrder}.
      */
     public AbstractTable() {
@@ -95,13 +83,13 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
     }
 
     /**
-     * Creates a new instance of the {@link Table} class with the provided
-     * {@link IterationOrder iteration order}.
-     * 
+     * Creates a new instance of the {@code AbstractTable} class with the
+     * provided {@link IterationOrder iteration order}.
+     *
      * @param iterationOrder
      *            the {@link IterationOrder IterationOrder} of the class.
      */
-    public AbstractTable(IterationOrder iterationOrder) {
+    public AbstractTable(final IterationOrder iterationOrder) {
 
         this.columns = new TreeMap<Integer, CellContainer<CELL, T>>();
         this.rows = new TreeMap<Integer, CellContainer<CELL, T>>();
@@ -112,11 +100,11 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
     /**
      * Creates a new instance of the {@link AbstractTable} class. (Copy
      * Constructor)
-     * 
+     *
      * @param table
      *            the table to copy.
      */
-    public AbstractTable(ITable<? extends T> table) {
+    public AbstractTable(final ITable<? extends T> table) {
 
         this();
 
@@ -124,7 +112,7 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
 
             for (int row = 0; row < table.rows(); row++) {
 
-                T value = table.get(row, column);
+                final T value = table.get(row, column);
 
                 if (value != null) {
 
@@ -134,15 +122,9 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.jutility.datatypes.table.ITable#add(org.jutility.datatypes.table.
-     * ICell)
-     */
+
     @Override
-    public boolean add(CELL cell) {
+    public boolean add(final CELL cell) {
 
         CellContainer<CELL, T> column = this.columns.get(cell.getColumn());
         CellContainer<CELL, T> row = this.rows.get(cell.getRow());
@@ -158,8 +140,8 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
             this.rows.put(cell.getRow(), row);
         }
 
-        boolean columnAdded = column.add(cell);
-        boolean rowAdded = row.add(cell);
+        final boolean columnAdded = column.add(cell);
+        final boolean rowAdded = row.add(cell);
 
         if (rowAdded != columnAdded) {
 
@@ -171,15 +153,11 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
         return rowAdded;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ITable#get(int, int)
-     */
-    @Override
-    public T get(int row, int column) {
 
-        CELL cell = this.getCell(row, column);
+    @Override
+    public T get(final int row, final int column) {
+
+        final CELL cell = this.getCell(row, column);
 
         if (cell != null) {
 
@@ -188,28 +166,16 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
         return null;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.jutility.datatypes.table.ICellTable#get(org.jutility.datatypes.table
-     * .ICell)
-     */
+
     @Override
-    public T get(CELL location) {
+    public T get(final CELL location) {
 
         return this.get(location.getRow(), location.getColumn());
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.jutility.datatypes.table.ITable#get(org.jutility.datatypes.table.
-     * CellLocation)
-     */
+
     @Override
-    public T get(CellLocation location) {
+    public T get(final CellLocation location) {
 
         if (location == null) {
 
@@ -219,17 +185,13 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
     }
 
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ITable#getCell(int, int)
-     */
+
     @Override
-    public CELL getCell(int row, int column) {
+    public CELL getCell(final int row, final int column) {
 
         if (this.rows.size() < this.columns.size()) {
 
-            CellContainer<CELL, T> tableRow = this.rows.get(row);
+            final CellContainer<CELL, T> tableRow = this.rows.get(row);
 
             if (tableRow != null) {
 
@@ -239,7 +201,7 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
             return null;
         }
         else {
-            CellContainer<CELL, T> tableColumn = this.columns.get(column);
+            final CellContainer<CELL, T> tableColumn = this.columns.get(column);
 
             if (tableColumn != null) {
 
@@ -250,15 +212,9 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.jutility.datatypes.table.ITable#getCell(org.jutility.datatypes.table
-     * .CellLocation)
-     */
+
     @Override
-    public CELL getCell(CellLocation location) {
+    public CELL getCell(final CellLocation location) {
 
         if (location == null) {
 
@@ -268,83 +224,56 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
     }
 
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ITable#getRow(int)
-     */
+
     @Override
-    public CellContainer<CELL, T> getRow(int index) {
+    public CellContainer<CELL, T> getRow(final int index) {
 
         return this.rows.get(index);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ITable#removeRow(int)
-     */
+
     @Override
-    public CellContainer<CELL, T> removeRow(int index) {
+    public CellContainer<CELL, T> removeRow(final int index) {
 
         return this.rows.remove(index);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ITable#removeColumn(int)
-     */
+
     @Override
-    public CellContainer<CELL, T> removeColumn(int index) {
+    public CellContainer<CELL, T> removeColumn(final int index) {
 
         return this.columns.remove(index);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ITable#getRows()
-     */
+
     @Override
     public Collection<CellContainer<CELL, T>> getRows() {
 
         return this.rows.values();
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ITable#getColumn(int)
-     */
+
     @Override
-    public CellContainer<CELL, T> getColumn(int index) {
+    public CellContainer<CELL, T> getColumn(final int index) {
 
         return this.columns.get(index);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ITable#getColumns()
-     */
+
     @Override
     public Collection<CellContainer<CELL, T>> getColumns() {
 
         return this.columns.values();
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ITable#getCells()
-     */
+
     @Override
     public Collection<CELL> getCells() {
 
-        ArrayList<CELL> list = new ArrayList<CELL>(this.rows() + this.columns());
+        final ArrayList<CELL> list = new ArrayList<CELL>(this.rows()
+                + this.columns());
 
-        Iterator<CELL> it = this.cellIterator();
+        final Iterator<CELL> it = this.cellIterator();
 
         while (it.hasNext()) {
 
@@ -354,39 +283,32 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
         return list;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ITable#getValues()
-     */
+
     @Override
     public List<T> getValues() {
 
-        ArrayList<T> list = new ArrayList<T>(this.rows() + this.columns());
+        final ArrayList<T> list = new ArrayList<T>(this.rows() + this.columns());
 
-        for (T element : this) {
+        for (final T element : this) {
             list.add(element);
         }
 
         return list;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ITable#remove(int, int)
-     */
+
     @Override
-    public boolean remove(int row, int column) {
+    public boolean remove(final int row, final int column) {
 
-        CellContainer<CELL, T> cellRow = this.rows.get(row);
-        CellContainer<CELL, T> cellColumn = this.columns.get(column);
+        final CellContainer<CELL, T> cellRow = this.rows.get(row);
+        final CellContainer<CELL, T> cellColumn = this.columns.get(column);
 
 
-        if (cellRow != null && cellColumn != null) {
+        if ((cellRow != null) && (cellColumn != null)) {
 
-            boolean rowRemoved = this.remove(cellRow, cellRow.getCell(column));
-            boolean columnRemoved = this.remove(cellColumn,
+            final boolean rowRemoved = this.remove(cellRow,
+                    cellRow.getCell(column));
+            final boolean columnRemoved = this.remove(cellColumn,
                     cellColumn.getCell(row));
 
             if (rowRemoved != columnRemoved) {
@@ -402,8 +324,8 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
 
 
         }
-        else if (cellRow != null && cellColumn == null || cellRow == null
-                && cellColumn != null) {
+        else if (((cellRow != null) && (cellColumn == null))
+                || ((cellRow == null) && (cellColumn != null))) {
 
             throw new IllegalStateException(
                     "Cell not contained in both rows and columns: (row contained: "
@@ -415,13 +337,7 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
     }
 
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.jutility.datatypes.table.ITable#remove(org.jutility.datatypes.table
-     * .ICell)
-     */
+
     @Override
     public boolean remove(final CELL cell) {
 
@@ -432,7 +348,7 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
     /**
      * Removes the cell from the provided container. Removes the container if
      * empty.
-     * 
+     *
      * @param container
      *            the container to remove the cell from.
      * @param cell
@@ -440,9 +356,9 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
      * @return {@code true}, if the container was changed; {@code false}
      *         otherwise.
      */
-    boolean remove(CellContainer<CELL, T> container, CELL cell) {
+    boolean remove(final CellContainer<CELL, T> container, final CELL cell) {
 
-        boolean removed = container.remove(cell);
+        final boolean removed = container.remove(cell);
         if (container.isEmpty()) {
 
             if (this.rows.containsValue(container)) {
@@ -461,42 +377,30 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
     @Override
     public CellRange cellRange() {
 
-        int maxColumn = this.columns.lastKey() + 1;
-        int maxRow = this.rows.lastKey() + 1;
+        final int maxColumn = this.columns.lastKey() + 1;
+        final int maxRow = this.rows.lastKey() + 1;
 
-        int minColumn = this.columns.firstKey();
-        int minRow = this.rows.firstKey();
+        final int minColumn = this.columns.firstKey();
+        final int minRow = this.rows.firstKey();
 
         return new CellRange(minRow, minColumn, maxRow, maxColumn);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ITable#rows()
-     */
+
     @Override
     public int rows() {
 
         return this.rows.size();
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ITable#columns()
-     */
+
     @Override
     public int columns() {
 
         return this.columns.size();
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ITable#size()
-     */
+
     @Override
     public int size() {
 
@@ -509,11 +413,7 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
         return this.getCells().toString();
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ITable#iterator()
-     */
+
     @Override
     public Iterator<T> iterator() {
 
@@ -530,22 +430,14 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
     }
 
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ITable#rowMajorIterator()
-     */
+
     @Override
     public Iterator<T> rowMajorOrderIterator() {
 
         return new ICell.CellValueIterator<T>(this.rowMajorOrderCellIterator());
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ITable#columnMajorIterator()
-     */
+
     @Override
     public Iterator<T> columnMajorOrderIterator() {
 
@@ -553,11 +445,7 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
                 this.columnMajorOrderCellIterator());
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ITable#cellIterator()
-     */
+
     @Override
     public Iterator<CELL> cellIterator() {
 
@@ -573,22 +461,14 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ITable#rowMajorCellIterator()
-     */
+
     @Override
     public Iterator<CELL> rowMajorOrderCellIterator() {
 
         return new TableCellIterator<CELL, T>(this, IterationOrder.ROW_MAJOR);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ITable#columnMajorCellIterator()
-     */
+
     @Override
     public Iterator<CELL> columnMajorOrderCellIterator() {
 
@@ -596,12 +476,13 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
     }
 
     /**
-     * The {@link Table.TableCellIterator} class provides a wrapper around the
+     * The {@code Table.TableCellIterator} class provides a wrapper around the
      * {@link Iterator} of a row or column.
-     * 
+     *
      * @author Peter J. Radics
-     * @version 1.0
-     * 
+     * @version 0.1.2
+     * @since 0.1.0
+     *
      * @param <V>
      *            the value type of the table cells.
      */
@@ -618,16 +499,16 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
         private CellContainer<CELL, T>                 currentContainer;
 
         /**
-         * Creates a new instance of the {@link TableCellIterator} class.
-         * 
+         * Creates a new instance of the {@code TableCellIterator} class.
+         *
          * @param table
-         *            the {@link Table} to iterate over.
+         *            the {@link ICellTable} to iterate over.
          * @param iterationOrder
          *            the {@link IterationOrder iteration order} to use.
-         * 
+         *
          */
-        public TableCellIterator(ICellTable<CELL, T> table,
-                IterationOrder iterationOrder) {
+        public TableCellIterator(final ICellTable<CELL, T> table,
+                final IterationOrder iterationOrder) {
 
             this.table = table;
             this.iterationOrder = iterationOrder;
@@ -706,10 +587,10 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
                 case COLUMN_MAJOR:
 
                     // Removing the element from the row.
-                    CellContainer<CELL, T> row = this.table
+                    final CellContainer<CELL, T> row = this.table
                             .getRow(this.currentCell.getRow());
 
-                    row.remove(currentCell);
+                    row.remove(this.currentCell);
                     if (row.isEmpty()) {
                         this.table.removeRow(row.getIndex());
                     }
@@ -719,10 +600,10 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
                 default:
 
                     // Removing the element from the column.
-                    CellContainer<CELL, T> column = this.table
+                    final CellContainer<CELL, T> column = this.table
                             .getColumn(this.currentCell.getColumn());
 
-                    column.remove(currentCell);
+                    column.remove(this.currentCell);
                     if (column.isEmpty()) {
                         this.table.removeColumn(column.getIndex());
                     }
@@ -736,20 +617,20 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
 
     /**
      * Returns the effective type of the provided table.
-     * 
+     *
      * @param table
      *            the table.
      * @return the effective type of the table (the shared ancestor class of all
      *         values in the table).
      */
-    public static Class<?> getEffectiveType(ITable<?> table) {
+    public static Class<?> getEffectiveType(final ITable<?> table) {
 
 
         Class<?> superType = null;
 
-        for (Object value : table) {
+        for (final Object value : table) {
 
-            Class<?> valueClass = value.getClass();
+            final Class<?> valueClass = value.getClass();
 
             System.out.println("Value class: " + valueClass);
             System.out.println("Super Type: " + superType);

@@ -1,46 +1,36 @@
 package org.jutility.common.datatype.tree;
 
+
 /*
- * #%L
- * jutility-common
- * %%
- * Copyright (C) 2013 - 2014 jutility.org
- * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * #%L jutility-common %% Copyright (C) 2013 - 2014 jutility.org %% Licensed
+ * under the Apache License, Version 2.0 (the "License"); you may not use this
+ * file except in compliance with the License. You may obtain a copy of the
+ * License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * #L%
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License. #L%
  */
 
 
-import static org.junit.Assert.*;
-
-import org.hamcrest.SelfDescribing;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.jutility.common.datatype.tree.PostorderTreeIterator;
-import org.jutility.common.datatype.tree.PreorderTreeIterator;
-import org.jutility.common.datatype.tree.Tree;
-import org.jutility.common.datatype.tree.TreeNode;
 
 
 /**
  * Test class for the Tree implementation.
- * 
+ *
  * @author Peter J. Radics
- * @version 0.1
- * 
+ * @version 0.1.2
+ * @since 0.1.0
  */
 public class TreeTest {
 
@@ -48,24 +38,24 @@ public class TreeTest {
     private ArrayList<String> stringList;
 
     /**
+     * Set Up.
      */
     @Before
     public void setUp() {
 
-        SelfDescribing desc = null;
-        stringTree = new Tree<String>();
-        stringList = new ArrayList<String>();
+        this.stringTree = new Tree<String>();
+        this.stringList = new ArrayList<String>();
 
-        stringList.add("A");
-        stringList.add("B");
-        stringList.add("C");
-        stringList.add("D");
-        stringList.add("E");
-        stringList.add("F");
-        stringList.add("G");
-        stringList.add("H");
-        stringList.add("I");
-        stringList.add("O");
+        this.stringList.add("A");
+        this.stringList.add("B");
+        this.stringList.add("C");
+        this.stringList.add("D");
+        this.stringList.add("E");
+        this.stringList.add("F");
+        this.stringList.add("G");
+        this.stringList.add("H");
+        this.stringList.add("I");
+        this.stringList.add("O");
 
     }
 
@@ -76,9 +66,9 @@ public class TreeTest {
     @Test
     public void testIsEmpty() {
 
-        assertTrue(stringTree.isEmpty());
-        stringTree.add("F");
-        assertFalse(stringTree.isEmpty());
+        Assert.assertTrue(this.stringTree.isEmpty());
+        this.stringTree.add("F");
+        Assert.assertFalse(this.stringTree.isEmpty());
 
 
         System.out.println("IsEmpty: passed!");
@@ -90,21 +80,21 @@ public class TreeTest {
     @Test
     public void testClear() {
 
-        stringTree.add("F");
-        stringTree.addChild("F", "B");
-        stringTree.addChild("F", "O");
-        stringTree.addChild("F", "G");
-        stringTree.addChild("B", "A");
-        stringTree.addChild("B", "D");
-        stringTree.addChild("D", "C");
-        stringTree.addChild("D", "E");
-        stringTree.addChild("G", "I");
-        stringTree.addChild("I", "H");
+        this.stringTree.add("F");
+        this.stringTree.addChild("F", "B");
+        this.stringTree.addChild("F", "O");
+        this.stringTree.addChild("F", "G");
+        this.stringTree.addChild("B", "A");
+        this.stringTree.addChild("B", "D");
+        this.stringTree.addChild("D", "C");
+        this.stringTree.addChild("D", "E");
+        this.stringTree.addChild("G", "I");
+        this.stringTree.addChild("I", "H");
 
-        assertEquals(10, stringTree.size());
-        stringTree.clear();
-        assertEquals(0, stringTree.size());
-        assertTrue(stringTree.isEmpty());
+        Assert.assertEquals(10, this.stringTree.size());
+        this.stringTree.clear();
+        Assert.assertEquals(0, this.stringTree.size());
+        Assert.assertTrue(this.stringTree.isEmpty());
 
 
         System.out.println("Clear: passed!");
@@ -112,35 +102,38 @@ public class TreeTest {
 
 
     /**
-     * Test method for {@link org.jutility.common.datatype.tree.Tree#iterator()}.
+     * Test method for {@link org.jutility.common.datatype.tree.Tree#iterator()}
+     * .
      */
     @Test
     public void testIterator() {
 
-        PreorderTreeIterator<String> it = stringTree.preorderIterator();
+        final PreorderTreeIterator<String> it = this.stringTree
+                .preorderIterator();
 
         Exception e = null;
         try {
             it.next();
         }
-        catch (Exception ex) {
+        catch (final Exception ex) {
             e = ex;
         }
-        assertNotNull(e);
-        assertTrue(e instanceof NoSuchElementException);
-        assertEquals("Trying to iterate past the last element of the tree.",
+        Assert.assertNotNull(e);
+        Assert.assertTrue(e instanceof NoSuchElementException);
+        Assert.assertEquals(
+                "Trying to iterate past the last element of the tree.",
                 e.getMessage());
 
         e = null;
         try {
             it.remove();
         }
-        catch (Exception ex) {
+        catch (final Exception ex) {
             e = ex;
         }
-        assertNotNull(e);
-        assertTrue(e instanceof IllegalStateException);
-        assertEquals(
+        Assert.assertNotNull(e);
+        Assert.assertTrue(e instanceof IllegalStateException);
+        Assert.assertEquals(
                 "Cannot remove element without calling next() immediately before.",
                 e.getMessage());
 
@@ -152,98 +145,98 @@ public class TreeTest {
      * {@link org.jutility.common.datatype.tree.Tree#add(java.lang.Object)},
      * {@link org.jutility.common.datatype.tree.Tree#addChild(java.lang.Object, java.lang.Object)}
      * ,{@link java.util.AbstractCollection#contains(java.lang.Object)},
-     * {@link org.jutility.common.datatype.tree.Tree#remove(java.lang.Object)}, and
-     * {@link org.jutility.common.datatype.tree.Tree#size()}.
+     * {@link org.jutility.common.datatype.tree.Tree#remove(java.lang.Object)},
+     * and {@link org.jutility.common.datatype.tree.Tree#size()}.
      */
     @Test
     public void testAddRemoveContainsSizeE() {
 
-        assertEquals(0, stringTree.size());
+        Assert.assertEquals(0, this.stringTree.size());
 
-        assertTrue(stringTree.add("F"));
-        assertFalse(stringTree.add("F"));
-        assertEquals(1, stringTree.size());
-        assertTrue(stringTree.contains("F"));
-
-
-        assertTrue(stringTree.remove("F"));
-        assertEquals(0, stringTree.size());
-        assertFalse(stringTree.remove("F"));
-        assertFalse(stringTree.contains("F"));
+        Assert.assertTrue(this.stringTree.add("F"));
+        Assert.assertFalse(this.stringTree.add("F"));
+        Assert.assertEquals(1, this.stringTree.size());
+        Assert.assertTrue(this.stringTree.contains("F"));
 
 
-        assertTrue(stringTree.add("F"));
-        assertEquals(1, stringTree.size());
-        assertTrue(stringTree.contains("F"));
+        Assert.assertTrue(this.stringTree.remove("F"));
+        Assert.assertEquals(0, this.stringTree.size());
+        Assert.assertFalse(this.stringTree.remove("F"));
+        Assert.assertFalse(this.stringTree.contains("F"));
 
 
-        assertTrue(stringTree.add("B"));
-        assertEquals(2, stringTree.size());
-        assertTrue(stringTree.contains("B"));
+        Assert.assertTrue(this.stringTree.add("F"));
+        Assert.assertEquals(1, this.stringTree.size());
+        Assert.assertTrue(this.stringTree.contains("F"));
 
-        assertTrue(stringTree.addChild("F", "O"));
-        assertEquals(3, stringTree.size());
-        assertTrue(stringTree.contains("O"));
 
-        assertTrue(stringTree.addChild("F", "G"));
-        assertEquals(4, stringTree.size());
-        assertTrue(stringTree.contains("G"));
+        Assert.assertTrue(this.stringTree.add("B"));
+        Assert.assertEquals(2, this.stringTree.size());
+        Assert.assertTrue(this.stringTree.contains("B"));
 
-        assertTrue(stringTree.addChild("B", "A"));
-        assertEquals(5, stringTree.size());
-        assertTrue(stringTree.contains("A"));
+        Assert.assertTrue(this.stringTree.addChild("F", "O"));
+        Assert.assertEquals(3, this.stringTree.size());
+        Assert.assertTrue(this.stringTree.contains("O"));
 
-        assertTrue(stringTree.addChild("B", "D"));
-        assertEquals(6, stringTree.size());
-        assertTrue(stringTree.contains("D"));
+        Assert.assertTrue(this.stringTree.addChild("F", "G"));
+        Assert.assertEquals(4, this.stringTree.size());
+        Assert.assertTrue(this.stringTree.contains("G"));
 
-        assertTrue(stringTree.addChild("D", "C"));
-        assertEquals(7, stringTree.size());
-        assertTrue(stringTree.contains("C"));
+        Assert.assertTrue(this.stringTree.addChild("B", "A"));
+        Assert.assertEquals(5, this.stringTree.size());
+        Assert.assertTrue(this.stringTree.contains("A"));
 
-        assertTrue(stringTree.addChild("D", "E"));
-        assertEquals(8, stringTree.size());
-        assertTrue(stringTree.contains("E"));
+        Assert.assertTrue(this.stringTree.addChild("B", "D"));
+        Assert.assertEquals(6, this.stringTree.size());
+        Assert.assertTrue(this.stringTree.contains("D"));
 
-        assertTrue(stringTree.addChild("G", "I"));
-        assertEquals(9, stringTree.size());
-        assertTrue(stringTree.contains("I"));
+        Assert.assertTrue(this.stringTree.addChild("D", "C"));
+        Assert.assertEquals(7, this.stringTree.size());
+        Assert.assertTrue(this.stringTree.contains("C"));
 
-        assertTrue(stringTree.addChild("A", "M"));
-        assertEquals(10, stringTree.size());
-        assertTrue(stringTree.contains("M"));
+        Assert.assertTrue(this.stringTree.addChild("D", "E"));
+        Assert.assertEquals(8, this.stringTree.size());
+        Assert.assertTrue(this.stringTree.contains("E"));
 
-        assertTrue(stringTree.addChild("A", "N"));
-        assertEquals(11, stringTree.size());
-        assertTrue(stringTree.contains("N"));
+        Assert.assertTrue(this.stringTree.addChild("G", "I"));
+        Assert.assertEquals(9, this.stringTree.size());
+        Assert.assertTrue(this.stringTree.contains("I"));
 
-        assertTrue(stringTree.addChild("M", "Q"));
-        assertEquals(12, stringTree.size());
-        assertTrue(stringTree.contains("Q"));
+        Assert.assertTrue(this.stringTree.addChild("A", "M"));
+        Assert.assertEquals(10, this.stringTree.size());
+        Assert.assertTrue(this.stringTree.contains("M"));
 
-        assertTrue(stringTree.addChild("I", "H"));
-        assertEquals(13, stringTree.size());
-        assertTrue(stringTree.contains("H"));
+        Assert.assertTrue(this.stringTree.addChild("A", "N"));
+        Assert.assertEquals(11, this.stringTree.size());
+        Assert.assertTrue(this.stringTree.contains("N"));
 
-        assertFalse(stringTree.addChild("Z", "Z"));
-        assertEquals(13, stringTree.size());
-        assertFalse(stringTree.contains("Z"));
+        Assert.assertTrue(this.stringTree.addChild("M", "Q"));
+        Assert.assertEquals(12, this.stringTree.size());
+        Assert.assertTrue(this.stringTree.contains("Q"));
 
-        assertTrue(stringTree.remove("O"));
-        assertEquals(12, stringTree.size());
-        assertFalse(stringTree.contains("O"));
+        Assert.assertTrue(this.stringTree.addChild("I", "H"));
+        Assert.assertEquals(13, this.stringTree.size());
+        Assert.assertTrue(this.stringTree.contains("H"));
 
-        assertTrue(stringTree.remove("A"));
-        assertEquals(11, stringTree.size());
-        assertFalse(stringTree.contains("A"));
+        Assert.assertFalse(this.stringTree.addChild("Z", "Z"));
+        Assert.assertEquals(13, this.stringTree.size());
+        Assert.assertFalse(this.stringTree.contains("Z"));
 
-        assertTrue(stringTree.remove("G"));
-        assertEquals(10, stringTree.size());
-        assertFalse(stringTree.contains("G"));
+        Assert.assertTrue(this.stringTree.remove("O"));
+        Assert.assertEquals(12, this.stringTree.size());
+        Assert.assertFalse(this.stringTree.contains("O"));
 
-        assertTrue(stringTree.remove("F"));
-        assertEquals(9, stringTree.size());
-        assertFalse(stringTree.contains("F"));
+        Assert.assertTrue(this.stringTree.remove("A"));
+        Assert.assertEquals(11, this.stringTree.size());
+        Assert.assertFalse(this.stringTree.contains("A"));
+
+        Assert.assertTrue(this.stringTree.remove("G"));
+        Assert.assertEquals(10, this.stringTree.size());
+        Assert.assertFalse(this.stringTree.contains("G"));
+
+        Assert.assertTrue(this.stringTree.remove("F"));
+        Assert.assertEquals(9, this.stringTree.size());
+        Assert.assertFalse(this.stringTree.contains("F"));
 
         System.out.println("AddRemoveContainsSize: passed!");
     }
@@ -256,117 +249,126 @@ public class TreeTest {
     @Test
     public void testPreorderIterator() {
 
-        PreorderTreeIterator<String> it = stringTree.preorderIterator();
+        final PreorderTreeIterator<String> it = this.stringTree
+                .preorderIterator();
 
         Exception e = null;
         try {
             it.next();
         }
-        catch (Exception ex) {
+        catch (final Exception ex) {
             e = ex;
         }
-        assertNotNull(e);
-        assertTrue(e instanceof NoSuchElementException);
-        assertEquals("Trying to iterate past the last element of the tree.",
+        Assert.assertNotNull(e);
+        Assert.assertTrue(e instanceof NoSuchElementException);
+        Assert.assertEquals(
+                "Trying to iterate past the last element of the tree.",
                 e.getMessage());
 
         e = null;
         try {
             it.remove();
         }
-        catch (Exception ex) {
+        catch (final Exception ex) {
             e = ex;
         }
 
-        assertNotNull(e);
-        assertTrue(e instanceof IllegalStateException);
-        assertEquals(
+        Assert.assertNotNull(e);
+        Assert.assertTrue(e instanceof IllegalStateException);
+        Assert.assertEquals(
                 "Cannot remove element without calling next() immediately before.",
                 e.getMessage());
 
 
-        assertEquals("[]", stringTree.toString());
-        System.out.println(stringTree);
+        Assert.assertEquals("[]", this.stringTree.toString());
+        System.out.println(this.stringTree);
 
-        assertTrue(stringTree.add("F"));
-        assertEquals("[F]", stringTree.toString());
-        System.out.println(stringTree);
+        Assert.assertTrue(this.stringTree.add("F"));
+        Assert.assertEquals("[F]", this.stringTree.toString());
+        System.out.println(this.stringTree);
 
-        assertTrue(stringTree.add("B"));
-        assertEquals("[F, B]", stringTree.toString());
-        System.out.println(stringTree);
+        Assert.assertTrue(this.stringTree.add("B"));
+        Assert.assertEquals("[F, B]", this.stringTree.toString());
+        System.out.println(this.stringTree);
 
-        assertTrue(stringTree.addChild("F", "O"));
-        assertEquals("[F, B, O]", stringTree.toString());
-        System.out.println(stringTree);
+        Assert.assertTrue(this.stringTree.addChild("F", "O"));
+        Assert.assertEquals("[F, B, O]", this.stringTree.toString());
+        System.out.println(this.stringTree);
 
-        assertTrue(stringTree.addChild("F", "G"));
-        assertEquals("[F, B, O, G]", stringTree.toString());
-        System.out.println(stringTree);
+        Assert.assertTrue(this.stringTree.addChild("F", "G"));
+        Assert.assertEquals("[F, B, O, G]", this.stringTree.toString());
+        System.out.println(this.stringTree);
 
-        assertTrue(stringTree.addChild("B", "A"));
-        assertEquals("[F, B, A, O, G]", stringTree.toString());
-        System.out.println(stringTree);
+        Assert.assertTrue(this.stringTree.addChild("B", "A"));
+        Assert.assertEquals("[F, B, A, O, G]", this.stringTree.toString());
+        System.out.println(this.stringTree);
 
-        assertTrue(stringTree.addChild("B", "D"));
-        assertEquals("[F, B, A, D, O, G]", stringTree.toString());
-        System.out.println(stringTree);
+        Assert.assertTrue(this.stringTree.addChild("B", "D"));
+        Assert.assertEquals("[F, B, A, D, O, G]", this.stringTree.toString());
+        System.out.println(this.stringTree);
 
-        assertTrue(stringTree.addChild("D", "C"));
-        assertEquals("[F, B, A, D, C, O, G]", stringTree.toString());
-        System.out.println(stringTree);
+        Assert.assertTrue(this.stringTree.addChild("D", "C"));
+        Assert.assertEquals("[F, B, A, D, C, O, G]", this.stringTree.toString());
+        System.out.println(this.stringTree);
 
-        assertTrue(stringTree.addChild("D", "E"));
-        assertEquals("[F, B, A, D, C, E, O, G]", stringTree.toString());
-        System.out.println(stringTree);
+        Assert.assertTrue(this.stringTree.addChild("D", "E"));
+        Assert.assertEquals("[F, B, A, D, C, E, O, G]",
+                this.stringTree.toString());
+        System.out.println(this.stringTree);
 
-        assertTrue(stringTree.addChild("G", "I"));
-        assertEquals("[F, B, A, D, C, E, O, G, I]", stringTree.toString());
-        System.out.println(stringTree);
+        Assert.assertTrue(this.stringTree.addChild("G", "I"));
+        Assert.assertEquals("[F, B, A, D, C, E, O, G, I]",
+                this.stringTree.toString());
+        System.out.println(this.stringTree);
 
-        assertTrue(stringTree.addChild("A", "M"));
-        assertEquals("[F, B, A, M, D, C, E, O, G, I]", stringTree.toString());
-        System.out.println(stringTree);
+        Assert.assertTrue(this.stringTree.addChild("A", "M"));
+        Assert.assertEquals("[F, B, A, M, D, C, E, O, G, I]",
+                this.stringTree.toString());
+        System.out.println(this.stringTree);
 
-        assertTrue(stringTree.addChild("A", "N"));
-        assertEquals("[F, B, A, M, N, D, C, E, O, G, I]", stringTree.toString());
-        System.out.println(stringTree);
+        Assert.assertTrue(this.stringTree.addChild("A", "N"));
+        Assert.assertEquals("[F, B, A, M, N, D, C, E, O, G, I]",
+                this.stringTree.toString());
+        System.out.println(this.stringTree);
 
-        assertTrue(stringTree.addChild("M", "Q"));
-        assertEquals("[F, B, A, M, Q, N, D, C, E, O, G, I]",
-                stringTree.toString());
-        System.out.println(stringTree);
+        Assert.assertTrue(this.stringTree.addChild("M", "Q"));
+        Assert.assertEquals("[F, B, A, M, Q, N, D, C, E, O, G, I]",
+                this.stringTree.toString());
+        System.out.println(this.stringTree);
 
-        assertTrue(stringTree.addChild("I", "H"));
-        assertEquals("[F, B, A, M, Q, N, D, C, E, O, G, I, H]",
-                stringTree.toString());
-        System.out.println(stringTree);
+        Assert.assertTrue(this.stringTree.addChild("I", "H"));
+        Assert.assertEquals("[F, B, A, M, Q, N, D, C, E, O, G, I, H]",
+                this.stringTree.toString());
+        System.out.println(this.stringTree);
 
 
         // System.out.println("Removing O:");
-        this.preorderRemove(stringTree, "O");
-        assertEquals(12, stringTree.size());
-        assertFalse(stringTree.contains("O"));
-        assertEquals("[F, B, A, M, Q, N, D, C, E, G, I, H]",
-                stringTree.toString());
+        this.preorderRemove(this.stringTree, "O");
+        Assert.assertEquals(12, this.stringTree.size());
+        Assert.assertFalse(this.stringTree.contains("O"));
+        Assert.assertEquals("[F, B, A, M, Q, N, D, C, E, G, I, H]",
+                this.stringTree.toString());
 
         // System.out.println("\nRemoving A:");
-        this.preorderRemove(stringTree, "A");
-        assertEquals(11, stringTree.size());
-        assertFalse(stringTree.contains("A"));
-        assertEquals("[F, B, M, Q, N, D, C, E, G, I, H]", stringTree.toString());
+        this.preorderRemove(this.stringTree, "A");
+        Assert.assertEquals(11, this.stringTree.size());
+        Assert.assertFalse(this.stringTree.contains("A"));
+        Assert.assertEquals("[F, B, M, Q, N, D, C, E, G, I, H]",
+                this.stringTree.toString());
 
         // System.out.println("\nRemoving G:");
-        this.preorderRemove(stringTree, "G");
-        assertEquals(10, stringTree.size());
-        assertFalse(stringTree.contains("G"));
-        assertEquals("[F, B, M, Q, N, D, C, E, I, H]", stringTree.toString());
+        this.preorderRemove(this.stringTree, "G");
+        Assert.assertEquals(10, this.stringTree.size());
+        Assert.assertFalse(this.stringTree.contains("G"));
+        Assert.assertEquals("[F, B, M, Q, N, D, C, E, I, H]",
+                this.stringTree.toString());
 
         // System.out.println("Removing F:");
-        this.preorderRemove(stringTree, "F");
-        assertEquals(9, stringTree.size());
-        assertFalse(stringTree.contains("F"));
-        assertEquals("[B, M, Q, N, D, C, E, I, H]", stringTree.toString());
+        this.preorderRemove(this.stringTree, "F");
+        Assert.assertEquals(9, this.stringTree.size());
+        Assert.assertFalse(this.stringTree.contains("F"));
+        Assert.assertEquals("[B, M, Q, N, D, C, E, I, H]",
+                this.stringTree.toString());
 
 
         System.out.println("PreorderIterator: passed!");
@@ -379,137 +381,142 @@ public class TreeTest {
     @Test
     public void testPostorderIterator() {
 
-        PostorderTreeIterator<String> it = stringTree.postorderIterator();
+        PostorderTreeIterator<String> it = this.stringTree.postorderIterator();
 
         Exception e = null;
         try {
             it.next();
         }
-        catch (Exception ex) {
+        catch (final Exception ex) {
             e = ex;
         }
-        assertNotNull(e);
-        assertTrue(e instanceof NoSuchElementException);
-        assertEquals("Trying to iterate past the last element of the tree.",
+        Assert.assertNotNull(e);
+        Assert.assertTrue(e instanceof NoSuchElementException);
+        Assert.assertEquals(
+                "Trying to iterate past the last element of the tree.",
                 e.getMessage());
 
         e = null;
         try {
             it.remove();
         }
-        catch (Exception ex) {
+        catch (final Exception ex) {
             e = ex;
         }
-        assertNotNull(e);
-        assertTrue(e instanceof IllegalStateException);
-        assertEquals(
+        Assert.assertNotNull(e);
+        Assert.assertTrue(e instanceof IllegalStateException);
+        Assert.assertEquals(
                 "Cannot remove element without calling next() immediately before.",
                 e.getMessage());
 
-        assertEquals("[]", this.toPostorderString(stringTree));
-        System.out.println(this.toPostorderString(stringTree));
-        assertNull(it.getTreeNode());
+        Assert.assertEquals("[]", this.toPostorderString(this.stringTree));
+        System.out.println(this.toPostorderString(this.stringTree));
+        Assert.assertNull(it.getTreeNode());
 
-        assertTrue(stringTree.add("F"));
-        assertEquals("[F]", this.toPostorderString(stringTree));
-        System.out.println(this.toPostorderString(stringTree));
-        it = stringTree.postorderIterator();
-        assertEquals("F", it.next());
-        assertEquals(new TreeNode<String>("F"), it.getTreeNode());
+        Assert.assertTrue(this.stringTree.add("F"));
+        Assert.assertEquals("[F]", this.toPostorderString(this.stringTree));
+        System.out.println(this.toPostorderString(this.stringTree));
+        it = this.stringTree.postorderIterator();
+        Assert.assertEquals("F", it.next());
+        Assert.assertEquals(new TreeNode<String>("F"), it.getTreeNode());
 
-        this.postorderRemove(stringTree, "F");
-        assertTrue(stringTree.isEmpty());
-        assertFalse(stringTree.contains("F"));
-        assertEquals("[]", this.toPostorderString(stringTree));
+        this.postorderRemove(this.stringTree, "F");
+        Assert.assertTrue(this.stringTree.isEmpty());
+        Assert.assertFalse(this.stringTree.contains("F"));
+        Assert.assertEquals("[]", this.toPostorderString(this.stringTree));
 
 
-        assertTrue(stringTree.add("F"));
-        assertEquals("[F]", this.toPostorderString(stringTree));
-        System.out.println(this.toPostorderString(stringTree));
+        Assert.assertTrue(this.stringTree.add("F"));
+        Assert.assertEquals("[F]", this.toPostorderString(this.stringTree));
+        System.out.println(this.toPostorderString(this.stringTree));
 
-        assertTrue(stringTree.add("B"));
-        assertEquals("[B, F]", this.toPostorderString(stringTree));
-        System.out.println(this.toPostorderString(stringTree));
+        Assert.assertTrue(this.stringTree.add("B"));
+        Assert.assertEquals("[B, F]", this.toPostorderString(this.stringTree));
+        System.out.println(this.toPostorderString(this.stringTree));
 
-        assertTrue(stringTree.addChild("F", "O"));
-        assertEquals("[B, O, F]", this.toPostorderString(stringTree));
-        System.out.println(this.toPostorderString(stringTree));
+        Assert.assertTrue(this.stringTree.addChild("F", "O"));
+        Assert.assertEquals("[B, O, F]",
+                this.toPostorderString(this.stringTree));
+        System.out.println(this.toPostorderString(this.stringTree));
 
-        assertTrue(stringTree.addChild("F", "G"));
-        assertEquals("[B, O, G, F]", this.toPostorderString(stringTree));
-        System.out.println(this.toPostorderString(stringTree));
+        Assert.assertTrue(this.stringTree.addChild("F", "G"));
+        Assert.assertEquals("[B, O, G, F]",
+                this.toPostorderString(this.stringTree));
+        System.out.println(this.toPostorderString(this.stringTree));
 
-        assertTrue(stringTree.addChild("B", "A"));
-        assertEquals("[A, B, O, G, F]", this.toPostorderString(stringTree));
-        System.out.println(this.toPostorderString(stringTree));
+        Assert.assertTrue(this.stringTree.addChild("B", "A"));
+        Assert.assertEquals("[A, B, O, G, F]",
+                this.toPostorderString(this.stringTree));
+        System.out.println(this.toPostorderString(this.stringTree));
 
-        assertTrue(stringTree.addChild("B", "D"));
-        assertEquals("[A, D, B, O, G, F]", this.toPostorderString(stringTree));
-        System.out.println(this.toPostorderString(stringTree));
+        Assert.assertTrue(this.stringTree.addChild("B", "D"));
+        Assert.assertEquals("[A, D, B, O, G, F]",
+                this.toPostorderString(this.stringTree));
+        System.out.println(this.toPostorderString(this.stringTree));
 
-        assertTrue(stringTree.addChild("D", "C"));
-        assertEquals("[A, C, D, B, O, G, F]",
-                this.toPostorderString(stringTree));
-        System.out.println(this.toPostorderString(stringTree));
+        Assert.assertTrue(this.stringTree.addChild("D", "C"));
+        Assert.assertEquals("[A, C, D, B, O, G, F]",
+                this.toPostorderString(this.stringTree));
+        System.out.println(this.toPostorderString(this.stringTree));
 
-        assertTrue(stringTree.addChild("D", "E"));
-        assertEquals("[A, C, E, D, B, O, G, F]",
-                this.toPostorderString(stringTree));
-        System.out.println(this.toPostorderString(stringTree));
+        Assert.assertTrue(this.stringTree.addChild("D", "E"));
+        Assert.assertEquals("[A, C, E, D, B, O, G, F]",
+                this.toPostorderString(this.stringTree));
+        System.out.println(this.toPostorderString(this.stringTree));
 
-        assertTrue(stringTree.addChild("G", "I"));
-        assertEquals("[A, C, E, D, B, O, I, G, F]",
-                this.toPostorderString(stringTree));
-        System.out.println(this.toPostorderString(stringTree));
+        Assert.assertTrue(this.stringTree.addChild("G", "I"));
+        Assert.assertEquals("[A, C, E, D, B, O, I, G, F]",
+                this.toPostorderString(this.stringTree));
+        System.out.println(this.toPostorderString(this.stringTree));
 
-        assertTrue(stringTree.addChild("A", "M"));
-        assertEquals("[M, A, C, E, D, B, O, I, G, F]",
-                this.toPostorderString(stringTree));
-        System.out.println(this.toPostorderString(stringTree));
+        Assert.assertTrue(this.stringTree.addChild("A", "M"));
+        Assert.assertEquals("[M, A, C, E, D, B, O, I, G, F]",
+                this.toPostorderString(this.stringTree));
+        System.out.println(this.toPostorderString(this.stringTree));
 
-        assertTrue(stringTree.addChild("A", "N"));
-        assertEquals("[M, N, A, C, E, D, B, O, I, G, F]",
-                this.toPostorderString(stringTree));
-        System.out.println(this.toPostorderString(stringTree));
+        Assert.assertTrue(this.stringTree.addChild("A", "N"));
+        Assert.assertEquals("[M, N, A, C, E, D, B, O, I, G, F]",
+                this.toPostorderString(this.stringTree));
+        System.out.println(this.toPostorderString(this.stringTree));
 
-        assertTrue(stringTree.addChild("M", "Q"));
-        assertEquals("[Q, M, N, A, C, E, D, B, O, I, G, F]",
-                this.toPostorderString(stringTree));
-        System.out.println(this.toPostorderString(stringTree));
+        Assert.assertTrue(this.stringTree.addChild("M", "Q"));
+        Assert.assertEquals("[Q, M, N, A, C, E, D, B, O, I, G, F]",
+                this.toPostorderString(this.stringTree));
+        System.out.println(this.toPostorderString(this.stringTree));
 
-        assertTrue(stringTree.addChild("I", "H"));
-        assertEquals("[Q, M, N, A, C, E, D, B, O, H, I, G, F]",
-                this.toPostorderString(stringTree));
-        System.out.println(this.toPostorderString(stringTree));
+        Assert.assertTrue(this.stringTree.addChild("I", "H"));
+        Assert.assertEquals("[Q, M, N, A, C, E, D, B, O, H, I, G, F]",
+                this.toPostorderString(this.stringTree));
+        System.out.println(this.toPostorderString(this.stringTree));
 
 
         // System.out.println("Removing O:");
-        this.postorderRemove(stringTree, "O");
-        assertEquals(12, stringTree.size());
-        assertFalse(stringTree.contains("O"));
-        assertEquals("[Q, M, N, A, C, E, D, B, H, I, G, F]",
-                this.toPostorderString(stringTree));
+        this.postorderRemove(this.stringTree, "O");
+        Assert.assertEquals(12, this.stringTree.size());
+        Assert.assertFalse(this.stringTree.contains("O"));
+        Assert.assertEquals("[Q, M, N, A, C, E, D, B, H, I, G, F]",
+                this.toPostorderString(this.stringTree));
 
         // System.out.println("\n\nRemoving A:");
-        this.postorderRemove(stringTree, "A");
-        assertEquals(11, stringTree.size());
-        assertFalse(stringTree.contains("A"));
-        assertEquals("[Q, M, N, C, E, D, B, H, I, G, F]",
-                this.toPostorderString(stringTree));
+        this.postorderRemove(this.stringTree, "A");
+        Assert.assertEquals(11, this.stringTree.size());
+        Assert.assertFalse(this.stringTree.contains("A"));
+        Assert.assertEquals("[Q, M, N, C, E, D, B, H, I, G, F]",
+                this.toPostorderString(this.stringTree));
 
         // System.out.println("\n\nRemoving G:");
-        this.postorderRemove(stringTree, "G");
-        assertEquals(10, stringTree.size());
-        assertFalse(stringTree.contains("G"));
-        assertEquals("[Q, M, N, C, E, D, B, H, I, F]",
-                this.toPostorderString(stringTree));
+        this.postorderRemove(this.stringTree, "G");
+        Assert.assertEquals(10, this.stringTree.size());
+        Assert.assertFalse(this.stringTree.contains("G"));
+        Assert.assertEquals("[Q, M, N, C, E, D, B, H, I, F]",
+                this.toPostorderString(this.stringTree));
 
         // System.out.println("Removing F:");
-        this.postorderRemove(stringTree, "F");
-        assertEquals(9, stringTree.size());
-        assertFalse(stringTree.contains("F"));
-        assertEquals("[Q, M, N, C, E, D, B, H, I]",
-                this.toPostorderString(stringTree));
+        this.postorderRemove(this.stringTree, "F");
+        Assert.assertEquals(9, this.stringTree.size());
+        Assert.assertFalse(this.stringTree.contains("F"));
+        Assert.assertEquals("[Q, M, N, C, E, D, B, H, I]",
+                this.toPostorderString(this.stringTree));
 
 
         System.out.println("PostorderIterator: passed!");
@@ -521,20 +528,21 @@ public class TreeTest {
     @Test
     public void testToString() {
 
-        assertEquals("[]", stringTree.toString());
+        Assert.assertEquals("[]", this.stringTree.toString());
 
-        stringTree.add("F");
-        stringTree.addChild("F", "B");
-        stringTree.addChild("F", "O");
-        stringTree.addChild("F", "G");
-        stringTree.addChild("B", "A");
-        stringTree.addChild("B", "D");
-        stringTree.addChild("D", "C");
-        stringTree.addChild("D", "E");
-        stringTree.addChild("G", "I");
-        stringTree.addChild("I", "H");
+        this.stringTree.add("F");
+        this.stringTree.addChild("F", "B");
+        this.stringTree.addChild("F", "O");
+        this.stringTree.addChild("F", "G");
+        this.stringTree.addChild("B", "A");
+        this.stringTree.addChild("B", "D");
+        this.stringTree.addChild("D", "C");
+        this.stringTree.addChild("D", "E");
+        this.stringTree.addChild("G", "I");
+        this.stringTree.addChild("I", "H");
 
-        assertEquals("[F, B, A, D, C, E, O, G, I, H]", stringTree.toString());
+        Assert.assertEquals("[F, B, A, D, C, E, O, G, I, H]",
+                this.stringTree.toString());
 
 
         System.out.println("ToString: passed!");
@@ -547,8 +555,8 @@ public class TreeTest {
     @Test
     public void testInheritedMethods() {
 
-        stringTree = new Tree<String>(stringList);
-        assertTrue(stringList.containsAll(stringList));
+        this.stringTree = new Tree<String>(this.stringList);
+        Assert.assertTrue(this.stringList.containsAll(this.stringList));
 
 
         System.out.println("Constructor(Collection): passed!");
@@ -565,37 +573,37 @@ public class TreeTest {
     @Test
     public void testAddContainsRemoveAll() {
 
-        assertEquals(0, stringTree.size());
+        Assert.assertEquals(0, this.stringTree.size());
 
-        assertTrue(stringTree.addAll(stringList));
-        assertFalse(stringTree.addAll(stringList));
+        Assert.assertTrue(this.stringTree.addAll(this.stringList));
+        Assert.assertFalse(this.stringTree.addAll(this.stringList));
 
-        for (String string : stringList) {
-            assertTrue(stringTree.contains(string));
+        for (final String string : this.stringList) {
+            Assert.assertTrue(this.stringTree.contains(string));
         }
-        assertTrue(stringList.containsAll(stringList));
-        assertTrue(stringTree.add("Z"));
-        assertTrue(stringTree.containsAll(stringList));
+        Assert.assertTrue(this.stringList.containsAll(this.stringList));
+        Assert.assertTrue(this.stringTree.add("Z"));
+        Assert.assertTrue(this.stringTree.containsAll(this.stringList));
 
-        assertTrue(stringTree.retainAll(stringList));
-        assertFalse(stringTree.retainAll(stringList));
-        assertFalse(stringTree.contains("Z"));
+        Assert.assertTrue(this.stringTree.retainAll(this.stringList));
+        Assert.assertFalse(this.stringTree.retainAll(this.stringList));
+        Assert.assertFalse(this.stringTree.contains("Z"));
 
-        assertTrue(stringTree.removeAll(stringList));
-        assertFalse(stringTree.removeAll(stringList));
-        assertTrue(stringTree.isEmpty());
+        Assert.assertTrue(this.stringTree.removeAll(this.stringList));
+        Assert.assertFalse(this.stringTree.removeAll(this.stringList));
+        Assert.assertTrue(this.stringTree.isEmpty());
 
 
         System.out.println("AddContainsRetainRemoveAll: passed!");
     }
 
-    private String toPostorderString(Tree<?> tree) {
+    private String toPostorderString(final Tree<?> tree) {
 
-        StringBuilder returnValue = new StringBuilder();
+        final StringBuilder returnValue = new StringBuilder();
 
         returnValue.append("[");
 
-        PostorderTreeIterator<?> it = tree.postorderIterator();
+        final PostorderTreeIterator<?> it = tree.postorderIterator();
 
         int i = 0;
         while (it.hasNext()) {
@@ -611,9 +619,9 @@ public class TreeTest {
         return returnValue.toString();
     }
 
-    private void postorderRemove(Tree<?> tree, Object toRemove) {
+    private void postorderRemove(final Tree<?> tree, final Object toRemove) {
 
-        PostorderTreeIterator<?> it = tree.postorderIterator();
+        final PostorderTreeIterator<?> it = tree.postorderIterator();
         System.out.print("[");
         boolean start = true;
         while (it.hasNext()) {
@@ -623,7 +631,7 @@ public class TreeTest {
             else {
                 System.out.print(", ");
             }
-            Object current = it.next();
+            final Object current = it.next();
             if (current.equals(toRemove)) {
 
                 System.out.print("*");
@@ -637,9 +645,9 @@ public class TreeTest {
         System.out.println("]");
     }
 
-    private void preorderRemove(Tree<?> tree, Object toRemove) {
+    private void preorderRemove(final Tree<?> tree, final Object toRemove) {
 
-        PreorderTreeIterator<?> it = tree.preorderIterator();
+        final PreorderTreeIterator<?> it = tree.preorderIterator();
         boolean start = true;
         while (it.hasNext()) {
             if (start) {
@@ -648,7 +656,7 @@ public class TreeTest {
             else {
                 System.out.print(", ");
             }
-            Object current = it.next();
+            final Object current = it.next();
             if (current.equals(toRemove)) {
 
                 System.out.print("*");

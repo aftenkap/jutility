@@ -1,5 +1,7 @@
 package org.jutility.common.datatype.tree;
 
+
+//@formatter:off
 /*
  * #%L
  * jutility-common
@@ -9,9 +11,9 @@ package org.jutility.common.datatype.tree;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,7 +21,7 @@ package org.jutility.common.datatype.tree;
  * limitations under the License.
  * #L%
  */
-
+//@formatter:on
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -29,7 +31,7 @@ import java.util.NoSuchElementException;
 
 
 /**
- * 
+ *
  * @author Peter J. Radics
  * @version 1.0
  * @param <E>
@@ -49,7 +51,7 @@ public class PostorderTreeIterator<E>
 
     /**
      * Creates a new instance of the {@code PostorderTreeIterator} class.
-     * 
+     *
      * @param tree
      *            the tree to iterate over.
      */
@@ -83,7 +85,7 @@ public class PostorderTreeIterator<E>
 
             this.currentNode = this.stack.removeFirst();
 
-            E returnValue = this.currentNode.getElement();
+            final E returnValue = this.currentNode.getElement();
 
             return returnValue;
         }
@@ -117,9 +119,10 @@ public class PostorderTreeIterator<E>
                 else {
 
                     // System.out.println("\n\nIn here");
-                    TreeNode<E> parent = this.currentNode.getParent();
-                    TreeNode<E> lastChild = this.currentNode.getChildren().get(
-                            this.currentNode.getChildren().size() - 1);
+                    final TreeNode<E> parent = this.currentNode.getParent();
+                    final TreeNode<E> lastChild = this.currentNode
+                            .getChildren().get(
+                                    this.currentNode.getChildren().size() - 1);
 
                     // System.out.println("Stack: " + this.stack);
                     // System.out.println("Current: "
@@ -131,15 +134,16 @@ public class PostorderTreeIterator<E>
 
                     this.currentNode.removeChild(lastChild);
 
-                    parent.replaceChild(currentNode, lastChild);
+                    parent.replaceChild(this.currentNode, lastChild);
 
-                    List<TreeNode<E>> children = lastChild.getChildren();
+                    final List<TreeNode<E>> children = lastChild.getChildren();
                     lastChild.clearChildren();
 
-                    for (TreeNode<E> child : this.currentNode.getChildren()) {
+                    for (final TreeNode<E> child : this.currentNode
+                            .getChildren()) {
                         lastChild.addChild(child);
                     }
-                    for (TreeNode<E> child : children) {
+                    for (final TreeNode<E> child : children) {
                         lastChild.addChild(child);
                     }
 
@@ -158,20 +162,22 @@ public class PostorderTreeIterator<E>
                 // Not leaf node
                 else {
 
-                    TreeNode<E> lastChild = this.currentNode.getChildren().get(
-                            this.currentNode.getChildren().size() - 1);
+                    final TreeNode<E> lastChild = this.currentNode
+                            .getChildren().get(
+                                    this.currentNode.getChildren().size() - 1);
 
                     this.tree.setRoot(lastChild);
 
                     this.currentNode.removeChild(lastChild);
 
-                    List<TreeNode<E>> children = lastChild.getChildren();
+                    final List<TreeNode<E>> children = lastChild.getChildren();
                     lastChild.clearChildren();
 
-                    for (TreeNode<E> child : this.currentNode.getChildren()) {
+                    for (final TreeNode<E> child : this.currentNode
+                            .getChildren()) {
                         lastChild.addChild(child);
                     }
-                    for (TreeNode<E> child : children) {
+                    for (final TreeNode<E> child : children) {
                         lastChild.addChild(child);
                     }
                 }
@@ -201,7 +207,7 @@ public class PostorderTreeIterator<E>
 
     /**
      * Returns the tree node.
-     * 
+     *
      * @return the tree node.
      */
     public TreeNode<E> getTreeNode() {
@@ -211,16 +217,16 @@ public class PostorderTreeIterator<E>
 
     private void enqueueChildren() {
 
-        TreeNode<E> current = this.stack.peekFirst();
+        final TreeNode<E> current = this.stack.peekFirst();
 
-        List<TreeNode<E>> children = current.getChildren();
+        final List<TreeNode<E>> children = current.getChildren();
 
         // We only have to enqueue children if the current top of the stack has
         // children
         if (!children.isEmpty()) {
 
 
-            ListIterator<TreeNode<E>> it = children.listIterator(children
+            final ListIterator<TreeNode<E>> it = children.listIterator(children
                     .size());
 
             // We enqueue all children in reverse order

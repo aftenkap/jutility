@@ -1,23 +1,19 @@
 package org.jutility.common.datatype.tree;
 
+
 /*
- * #%L
- * jutility-common
- * %%
- * Copyright (C) 2013 - 2014 jutility.org
- * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * #%L jutility-common %% Copyright (C) 2013 - 2014 jutility.org %% Licensed
+ * under the Apache License, Version 2.0 (the "License"); you may not use this
+ * file except in compliance with the License. You may obtain a copy of the
+ * License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * #L%
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License. #L%
  */
 
 
@@ -29,7 +25,7 @@ import java.util.NoSuchElementException;
 
 
 /**
- * 
+ *
  * @author Peter J. Radics
  * @version 1.0
  * @param <E>
@@ -48,7 +44,7 @@ public class PreorderTreeIterator<E>
 
     /**
      * Creates a new instance of the {@code PreorderTreeIterator} class.
-     * 
+     *
      * @param tree
      *            the tree to iterate over.
      */
@@ -84,7 +80,7 @@ public class PreorderTreeIterator<E>
 
             this.currentNode = this.stack.removeFirst();
 
-            E returnValue = this.currentNode.getElement();
+            final E returnValue = this.currentNode.getElement();
 
             // System.out.println("Currently at: " + returnValue);
             // System.out.println("Stack: " + this.stack.toString());
@@ -118,23 +114,24 @@ public class PreorderTreeIterator<E>
                 else {
 
                     // System.out.println("\nStack before remove: " + stack);
-                    TreeNode<E> parent = this.currentNode.getParent();
+                    final TreeNode<E> parent = this.currentNode.getParent();
 
-                    TreeNode<E> firstChild = this.currentNode.getChildren()
-                            .get(0);
+                    final TreeNode<E> firstChild = this.currentNode
+                            .getChildren().get(0);
 
                     this.currentNode.removeChild(firstChild);
 
 
                     this.stack.removeFirst();
-                    parent.replaceChild(currentNode, firstChild);
+                    parent.replaceChild(this.currentNode, firstChild);
                     // System.out.println("Replacing " +
                     // currentNode.getElement()
                     // + " with " + firstChild.getElement());
 
                     // System.out.println("Stack before removing children: " +
                     // stack);
-                    for (TreeNode<E> child : this.currentNode.getChildren()) {
+                    for (final TreeNode<E> child : this.currentNode
+                            .getChildren()) {
                         firstChild.addChild(child);
                         this.stack.removeFirst();
                     }
@@ -165,8 +162,8 @@ public class PreorderTreeIterator<E>
                     // System.out.println("Stack: " + this.stack);
 
 
-                    TreeNode<E> firstChild = this.currentNode.getChildren()
-                            .get(0);
+                    final TreeNode<E> firstChild = this.currentNode
+                            .getChildren().get(0);
                     // if (!this.stack.peekFirst().equals(firstChild)) {
                     //
                     // throw new IllegalStateException(
@@ -191,7 +188,8 @@ public class PreorderTreeIterator<E>
 
                     // System.out.println("Stack: " + this.stack);
 
-                    for (TreeNode<E> child : this.currentNode.getChildren()) {
+                    for (final TreeNode<E> child : this.currentNode
+                            .getChildren()) {
                         firstChild.addChild(child);
                         this.stack.removeFirst();
                     }
@@ -218,7 +216,7 @@ public class PreorderTreeIterator<E>
      * tree contains no elements, the new element becomes the root of the tree.)
      * The new element is inserted before the implicit cursor: a subsequent call
      * to next would be unaffected.
-     * 
+     *
      * @param element
      *            the element to be inserted.
      */
@@ -288,7 +286,7 @@ public class PreorderTreeIterator<E>
 
     /**
      * Returns the tree node.
-     * 
+     *
      * @return the tree node.
      */
     public TreeNode<E> getTreeNode() {
@@ -299,16 +297,16 @@ public class PreorderTreeIterator<E>
     private void enqueueChildren() {
 
         // System.out.println("Stack before enqueueChildren: " + this.stack);
-        TreeNode<E> current = this.stack.peekFirst();
+        final TreeNode<E> current = this.stack.peekFirst();
 
-        List<TreeNode<E>> children = current.getChildren();
+        final List<TreeNode<E>> children = current.getChildren();
 
         // We only have to enqueue children if the current top of the stack has
         // children
         if (!children.isEmpty()) {
 
             this.stack.removeFirst();
-            ListIterator<TreeNode<E>> it = children.listIterator(children
+            final ListIterator<TreeNode<E>> it = children.listIterator(children
                     .size());
 
 
