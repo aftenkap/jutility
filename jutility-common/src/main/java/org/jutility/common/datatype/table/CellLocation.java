@@ -11,9 +11,9 @@ package org.jutility.common.datatype.table;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -29,8 +29,12 @@ import org.jutility.common.datatype.tuple.Tuple2;
 
 
 /**
+ * The {@code CellLocation} class provides the row and column location of a
+ * cell.
+ *
  * @author Peter J. Radics
- * @version 1.0
+ * @version 0.1.2
+ * @since 0.1.0
  */
 public class CellLocation
         extends Tuple2<Integer>
@@ -38,7 +42,7 @@ public class CellLocation
 
     /**
      * Returns the row index of a cell.
-     * 
+     *
      * @return the row index of a cell.
      */
     public Integer getRow() {
@@ -49,7 +53,7 @@ public class CellLocation
 
     /**
      * Returns the column index of a cell.
-     * 
+     *
      * @return the column index of a cell.
      */
     public Integer getColumn() {
@@ -58,7 +62,7 @@ public class CellLocation
     }
 
     /**
-     * Creates a new instance of the {@link CellLocation} class.
+     * Creates a new instance of the {@code CellLocation} class.
      * (SerializationConstructor)
      */
     @SuppressWarnings("unused")
@@ -69,9 +73,9 @@ public class CellLocation
 
 
     /**
-     * Creates a new instance of the {@link CellLocation} class with the
+     * Creates a new instance of the {@code CellLocation} class with the
      * provided values.
-     * 
+     *
      * @param row
      *            the row index.
      * @param column
@@ -83,14 +87,14 @@ public class CellLocation
     }
 
     /**
-     * Creates a new instance of the {@link CellLocation} class as a copy of the
+     * Creates a new instance of the {@code CellLocation} class as a copy of the
      * provided {@link ITuple2} {@code <}{@link Integer} {@code >}.
-     * 
+     *
      * @param tupleToCopy
      *            the {@link ITuple2} {@code <}{@link Integer} {@code >} to
      *            copy.
      */
-    public CellLocation(ITuple2<Integer> tupleToCopy) {
+    public CellLocation(final ITuple2<Integer> tupleToCopy) {
 
         super(tupleToCopy);
     }
@@ -99,7 +103,7 @@ public class CellLocation
     /**
      * A {@link Comparator} for {@link CellLocation CellLocations} using
      * row-major order.
-     * 
+     *
      */
     public static Comparator<CellLocation> rowMajorOrder    =
 
@@ -107,10 +111,10 @@ public class CellLocation
 
                                                                 @Override
                                                                 public int compare(
-                                                                        CellLocation lhs,
-                                                                        CellLocation rhs) {
+                                                                        final CellLocation lhs,
+                                                                        final CellLocation rhs) {
 
-                                                                    int compareRows = lhs
+                                                                    final int compareRows = lhs
                                                                             .getRow()
                                                                             - rhs.getRow();
 
@@ -152,10 +156,10 @@ public class CellLocation
 
                                                                 @Override
                                                                 public int compare(
-                                                                        CellLocation lhs,
-                                                                        CellLocation rhs) {
+                                                                        final CellLocation lhs,
+                                                                        final CellLocation rhs) {
 
-                                                                    int compareColumns = lhs
+                                                                    final int compareColumns = lhs
                                                                             .getColumn()
                                                                             - rhs.getColumn();
 
@@ -192,7 +196,7 @@ public class CellLocation
 
 
     @Override
-    public int compareTo(CellLocation other) {
+    public int compareTo(final CellLocation other) {
 
         return CellLocation.rowMajorOrder.compare(this, other);
     }

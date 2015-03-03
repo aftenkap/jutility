@@ -1,23 +1,19 @@
 package org.jutility.common.datatype.table;
 
+
 /*
- * #%L
- * jutility-common
- * %%
- * Copyright (C) 2013 - 2014 jutility.org
- * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * #%L jutility-common %% Copyright (C) 2013 - 2014 jutility.org %% Licensed
+ * under the Apache License, Version 2.0 (the "License"); you may not use this
+ * file except in compliance with the License. You may obtain a copy of the
+ * License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * #L%
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License. #L%
  */
 
 
@@ -26,11 +22,12 @@ import java.util.NoSuchElementException;
 
 
 /**
- * The immutable {@link CellRange} class defines a range of {@link CellLocation
+ * The immutable {@code CellRange} class defines a range of {@link CellLocation
  * cell locations}.
- * 
+ *
  * @author Peter J. Radics
- * @version 0.1
+ * @version 0.1.2
+ * @since 0.1.0
  */
 public class CellRange
         implements Iterable<CellLocation> {
@@ -40,9 +37,10 @@ public class CellRange
 
     private final int          size;
 
+
     /**
      * Returns the beginning of the Range.
-     * 
+     *
      * @return the beginning of the Range.
      */
     public CellLocation getBeginning() {
@@ -53,7 +51,7 @@ public class CellRange
 
     /**
      * Returns the end of the Range.
-     * 
+     *
      * @return the end of the Range.
      */
     public CellLocation getEnd() {
@@ -63,9 +61,9 @@ public class CellRange
 
 
     /**
-     * Returns the size of the {@link CellRange} (the number of CellLocations).
-     * 
-     * @return the size of the {@link CellRange}.
+     * Returns the size of the {@code CellRange} (the number of CellLocations).
+     *
+     * @return the size of the {@code CellRange}.
      */
     public int size() {
 
@@ -73,9 +71,9 @@ public class CellRange
     }
 
     /**
-     * Returns whether or not the {@link CellRange} is empty;
-     * 
-     * @return {@code true}, if the {@link CellRange} is empty; {@code false}
+     * Returns whether or not the {@code CellRange} is empty;
+     *
+     * @return {@code true}, if the {@code CellRange} is empty; {@code false}
      *         otherwise.
      */
     public boolean isEmpty() {
@@ -84,9 +82,9 @@ public class CellRange
     }
 
     /**
-     * Creates a new instance of the {@link CellRange} class with the provided
+     * Creates a new instance of the {@code CellRange} class with the provided
      * indices.
-     * 
+     *
      * @param beginningRowIndex
      *            the row index of the beginning of the range.
      * @param beginningColumnIndex
@@ -100,11 +98,11 @@ public class CellRange
             final int beginningColumnIndex, final int endRowIndex,
             final int endColumnIndex) {
 
-        int minRow = Math.min(beginningRowIndex, endRowIndex);
-        int minColumn = Math.min(beginningColumnIndex, endColumnIndex);
+        final int minRow = Math.min(beginningRowIndex, endRowIndex);
+        final int minColumn = Math.min(beginningColumnIndex, endColumnIndex);
 
-        int maxRow = Math.max(beginningRowIndex, endRowIndex);
-        int maxColumn = Math.max(beginningColumnIndex, endColumnIndex);
+        final int maxRow = Math.max(beginningRowIndex, endRowIndex);
+        final int maxColumn = Math.max(beginningColumnIndex, endColumnIndex);
 
 
         this.beginning = new CellLocation(minRow, minColumn);
@@ -114,8 +112,8 @@ public class CellRange
     }
 
     /**
-     * Creates a new instance of the {@link CellRange} class.
-     * 
+     * Creates a new instance of the {@code CellRange} class.
+     *
      * @param beginning
      *            the beginning of the Range.
      * @param end
@@ -128,9 +126,9 @@ public class CellRange
     }
 
     /**
-     * Returns the {@link Characteristics} of the {@link CellRange}.
-     * 
-     * @return the {@link Characteristics} of the {@link CellRange}.
+     * Returns the {@link Characteristics} of the {@code CellRange}.
+     *
+     * @return the {@link Characteristics} of the {@code CellRange}.
      */
     public Characteristics characteristic() {
 
@@ -138,16 +136,16 @@ public class CellRange
 
             return Characteristics.EMPTY;
         }
-        else if (this.beginning.getRow() + 1 == this.end.getRow()
-                && this.beginning.getColumn() + 1 == this.end.getColumn()) {
+        else if (((this.beginning.getRow() + 1) == this.end.getRow())
+                && ((this.beginning.getColumn() + 1) == this.end.getColumn())) {
 
             return Characteristics.CELL;
         }
-        else if (this.beginning.getRow() + 1 == this.end.getRow()) {
+        else if ((this.beginning.getRow() + 1) == this.end.getRow()) {
 
             return Characteristics.ROW;
         }
-        else if (this.beginning.getColumn() + 1 == this.end.getColumn()) {
+        else if ((this.beginning.getColumn() + 1) == this.end.getColumn()) {
 
             return Characteristics.COLUMN;
         }
@@ -159,14 +157,14 @@ public class CellRange
 
     /**
      * Determines whether the location specified by the provided row and column
-     * indices lies within the {@link CellRange}.
-     * 
+     * indices lies within the {@code CellRange}.
+     *
      * @param row
      *            the row.
      * @param column
      *            the column.
      * @return {@code true}, if the provided location lies within the
-     *         {@link CellRange}; {@code false} otherwise.
+     *         {@code CellRange}; {@code false} otherwise.
      */
     public boolean contains(final int row, final int column) {
 
@@ -175,43 +173,43 @@ public class CellRange
 
     /**
      * Determines whether the provided row index lies within the
-     * {@link CellRange}.
-     * 
+     * {@code CellRange}.
+     *
      * @param row
      *            the row index.
-     * @return {@code true}, if the row index lies within the {@link CellRange};
+     * @return {@code true}, if the row index lies within the {@code CellRange};
      *         {@code false} otherwise.
      */
     public boolean containsRow(final int row) {
 
-        return this.getBeginning().getRow() <= row
-                && row < this.getEnd().getRow();
+        return (this.getBeginning().getRow() <= row)
+                && (row < this.getEnd().getRow());
     }
 
 
     /**
      * Determines whether the provided column index lies within the
-     * {@link CellRange}.
-     * 
+     * {@code CellRange}.
+     *
      * @param column
      *            the column index.
      * @return {@code true}, if the column index lies within the
-     *         {@link CellRange}; {@code false} otherwise.
+     *         {@code CellRange}; {@code false} otherwise.
      */
     public boolean containsColumn(final int column) {
 
-        return this.getBeginning().getColumn() <= column
-                && column < this.getEnd().getColumn();
+        return (this.getBeginning().getColumn() <= column)
+                && (column < this.getEnd().getColumn());
     }
 
     /**
      * Determines whether the provided {@link CellLocation} lies within the
-     * {@link CellRange}.
-     * 
+     * {@code CellRange}.
+     *
      * @param location
      *            the {@link CellLocation}.
      * @return {@code true}, if the provided {@link CellLocation} lies within
-     *         the {@link CellRange}; {@code false} otherwise.
+     *         the {@code CellRange}; {@code false} otherwise.
      */
     public boolean contains(final CellLocation location) {
 
@@ -223,8 +221,9 @@ public class CellRange
     @Override
     public String toString() {
 
-        return "[ (" + beginning.getRow() + ", " + beginning.getColumn()
-                + ") - (" + end.getRow() + ", " + end.getColumn() + ") )";
+        return "[ (" + this.beginning.getRow() + ", "
+                + this.beginning.getColumn() + ") - (" + this.end.getRow()
+                + ", " + this.end.getColumn() + ") )";
     }
 
 
@@ -235,10 +234,10 @@ public class CellRange
     }
 
     /**
-     * Returns an {@link Iterator} over the {@link CellRange} that traverses the
+     * Returns an {@link Iterator} over the {@code CellRange} that traverses the
      * range in row-major order.
-     * 
-     * @return a row-major order {@link Iterator} over the {@link CellRange}.
+     *
+     * @return a row-major order {@link Iterator} over the {@code CellRange}.
      */
     public Iterator<CellLocation> rowMajorOrderIterator() {
 
@@ -246,10 +245,10 @@ public class CellRange
     }
 
     /**
-     * Returns an {@link Iterator} over the {@link CellRange} that traverses the
+     * Returns an {@link Iterator} over the {@code CellRange} that traverses the
      * range in column-major order.
-     * 
-     * @return a column-major order {@link Iterator} over the {@link CellRange}.
+     *
+     * @return a column-major order {@link Iterator} over the {@code CellRange}.
      */
     public Iterator<CellLocation> columnMajorOrderIterator() {
 
@@ -259,20 +258,20 @@ public class CellRange
 
 
     /**
-     * Creates a row {@link CellRange} for the provided row index.
-     * 
+     * Creates a row {@code CellRange} for the provided row index.
+     *
      * @param rowIndex
      *            the row index.
      * @param table
      *            the table that contains the row.
      * @param includeFirstElement
      *            whether or not to include the first element
-     * @return a row {@link CellRange}.
+     * @return a row {@code CellRange}.
      */
     public static CellRange row(final int rowIndex, final ITable<?> table,
             final boolean includeFirstElement) {
 
-        CellRange range = table.cellRange();
+        final CellRange range = table.cellRange();
 
         int startColumn = range.getBeginning().getColumn();
 
@@ -291,13 +290,13 @@ public class CellRange
     }
 
     /**
-     * Creates a row {@link CellRange} for the provided row index.
-     * 
+     * Creates a row {@code CellRange} for the provided row index.
+     *
      * @param rowIndex
      *            the row index.
      * @param table
      *            the table that contains the row.
-     * @return a row {@link CellRange}.
+     * @return a row {@code CellRange}.
      */
     public static CellRange row(final int rowIndex, final ITable<?> table) {
 
@@ -305,13 +304,13 @@ public class CellRange
     }
 
     /**
-     * Creates a column {@link CellRange} for the provided column index.
-     * 
+     * Creates a column {@code CellRange} for the provided column index.
+     *
      * @param columnIndex
      *            the column index.
      * @param table
      *            the table that contains the column.
-     * @return a column {@link CellRange}.
+     * @return a column {@code CellRange}.
      */
     public static CellRange column(final int columnIndex, final ITable<?> table) {
 
@@ -320,21 +319,21 @@ public class CellRange
     }
 
     /**
-     * Creates a column {@link CellRange} for the provided column index.
-     * 
+     * Creates a column {@code CellRange} for the provided column index.
+     *
      * @param columnIndex
      *            the column index.
      * @param table
      *            the table that contains the column.
      * @param includeFirstElement
      *            whether or not to include the first element
-     * @return a column {@link CellRange}.
+     * @return a column {@code CellRange}.
      */
     public static CellRange column(final int columnIndex,
             final ITable<?> table, final boolean includeFirstElement) {
 
 
-        CellRange range = table.cellRange();
+        final CellRange range = table.cellRange();
 
         if (range.containsColumn(columnIndex)) {
 
@@ -352,12 +351,13 @@ public class CellRange
     }
 
     /**
-     * The {@link Characteristics} enum provides an enumeration of the
+     * The {@code Characteristics} enum provides an enumeration of the
      * characteristics a {@link CellRange} can have. All characteristics are
      * mutually exclusive.
-     * 
+     *
      * @author Peter J. Radics
-     * @version 1.0
+     * @version 0.1.2
+     * @since 0.1.0
      */
     public static enum Characteristics {
         /**
@@ -369,14 +369,17 @@ public class CellRange
          * An range containing a single cell.
          */
         CELL("Single Cell"),
+
         /**
          * A range containing a single row of cells.
          */
         ROW("Single Row"),
+
         /**
          * A range containing a single column of cells.
          */
         COLUMN("Single Column"),
+
         /**
          * A range containing an arbitrary amount of cells.
          */
@@ -401,12 +404,13 @@ public class CellRange
 
 
     /**
-     * The {@link CellRangeIterator} class provides an iterator over a
+     * The {@code CellRangeIterator} class provides an iterator over a
      * {@link CellRange} using a provided {@link IterationOrder} to determine
      * order of traversal.
-     * 
+     *
      * @author Peter J. Radics
-     * @version 1.0
+     * @version 0.1.2
+     * @since 0.1.0
      */
     private static class CellRangeIterator
             implements Iterator<CellLocation> {
@@ -417,9 +421,9 @@ public class CellRange
 
 
         /**
-         * Creates a new instance of the {@link CellRangeIterator} class for the
+         * Creates a new instance of the {@code CellRangeIterator} class for the
          * provided {@link CellRange}.
-         * 
+         *
          * @param cellRange
          *            the {@link CellRange} to iterate over.
          * @param iterationOrder
@@ -436,13 +440,13 @@ public class CellRange
         @Override
         public boolean hasNext() {
 
-            return this.cellRange.contains(currentLocation);
+            return this.cellRange.contains(this.currentLocation);
         }
 
         @Override
         public CellLocation next() {
 
-            CellLocation current = this.currentLocation;
+            final CellLocation current = this.currentLocation;
 
             if (!this.cellRange.contains(current)) {
 
@@ -465,9 +469,9 @@ public class CellRange
 
         private void advanceInRowMajorOrder() {
 
-            CellLocation columnIncrement = new CellLocation(
+            final CellLocation columnIncrement = new CellLocation(
                     this.currentLocation.getRow(),
-                    currentLocation.getColumn() + 1);
+                    this.currentLocation.getColumn() + 1);
 
             if (this.cellRange.contains(columnIncrement)) {
 
@@ -476,7 +480,7 @@ public class CellRange
             else {
 
                 this.currentLocation = new CellLocation(
-                        currentLocation.getRow() + 1, this.cellRange
+                        this.currentLocation.getRow() + 1, this.cellRange
                                 .getBeginning().getColumn());
             }
         }
@@ -484,8 +488,9 @@ public class CellRange
 
         private void advanceInColumnMajorOrder() {
 
-            CellLocation rowIncrement = new CellLocation(
-                    currentLocation.getRow() + 1, currentLocation.getColumn());
+            final CellLocation rowIncrement = new CellLocation(
+                    this.currentLocation.getRow() + 1,
+                    this.currentLocation.getColumn());
 
             if (this.cellRange.contains(rowIncrement)) {
 
@@ -495,7 +500,7 @@ public class CellRange
 
                 this.currentLocation = new CellLocation(this.cellRange
                         .getBeginning().getRow(),
-                        currentLocation.getColumn() + 1);
+                        this.currentLocation.getColumn() + 1);
             }
         }
 
@@ -509,27 +514,27 @@ public class CellRange
 
 
     /**
-     * Clamps the provided {@link CellRange} to the provided {@link CellRange
+     * Clamps the provided {@code CellRange} to the provided {@code CellRange
      * boundary}.
-     * 
+     *
      * @param rangeToClamp
-     *            the {@link CellRange} to clamp.
+     *            the {@code CellRange} to clamp.
      * @param boundary
-     *            the {@link CellRange boundary}.
-     * @return the clamped {@link CellRange}.
+     *            the {@code CellRange boundary}.
+     * @return the clamped {@code CellRange}.
      */
-    public static CellRange clampToRange(CellRange rangeToClamp,
-            CellRange boundary) {
+    public static CellRange clampToRange(final CellRange rangeToClamp,
+            final CellRange boundary) {
 
-        int minRow = Math.max(rangeToClamp.getBeginning().getRow(), boundary
-                .getBeginning().getRow());
-        int minColumn = Math.max(rangeToClamp.getBeginning().getColumn(),
+        final int minRow = Math.max(rangeToClamp.getBeginning().getRow(),
+                boundary.getBeginning().getRow());
+        final int minColumn = Math.max(rangeToClamp.getBeginning().getColumn(),
                 boundary.getBeginning().getColumn());
 
-        int maxRow = Math.min(rangeToClamp.getEnd().getRow(), boundary.getEnd()
-                .getRow());
-        int maxColumn = Math.min(rangeToClamp.getEnd().getColumn(), boundary
-                .getEnd().getColumn());
+        final int maxRow = Math.min(rangeToClamp.getEnd().getRow(), boundary
+                .getEnd().getRow());
+        final int maxColumn = Math.min(rangeToClamp.getEnd().getColumn(),
+                boundary.getEnd().getColumn());
 
         return new CellRange(minRow, minColumn, maxRow, maxColumn);
     }

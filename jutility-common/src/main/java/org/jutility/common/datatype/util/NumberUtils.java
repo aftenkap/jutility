@@ -1,5 +1,8 @@
 package org.jutility.common.datatype.util;
 
+
+
+//@formatter:off
 /*
  * #%L
  * jutility-common
@@ -9,9 +12,9 @@ package org.jutility.common.datatype.util;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,16 +22,16 @@ package org.jutility.common.datatype.util;
  * limitations under the License.
  * #L%
  */
-
+//@formatter:on
 
 
 /**
- * The {@link NumberUtils} class provides utility methods for dealing with
+ * The {@code NumberUtils} class provides utility methods for dealing with
  * generic {@link Number numbers}.
- * 
+ *
  * @author Peter J. Radics
- * @version 0.1
- * @version 0.1
+ * @version 0.1.2
+ * @since 0.1.0
  */
 public class NumberUtils {
 
@@ -36,7 +39,10 @@ public class NumberUtils {
     /**
      * Parses the provided {@link String} into the desired {@link Number}
      * format.
-     * 
+     *
+     * @param <R>
+     *            the desired return type.
+     *
      * @param string
      *            the {@link String} to parse.
      * @param returnType
@@ -83,7 +89,10 @@ public class NumberUtils {
 
     /**
      * Casts the number to the provided return type.
-     * 
+     *
+     * @param <R>
+     *            the desired return type.
+     *
      * @param number
      *            the number to convert.
      * @param returnType
@@ -93,43 +102,43 @@ public class NumberUtils {
     public static <R extends Number> R cast(final Number number,
             final Class<R> returnType) {
 
-        if (number == null || returnType == null) {
+        if ((number == null) || (returnType == null)) {
             return null;
         }
 
         if (returnType == Double.class) {
 
-            Double value = number.doubleValue();
+            final Double value = number.doubleValue();
 
             return returnType.cast(value);
         }
         else if (returnType == Float.class) {
 
-            Float value = number.floatValue();
+            final Float value = number.floatValue();
 
             return returnType.cast(value);
         }
         else if (returnType == Long.class) {
 
-            Long value = number.longValue();
+            final Long value = number.longValue();
 
             return returnType.cast(value);
         }
         else if (returnType == Integer.class) {
 
-            Integer value = number.intValue();
+            final Integer value = number.intValue();
 
             return returnType.cast(value);
         }
         else if (returnType == Short.class) {
 
-            Short value = number.shortValue();
+            final Short value = number.shortValue();
 
             return returnType.cast(value);
         }
         else if (returnType == Byte.class) {
 
-            Byte value = number.byteValue();
+            final Byte value = number.byteValue();
 
             return returnType.cast(value);
         }
@@ -141,7 +150,10 @@ public class NumberUtils {
 
     /**
      * Casts the value to the provided return type.
-     * 
+     *
+     * @param <R>
+     *            the desired return type.
+     *
      * @param value
      *            the value to convert.
      * @param returnType
@@ -150,7 +162,7 @@ public class NumberUtils {
      */
     public static <R> R cast(final Object value, final Class<R> returnType) {
 
-        if (value == null || returnType == null) {
+        if ((value == null) || (returnType == null)) {
             return null;
         }
 
@@ -166,10 +178,13 @@ public class NumberUtils {
 
     /**
      * Creates an array of a generic type from the provided elements.
-     * 
+     *
+     * @param <T>
+     *            the desired return type.
+     *
      * @param type
      *            the type of the array.
-     * 
+     *
      * @param elements
      *            the elements comprising the desired array.
      * @return an array containing all elements.
@@ -179,11 +194,11 @@ public class NumberUtils {
 
 
         @SuppressWarnings("unchecked")
-        T[] array = (T[]) java.lang.reflect.Array.newInstance(type,
+        final T[] array = (T[]) java.lang.reflect.Array.newInstance(type,
                 elements.length);
 
         int i = 0;
-        for (T element : elements) {
+        for (final T element : elements) {
 
             array[i] = element;
             i++;

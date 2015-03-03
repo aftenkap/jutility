@@ -1,5 +1,7 @@
 package org.jutility.common.reflection;
 
+
+//@formatter:off
 /*
  * #%L
  * jutility-common
@@ -9,9 +11,9 @@ package org.jutility.common.reflection;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,14 +21,16 @@ package org.jutility.common.reflection;
  * limitations under the License.
  * #L%
  */
+//@formatter:on
 
 
 /**
- * The {@link ReflectionException} class provides details about exceptions
+ * The {@code ReflectionException} class provides details about exceptions
  * during reflection-related operations.
- * 
+ *
  * @author Peter J. Radics
- * @version 0.1
+ * @version 0.1.2
+ * @since 0.1.0
  */
 public class ReflectionException
         extends Exception {
@@ -36,7 +40,7 @@ public class ReflectionException
 
 
     /**
-     * Creates a new instance of the {@link ReflectionException}.
+     * Creates a new instance of the {@code ReflectionException}.
      */
     public ReflectionException() {
 
@@ -45,40 +49,40 @@ public class ReflectionException
 
 
     /**
-     * Creates a new instance of the {@link ReflectionException} class with the
+     * Creates a new instance of the {@code ReflectionException} class with the
      * provided parameters.
-     * 
+     *
      * @param message
      *            the detail message.
      */
-    public ReflectionException(String message) {
+    public ReflectionException(final String message) {
 
         super(message);
     }
 
 
     /**
-     * Creates a new instance of the {@link ReflectionException} class with the
+     * Creates a new instance of the {@code ReflectionException} class with the
      * provided parameters.
-     * 
+     *
      * @param cause
      *            the {@link Throwable cause} of the exception.
      */
-    public ReflectionException(Throwable cause) {
+    public ReflectionException(final Throwable cause) {
 
         super(cause);
     }
 
     /**
-     * Creates a new instance of the {@link ReflectionException} class with the
+     * Creates a new instance of the {@code ReflectionException} class with the
      * provided parameters.
-     * 
+     *
      * @param message
      *            the detail message.
      * @param cause
      *            the {@link Throwable cause} of the exception.
      */
-    public ReflectionException(String message, Throwable cause) {
+    public ReflectionException(final String message, final Throwable cause) {
 
         super(message, cause);
     }
