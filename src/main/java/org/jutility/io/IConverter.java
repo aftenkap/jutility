@@ -1,5 +1,7 @@
 package org.jutility.io;
 
+
+// @formatter:off
 /*
  * #%L
  * jutility-io
@@ -19,15 +21,14 @@ package org.jutility.io;
  * limitations under the License.
  * #L%
  */
-
-
+//@formatter:on
 
 /**
- * The @ link IConverter} interface provides a contract for converters.
+ * The {@code IConverter} interface provides a contract for converters.
  * 
  * @author Peter J. Radics
- * @version 0.1
- * 
+ * @version 0.1.2
+ * @since 0.1.0
  */
 public interface IConverter {
 
@@ -42,15 +43,20 @@ public interface IConverter {
      *            the {@link Class source type}.
      * @param targetType
      *            the {@link Class target type}.
-     * @return <code>true</code> if the converter supports the conversion;
-     *         <code>false</code> otherwise.
+     * @return {@code true} if the converter supports the conversion;
+     *         {@code false} otherwise.
      */
-    public abstract boolean supportsConversion(Class<?> sourceType,
-            Class<?> targetType);
+    public abstract boolean supportsConversion(final Class<?> sourceType,
+            final Class<?> targetType);
 
 
     /**
      * Converts the provided object into an instance of the desired return type.
+     * 
+     * @param <T>
+     *            the document type.
+     * @param <S>
+     *            the return type.
      * 
      * @param documentToConvert
      *            the document to be converted.
@@ -60,7 +66,7 @@ public interface IConverter {
      * @throws ConversionException
      *             if the return type is not supported or conversion fails.
      */
-    public abstract <T, S> S convert(T documentToConvert,
-            Class<? extends S> returnType)
+    public abstract <T, S> S convert(final T documentToConvert,
+            final Class<? extends S> returnType)
             throws ConversionException;
 }

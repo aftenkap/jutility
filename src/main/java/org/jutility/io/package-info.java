@@ -1,11 +1,11 @@
 /**
- * This package provides CSV support.
+ * This package provides core functionality of I/O support.
  * 
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.0
  */
-package org.jutility.io.csv;
+package org.jutility.io;
 
 // @formatter:off
 /*
