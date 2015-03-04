@@ -40,8 +40,6 @@ public class CsvSerializerTest {
     public void setUp()
             throws IOException {
 
-        // Nothing to be done
-
         this.referenceTable = new Table<String>();
 
         this.referenceTable.add(0, 0, "foo");
