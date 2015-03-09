@@ -31,8 +31,8 @@ import java.util.Set;
 
 /**
  * @author Peter J. Radics
- * @version 0.1
- * 
+ * @version 0.1.2
+ * @since 0.1.0
  */
 public class IOManager {
 
@@ -89,10 +89,6 @@ public class IOManager {
         // TODO: implement
     }
 
-//    private Object invokeStaticMethod(String name, Class<?> clazz) {
-//
-//        return this.invokeMethod(this.getMethod(name, clazz));
-//    }
 
     @SuppressWarnings("unused")
     private Method getMethod(String name, Class<?> clazz) {
