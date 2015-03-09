@@ -11,9 +11,9 @@ package org.jutility.common.datatype.range;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,10 +24,17 @@ package org.jutility.common.datatype.range;
 //@formatter:on
 
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 
 
@@ -41,20 +48,29 @@ import javax.xml.bind.annotation.XmlType;
  * @version 0.1.2
  * @since 0.1.0
  */
+@JsonTypeInfo(use = Id.NAME, include = As.PROPERTY, property = "intervalType")
+@JsonSubTypes({ @JsonSubTypes.Type(value = Interval.class, name = "Interval") })
 @XmlRootElement(name = "IntervalBase")
 @XmlType(name = "IntervalBase", propOrder = { "lowerBound", "upperBound" })
 public abstract class IntervalBase<T>
-        implements IInterval<T> {
+        implements IInterval<T>, Serializable {
+
+
+    /**
+     * Serial Version UID.
+     */
+    private static final long serialVersionUID = 6346153056134408820L;
+
 
     @XmlElement(name = "LowerBound")
-    private T       lowerBound;
+    private T                 lowerBound;
     @XmlElement(name = "UpperBound")
-    private T       upperBound;
+    private T                 upperBound;
 
     @XmlAttribute
-    private Boolean containsLowerBound;
+    private Boolean           containsLowerBound;
     @XmlAttribute
-    private Boolean containsUpperBound;
+    private Boolean           containsUpperBound;
 
 
     @Override
