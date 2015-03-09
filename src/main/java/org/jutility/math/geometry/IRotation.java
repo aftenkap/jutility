@@ -1,5 +1,7 @@
 package org.jutility.math.geometry;
 
+
+// @formatter:off
 /*
  * #%L
  * jutility-math
@@ -19,9 +21,9 @@ package org.jutility.math.geometry;
  * limitations under the License.
  * #L%
  */
+// @formatter:on
 
-
-import org.jutility.math.vectorAlgebra.IVector4;
+import org.jutility.math.vectoralgebra.IVector4;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -30,19 +32,35 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 
 /**
- * The {@link IRotation} interface provides a contract for classes implementing
+ * The {@code IRotation} interface provides a contract for classes implementing
  * axis-angle rotations.
  * 
- * @author Peter J. Radics
- * @version 1.0
  * @param <T>
- *            The type of the rotation
+ *            The {@link Number} type of the {@code IRotation}.
+ * 
+ * @author Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.0
  */
 @JsonTypeInfo(use = Id.NAME, include = As.PROPERTY,
         property = "implementingType")
 @JsonSubTypes({ @JsonSubTypes.Type(value = Rotation.class, name = "Rotation") })
-public interface IRotation<T extends Number>
-        extends IRotationBase<T> {
+public interface IRotation<T extends Number> {
+
+    /**
+     * Returns the type of this rotation.
+     * 
+     * @return the type.
+     */
+    public abstract Class<? extends T> getType();
+
+
+    /**
+     * Returns the rotation angle.
+     * 
+     * @return the rotation angle.
+     */
+    public abstract T getRotationAngle();
 
 
     /**
@@ -50,7 +68,5 @@ public interface IRotation<T extends Number>
      * 
      * @return the rotation axis.
      */
-    @Override
-    public IVector4<T> getAxis();
-
+    public abstract IVector4<T> getRotationAxis();
 }

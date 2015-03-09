@@ -2,16 +2,22 @@
  * This package provides support for geometry.
  * 
  * @author Peter J. Radics
- * @version 1.0
+ * @version 0.1.2
+ * @since 0.1.0
  */
-@XmlSchema(namespace = "org.jutility.math.geometry", xmlns = { @XmlNs(namespaceURI = "org.jutility.math.geometry", prefix = "geometry") })
+@XmlSchema(namespace = "org.jutility.math.geometry", xmlns = { @XmlNs(
+        namespaceURI = "org.jutility.math.geometry", prefix = "geometry") })
 package org.jutility.math.geometry;
 
+
+//@formatter:off
 /*
- * #%L
- * jutility-math
+* #%L
+ * * jutility-math
+ * *
  * %%
  * Copyright (C) 2013 - 2014 jutility.org
+ * *
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +31,8 @@ package org.jutility.math.geometry;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * #L%
- */
+*/
+//@formatter:on
 
 
 import javax.xml.bind.annotation.XmlSchema;

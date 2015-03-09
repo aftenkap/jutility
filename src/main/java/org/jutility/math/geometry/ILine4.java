@@ -1,10 +1,14 @@
 package org.jutility.math.geometry;
 
+
+//@formatter:off
 /*
- * #%L
- * jutility-math
+* #%L
+ * * jutility-math
+ * *
  * %%
  * Copyright (C) 2013 - 2014 jutility.org
+ * *
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,10 +22,9 @@ package org.jutility.math.geometry;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * #L%
- */
-
-
-import org.jutility.math.vectorAlgebra.IPoint4;
+*/
+//@formatter:on
+import org.jutility.math.vectoralgebra.IPoint4;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -30,15 +33,16 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 
 /**
- * The {@link ILine4} interface provides a contract for classes implementing
+ * The {@code ILine4} interface provides a contract for classes implementing
  * lines in three-dimensional space based on {@link IPoint4 Points} in
  * homogeneous representation.
  * 
- * @author Peter J. Radics
- * @version 1.0
  * @param <T>
- *            the type of the line.
+ *            the {@link Number} type of the {@code Line}.
  * 
+ * @author Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.0
  */
 @JsonTypeInfo(use = Id.NAME, include = As.PROPERTY,
         property = "implementingType")
@@ -53,18 +57,17 @@ public interface ILine4<T extends Number> {
     public abstract Class<? extends T> getType();
 
     /**
-     * Returns the source of this line.
+     * Returns the source {@link IPoint4 Point} of this line.
      * 
-     * @return the source.
+     * @return the source{@link IPoint4 Point}.
      */
     public abstract IPoint4<T> getSource();
 
 
     /**
-     * Returns the sink of this line.
+     * Returns the sink {@link IPoint4 Point} of this line.
      * 
-     * @return the sink
+     * @return the sink {@link IPoint4 Point}.
      */
     public abstract IPoint4<T> getSink();
-
 }

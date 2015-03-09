@@ -1,10 +1,14 @@
 package org.jutility.math.geometry;
 
+
+//@formatter:off
 /*
- * #%L
- * jutility-math
+* #%L
+ * * jutility-math
+ * *
  * %%
  * Copyright (C) 2013 - 2014 jutility.org
+ * *
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,30 +22,33 @@ package org.jutility.math.geometry;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * #L%
- */
+*/
+//@formatter:on
 
 
-import org.jutility.math.vectorAlgebra.IPoint4;
+import org.jutility.math.vectoralgebra.IPoint4;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 
 /**
- * The {@link ITriangle4} interface provides a contract for classes implementing
- * a triangle.
+ * The {@code ITriangle4} interface provides a contract for classes implementing
+ * triangles in three-dimensional space based on {@link IPoint4 Points} in
+ * homogeneous representation.
+ * 
+ * @param <T>
+ *            the {@link Number} type of the {@code ITriangle4}.
  * 
  * @author Peter J. Radics
- * @version 1.0
- * @param <T>
- *            the type of the triangle.
- * 
+ * @version 0.1.2
+ * @since 0.1.0
  */
 @JsonTypeInfo(use = Id.NAME, include = As.PROPERTY,
         property = "implementingType")
-// @JsonSubTypes({ @JsonSubTypes.Type(value = Triangle4.class,
-// name = "Triangle4") })
+@JsonSubTypes({ @JsonSubTypes.Type(value = Triangle4.class, name = "Triangle4") })
 public interface ITriangle4<T extends Number> {
 
     /**
@@ -73,5 +80,4 @@ public interface ITriangle4<T extends Number> {
      * @return the third point.
      */
     public abstract IPoint4<T> getThirdPoint();
-
 }

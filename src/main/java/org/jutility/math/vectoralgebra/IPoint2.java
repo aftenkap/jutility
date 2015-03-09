@@ -1,9 +1,4 @@
-/**
- * This package provides utilities for various mathematical operations.
- */
-@XmlSchema(namespace = "org.jutility.math", xmlns = { @XmlNs(
-        namespaceURI = "org.jutility.math", prefix = "math") })
-package org.jutility.math;
+package org.jutility.math.vectoralgebra;
 
 
 // @formatter:off
@@ -28,7 +23,27 @@ package org.jutility.math;
  */
 // @formatter:on
 
-import javax.xml.bind.annotation.XmlSchema;
-import javax.xml.bind.annotation.XmlNs;
+
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 
 
+/**
+ * The generic {@code IPoint2} interface provides a contract for all classes
+ * implementing two-dimensional points.
+ * <p>
+ * This is a tagging interface.
+ * </p>
+ * 
+ * @param <T>
+ *            the {@link Number} type of the {@code IPoint2}.
+ * 
+ * @author Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.0
+ */
+@JsonSubTypes({ @JsonSubTypes.Type(value = Point2.class, name = "Point2") })
+public interface IPoint2<T extends Number>
+        extends ITuple2<T> {
+
+    // Tagging interface.
+}

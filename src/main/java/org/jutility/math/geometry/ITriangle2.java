@@ -1,12 +1,14 @@
 package org.jutility.math.geometry;
 
 
-// @formatter:off
+//@formatter:off
 /*
- * #%L
- * jutility-math
+* #%L
+ * * jutility-math
+ * *
  * %%
  * Copyright (C) 2013 - 2014 jutility.org
+ * *
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,8 +22,11 @@ package org.jutility.math.geometry;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * #L%
- */
-// @formatter:on
+*/
+//@formatter:on
+
+
+import org.jutility.math.vectoralgebra.IPoint2;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -30,11 +35,12 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 
 /**
- * The {@code ITranslation} interface provides a contract for classes that
- * implement the translation of an object.
+ * The {@code ITriangle2} interface provides a contract for classes implementing
+ * triangles in two-dimensional space based on two-dimensional {@link IPoint2
+ * Points}.
  * 
  * @param <T>
- *            the {@link Number} type of this {@code ITranslation}.
+ *            the {@link Number} type of the {@code ITriangle4}.
  * 
  * @author Peter J. Radics
  * @version 0.1.2
@@ -42,37 +48,36 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
  */
 @JsonTypeInfo(use = Id.NAME, include = As.PROPERTY,
         property = "implementingType")
-@JsonSubTypes({ @JsonSubTypes.Type(value = Translation.class,
-        name = "Translation") })
-public interface ITranslation<T extends Number> {
+@JsonSubTypes({ @JsonSubTypes.Type(value = Triangle2.class, name = "Triangle2") })
+public interface ITriangle2<T extends Number> {
 
     /**
-     * Returns the type of this translation.
+     * Returns the type of the triangle.
      * 
      * @return the type.
      */
     public abstract Class<? extends T> getType();
 
     /**
-     * The translation in the x-dimension.
+     * Returns the first point.
      * 
-     * @return the translation in the x-dimension.
+     * @return the first point.
      */
-    public abstract T getXTranslation();
+    public abstract IPoint2<T> getFirstPoint();
 
 
     /**
-     * The translation in the y-dimension.
+     * Returns the second point.
      * 
-     * @return the translation in the y-dimension.
+     * @return the second point.
      */
-    public abstract T getYTranslation();
+    public abstract IPoint2<T> getSecondPoint();
 
 
     /**
-     * The translation in the x-dimension.
+     * Returns the third point.
      * 
-     * @return the translation in the y-dimension.
+     * @return the third point.
      */
-    public abstract T getZTranslation();
+    public abstract IPoint2<T> getThirdPoint();
 }

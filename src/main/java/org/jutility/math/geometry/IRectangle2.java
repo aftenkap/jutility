@@ -1,5 +1,7 @@
 package org.jutility.math.geometry;
 
+
+// @formatter:off
 /*
  * #%L
  * jutility-math
@@ -19,9 +21,10 @@ package org.jutility.math.geometry;
  * limitations under the License.
  * #L%
  */
+// @formatter:on
 
 
-import org.jutility.math.vectorAlgebra.IPoint2;
+import org.jutility.math.vectoralgebra.IPoint2;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -30,24 +33,25 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 
 /**
- * The {@link IRectangle2} interface provides a contract for classes
+ * The {@code IRectangle2} interface provides a contract for classes
  * implementing rectangles in two-dimensional space based on two-dimensional
  * {@link IPoint2 Points}.
  * 
- * @author Peter J. Radics
- * @version 1.0
  * @param <T>
- *            the type of the rectangle.
+ *            the {@link Number} type of the {@code IRectangle2}.
  * 
+ * @author Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.0
  */
 @JsonTypeInfo(use = Id.NAME, include = As.PROPERTY,
-property = "implementingType")
+        property = "implementingType")
 @JsonSubTypes({ @JsonSubTypes.Type(value = Rectangle2.class,
         name = "Rectangle2") })
 public interface IRectangle2<T extends Number> {
 
     /**
-     * Returns the type of the rectangle.
+     * Returns the type of the {@code IRectangle2}.
      * 
      * @return the type.
      */
@@ -81,5 +85,4 @@ public interface IRectangle2<T extends Number> {
      * @return the bottom-right corner.
      */
     public abstract IPoint2<T> getBottomRightCorner();
-
 }
