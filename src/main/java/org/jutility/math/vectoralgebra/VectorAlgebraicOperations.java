@@ -28,6 +28,7 @@ import org.jutility.common.datatype.util.NumberComparator;
 import org.jutility.math.arithmetics.ArithmeticOperations;
 
 
+
 /**
  * The {@code VectorAlgebraicOperations} class is a utility class for Tuple and
  * Matrix operations.
