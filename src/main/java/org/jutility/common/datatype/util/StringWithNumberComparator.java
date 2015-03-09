@@ -80,7 +80,7 @@ public class StringWithNumberComparator
      * @return a negative integer, zero, or a positive integer as the first
      *         argument is less than, equal to, or greater than the second.
      */
-    public static int compareTo(final String lhs, final String rhs) {
+    public static final int compareTo(final String lhs, final String rhs) {
 
         final String[] lhsTokens = lhs.split("\\s");
         final String[] rhsTokens = rhs.split("\\s");

@@ -1,6 +1,9 @@
 package org.jutility.common.datatype.table;
 
 
+import java.io.Serializable;
+
+
 // @formatter:off
 /*
  * #%L
@@ -36,11 +39,17 @@ package org.jutility.common.datatype.table;
  * @since 0.1.0
  */
 public class Cell<T>
-        implements ICell<T>, Comparable<ICell<T>> {
+        implements ICell<T>, Comparable<ICell<T>>, Serializable {
 
-    private CellLocation location;
+    /**
+     * Serial Version UID.
+     */
+    private static final long serialVersionUID = 7327202361564453945L;
 
-    private T            value;
+
+    private CellLocation      location;
+
+    private T                 value;
 
 
 

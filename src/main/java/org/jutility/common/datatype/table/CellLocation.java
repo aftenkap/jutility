@@ -22,6 +22,8 @@ package org.jutility.common.datatype.table;
  * #L%
  */
 // @formatter:on
+
+
 import java.util.Comparator;
 
 import org.jutility.common.datatype.tuple.ITuple2;
@@ -39,6 +41,12 @@ import org.jutility.common.datatype.tuple.Tuple2;
 public class CellLocation
         extends Tuple2<Integer>
         implements Comparable<CellLocation> {
+
+    /**
+     * Serial Version UID.
+     */
+    private static final long serialVersionUID = 7102510552022429104L;
+
 
     /**
      * Returns the row index of a cell.

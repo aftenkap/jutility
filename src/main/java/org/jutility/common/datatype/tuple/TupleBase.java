@@ -23,6 +23,7 @@ package org.jutility.common.datatype.tuple;
  */
 // @formatter:on
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -60,10 +61,16 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 @XmlRootElement(name = "TupleBase")
 @XmlType(name = "TupleBase")
 public abstract class TupleBase<T>
-        implements ITuple<T> {
+        implements ITuple<T>, Serializable {
 
-    private static final Logger      LOG = LoggerFactory
-                                                 .getLogger(TupleBase.class);
+    /**
+     * Serial Version UID.
+     */
+    private static final long        serialVersionUID = -5815663215090075652L;
+
+    private static final Logger      LOG              = LoggerFactory
+                                                              .getLogger(TupleBase.class);
+
 
     @XmlAttribute
     private final Class<? extends T> type;

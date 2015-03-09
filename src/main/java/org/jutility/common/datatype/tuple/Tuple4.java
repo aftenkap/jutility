@@ -54,7 +54,13 @@ public class Tuple4<T>
         implements ITuple4<T> {
 
 
-    private static final Logger LOG = LoggerFactory.getLogger(Tuple4.class);
+    /**
+     * Serial Version UID.
+     */
+    private static final long   serialVersionUID = -169409275666531733L;
+
+    private static final Logger LOG              = LoggerFactory
+                                                         .getLogger(Tuple4.class);
 
 
     @Override

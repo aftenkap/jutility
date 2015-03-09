@@ -49,6 +49,12 @@ public class Tuple<T>
         extends TupleBase<T> {
 
 
+    /**
+     * Serial Version UID.
+     */
+    private static final long serialVersionUID = -2065119705254739524L;
+
+
     @Override
     @XmlElementWrapper(name = "Components")
     @XmlElement(name = "Component")

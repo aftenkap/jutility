@@ -23,11 +23,11 @@ package org.jutility.common.datatype.table;
  */
 //@formatter:on
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.SortedSet;
 import java.util.TreeMap;
 
 import org.jutility.common.reflection.ReflectionUtils;
@@ -38,8 +38,8 @@ import org.jutility.common.reflection.ReflectionUtils;
  * The abstract generic {@code Table} class models a two-dimensional table of
  * arbitrary data.
  * <p>
- * The table is modeled as a {@link SortedSet} of {@link ICell Cells} to limit
- * the memory impact of sparse tables.
+ * The table is modeled as a {@link TreeMap} of {@link ICell Cells} to limit the
+ * memory impact of sparse tables.
  * </p>
  *
  * @param <CELL>
@@ -52,7 +52,12 @@ import org.jutility.common.reflection.ReflectionUtils;
  * @since 0.1.0
  */
 public abstract class AbstractTable<CELL extends ICell<T>, T>
-        implements ICellTable<CELL, T> {
+        implements ICellTable<CELL, T>, Serializable {
+
+    /**
+     * Serial Version UID.
+     */
+    private static final long                              serialVersionUID = -4547481051474631317L;
 
     private final TreeMap<Integer, CellContainer<CELL, T>> columns;
     private final TreeMap<Integer, CellContainer<CELL, T>> rows;

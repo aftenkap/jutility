@@ -23,6 +23,7 @@ package org.jutility.common.datatype.table;
  */
 // @formatter:on
 
+import java.io.Serializable;
 import java.util.AbstractList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -43,7 +44,14 @@ import java.util.TreeMap;
  */
 public class CellContainer<CELL extends ICell<T>, T>
         extends AbstractList<T>
-        implements Comparable<CellContainer<CELL, T>> {
+        implements Comparable<CellContainer<CELL, T>>, Serializable {
+
+
+    /**
+     * Serial Version UID.
+     */
+    private static final long            serialVersionUID = -2922010862735630588L;
+
 
     private final int                    index;
     private final TreeMap<Integer, CELL> entries;

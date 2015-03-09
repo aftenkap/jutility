@@ -44,6 +44,12 @@ public class ComparableKeyValuePair<KEY extends Comparable<KEY>, VALUE>
         implements Comparable<ComparableKeyValuePair<KEY, VALUE>> {
 
     /**
+     * Serial Version UID.
+     */
+    private static final long serialVersionUID = -3898170300715575747L;
+
+
+    /**
      * Creates a new instance of the {@code ComparableKeyValuePair} class.
      * (Serialization Constructor)
      */

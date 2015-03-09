@@ -23,6 +23,8 @@ package org.jutility.common.datatype.map;
  */
 // @formatter:on
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -45,13 +47,21 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "KeyValuePair")
 @XmlType(name = "KeyValuePair")
 @XmlAccessorType(XmlAccessType.NONE)
-public class KeyValuePair<KEY, VALUE> {
+public class KeyValuePair<KEY, VALUE>
+        implements Serializable {
+
+
+    /**
+     * Serial Version UID.
+     */
+    private static final long serialVersionUID = -2177494404526358079L;
+
 
     @XmlElement
-    private final KEY key;
+    private final KEY         key;
 
     @XmlElement
-    private VALUE     value;
+    private VALUE             value;
 
 
     /**
@@ -148,6 +158,7 @@ public class KeyValuePair<KEY, VALUE> {
     public boolean equals(final Object obj) {
 
         if (this == obj) {
+
             return true;
         }
         if ((obj != null) && (obj instanceof KeyValuePair<?, ?>)) {

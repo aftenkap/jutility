@@ -23,6 +23,7 @@ package org.jutility.common.datatype.map;
  */
 //@formatter:on
 
+import java.io.Serializable;
 import java.util.AbstractSequentialList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -47,13 +48,20 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class ListMapWrapper<K, E>
-        extends AbstractSequentialList<E> {
+        extends AbstractSequentialList<E>
+        implements Serializable {
 
-    private static Logger   LOG = LoggerFactory.getLogger(ListMapWrapper.class);
+    /**
+     * Serial Version UID.
+     */
+    private static final long serialVersionUID = -604106384904749465L;
 
-    private final Class<K>  keyType;
-    private final Map<K, E> map;
-    private final String    keyProperty;
+    private static Logger     LOG              = LoggerFactory
+                                                       .getLogger(ListMapWrapper.class);
+
+    private final Class<K>    keyType;
+    private final Map<K, E>   map;
+    private final String      keyProperty;
 
 
 

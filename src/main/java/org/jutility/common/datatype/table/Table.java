@@ -49,7 +49,14 @@ import org.slf4j.LoggerFactory;
 public class Table<T>
         extends AbstractTable<Cell<T>, T> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(Table.class);
+    /**
+     * Serial Version UID.
+     */
+    private static final long   serialVersionUID = 929580653346817039L;
+
+    private static final Logger LOG              = LoggerFactory
+                                                         .getLogger(Table.class);
+
 
     @Override
     public boolean add(final int row, final int column, final T value) {

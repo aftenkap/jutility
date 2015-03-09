@@ -49,7 +49,15 @@ public class Tuple2<T>
         extends TupleBase<T>
         implements ITuple2<T> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(Tuple2.class);
+
+    /**
+     * Serial Version UID.
+     */
+    private static final long   serialVersionUID = 2982101384146007968L;
+
+    private static final Logger LOG              = LoggerFactory
+                                                         .getLogger(Tuple2.class);
+
 
     @Override
     @XmlElement(name = "X")

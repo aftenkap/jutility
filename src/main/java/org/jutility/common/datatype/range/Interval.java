@@ -47,6 +47,11 @@ public class Interval<T extends Number>
         extends IntervalBase<T> {
 
 
+    /**
+     * Serial Version UID.
+     */
+    private static final long serialVersionUID = 614470392681595042L;
+
 
     /**
      * Constructs a new instance of the {@code Interval} class. (Serialization
