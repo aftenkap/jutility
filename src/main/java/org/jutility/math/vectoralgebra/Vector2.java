@@ -35,6 +35,7 @@ import org.jutility.math.arithmetics.ArithmeticOperations;
 
 
 
+
 /**
  * The generic {@code Vector2} class provides a reference implementation of the
  * {@link IVector2} interface.
