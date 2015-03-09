@@ -1,13 +1,14 @@
-/**
- * 
- */
 package org.jutility.math.geometry;
 
+
+//@formatter:off
 /*
- * #%L
- * jutility-math
+* #%L
+ * * jutility-math
+ * *
  * %%
  * Copyright (C) 2013 - 2014 jutility.org
+ * *
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,9 +22,11 @@ package org.jutility.math.geometry;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * #L%
- */
+*/
+//@formatter:on
 
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -33,21 +36,32 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.jutility.math.vectorAlgebra.IPoint2;
-import org.jutility.math.vectorAlgebra.Point2;
+import org.jutility.math.vectoralgebra.IPoint2;
+import org.jutility.math.vectoralgebra.Point2;
 
 
 /**
- * @author Peter J. Radics
- * @version 0.1
- * @since 0.1
+ * The {@code Polygon2} class provides a reference implementation of the
+ * {@link IPolygon2} interface.
+ * 
  * @param <T>
- *            the type of the polygon.
+ *            the {@link Number} type of the {@code Polygon2}.
+ * 
+ * @author Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.0
  */
 @XmlRootElement(name = "Polygon2")
-@XmlType(name = "Polygon4")
+@XmlType(name = "Polygon2")
 public class Polygon2<T extends Number>
-        implements IPolygon2<T> {
+        implements IPolygon2<T>, Serializable {
+
+
+    /**
+     * Serial Version UID.
+     */
+    private static final long        serialVersionUID = -1012970139602788337L;
+
 
     @XmlElement(type = Point2.class)
     private final List<IPoint2<T>>   points;
@@ -55,27 +69,21 @@ public class Polygon2<T extends Number>
     @XmlAttribute
     private final Class<? extends T> type;
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.math.geometry.IPolygon4#getType()
-     */
+
+
     @Override
     public Class<? extends T> getType() {
 
         return this.type;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.math.geometry.IPolygon4#getPoints()
-     */
+
     @Override
     public List<IPoint2<T>> getPoints() {
 
         return Collections.unmodifiableList(this.points);
     }
+
 
     @Override
     public boolean addPoint(IPoint2<? extends Number> point) {
@@ -85,6 +93,7 @@ public class Polygon2<T extends Number>
         return this.points.add(pointToAdd);
     }
 
+
     @Override
     public boolean removePoint(IPoint2<? extends Number> point) {
 
@@ -92,6 +101,7 @@ public class Polygon2<T extends Number>
 
         return this.points.remove(pointToRemove);
     }
+
 
     @Override
     public void clearPoints() {
@@ -127,8 +137,11 @@ public class Polygon2<T extends Number>
      * Creates a new instance of the {@link Polygon2} class with the provided
      * type and parameters.
      * 
+     * @param <S>
+     *            the {@link Number} type of the {@link IPoint2 Points}.
+     * 
      * @param points
-     *            the points.
+     *            the {@link IPoint2 Points}.
      * @param type
      *            the type.
      */
@@ -142,8 +155,11 @@ public class Polygon2<T extends Number>
      * Creates a new instance of the {@link Polygon2} class with the provided
      * type and parameters.
      * 
+     * @param <S>
+     *            the {@link Number} type of the {@link IPoint2 Points}.
+     * 
      * @param points
-     *            the points.
+     *            the {@link IPoint2 Points}.
      * @param type
      *            the type.
      * @param serialization
@@ -223,6 +239,7 @@ public class Polygon2<T extends Number>
     public boolean equals(final Object obj) {
 
         if (obj != null && obj instanceof IPolygon2<?>) {
+
             IPolygon2<?> other = (IPolygon2<?>) obj;
 
             boolean same = true;
@@ -254,5 +271,4 @@ public class Polygon2<T extends Number>
 
         return hash;
     }
-
 }

@@ -31,31 +31,50 @@ import javax.xml.bind.annotation.XmlEnumValue;
 
 
 /**
- * The {@code ProjectionMode} enum enumerates over the different possible
- * projection modes.
+ * The {@code ShearComponent} enum enumerates the possible components for
+ * shearing.
  * 
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.0
  */
 @XmlEnum
-public enum ProjectionMode {
+public enum ShearComponent {
+
 
     /**
-     * 2D orthographic projection.
+     * Shear x by y.
      */
-    @XmlEnumValue(value = "Orthographic2D")
-    ORTHOGRAPHIC_2D,
+    @XmlEnumValue(value = "ShearXbyY")
+    X_BY_Y,
 
     /**
-     * 3D orthographic projection.
+     * Shear x by z.
      */
-    @XmlEnumValue(value = "Orthographic3D")
-    ORTHOGRAPHIC_3D,
+    @XmlEnumValue(value = "ShearXbyZ")
+    X_BY_Z,
 
     /**
-     * 3D perspective projection.
+     * Shear y by x.
      */
-    @XmlEnumValue(value = "Perspective")
-    PERSPECTIVE;
+    @XmlEnumValue(value = "ShearYbyX")
+    Y_BY_X,
+
+    /**
+     * Shear y by z.
+     */
+    @XmlEnumValue(value = "ShearYbyZ")
+    Y_BY_Z,
+
+    /**
+     * Shear z by x.
+     */
+    @XmlEnumValue(value = "ShearZbyX")
+    Z_BY_X,
+
+    /**
+     * Shear z by y.
+     */
+    @XmlEnumValue(value = "ShearZbyY")
+    Z_BY_Y;
 }

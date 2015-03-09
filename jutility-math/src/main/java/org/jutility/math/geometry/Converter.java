@@ -1,10 +1,14 @@
 package org.jutility.math.geometry;
 
+
+//@formatter:off
 /*
- * #%L
- * jutility-math
+* #%L
+ * * jutility-math
+ * *
  * %%
  * Copyright (C) 2013 - 2014 jutility.org
+ * *
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,21 +22,26 @@ package org.jutility.math.geometry;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * #L%
- */
+*/
+//@formatter:on
 
 
 /**
- * The {@link Converter} utility class provides conversion operations for
+ * The {@code Converter} utility class provides conversion operations for
  * different geometric types.
  * 
  * @author Peter J. Radics
- * @version 0.1
+ * @version 0.1.2
+ * @since 0.1.0
  */
-public class Converter {
+public final class Converter {
 
     /**
-     * Converts the provided {@link IRotation rotation} into a {@link IRotation
-     * rotation} of the desired {@link Number number} type.
+     * Converts the provided {@link IRotation Rotation} into a {@link IRotation
+     * Rotation} of the desired {@link Number} type.
+     * 
+     * @param <T>
+     *            the desired {@link Number} type.
      * 
      * @param value
      *            the {@link IRotation rotation} to convert.
@@ -40,7 +49,7 @@ public class Converter {
      *            the desired type.
      * @return the converted {@link IRotation rotation}.
      */
-    public static <T extends Number> IRotation<T> convert(
+    public static final <T extends Number> IRotation<T> convert(
             final IRotation<? extends Number> value,
             final Class<? extends T> returnType) {
 
@@ -50,39 +59,43 @@ public class Converter {
 
 
     /**
-     * Converts the provided {@link IScale scale} into a {@link IScale scale} of
-     * the desired {@link Number number} type.
+     * Converts the provided {@link IScaleFactor ScaleFactor} into a
+     * {@link IScaleFactor ScaleFactor} of the desired {@link Number Number}
+     * type.
+     * 
+     * @param <T>
+     *            the desired {@link Number} type.
      * 
      * @param value
-     *            the {@link IScale scale} to convert.
+     *            the {@link IScaleFactor ScaleFactor} to convert.
      * @param returnType
-     *            the desired {@link Number number} type.
-     * @return the converted {@link IScale scale}.
+     *            the desired return type.
+     * @return the converted {@link IScaleFactor ScaleFactor}.
      */
-    public static <T extends Number> IScale<T> convert(
-            final IScale<? extends Number> value,
+    public static final <T extends Number> IScaleFactor<T> convert(
+            final IScaleFactor<? extends Number> value,
             final Class<? extends T> returnType) {
 
-        return new Scale<T>(value, returnType);
+        return new ScaleFactor<T>(value, returnType);
     }
 
     /**
-     * Converts the provided {@link ILine4 line} into a {@link ILine4 line} of the
-     * desired {@link Number number} type.
+     * Converts the provided {@link ILine4 Line} into a {@link ILine4 Line} of
+     * the desired {@link Number} type.
+     * 
+     * @param <T>
+     *            the desired {@link Number} type.
      * 
      * @param value
      *            the {@link ILine4 line} to convert.
      * @param returnType
-     *            the desired {@link Number number} type.
+     *            the desired return type.
      * @return the converted {@link ILine4 line}.
      */
-    public static <T extends Number> ILine4<T> convert(
+    public static final <T extends Number> ILine4<T> convert(
             final ILine4<? extends Number> value,
             final Class<? extends T> returnType) {
 
         return new Line4<T>(value, returnType);
     }
-
-
-
 }
