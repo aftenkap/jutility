@@ -1,17 +1,24 @@
 /**
- * This package provides utilities for various mathematical operations.
+ * This package provides support for vector algebra.
+ * 
+ * @author Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.0
  */
-@XmlSchema(namespace = "org.jutility.math", xmlns = { @XmlNs(
-        namespaceURI = "org.jutility.math", prefix = "math") })
-package org.jutility.math;
+@XmlSchema(namespace = "org.jutility.math.vectoralgebra", xmlns = { @XmlNs(
+        namespaceURI = "org.jutility.math.vectoralgebra",
+        prefix = "vectorAlgebra") })
+package org.jutility.math.vectoralgebra;
 
 
-// @formatter:off
+//@formatter:off
 /*
- * #%L
- * jutility-math
+* #%L
+ * * jutility-math
+ * *
  * %%
  * Copyright (C) 2013 - 2014 jutility.org
+ * *
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,10 +32,9 @@ package org.jutility.math;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * #L%
- */
-// @formatter:on
+*/
+//@formatter:on
+
 
 import javax.xml.bind.annotation.XmlSchema;
 import javax.xml.bind.annotation.XmlNs;
-
-

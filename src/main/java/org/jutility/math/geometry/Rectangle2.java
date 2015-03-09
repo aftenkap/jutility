@@ -23,30 +23,40 @@ package org.jutility.math.geometry;
  */
 //@formatter:on
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import org.jutility.math.arithmetics.ArithmeticOperations;
-import org.jutility.math.vectorAlgebra.IPoint2;
-import org.jutility.math.vectorAlgebra.Point2;
+import org.jutility.math.vectoralgebra.IPoint2;
+import org.jutility.math.vectoralgebra.Point2;
 
 
 /**
  * The generic {@code Rectangle2} class provides a reference implementation of
  * the {@link IRectangle2} interface.
  *
- * @author Peter J. Radics
- * @version 1.0
  * @param <T>
- *            the type of the rectangle.
- *
+ *            the {@link Number} type of the {@code Rectangle2}.
+ * 
+ * @author Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.0
  */
 @XmlRootElement(name = "Rectangle2")
 @XmlType(name = "Rectangle2")
 public class Rectangle2<T extends Number>
-        implements IRectangle2<T> {
+        implements IRectangle2<T>, Serializable {
+
+
+    /**
+     * Serial Version UID.
+     */
+    private static final long        serialVersionUID = -383379881571111028L;
+
 
     @XmlAttribute
     private final Class<? extends T> type;
@@ -158,10 +168,12 @@ public class Rectangle2<T extends Number>
             final Class<? extends T> type, final boolean serialization) {
 
         if (topLeftCorner == null && !serialization) {
+
             throw new IllegalArgumentException(
                     "Cannot create a rectangle without a top-left corner!");
         }
         if (bottomRightCorner == null && !serialization) {
+
             throw new IllegalArgumentException(
                     "Cannot create a rectangle without a bottom-right corner!");
         }
@@ -174,15 +186,19 @@ public class Rectangle2<T extends Number>
         }
 
         if (topLeftCorner != null && type != null) {
+
             this.topLeftCorner = new Point2<T>(topLeftCorner, type);
         }
         else {
+
             this.topLeftCorner = null;
         }
         if (bottomRightCorner != null && type != null) {
+
             this.bottomRightCorner = new Point2<T>(bottomRightCorner, type);
         }
         else {
+
             this.bottomRightCorner = null;
         }
 
@@ -228,8 +244,9 @@ public class Rectangle2<T extends Number>
     @Override
     public boolean equals(final Object obj) {
 
-        if (obj != null && obj instanceof IRectangle4<?>) {
-            IRectangle4<?> other = (IRectangle4<?>) obj;
+        if (obj != null && obj instanceof IRectangle2<?>) {
+
+            IRectangle2<?> other = (IRectangle2<?>) obj;
 
             boolean sameTopLeftCorner = this.getTopLeftCorner().equals(
                     other.getTopLeftCorner());
@@ -238,6 +255,7 @@ public class Rectangle2<T extends Number>
 
             return sameTopLeftCorner && sameBottomRightCorner;
         }
+
         return false;
     }
 

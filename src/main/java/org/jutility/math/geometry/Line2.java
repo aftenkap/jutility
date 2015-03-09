@@ -1,10 +1,14 @@
 package org.jutility.math.geometry;
 
+
+//@formatter:off
 /*
- * #%L
- * jutility-math
+* #%L
+ * * jutility-math
+ * *
  * %%
  * Copyright (C) 2013 - 2014 jutility.org
+ * *
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,32 +22,43 @@ package org.jutility.math.geometry;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * #L%
- */
+*/
+//@formatter:on
 
+
+import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.jutility.math.vectorAlgebra.IPoint2;
-import org.jutility.math.vectorAlgebra.Point2;
+import org.jutility.math.vectoralgebra.IPoint2;
+import org.jutility.math.vectoralgebra.Point2;
 
 
 /**
- * The generic {@link Line2} class provides a reference implementation of the
+ * The generic {@code Line2} class provides a reference implementation of the
  * {@link ILine2} interface.
  * 
- * @author Peter J. Radics
- * @version 1.0
  * @param <T>
- *            the type of the line.
+ *            the {@link Number} type of the {@code Line2}.
  * 
+ * @author Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.0
  */
 @XmlRootElement(name = "Line2")
 @XmlType(name = "Line2")
 public class Line2<T extends Number>
-        implements ILine2<T> {
+        implements ILine2<T>, Serializable {
+
+
+    /**
+     * Serial Version UID.
+     */
+    private static final long        serialVersionUID = -7756312621286658016L;
+
 
     @XmlAttribute
     private final Class<? extends T> type;
@@ -74,7 +89,7 @@ public class Line2<T extends Number>
 
 
     /**
-     * Creates a new instance of the {@link Line2} class. (Serialization
+     * Creates a new instance of the {@code Line2} class. (Serialization
      * Constructor)
      */
     protected Line2() {
@@ -83,7 +98,7 @@ public class Line2<T extends Number>
     }
 
     /**
-     * Creates a new instance of the {@link Line2} class with the provided type
+     * Creates a new instance of the {@code Line2} class with the provided type
      * and parameters.
      * 
      * @param source
@@ -100,7 +115,7 @@ public class Line2<T extends Number>
     }
 
     /**
-     * Creates a new instance of the {@link Line2} class with the provided type
+     * Creates a new instance of the {@code Line2} class with the provided type
      * and parameters.
      * 
      * @param source
@@ -205,5 +220,4 @@ public class Line2<T extends Number>
 
         return hash;
     }
-
 }

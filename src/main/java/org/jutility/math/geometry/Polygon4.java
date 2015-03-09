@@ -2,18 +2,21 @@ package org.jutility.math.geometry;
 
 
 
+//@formatter:off
 /*
  * #%L
- * jutility-math
+ * * jutility-math
+ * *
  * %%
  * Copyright (C) 2013 - 2014 jutility.org
+ * *
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,8 +24,10 @@ package org.jutility.math.geometry;
  * limitations under the License.
  * #L%
  */
+//@formatter:on
 
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,21 +37,32 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.jutility.math.vectorAlgebra.IPoint4;
-import org.jutility.math.vectorAlgebra.Point4;
+import org.jutility.math.vectoralgebra.IPoint4;
+import org.jutility.math.vectoralgebra.Point4;
 
 
 /**
- * @author Peter J. Radics
- * @version 0.1
- * @since 0.1
+ * The {@code Polygon4} class provides a reference implementation of the
+ * {@link IPolygon4} interface.
+ *
  * @param <T>
- *            the type of the polygon.
+ *            the {@link Number} type of the {@code Polygon4}.
+ *
+ * @author Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.0
  */
 @XmlRootElement(name = "Polygon4")
 @XmlType(name = "Polygon4")
 public class Polygon4<T extends Number>
-        implements IPolygon4<T> {
+        implements IPolygon4<T>, Serializable {
+
+
+    /**
+     * Serial Version UID.
+     */
+    private static final long        serialVersionUID = -6613114341290751004L;
+
 
     @XmlElement(type = Point4.class)
     private final List<IPoint4<T>>   points;
@@ -54,49 +70,47 @@ public class Polygon4<T extends Number>
     @XmlAttribute
     private final Class<? extends T> type;
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.math.geometry.IPolygon4#getType()
-     */
+
+
     @Override
     public Class<? extends T> getType() {
 
         return this.type;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.math.geometry.IPolygon4#getPoints()
-     */
+
+
     @Override
     public List<IPoint4<T>> getPoints() {
 
         return Collections.unmodifiableList(this.points);
     }
 
-    @Override
-    public boolean addPoint(IPoint4<? extends Number> point) {
 
-        Point4<T> pointToAdd = new Point4<T>(point, this.type);
+    @Override
+    public boolean addPoint(final IPoint4<? extends Number> point) {
+
+        final Point4<T> pointToAdd = new Point4<T>(point, this.type);
 
         return this.points.add(pointToAdd);
     }
 
-    @Override
-    public boolean removePoint(IPoint4<? extends Number> point) {
 
-        Point4<T> pointToRemove = new Point4<T>(point, this.type);
+    @Override
+    public boolean removePoint(final IPoint4<? extends Number> point) {
+
+        final Point4<T> pointToRemove = new Point4<T>(point, this.type);
 
         return this.points.remove(pointToRemove);
     }
+
 
     @Override
     public void clearPoints() {
 
         this.points.clear();
     }
+
 
 
     /**
@@ -112,7 +126,7 @@ public class Polygon4<T extends Number>
 
     /**
      * Creates a new instance of the {@code Polygon4} class.
-     * 
+     *
      * @param type
      *            the type.
      */
@@ -125,9 +139,12 @@ public class Polygon4<T extends Number>
     /**
      * Creates a new instance of the {@link Polygon4} class with the provided
      * type and parameters.
-     * 
+     *
+     * @param <S>
+     *            the {@link Number} type of the {@link IPoint4 Points}.
+     *
      * @param points
-     *            the points.
+     *            the {@link IPoint4 Points}.
      * @param type
      *            the type.
      */
@@ -140,9 +157,12 @@ public class Polygon4<T extends Number>
     /**
      * Creates a new instance of the {@link Polygon4} class with the provided
      * type and parameters.
-     * 
+     *
+     * @param <S>
+     *            the {@link Number} type of the {@link IPoint4 Points}.
+     *
      * @param points
-     *            the points.
+     *            the {@link IPoint4 Points}.
      * @param type
      *            the type.
      * @param serialization
@@ -152,7 +172,7 @@ public class Polygon4<T extends Number>
     public <S extends Number> Polygon4(final List<IPoint4<S>> points,
             final Class<? extends T> type, final boolean serialization) {
 
-        if (type == null && !serialization) {
+        if ((type == null) && !serialization) {
 
             throw new IllegalArgumentException(
                     "Cannot create a polygon without a type!");
@@ -162,10 +182,10 @@ public class Polygon4<T extends Number>
         this.points = new LinkedList<IPoint4<T>>();
         this.type = type;
 
-        if (points != null && type != null) {
+        if ((points != null) && (type != null)) {
 
 
-            for (IPoint4<? extends Number> point : points) {
+            for (final IPoint4<? extends Number> point : points) {
 
                 this.points.add(new Point4<T>(point, type));
             }
@@ -175,7 +195,7 @@ public class Polygon4<T extends Number>
 
     /**
      * Copy Constructor.
-     * 
+     *
      * @param polygonToCopy
      *            the polygon to copy.
      */
@@ -186,7 +206,7 @@ public class Polygon4<T extends Number>
 
     /**
      * Copy Constructor.
-     * 
+     *
      * @param polygonToCopy
      *            the polygon to cop
      * @param type
@@ -203,11 +223,11 @@ public class Polygon4<T extends Number>
     @Override
     public String toString() {
 
-        StringBuilder builder = new StringBuilder();
+        final StringBuilder builder = new StringBuilder();
 
         builder.append("Polygon4 [ ");
 
-        for (IPoint4<T> point : this.points) {
+        for (final IPoint4<T> point : this.points) {
 
             builder.append(point.toString());
         }
@@ -218,15 +238,16 @@ public class Polygon4<T extends Number>
         return builder.toString();
     }
 
+
     @Override
     public boolean equals(final Object obj) {
 
-        if (obj != null && obj instanceof IPolygon4<?>) {
-            IPolygon4<?> other = (IPolygon4<?>) obj;
+        if ((obj != null) && (obj instanceof IPolygon4<?>)) {
+            final IPolygon4<?> other = (IPolygon4<?>) obj;
 
             boolean same = true;
 
-            for (IPoint4<?> point : other.getPoints()) {
+            for (final IPoint4<?> point : other.getPoints()) {
 
                 if (!this.getPoints().contains(point)) {
 
@@ -241,12 +262,13 @@ public class Polygon4<T extends Number>
         return false;
     }
 
+
     @Override
     public int hashCode() {
 
         int hash = 7;
 
-        for (IPoint4<T> point : this.getPoints()) {
+        for (final IPoint4<T> point : this.getPoints()) {
 
             hash += 7 * point.hashCode();
         }

@@ -1,4 +1,4 @@
-package org.jutility.math.geometry;
+package org.jutility.math.vectoralgebra;
 
 
 //@formatter:off
@@ -25,7 +25,6 @@ package org.jutility.math.geometry;
 */
 //@formatter:on
 
-import org.jutility.math.vectoralgebra.IPoint2;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -34,41 +33,24 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 
 /**
- * The {@code ILine2} interface provides a contract for classes implementing
- * lines in two-dimensional space based on two-dimensional {@link IPoint2
- * Points}.
+ * The generic {@code IPoint4} interface provides a contract for all classes
+ * implementing three-dimensional points in homogeneous coordinate
+ * representation.
+ * <p>
+ * This is a tagging interface.
+ * </p>
  * 
  * @param <T>
- *            the {@link Number} type of the {@code Line}.
+ *            the {@link Number} type of the {@code IPoint4}.
  * 
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.0
  */
-@JsonTypeInfo(use = Id.NAME, include = As.PROPERTY,
-        property = "implementingType")
-@JsonSubTypes({ @JsonSubTypes.Type(value = Line2.class, name = "Line2") })
-public interface ILine2<T extends Number> {
+@JsonTypeInfo(use = Id.NAME, include = As.PROPERTY, property = "tupleType")
+@JsonSubTypes({ @JsonSubTypes.Type(value = Point4.class, name = "Point4") })
+public interface IPoint4<T extends Number>
+        extends ITuple4<T> {
 
-    /**
-     * Returns the type of the line.
-     * 
-     * @return the type.
-     */
-    public abstract Class<? extends T> getType();
-
-    /**
-     * Returns the source {@link IPoint2 Point} of this line.
-     * 
-     * @return the source {@link IPoint2 Point}.
-     */
-    public abstract IPoint2<T> getSource();
-
-
-    /**
-     * Returns the sink {@link IPoint2 Point} of this line.
-     * 
-     * @return the sink {@link IPoint2 Point}.
-     */
-    public abstract IPoint2<T> getSink();
+    // Tagging interface.
 }

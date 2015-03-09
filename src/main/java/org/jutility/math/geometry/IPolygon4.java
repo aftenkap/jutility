@@ -1,13 +1,15 @@
-/**
- * 
- */
 package org.jutility.math.geometry;
 
+
+
+//@formatter:off
 /*
- * #%L
- * jutility-math
+* #%L
+ * * jutility-math
+ * *
  * %%
  * Copyright (C) 2013 - 2014 jutility.org
+ * *
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,12 +23,14 @@ package org.jutility.math.geometry;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * #L%
- */
+*/
+//@formatter:on
+
 
 
 import java.util.List;
 
-import org.jutility.math.vectorAlgebra.IPoint4;
+import org.jutility.math.vectoralgebra.IPoint4;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -35,10 +39,16 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 
 /**
- * @author Peter J. Radics
- * @version 0.1
- * @since 0.1
+ * The {@code Polygon4} interface provides a contract for classes implementing
+ * polygons in three-dimensional space based on {@link IPoint4 Points} in
+ * homogeneous representation.
+ * 
  * @param <T>
+ *            the {@link Number} type of the {@code Polygon4}.
+ * 
+ * @author Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.0
  */
 @JsonTypeInfo(use = Id.NAME, include = As.PROPERTY,
         property = "implementingType")
@@ -46,7 +56,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 public interface IPolygon4<T extends Number> {
 
     /**
-     * Returns the type of the rectangle.
+     * Returns the type of the {@code IPolygon4}.
      * 
      * @return the type.
      */
@@ -62,7 +72,7 @@ public interface IPolygon4<T extends Number> {
 
     /**
      * Adds a {@link IPoint4 Point} to the {@link IPoint4 Points} of this
-     * {@link IPolygon4 Polygon}.
+     * {@code IPolygon4}.
      * 
      * @param point
      *            the {@link IPoint4 Point} to add.
@@ -72,7 +82,7 @@ public interface IPolygon4<T extends Number> {
 
     /**
      * Removes a {@link IPoint4 Point} from the {@link IPoint4 Points} of this
-     * {@link IPolygon4 Polygon}.
+     * {@code IPolygon4}.
      * 
      * @param point
      *            the {@link IPoint4 Point} to remove.
@@ -81,8 +91,7 @@ public interface IPolygon4<T extends Number> {
     public abstract boolean removePoint(IPoint4<? extends Number> point);
 
     /**
-     * Clears the {@link IPoint4 Points} of this {@link IPolygon4 Polygon}.
+     * Clears the {@link IPoint4 Points} of this {@code IPolygon4}.
      */
     public abstract void clearPoints();
-
 }

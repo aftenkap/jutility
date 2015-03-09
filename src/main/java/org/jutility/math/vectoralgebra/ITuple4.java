@@ -1,4 +1,4 @@
-package org.jutility.math.geometry;
+package org.jutility.math.vectoralgebra;
 
 
 //@formatter:off
@@ -25,7 +25,6 @@ package org.jutility.math.geometry;
 */
 //@formatter:on
 
-import org.jutility.math.vectoralgebra.IPoint2;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -33,42 +32,40 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 
+
 /**
- * The {@code ILine2} interface provides a contract for classes implementing
- * lines in two-dimensional space based on two-dimensional {@link IPoint2
- * Points}.
+ * The generic {@code ITuple4} interface provides a contract for all classes
+ * implementing four-dimensional numeric tuples.
  * 
  * @param <T>
- *            the {@link Number} type of the {@code Line}.
+ *            the {@link Number} type of the {@code ITuple4}.
  * 
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.0
  */
-@JsonTypeInfo(use = Id.NAME, include = As.PROPERTY,
-        property = "implementingType")
-@JsonSubTypes({ @JsonSubTypes.Type(value = Line2.class, name = "Line2") })
-public interface ILine2<T extends Number> {
-
-    /**
-     * Returns the type of the line.
-     * 
-     * @return the type.
-     */
-    public abstract Class<? extends T> getType();
-
-    /**
-     * Returns the source {@link IPoint2 Point} of this line.
-     * 
-     * @return the source {@link IPoint2 Point}.
-     */
-    public abstract IPoint2<T> getSource();
+@JsonTypeInfo(use = Id.NAME, include = As.PROPERTY, property = "type")
+@JsonSubTypes({ @JsonSubTypes.Type(value = Tuple4.class, name = "Tuple4") })
+public interface ITuple4<T extends Number>
+        extends org.jutility.common.datatype.tuple.ITuple4<T> {
 
 
     /**
-     * Returns the sink {@link IPoint2 Point} of this line.
+     * Determines whether the homogeneous (w) coordinate is 1, signifying a
+     * point.
      * 
-     * @return the sink {@link IPoint2 Point}.
+     * @return {@code true}, if the homogeneous coordinate is 1; {@code false}
+     *         otherwise.
      */
-    public abstract IPoint2<T> getSink();
+    public abstract boolean isPoint();
+
+
+    /**
+     * Determines whether the homogeneous (w) coordinate is not equal to 1,
+     * signifying a vector.
+     * 
+     * @return {@code true}, if the homogeneous coordinate is not 1;
+     *         {@code false} otherwise.
+     */
+    public abstract boolean isVector();
 }

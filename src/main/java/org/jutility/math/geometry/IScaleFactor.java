@@ -1,12 +1,14 @@
 package org.jutility.math.geometry;
 
 
-// @formatter:off
+//@formatter:off
 /*
- * #%L
- * jutility-math
+* #%L
+ * * jutility-math
+ * *
  * %%
  * Copyright (C) 2013 - 2014 jutility.org
+ * *
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,8 +22,9 @@ package org.jutility.math.geometry;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * #L%
- */
-// @formatter:on
+*/
+//@formatter:on
+
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -30,11 +33,11 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 
 /**
- * The {@code ITranslation} interface provides a contract for classes that
- * implement the translation of an object.
+ * The {@code IScaleFactor} interface provides a contract for classes
+ * implementing scaling in three dimensions.
  * 
  * @param <T>
- *            the {@link Number} type of this {@code ITranslation}.
+ *            the {@link Number} type of the {@code IScaleFactor}.
  * 
  * @author Peter J. Radics
  * @version 0.1.2
@@ -42,37 +45,37 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
  */
 @JsonTypeInfo(use = Id.NAME, include = As.PROPERTY,
         property = "implementingType")
-@JsonSubTypes({ @JsonSubTypes.Type(value = Translation.class,
-        name = "Translation") })
-public interface ITranslation<T extends Number> {
+@JsonSubTypes({ @JsonSubTypes.Type(value = ScaleFactor.class,
+        name = "ScaleFactor") })
+public interface IScaleFactor<T extends Number> {
 
     /**
-     * Returns the type of this translation.
+     * Returns the type of this scale.
      * 
      * @return the type.
      */
     public abstract Class<? extends T> getType();
 
     /**
-     * The translation in the x-dimension.
+     * Returns the scale factor for the x-dimension.
      * 
-     * @return the translation in the x-dimension.
+     * @return the scale factor.
      */
-    public abstract T getXTranslation();
+    public abstract T getScaleFactorX();
 
 
     /**
-     * The translation in the y-dimension.
+     * Returns the scale factor for the y-dimension.
      * 
-     * @return the translation in the y-dimension.
+     * @return the scale factor.
      */
-    public abstract T getYTranslation();
+    public abstract T getScaleFactorY();
 
 
     /**
-     * The translation in the x-dimension.
+     * Returns the scale factor for the z-dimension.
      * 
-     * @return the translation in the y-dimension.
+     * @return the scale factor.
      */
-    public abstract T getZTranslation();
+    public abstract T getScaleFactorZ();
 }
