@@ -12,7 +12,7 @@
 		<groupId>org.jutility</groupId>
 		<artifactId>jutility</artifactId>
 		<relativePath>../</relativePath>
-		<version>0.1.2-SNAPSHOT</version>
+		<version>0.1.2</version>
 	</parent>
 	<licenses>
 		<license>
@@ -27,7 +27,7 @@
 		<connection>scm:git:git@github.com:aftenkap/jutility-common.git</connection>
 		<developerConnection>scm:git:git@github.com:aftenkap/jutility-common.git
 		</developerConnection>
-	  <tag>master</tag>
+	  <tag>jutility-0.1.2</tag>
   </scm>
 
 	<issueManagement>
