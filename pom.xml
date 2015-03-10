@@ -4,7 +4,7 @@
 
 	<groupId>org.jutility</groupId>
 	<artifactId>jutility</artifactId>
-	<version>0.1.2-SNAPSHOT</version>
+	<version>0.1.2</version>
 
 	<name>jUtility Library</name>
 	<url>http://jutility.org</url>
@@ -51,7 +51,7 @@
 		<connection>scm:git:git@github.com:aftenkap/jutility.git</connection>
 		<developerConnection>scm:git:git@github.com:aftenkap/jutility.git
 		</developerConnection>
-	  <tag>master</tag>
+	  <tag>jutility-0.1.2</tag>
   </scm>
 
   <distributionManagement>
