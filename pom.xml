@@ -22,7 +22,35 @@
 			<distribution>manual</distribution>
 		</license>
 	</licenses>
-	<properties>
+
+	<scm>
+		<url>scm:git:git@github.com:aftenkap/jutility-math.git</url>
+		<connection>scm:git:git@github.com:aftenkap/jutility-math.git</connection>
+		<developerConnection>scm:git:git@github.com:aftenkap/jutility-math.git
+		</developerConnection>
+	  <tag>master</tag>
+  </scm>
+	
+
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/aftenkap/jutility-math/issues</url>
+	</issueManagement>
+
+  <distributionManagement>
+    <repository>
+      <id>archiva</id>
+      <name>Internal Releases</name>
+      <url>https://vtcgit.com:8443/archiva/repository/internal/</url>
+    </repository>
+    <snapshotRepository>
+      <id>archiva</id>
+      <name>Internal Snapshots</name>
+      <url>https://vtcgit.com:8443/archiva/repository/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<jutility-version>0.2.0-SNAPSHOT</jutility-version>
