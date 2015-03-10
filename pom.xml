@@ -11,7 +11,7 @@
 	<parent>
 		<groupId>org.jutility</groupId>
 		<artifactId>jutility</artifactId>
-		<version>0.1.2-RELEASE</version>
+		<version>0.2.0-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
 
@@ -26,7 +26,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<jutility-version>0.1.2-RELEASE</jutility-version>
+		<jutility-version>0.2.0-SNAPSHOT</jutility-version>
 		<!-- Java Version -->
 		<java.version>1.6</java.version>
 
