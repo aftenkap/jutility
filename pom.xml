@@ -72,6 +72,11 @@
 		<url>https://github.com/aftenkap/jutility/issues</url>
 	</issueManagement>
 
+	<ciManagement>
+		<system>Jenkins</system>
+		<url>https://vtcgit.com:8443/jenkins</url>
+	</ciManagement>
+
 	<properties>
 		<project.build.sourceEncoding>utf8</project.build.sourceEncoding>
 
@@ -95,8 +100,6 @@
 
 
 	<build>
-
-
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
