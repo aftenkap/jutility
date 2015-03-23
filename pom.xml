@@ -82,9 +82,9 @@
 
     <sonar.login>sonar</sonar.login>
     <sonar.password>{u4fwbrPlx9QHRJ8Tl1/5dz7lTP8qxTbP6/CpyMDxm2U=}</sonar.password>
+
 		<!-- Java Version -->
 		<java.version>1.8</java.version>
-
 
 		<!-- Testing -->
 		<junit.version>4.12</junit.version>
