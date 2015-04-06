@@ -1,7 +1,30 @@
 package org.jutility.javafx.control;
 
 
-import javafx.beans.property.ReadOnlyObjectProperty;
+//@formatter:off
+/*
+ * #%L
+ * jutility-javafx
+ * %%
+ * Copyright (C) 2013 - 2014 jutility.org
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+//@formatter:on
+
+
+import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.geometry.Insets;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -11,19 +34,19 @@ import org.controlsfx.validation.Validator;
 import org.controlsfx.validation.decoration.GraphicValidationDecoration;
 import org.jutility.common.datatype.table.CellLocation;
 import org.jutility.common.datatype.table.CellRange;
-import org.jutility.javafx.control.validated.ValidationUtils;
+import org.jutility.javafx.control.validation.ValidationUtils;
 
 
 /**
- * The {@link CellLocationGridPane} provides an input Control for
+ * The {@code CellLocationGridPane} provides an input Control for
  * {@link CellLocation CellLocations}.
- * 
+ *
  * @author Peter J. Radics
- * @version 1.0
- * @since 1.0
+ * @version 0.1.2
+ * @since 0.1.0
  */
 public class CellLocationGridPane
-        extends GridPane {
+extends GridPane {
 
 
     private final TextField         rowTF;
@@ -35,7 +58,7 @@ public class CellLocationGridPane
 
     /**
      * Returns the valid {@link CellRange Range}.
-     * 
+     *
      * @return the valid {@link CellRange Range}.
      */
     public CellRange getValidRange() {
@@ -45,7 +68,7 @@ public class CellLocationGridPane
 
     /**
      * Returns whether or not the state of this control is invalid.
-     * 
+     *
      * @return {@code true}, if the state of this control is invalid;
      *         {@code false} otherwise.
      */
@@ -56,17 +79,17 @@ public class CellLocationGridPane
 
     /**
      * Returns the invalid Property of this Control.
-     * 
+     *
      * @return the invalid Property of this Control.
      */
-    public ReadOnlyObjectProperty<Boolean> invalidProperty() {
+    public ReadOnlyBooleanProperty invalidProperty() {
 
         return this.validationSupport.invalidProperty();
     }
 
     /**
      * Returns the {@link CellLocation} defined by this Control.
-     * 
+     *
      * @return the {@link CellLocation} defined by this Control or {@code null},
      *         if the contents are invalid.
      */
@@ -77,15 +100,15 @@ public class CellLocationGridPane
             return null;
         }
 
-        int row = Integer.parseInt(this.rowTF.getText());
-        int column = Integer.parseInt(this.columnTF.getText());
+        final int row = Integer.parseInt(this.rowTF.getText());
+        final int column = Integer.parseInt(this.columnTF.getText());
 
         return new CellLocation(row, column);
     }
 
     /**
      * Sets the {@link CellLocation} defined by this Control.
-     * 
+     *
      * @param cellLocation
      *            the {@link CellLocation} defined by this Control (a value of
      *            {@code null} clears the control).
@@ -102,7 +125,7 @@ public class CellLocationGridPane
     }
 
     /**
-     * Creates a new instance of the {@link CellLocationGridPane} class without
+     * Creates a new instance of the {@code CellLocationGridPane} class without
      * any restriction on the valid range.
      */
     public CellLocationGridPane() {
@@ -111,9 +134,9 @@ public class CellLocationGridPane
     }
 
     /**
-     * Creates a new instance of the {@link CellLocationGridPane} class without
+     * Creates a new instance of the {@code CellLocationGridPane} class without
      * any restriction on the valid range with the provided initial value.
-     * 
+     *
      * @param initialValue
      *            the initial value.
      */
@@ -123,9 +146,9 @@ public class CellLocationGridPane
     }
 
     /**
-     * Creates a new instance of the {@link CellLocationGridPane} class with the
+     * Creates a new instance of the {@code CellLocationGridPane} class with the
      * provided range restriction.
-     * 
+     *
      * @param minRow
      *            the minimum row index.
      * @param minColumn
@@ -143,9 +166,9 @@ public class CellLocationGridPane
     }
 
     /**
-     * Creates a new instance of the {@link CellLocationGridPane} class with the
+     * Creates a new instance of the {@code CellLocationGridPane} class with the
      * provided range restriction.
-     * 
+     *
      * @param minRow
      *            the minimum row index.
      * @param minColumn
@@ -166,9 +189,9 @@ public class CellLocationGridPane
     }
 
     /**
-     * Creates a new instance of the {@link CellLocationGridPane} class with the
+     * Creates a new instance of the {@code CellLocationGridPane} class with the
      * provided range restriction.
-     * 
+     *
      * @param validRange
      *            the range restriction.
      */
@@ -178,9 +201,9 @@ public class CellLocationGridPane
     }
 
     /**
-     * Creates a new instance of the {@link CellLocationGridPane} class with the
+     * Creates a new instance of the {@code CellLocationGridPane} class with the
      * provided range restriction.
-     * 
+     *
      * @param validRange
      *            the range restriction.
      * @param initialValue
@@ -240,7 +263,7 @@ public class CellLocationGridPane
         }
 
         this.validationSupport
-                .setValidationDecorator(new GraphicValidationDecoration());
+        .setValidationDecorator(new GraphicValidationDecoration());
 
 
         this.add(this.rowTF, 0, 0);

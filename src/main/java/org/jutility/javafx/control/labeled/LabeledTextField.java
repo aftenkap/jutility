@@ -1,183 +1,179 @@
 package org.jutility.javafx.control.labeled;
 
 
+//@formatter:off
+/*
+ * #%L
+ * jutility-javafx
+ * %%
+ * Copyright (C) 2013 - 2014 jutility.org
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+//@formatter:on
+
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import org.jutility.javafx.control.wrapper.TextFieldWrapper;
 
-import static org.jutility.javafx.control.wrapper.WrapperBase.Position;
-
 
 /**
- * The {@link LabeledTextField} class provides a {@TextField} with a
+ * The {@code LabeledTextField} class provides a {@link TextField} with a
  * freely positionable {@link Label}.
- * 
+ *
  * @author Peter J. Radics
- * 
+ *
+ * @version 0.1.2
+ * @since 0.1.0
  */
 public class LabeledTextField
-        extends TextFieldWrapper {
+        extends TextFieldWrapper
+        implements ILabeledControl {
 
-    private final ObjectProperty<Label>    label;
+    private final ObjectProperty<Label> label;
 
-    private final ObjectProperty<Position> labelPosition;
+    private final ObjectProperty<Pos>   labelPosition;
 
 
-    /**
-     * Returns the label property.
-     * 
-     * @return the label property.
-     */
-    public ObjectProperty<Label> label() {
+    @Override
+    public ObjectProperty<Label> labelProperty() {
 
         return this.label;
     }
 
-    /**
-     * Returns the {@link Label}.
-     * 
-     * @return the {@link Label}.
-     */
+    @Override
     public Label getLabel() {
 
         return this.label.get();
     }
 
-    /**
-     * Sets the {@link Label}.
-     * 
-     * @param label
-     *            the {@link Label}.
-     */
+    @Override
     public void setLabel(final Label label) {
 
         this.label.set(label);
     }
 
-    /**
-     * Returns the label position property.
-     * 
-     * @return the label position property.
-     */
-    public ObjectProperty<Position> labelPosition() {
+    @Override
+    public ObjectProperty<Pos> labelPositionProperty() {
 
         return this.labelPosition;
     }
 
-    /**
-     * Returns the {@link Position} of the {@link Label}.
-     * 
-     * @return the {@link Position} of the {@link Label}.
-     */
-    public Position getLabelPosition() {
+    @Override
+    public Pos getLabelPosition() {
 
         return this.labelPosition.get();
     }
 
-    /**
-     * Sets the {@link Position} of the {@link Label}.
-     * 
-     * @param labelPosition
-     *            the {@link Position} of the {@link Label}.
-     */
-    public void setLabelPosition(final Position labelPosition) {
+    @Override
+    public void setLabelPosition(final Pos labelPosition) {
 
         this.labelPosition.set(labelPosition);
     }
 
     /**
-     * Creates a new instance of the {@link LabeledTextField} class with the
+     * Creates a new instance of the {@code LabeledTextField} class with the
      * provided label text, positioning the {@link Label} to the left of the
      * {@link TextField}.
-     * 
+     *
      * @param labelText
      *            the text of the {@link Label}.
      */
-    public LabeledTextField(String labelText) {
+    public LabeledTextField(final String labelText) {
 
-        this(labelText, Position.WEST);
+        this(labelText, Pos.CENTER_LEFT);
     }
 
     /**
-     * Creates a new instance of the {@link LabeledTextField} class with the
+     * Creates a new instance of the {@code LabeledTextField} class with the
      * provided label text, positioning the {@link Label} relative to the
-     * {@link TextField} according to the provided {@link Position}.
-     * 
+     * {@link TextField} according to the provided {@link Pos Position}.
+     *
      * @param labelText
      *            the text of the {@link Label}.
      * @param position
-     *            the desired {@link Position} of the {@link Label}.
+     *            the desired {@link Pos Position} of the {@link Label}.
      */
-    public LabeledTextField(String labelText, Position position) {
+    public LabeledTextField(final String labelText, final Pos position) {
 
         this(labelText, position, null);
     }
 
     /**
-     * Creates a new instance of the {@link LabeledTextField} class with the
+     * Creates a new instance of the {@code LabeledTextField} class with the
      * provided label text, positioning the {@link Label} relative to the
-     * {@link TextField} according to the provided {@link Position}.
-     * 
+     * {@link TextField} according to the provided {@link Pos Position}.
+     *
      * @param labelText
      *            the text of the {@link Label}.
      * @param position
-     *            the desired {@link Position} of the {@link Label}.
+     *            the desired {@link Pos Position} of the {@link Label}.
      * @param text
      *            the initial text of the {@link TextField}.
      */
-    public LabeledTextField(String labelText, Position position, String text) {
+    public LabeledTextField(final String labelText, final Pos position,
+            final String text) {
 
         this(new Label(labelText), position, text);
     }
 
     /**
-     * Creates a new instance of the {@link LabeledTextField} class with the
+     * Creates a new instance of the {@code LabeledTextField} class with the
      * provided {@link Label}, positioning the {@link Label} to the left of the
      * {@link TextField}.
-     * 
+     *
      * @param label
      *            the {@link Label}.
      */
-    public LabeledTextField(Label label) {
+    public LabeledTextField(final Label label) {
 
-        this(label, Position.WEST);
+        this(label, Pos.CENTER_LEFT);
     }
 
     /**
-     * Creates a new instance of the {@link LabeledTextField} class with the
+     * Creates a new instance of the {@code LabeledTextField} class with the
      * provided {@link Label}, positioning the {@link Label} relative to the
-     * {@link TextField} according to the provided {@link Position}.
-     * 
+     * {@link TextField} according to the provided {@link Pos Position}.
+     *
      * @param label
      *            the {@link Label}.
      * @param position
-     *            the desired {@link Position} of the {@link Label}.
+     *            the desired {@link Pos Position} of the {@link Label}.
      */
-    public LabeledTextField(Label label, Position position) {
+    public LabeledTextField(final Label label, final Pos position) {
 
         this(label, position, null);
     }
 
     /**
-     * Creates a new instance of the {@link LabeledTextField} class with the
+     * Creates a new instance of the {@code LabeledTextField} class with the
      * provided {@link Label}, positioning the {@link Label} relative to the
-     * {@link TextField} according to the provided {@link Position}.
-     * 
+     * {@link TextField} according to the provided {@link Pos Position}.
+     *
      * @param label
      *            the {@link Label}.
      * @param position
-     *            the desired {@link Position} of the {@link Label}.
+     *            the desired {@link Pos Position} of the {@link Label}.
      * @param text
      *            the initial text of the {@link TextField}.
      */
-    public LabeledTextField(Label label, Position position, String text) {
+    public LabeledTextField(final Label label, final Pos position,
+            final String text) {
 
         super(text);
 
@@ -186,67 +182,49 @@ public class LabeledTextField
 
         this.addNode(label, position);
 
-        this.setUpEventHandlers();
+        if (label != null) {
+
+            label.setLabelFor(this.getWrappedControl());
+        }
+
+        this.setupEventHandlers();
     }
 
-    private void setUpEventHandlers() {
+    private void setupEventHandlers() {
 
-        this.label.addListener(new ChangeListener<Label>() {
+        this.label.addListener((observable, oldValue, newValue) -> {
 
-            @Override
-            public void changed(ObservableValue<? extends Label> observable,
-                    Label oldValue, Label newValue) {
+            if (oldValue != null) {
 
-                if (oldValue != null) {
-
-                    LabeledTextField.this.getNodes().remove(oldValue);
-                }
-
-                LabeledTextField.this.addNode(newValue,
-                        LabeledTextField.this.getLabelPosition());
+                this.getNodes().remove(oldValue);
             }
+            if (newValue != null) {
+
+                this.getLabel().setLabelFor(this.getWrappedControl());
+            }
+
+            this.addNode(newValue, this.getLabelPosition());
         });
 
 
-        this.labelPosition.addListener(new ChangeListener<Position>() {
+        this.labelPosition.addListener((observable, oldValue, newValue) -> {
 
-            @Override
-            public void changed(ObservableValue<? extends Position> observable,
-                    Position oldValue, Position newValue) {
+            this.removeNode(this.getLabel(), oldValue);
 
-                LabeledTextField.this.removeNode(
-                        LabeledTextField.this.getLabel(), oldValue);
+            if (newValue != null) {
 
-                if (newValue != null) {
-
-                    LabeledTextField.this.addNode(
-                            LabeledTextField.this.getLabel(), newValue);
-                }
+                this.addNode(this.getLabel(), newValue);
             }
         });
+
+        this.wrappedControlProperty().addListener(
+                (observable, oldValue, newValue) -> {
+
+                    if ((this.getLabel() != null) && (newValue != null)) {
+
+                        this.getLabel().setLabelFor(newValue);
+                    }
+                });
     }
 
-    @Override
-    public void requestFocus() {
-
-        this.getWrapped().requestFocus();
-    }
-
-    @Override
-    protected ObservableList<Node> getNodes() {
-
-        return super.getNodes();
-    }
-
-    @Override
-    protected void addNode(Node node, Position position) {
-
-        super.addNode(node, position);
-    }
-
-    @Override
-    protected Node removeNode(Node nodeToRemove, Position position) {
-
-        return super.removeNode(nodeToRemove, position);
-    }
 }

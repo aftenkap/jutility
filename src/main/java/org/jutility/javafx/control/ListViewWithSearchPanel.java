@@ -1,107 +1,95 @@
 package org.jutility.javafx.control;
 
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+// @formatter:off
+/*
+ * #%L
+ * jutility-javafx
+ * %%
+ * Copyright (C) 2013 - 2014 jutility.org
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
 
-import org.controlsfx.control.action.Action;
-import org.controlsfx.control.action.ActionUtils;
+//@formatter:on
 
-import javafx.beans.binding.Bindings;
+
+import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
+import javafx.collections.transformation.FilteredList;
+import javafx.geometry.Pos;
 import javafx.scene.control.ListView;
-import javafx.scene.control.MultipleSelectionModel;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.cell.TextFieldListCell;
-import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.util.Callback;
 import javafx.util.StringConverter;
+
+import org.jutility.javafx.control.labeled.LabeledListView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 
 /**
- * Provides a ListView with a Title and SearchPanel for the provided type.
- * 
- * @author Shawn P. Neuman, Peter J. Radics
- * @version 0.2
+ * The {@code ListViewWithSearchPanel} class provides a {@link LabeledListView}
+ * with a {@link SearchPanel}.
+ *
  * @param <T>
- *            the contained type.
- * 
+ *            the content type of the {@link LabeledListView}.
+ *
+ * @author Shawn P. Neuman, Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.0
  */
 public class ListViewWithSearchPanel<T>
-        extends VBox {
+        extends LabeledListView<T> {
 
-    private final Label                              title;
-    private final ListView<T>                        listView;
+    private static final Logger                     LOG = LoggerFactory
+                                                                .getLogger(ListViewWithSearchPanel.class);
 
-    private final ObservableList<T>                  items;
-    private final ObservableList<T>                  filteredItems;
+    private final ObjectProperty<ObservableList<T>> itemsProperty;
+    private final ObjectProperty<ObservableList<T>> filteredItemsProperty;
 
-    private final ObjectProperty<StringConverter<T>> stringConverter;
-
-
-    private final SearchPanel                        searchPanel;
-
-    private ContextMenu                              contextMenu;
-    private final ObservableList<Action>             contextMenuActions;
+    private final SearchPanel<T>                    searchPanel;
 
 
-    /**
-     * Returns the title property.
-     * 
-     * @return the title property.
-     */
-    public StringProperty title() {
+    @Override
+    public ObjectProperty<ObservableList<T>> itemsProperty() {
 
-        return this.title.textProperty();
+        return this.itemsProperty;
+    }
+
+    @Override
+    public ObservableList<T> getItems() {
+
+        return this.itemsProperty.get();
+    }
+
+    @Override
+    public void setItems(final ObservableList<T> value) {
+
+        this.itemsProperty.set(value);
     }
 
     /**
-     * Returns the value of the title property.
-     * 
-     * @return the value of the title property.
-     */
-    public String getTitle() {
-
-        return this.title().get();
-    }
-
-    /**
-     * Sets the value of the title property.
-     * 
-     * @param title
-     *            the value of the title property.
-     */
-    public void setTitle(final String title) {
-
-        this.title().set(title);
-    }
-
-    /**
-     * Creates a new {@link ListViewWithSearchPanel} with no title.
+     * Creates a new {@code ListViewWithSearchPanel} with no title.
      */
     public ListViewWithSearchPanel() {
 
@@ -109,8 +97,8 @@ public class ListViewWithSearchPanel<T>
     }
 
     /**
-     * Creates a new {@link ListViewWithSearchPanel} with the provided title.
-     * 
+     * Creates a new {@code ListViewWithSearchPanel} with the provided title.
+     *
      * @param title
      *            title of this panel
      */
@@ -121,69 +109,54 @@ public class ListViewWithSearchPanel<T>
 
 
     /**
-     * Creates a new {@link ListViewWithSearchPanel} with the provided title.
-     * 
+     * Creates a new {@code ListViewWithSearchPanel} with the provided title.
+     *
      * @param title
      *            title of this panel
-     * @param stringConverter
+     * @param converter
      *            the string converter to use.
      */
     public ListViewWithSearchPanel(final String title,
-            StringConverter<T> stringConverter) {
+            final StringConverter<T> converter) {
 
-
-        this.listView = new ListView<>();
-        VBox.setVgrow(listView, Priority.ALWAYS);
-
-        if (title != null && title != "") {
-
-            this.title = new Label(title);
-            this.title.setFont(Font.font("verdana", 16));
-            this.getChildren().add(this.title);
-
-            this.listView.setId(title);
-
-            this.title.setLabelFor(this.listView);
-        }
-        else {
-
-            this.title = null;
-        }
-
-        this.getChildren().add(this.listView);
-
-        this.items = FXCollections.observableList(new LinkedList<T>());
-        this.filteredItems = FXCollections.observableList(new LinkedList<T>());
-
-        Bindings.bindContentBidirectional(this.listView.getItems(),
-                this.filteredItems);
-
-
-
-        this.contextMenu = new ContextMenu();
-        this.contextMenuActions = FXCollections
-                .observableList(new LinkedList<Action>());
-
-
-        this.searchPanel = new SearchPanel();
-        this.searchPanel.setVisible(false);
-
-        this.stringConverter = new SimpleObjectProperty<>();
-
-
-        this.setupEventHandlers();
-        this.setStringConverter(stringConverter);
+        this(null, title, converter);
     }
 
-
     /**
-     * Returns the items of this ListView.
-     * 
-     * @return the items of this ListView.
+     * Creates a new {@code ListViewWithSearchPanel} with the provided title.
+     *
+     * @param items
+     *            the initial item list of the {@link ListView}
+     * @param title
+     *            title of this panel
+     * @param converter
+     *            the string converter to use.
      */
-    public ObservableList<T> items() {
+    public ListViewWithSearchPanel(final ObservableList<T> items,
+            final String title, final StringConverter<T> converter) {
 
-        return this.items;
+        super(null, title, Pos.TOP_CENTER, converter);
+
+
+        this.itemsProperty = new SimpleObjectProperty<>(items);
+        if (items == null) {
+
+            this.setItems(FXCollections.observableArrayList());
+        }
+        this.filteredItemsProperty = new SimpleObjectProperty<>();
+
+        this.filteredItemsProperty.bindBidirectional(super.itemsProperty());
+
+        this.searchPanel = new SearchPanel<>();
+
+        this.searchPanel.setVisible(false);
+
+        this.searchPanel.getStringFilter().converterProperty()
+                .bind(this.converterProperty());
+
+        this.updateFilteredItems();
+
+        this.setupEventHandlers();
     }
 
 
@@ -193,7 +166,7 @@ public class ListViewWithSearchPanel<T>
      */
     public void clear() {
 
-        this.items.clear();
+        this.getItems().clear();
         this.clearSelection();
     }
 
@@ -203,34 +176,12 @@ public class ListViewWithSearchPanel<T>
      */
     public void clearSelection() {
 
-        listView.getSelectionModel().clearSelection();
-    }
-
-    /**
-     * Returns the selection model.
-     * 
-     * @return the selection model.
-     */
-    public MultipleSelectionModel<T> getSelectionModel() {
-
-
-        return this.listView.getSelectionModel();
-    }
-
-    /**
-     * Sets the selection mode of this ListView.
-     * 
-     * @param mode
-     *            the mode to be set to.
-     */
-    public void setSelectionMode(SelectionMode mode) {
-
-        this.getSelectionModel().setSelectionMode(mode);
+        this.getSelectionModel().clearSelection();
     }
 
     /**
      * Returns the selected item property.
-     * 
+     *
      * @return the selected item property.
      */
     public ReadOnlyObjectProperty<T> selectedItemProperty() {
@@ -240,7 +191,7 @@ public class ListViewWithSearchPanel<T>
 
     /**
      * Returns the selected item.
-     * 
+     *
      * @return the selected item from the list view
      */
     public T getSelectedItem() {
@@ -250,7 +201,7 @@ public class ListViewWithSearchPanel<T>
 
     /**
      * Returns the selected index property.
-     * 
+     *
      * @return the selected index property.
      */
     public ReadOnlyIntegerProperty selectedIndexProperty() {
@@ -260,7 +211,7 @@ public class ListViewWithSearchPanel<T>
 
     /**
      * Returns the selected index.
-     * 
+     *
      * @return the selected index from the list view
      */
     public int getSelectedIndex() {
@@ -270,7 +221,7 @@ public class ListViewWithSearchPanel<T>
 
     /**
      * Returns the selected filteredItems.
-     * 
+     *
      * @return the selected filteredItems from the list view
      */
     public ObservableList<T> getSelectedItems() {
@@ -280,7 +231,7 @@ public class ListViewWithSearchPanel<T>
 
     /**
      * Returns the selected indices.
-     * 
+     *
      * @return the selected indices from the list view
      */
     public ObservableList<Integer> getSelectedIndices() {
@@ -289,87 +240,38 @@ public class ListViewWithSearchPanel<T>
     }
 
     /**
-     * removes the provided elements from the list view.
-     * 
+     * Removes the provided elements from the {@link ListView}.
+     *
      * @param elements
      *            the elements to remove.
      */
     @SafeVarargs
-    public final void remove(T... elements) {
+    public final void remove(final T... elements) {
 
-        this.items.removeAll(elements);
+        this.getItems().removeAll(elements);
     }
 
     /**
+     * Removes the element at the provided index from the {@link ListView}.
+     *
      * @param index
-     *            the index of the string value to be removed from the list
+     *            the index of the string value to be removed from the
+     *            {@link ListView}.
      */
-    public void remove(int index) {
+    public void remove(final int index) {
 
-        this.items.remove(index);
+        this.getItems().remove(index);
     }
 
     /**
+     * Removes the provided item from the {@link ListView}.
+     *
      * @param item
-     *            the item to be removed
+     *            the item to remove.
      */
-    public void removeAll(Object item) {
+    public void removeAll(final Object item) {
 
-        this.items.remove(item);
-    }
-
-    /**
-     * Sets the cell factory of this ListView.
-     * 
-     * @param cellFactory
-     *            the cell factory of this ListView.
-     */
-    public void setCellFactory(Callback<ListView<T>, ListCell<T>> cellFactory) {
-
-        this.listView.setCellFactory(cellFactory);
-    }
-
-
-    /**
-     * Returns the string converter property.
-     * 
-     * @return the string converter property.
-     */
-    public ObjectProperty<StringConverter<T>> stringConverter() {
-
-        return this.stringConverter;
-    }
-
-    /**
-     * Sets the string converter to the one provided.
-     * 
-     * @param converter
-     *            the new string converter.
-     */
-    public void setStringConverter(StringConverter<T> converter) {
-
-        this.stringConverter.set(converter);
-    }
-
-    /**
-     * Returns the string converter.
-     * 
-     * @return the string converter.
-     */
-    public StringConverter<T> getStringConverter() {
-
-        return this.stringConverter.get();
-    }
-
-
-    /**
-     * Provides access to the context menu actions.
-     * 
-     * @return the context menu actions list.
-     */
-    public ObservableList<Action> contextMenuActions() {
-
-        return this.contextMenuActions;
+        this.getItems().remove(item);
     }
 
 
@@ -377,231 +279,80 @@ public class ListViewWithSearchPanel<T>
     private void setupEventHandlers() {
 
 
+        this.itemsProperty().addListener((observable, oldValue, newValue) -> {
 
-        this.contextMenuActions.addListener(new ListChangeListener<Action>() {
+            this.updateFilteredItems();
 
-            @Override
-            public void onChanged(Change<? extends Action> change) {
-
-                ListViewWithSearchPanel.this.contextMenu.getItems().clear();
-
-                ListViewWithSearchPanel.this.contextMenu = ActionUtils
-                        .createContextMenu(ListViewWithSearchPanel.this.contextMenuActions);
-            }
         });
 
+        this.addEventHandler(KeyEvent.KEY_PRESSED, (event) -> {
 
+            final KeyCombination acceleratorKey = new KeyCodeCombination(
+                    KeyCode.F, KeyCombination.SHORTCUT_DOWN);
 
-        this.stringConverter
-                .addListener(new ChangeListener<StringConverter<T>>() {
+            if (acceleratorKey.match(event) && (this.getItems() != null)
+                    && !this.getItems().isEmpty()) {
 
-                    @Override
-                    public void changed(
-                            ObservableValue<? extends StringConverter<T>> observable,
-                            StringConverter<T> oldValue,
-                            StringConverter<T> newValue) {
-
-                        if (newValue != null) {
-                            ListViewWithSearchPanel.this.listView
-                                    .setCellFactory(new Callback<ListView<T>, ListCell<T>>() {
-
-                                        @Override
-                                        public ListCell<T> call(
-                                                ListView<T> param) {
-
-                                            return new TextFieldListCell<>(
-                                                    ListViewWithSearchPanel.this
-                                                            .getStringConverter());
-                                        }
-                                    });
-                        }
-                        else {
-                            ListViewWithSearchPanel.this.listView
-                                    .setCellFactory(new Callback<ListView<T>, ListCell<T>>() {
-
-                                        @Override
-                                        public ListCell<T> call(
-                                                ListView<T> param) {
-
-                                            return new TextFieldListCell<>();
-                                        }
-                                    });
-                        }
-
-                        ListViewWithSearchPanel.this.update();
-                    }
-                });
-
-
-
-        this.addEventHandler(KeyEvent.KEY_PRESSED,
-                new EventHandler<KeyEvent>() {
-
-                    @Override
-                    public void handle(KeyEvent event) {
-
-                        final KeyCombination keyComb1 = new KeyCodeCombination(
-                                KeyCode.F, KeyCombination.SHORTCUT_DOWN);
-
-                        if (keyComb1.match(event)) {
-
-                            searchPanel.setVisible(true);
-                            searchPanel.requestFocus();
-                        }
-                    }
-
-                });
+                this.searchPanel.setVisible(true);
+                this.searchPanel.requestFocus();
+            }
+        });
 
 
 
         this.searchPanel.visibleProperty().addListener(
-                new ChangeListener<Boolean>() {
+                (observable, oldValue, newValue) -> {
 
-                    @Override
-                    public void changed(
-                            ObservableValue<? extends Boolean> observable,
-                            Boolean oldValue, Boolean newValue) {
+                    if (Boolean.FALSE.equals(newValue)) {
 
-                        if (Boolean.FALSE.equals(newValue)) {
+                        ListViewWithSearchPanel.LOG
+                                .debug("Removing search panel.");
+                        this.setBottomCenterNode(null);
+                        this.getChildren().remove(this.searchPanel);
+                        this.requestFocus();
+                    }
+                    else if (Boolean.TRUE.equals(newValue)
+                            && !this.getChildren().contains(this.searchPanel)) {
 
-                            ListViewWithSearchPanel.this.getChildren().remove(
-                                    ListViewWithSearchPanel.this.searchPanel);
-                        }
-                        else if (Boolean.TRUE.equals(newValue)
-                                && !ListViewWithSearchPanel.this.getChildren()
-                                        .contains(searchPanel)) {
-
-                            ListViewWithSearchPanel.this.getChildren().add(
-                                    ListViewWithSearchPanel.this.searchPanel);
-                        }
-
+                        ListViewWithSearchPanel.LOG
+                                .debug("Adding search panel.");
+                        this.addNode(this.searchPanel, Pos.BOTTOM_CENTER);
                     }
                 });
 
+        this.searchPanel
+                .getStringFilter()
+                .filterStringProperty()
+                .addListener(
+                        (final Observable observable) -> {
 
+                            ListViewWithSearchPanel.LOG
+                                    .debug("FilterString invalidated!");
+                            final ObservableList<T> filteredItems = this.filteredItemsProperty
+                                    .get();
 
-        this.addEventHandler(ContextMenuEvent.CONTEXT_MENU_REQUESTED,
-                new EventHandler<ContextMenuEvent>() {
+                            if ((filteredItems != null)
+                                    && (filteredItems instanceof FilteredList<?>)) {
 
-                    @Override
-                    public void handle(ContextMenuEvent event) {
-
-                        ListViewWithSearchPanel.this.contextMenu.show(
-                                ListViewWithSearchPanel.this,
-                                event.getScreenX(), event.getScreenY());
-                    }
-                });
-
-
-
-        this.items().addListener(new ListChangeListener<T>() {
-
-            @Override
-            public void onChanged(Change<? extends T> change) {
-
-                ListViewWithSearchPanel.this.update();
-            }
-        });
-
-
-        this.searchPanel.filterString().addListener(
-                new ChangeListener<String>() {
-
-                    @Override
-                    public void changed(
-                            ObservableValue<? extends String> observable,
-                            String oldValue, String newValue) {
-
-                        ListViewWithSearchPanel.this.update();
-                    }
-                });
+                                final FilteredList<T> filteredList = ((FilteredList<T>) filteredItems);
+                                ListViewWithSearchPanel.LOG
+                                        .debug("Invalidating predicate");
+                                filteredList.setPredicate(t -> true);
+                                filteredList.setPredicate(this.searchPanel
+                                        .getStringFilter());
+                            }
+                        });
 
     }
 
+    private void updateFilteredItems() {
 
-    /**
-     * Updates the list view after a change.
-     */
-    public void update() {
+        this.filteredItemsProperty.set(null);
 
-        this.filteredItems.clear();
+        if (this.getItems() != null) {
 
-        if (!this.items.isEmpty()) {
-
-            List<T> selectedItems = new ArrayList<>(
-                    ListViewWithSearchPanel.this.getSelectedItems());
-
-            String filterString = this.searchPanel.getFilterString();
-
-
-            if (filterString == null || "".equals(filterString)) {
-
-                this.filteredItems.addAll(this.items);
-
-            }
-            else {
-
-                for (T entry : this.items) {
-
-                    if (this.toString(entry).toLowerCase()
-                            .contains(filterString.toLowerCase())) {
-
-                        this.filteredItems.add(entry);
-                    }
-                }
-            }
-
-            this.clearSelection();
-
-            for (T selectedItem : selectedItems) {
-
-                this.getSelectionModel().select(selectedItem);
-            }
+            this.filteredItemsProperty.set(new FilteredList<>(this.getItems(),
+                    this.searchPanel.getStringFilter()));
         }
-
     }
-
-    /**
-     * Adds an event handler to the nested content of this class.
-     * 
-     * @param eventType
-     *            the event type.
-     * @param eventHandler
-     *            the event handler.
-     */
-    public <S extends Event> void addEventHandlerForContent(
-            EventType<S> eventType, EventHandler<S> eventHandler) {
-
-        this.listView.addEventHandler(eventType, eventHandler);
-    }
-
-    /**
-     * Adds an event filter to the nested content of this class.
-     * 
-     * @param eventType
-     *            the event type.
-     * @param eventFilter
-     *            the event filter.
-     */
-    public <S extends Event> void addEventFilterForContent(
-            EventType<S> eventType, EventHandler<S> eventFilter) {
-
-        this.listView.addEventFilter(eventType, eventFilter);
-    }
-
-
-    private String toString(T value) {
-
-        if (this.stringConverter.get() != null) {
-
-            return this.stringConverter.get().toString(value);
-        }
-        else if (value != null) {
-
-            return value.toString();
-        }
-
-        return null;
-    }
-
 }

@@ -1,113 +1,101 @@
 package org.jutility.javafx.control;
 
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+// @formatter:off
+/*
+ * #%L
+ * jutility-javafx
+ * %%
+ * Copyright (C) 2013 - 2014 jutility.org
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+// @formatter:on
+
+
+
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+
+import org.controlsfx.control.textfield.CustomTextField;
+import org.controlsfx.control.textfield.TextFields;
+import org.controlsfx.glyphfont.FontAwesome;
+import org.controlsfx.glyphfont.Glyph;
+import org.jutility.javafx.control.labeled.LabeledTextField;
+import org.jutility.javafx.filter.StringFilter;
 
 
 /**
- * Panel for searching through other panel. Works off CTRL+F and filters through
- * list views to show only items that match search filter
- * 
+ * The {@code SearchPanel} class provides a control for filtering the content of
+ * other controls.
+ *
+ * @param <T>
+ *            the type of the objects to be searched for.
+ *
  * @author Shawn P. Neuman, Peter J. Radics
- * @version 1.0
- * 
+ * @version 0.1.2
+ * @since 0.1.1
  */
-public class SearchPanel
-        extends HBox {
+public class SearchPanel<T>
+        extends LabeledTextField {
 
-    private StringProperty filterString;
-    private Label          search;
-    private TextField      searchBox;
-    private Button         close;
+
+    private final StringFilter<T> stringFilter;
+    private final Hyperlink       close;
 
     /**
-     * constructor
+     * Returns the string filter of this {@code SearchPanel}.
+     *
+     * @return the string filter of this {@code SearchPanel}.
+     */
+    public StringFilter<T> getStringFilter() {
+
+        return this.stringFilter;
+    }
+
+
+    /**
+     * Creates a new instance of the {@link SearchPanel} class.
      */
     public SearchPanel() {
 
-        this.filterString = new SimpleStringProperty();
-        this.setPadding(new Insets(5, 0, 0, 0));
-        this.setSpacing(5);
-        this.search = new Label("Find");
+        super((String) null);
 
-        this.search.minHeight(25);
-        this.search.setFont(Font.font("Verdana", 14));
-        this.searchBox = new TextField("");
-        this.searchBox.setMinHeight(25);
-        this.search.setLabelFor(this.searchBox);
+        this.stringFilter = new StringFilter<>();
 
+        this.setWrappedControl(TextFields.createClearableTextField());
+        this.getWrappedControl().setPromptText("Find");
+        if (this.getWrappedControl() instanceof CustomTextField) {
 
-        this.filterString.bindBidirectional(this.searchBox.textProperty());
+            ((CustomTextField) this.getWrappedControl()).setLeft(new Glyph(
+                    "FontAwesome", FontAwesome.Glyph.SEARCH));
+        }
 
-
-        this.close = new Button("x");
-        this.close.addEventHandler(ActionEvent.ACTION,
-                new EventHandler<ActionEvent>() {
-
-                    @Override
-                    public void handle(ActionEvent actionEvent) {
-
-                        SearchPanel.this.searchBox.setText(null);
-                        SearchPanel.this.setVisible(false);
-                    }
-
-                });
-        this.getChildren().addAll(close, search, searchBox);
+        GridPane.setHgrow(this.getWrappedControl(), Priority.SOMETIMES);
+        this.stringFilter.filterStringProperty().bindBidirectional(
+                this.getWrappedControl().textProperty());
 
 
-        this.searchBox.disableProperty().bind(this.disabledProperty());
+        this.close = new Hyperlink("Close");
+        this.close.addEventHandler(ActionEvent.ACTION, (actionEvent) -> {
 
-
-        this.searchBox.requestFocus();
-
+            this.getWrappedControl().setText("");
+            this.setVisible(false);
+            this.close.setVisited(false);
+        });
+        this.setCenterRightNode(this.close);
     }
-
-    /**
-     * Returns the filter string property.
-     * 
-     * @return the filter string property.
-     */
-    public StringProperty filterString() {
-
-        return filterString;
-    }
-
-    /**
-     * Returns the filter string.
-     * 
-     * @return the filter string.
-     */
-    public String getFilterString() {
-
-        return filterString.get();
-    }
-
-    /**
-     * Sets the filter string.
-     * 
-     * @param filterString
-     *            the filter string.
-     */
-    public void setFilterString(String filterString) {
-
-        this.filterString.set(filterString);
-    }
-
-
-    @Override
-    public void requestFocus() {
-
-        super.requestFocus();
-        this.searchBox.requestFocus();
-    }
-
 }
