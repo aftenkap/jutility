@@ -1,6 +1,28 @@
 package org.jutility.common.datatype.tree;
 
 
+//@formatter:off
+/*
+ * #%L
+ * jutility-common
+ * %%
+ * Copyright (C) 2013 - 2014 jutility.org
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+//@formatter:on
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -12,16 +34,19 @@ import java.util.concurrent.locks.ReentrantLock;
 
 
 /**
- * The {@link TreeNode} class provides a tree node for a tree with an arbitrary
+ * The {@code TreeNode} class provides a tree node for a tree with an arbitrary
  * amount of children.
- * <p/>
+ * <p>
  * Thread safety: fully thread safe through locking around critical sections and
  * immutable element.
- * 
- * @author Peter J. Radics
- * @version 1.0
+ * </p>
+ *
  * @param <E>
  *            the type of the tree node's elements.
+ *
+ * @author Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.0
  */
 public class TreeNode<E> {
 
@@ -37,7 +62,7 @@ public class TreeNode<E> {
 
     /**
      * Returns the tree node's element.
-     * 
+     *
      * @return the element.
      */
     public E getElement() {
@@ -47,9 +72,9 @@ public class TreeNode<E> {
 
     /**
      * Returns whether or not the tree node has a parent.
-     * 
-     * @return <code>true</code>, if the tree node has a parent;
-     *         <code>false</code> otherwise.
+     *
+     * @return {@code true}, if the tree node has a parent; {@code false}
+     *         otherwise.
      */
     public boolean hasParent() {
 
@@ -58,7 +83,7 @@ public class TreeNode<E> {
 
     /**
      * Returns the tree node's parent.
-     * 
+     *
      * @return the parent.
      */
     public TreeNode<E> getParent() {
@@ -71,11 +96,11 @@ public class TreeNode<E> {
 
     /**
      * Sets the tree node's parent.
-     * 
+     *
      * @param parent
      *            the parent.
      */
-    private void setParent(TreeNode<E> parent) {
+    private void setParent(final TreeNode<E> parent) {
 
         this.parentLock.lock();
         this.parent = parent;
@@ -85,9 +110,9 @@ public class TreeNode<E> {
 
     /**
      * Returns whether or not the tree node has children.
-     * 
-     * @return <code>true</code>, if the tree node has children;
-     *         <code>false</code> otherwise.
+     *
+     * @return {@code true}, if the tree node has children; {@code false}
+     *         otherwise.
      */
     public boolean hasChildren() {
 
@@ -96,7 +121,7 @@ public class TreeNode<E> {
 
     /**
      * Returns the tree node's children.
-     * 
+     *
      * @return the children.
      */
     public List<TreeNode<E>> getChildren() {
@@ -111,25 +136,25 @@ public class TreeNode<E> {
 
 
     /**
-     * Creates a new instance of the {@link TreeNode} class.
-     * 
+     * Creates a new instance of the {@code TreeNode} class.
+     *
      * @param element
-     *            the element of the newly created {@link TreeNode}.
+     *            the element of the newly created {@code TreeNode}.
      */
-    protected TreeNode(E element) {
+    protected TreeNode(final E element) {
 
         this(element, null);
     }
 
     /**
-     * Creates a new instance of the {@link TreeNode} class.
-     * 
+     * Creates a new instance of the {@code TreeNode} class.
+     *
      * @param element
-     *            the element of the newly created {@link TreeNode}.
+     *            the element of the newly created {@code TreeNode}.
      * @param parent
-     *            the parent of the newly created {@link TreeNode}.
+     *            the parent of the newly created {@code TreeNode}.
      */
-    protected TreeNode(E element, TreeNode<E> parent) {
+    protected TreeNode(final E element, final TreeNode<E> parent) {
 
         if (element == null) {
             throw new IllegalArgumentException(
@@ -151,12 +176,12 @@ public class TreeNode<E> {
 
 
     /**
-     * Adds the provided {@link TreeNode} as a child of this instance.
-     * 
+     * Adds the provided {@code TreeNode} as a child of this instance.
+     *
      * @param child
-     *            the {@link TreeNode} to add as a child.
+     *            the {@code TreeNode} to add as a child.
      */
-    protected void addChild(TreeNode<E> child) {
+    protected void addChild(final TreeNode<E> child) {
 
         if (child == null) {
             throw new IllegalArgumentException("Cannot contain null elements!");
@@ -172,24 +197,24 @@ public class TreeNode<E> {
     }
 
     /**
-     * Adds the provided element in a new {@link TreeNode} as a child of this
+     * Adds the provided element in a new {@code TreeNode} as a child of this
      * instance.
-     * 
+     *
      * @param childElement
      *            the element to add as a child.
      */
-    protected void addChild(E childElement) {
+    protected void addChild(final E childElement) {
 
         this.addChild(new TreeNode<E>(childElement, this));
     }
 
     /**
-     * Removes the provided {@link TreeNode} from the children of this instance.
-     * 
+     * Removes the provided {@code TreeNode} from the children of this instance.
+     *
      * @param child
-     *            the {@link TreeNode} to add as a child.
+     *            the {@code TreeNode} to add as a child.
      */
-    protected void removeChild(TreeNode<E> child) {
+    protected void removeChild(final TreeNode<E> child) {
 
         if (child == null) {
             throw new IllegalArgumentException("Cannot contain null elements!");
@@ -197,10 +222,10 @@ public class TreeNode<E> {
 
         this.childLock.lock();
 
-        int index = this.children.indexOf(child);
+        final int index = this.children.indexOf(child);
         if (index != -1) {
 
-            TreeNode<E> realChild = this.children.get(index);
+            final TreeNode<E> realChild = this.children.get(index);
 
             realChild.setParent(null);
             this.children.remove(index);
@@ -209,30 +234,30 @@ public class TreeNode<E> {
     }
 
     /**
-     * Removes the {@link TreeNode} containing the provided element from the
+     * Removes the {@code TreeNode} containing the provided element from the
      * children of this instance.
-     * 
+     *
      * @param childElement
      *            the element to add as a child.
      */
-    protected void removeChild(E childElement) {
+    protected void removeChild(final E childElement) {
 
         this.removeChild(new TreeNode<E>(childElement, this));
     }
 
 
     /**
-     * Replaces a {@link TreeNode} with a different {@link TreeNode} instance.
-     * 
+     * Replaces a {@code TreeNode} with a different {@code TreeNode} instance.
+     *
      * @param childToReplace
-     *            the {@link TreeNode} to replace.
+     *            the {@code TreeNode} to replace.
      * @param childToReplaceWith
-     *            the {@link TreeNode} to act as replacement.
+     *            the {@code TreeNode} to act as replacement.
      */
-    protected void replaceChild(TreeNode<E> childToReplace,
-            TreeNode<E> childToReplaceWith) {
+    protected void replaceChild(final TreeNode<E> childToReplace,
+            final TreeNode<E> childToReplaceWith) {
 
-        if (childToReplace == null || childToReplaceWith == null) {
+        if ((childToReplace == null) || (childToReplaceWith == null)) {
             throw new IllegalArgumentException("Cannot contain null elements!");
         }
 
@@ -240,7 +265,7 @@ public class TreeNode<E> {
         try {
 
 
-            int index = this.children.indexOf(childToReplace);
+            final int index = this.children.indexOf(childToReplace);
 
             if (index == -1) {
                 throw new NoSuchElementException(
@@ -248,16 +273,18 @@ public class TreeNode<E> {
             }
             else {
 
-                int otherIndex = this.children.indexOf(childToReplaceWith);
+                final int otherIndex = this.children
+                        .indexOf(childToReplaceWith);
 
-                TreeNode<E> currentChild = this.children.get(index);
+                final TreeNode<E> currentChild = this.children.get(index);
                 currentChild.setParent(null);
 
                 this.children.set(index, childToReplaceWith);
 
-                if (otherIndex != -1 && index != otherIndex) {
+                if ((otherIndex != -1) && (index != otherIndex)) {
 
-                    TreeNode<E> otherChild = this.children.get(otherIndex);
+                    final TreeNode<E> otherChild = this.children
+                            .get(otherIndex);
                     otherChild.setParent(null);
                     this.children.remove(otherIndex);
                 }
@@ -270,16 +297,16 @@ public class TreeNode<E> {
     }
 
     /**
-     * Replaces the {@link TreeNode} of an element with a {@link TreeNode} of a
+     * Replaces the {@code TreeNode} of an element with a {@code TreeNode} of a
      * different element.
-     * 
+     *
      * @param childElementToReplace
      *            the element to replace.
      * @param childElementToReplaceWith
      *            the element to act as replacement.
      */
-    protected void replaceChild(E childElementToReplace,
-            E childElementToReplaceWith) {
+    protected void replaceChild(final E childElementToReplace,
+            final E childElementToReplaceWith) {
 
         this.replaceChild(new TreeNode<E>(childElementToReplace),
                 new TreeNode<E>(childElementToReplaceWith));
@@ -292,7 +319,7 @@ public class TreeNode<E> {
 
         this.childLock.lock();
 
-        for (TreeNode<E> child : this.children) {
+        for (final TreeNode<E> child : this.children) {
             child.setParent(null);
         }
 
@@ -302,9 +329,9 @@ public class TreeNode<E> {
 
 
     /**
-     * Returns the depth (distance from the root {@link TreeNode}) of this
+     * Returns the depth (distance from the root {@code TreeNode}) of this
      * instance.
-     * 
+     *
      * @return the depth.
      */
     public int depth() {
@@ -322,12 +349,12 @@ public class TreeNode<E> {
 
     /**
      * Returns the number of siblings of this instance.
-     * 
+     *
      * @return the number of siblings.
      */
     public int numberOfSiblings() {
 
-        int numberOfSiblings = 0;
+        final int numberOfSiblings = 0;
 
         if (this.hasParent()) {
 
@@ -344,10 +371,10 @@ public class TreeNode<E> {
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
 
-        if (o != null && o instanceof TreeNode) {
-            TreeNode<?> treeNode = (TreeNode<?>) o;
+        if ((o != null) && (o instanceof TreeNode)) {
+            final TreeNode<?> treeNode = (TreeNode<?>) o;
 
             return (this.getElement().equals(treeNode.getElement()));
         }

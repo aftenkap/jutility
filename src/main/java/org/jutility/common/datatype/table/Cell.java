@@ -1,74 +1,86 @@
 package org.jutility.common.datatype.table;
 
 
+import java.io.Serializable;
+
+
+// @formatter:off
+/*
+ * #%L
+ * jutility-common
+ * %%
+ * Copyright (C) 2013 - 2014 jutility.org
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+// @formatter:on
+
 
 /**
- * The generic {@link Cell} class is a container class for elements that are
+ * The generic {@code Cell} class is a container class for elements that are
  * referenced by two indices.
- * 
+ *
  * @param <T>
  *            the element type.
- * 
+ *
  * @author Peter J. Radics
- * @version 0.1
+ * @version 0.1.2
+ * @since 0.1.0
  */
 public class Cell<T>
-        implements ICell<T>, Comparable<ICell<T>> {
+        implements ICell<T>, Comparable<ICell<T>>, Serializable {
 
-    private CellLocation location;
-
-    private T            value;
-
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ICell#getRow()
+    /**
+     * Serial Version UID.
      */
+    private static final long serialVersionUID = 7327202361564453945L;
+
+
+    private CellLocation      location;
+
+    private T                 value;
+
+
+
     @Override
     public int getRow() {
 
         return this.location.getRow();
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ICell#setRow(int)
-     */
+
     @Override
     public void setRow(final int row) {
 
         this.location = new CellLocation(row, this.getColumn());
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ICell#getColumn()
-     */
+
     @Override
     public int getColumn() {
 
         return this.location.getColumn();
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ICell#setColumn(int)
-     */
+
     @Override
     public void setColumn(final int column) {
 
         this.location = new CellLocation(this.getRow(), column);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ICell#getLocation()
-     */
+
     @Override
     public CellLocation getLocation() {
 
@@ -76,15 +88,9 @@ public class Cell<T>
     }
 
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.jutility.datatypes.table.ICell#setLocation(org.jutility.datatypes
-     * .table.CellLocation)
-     */
+
     @Override
-    public void setLocation(CellLocation location) {
+    public void setLocation(final CellLocation location) {
 
         if (location == null) {
 
@@ -94,25 +100,16 @@ public class Cell<T>
     }
 
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ICell#getValue()
-     */
     @Override
     public T getValue() {
 
-        return value;
+        return this.value;
     }
 
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.jutility.datatypes.table.ICell#setValue(java.lang.Object)
-     */
+
     @Override
-    public void setValue(T value) {
+    public void setValue(final T value) {
 
         if (value == null) {
 
@@ -122,7 +119,7 @@ public class Cell<T>
     }
 
     /**
-     * Creates a new instance of the {@link Cell} class.
+     * Creates a new instance of the {@code Cell} class.
      */
     protected Cell() {
 
@@ -130,22 +127,22 @@ public class Cell<T>
     }
 
     /**
-     * 
-     * Creates a new instance of the {@link Cell} class.
-     * 
+     *
+     * Creates a new instance of the {@code Cell} class.
+     *
      * @param row
      *            the row.
      * @param column
      *            the column.
      */
-    public Cell(int row, int column) {
+    public Cell(final int row, final int column) {
 
         this(row, column, null);
     }
 
     /**
-     * Creates a new instance of the {@link Cell} class with the provided value.
-     * 
+     * Creates a new instance of the {@code Cell} class with the provided value.
+     *
      * @param row
      *            the row.
      * @param column
@@ -153,7 +150,7 @@ public class Cell<T>
      * @param value
      *            the value.
      */
-    public Cell(int row, int column, T value) {
+    public Cell(final int row, final int column, final T value) {
 
         if (row < 0) {
 
@@ -174,37 +171,28 @@ public class Cell<T>
 
 
     /**
-     * Creates a new instance of the {@link Cell} class. (Copy Constructor)
-     * 
+     * Creates a new instance of the {@code Cell} class. (Copy Constructor)
+     *
      * @param cell
      *            the cell to copy.
      */
-    public Cell(ICell<? extends T> cell) {
+    public Cell(final ICell<? extends T> cell) {
 
         this(cell.getRow(), cell.getColumn(), cell.getValue());
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Comparable#compareTo(java.lang.Object)
-     */
+
     @Override
-    public int compareTo(ICell<T> other) {
+    public int compareTo(final ICell<T> other) {
 
         return ICell.rowMajorOrder.compare(this, other);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#toString()
-     */
+
     @Override
     public String toString() {
 
         return "(" + this.getRow() + ", " + this.getColumn() + ") = "
                 + this.value;
     }
-
 }

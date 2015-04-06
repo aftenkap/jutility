@@ -1,28 +1,57 @@
 package org.jutility.common.datatype.table;
 
 
+// @formatter:off
+/*
+ * #%L
+ * jutility-common
+ * %%
+ * Copyright (C) 2013 - 2014 jutility.org
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+// @formatter:on
+
+import java.io.Serializable;
 import java.util.AbstractList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
 import java.util.TreeMap;
 
 
 /**
- * The {@link CellContainer} class represents a row or column in a
+ * The {@code CellContainer} class represents a row or column in a
  * {@link ITable} .
- * 
- * @author Peter J. Radics
- * @version 1.0
+ *
  * @param <CELL>
  *            the cell type
  * @param <T>
  *            the type of the contents.
+ * @author Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.0
  */
 public class CellContainer<CELL extends ICell<T>, T>
         extends AbstractList<T>
-        implements Comparable<CellContainer<CELL, T>>, Iterable<T>,
-        List<T> {
+        implements Comparable<CellContainer<CELL, T>>, Serializable {
+
+
+    /**
+     * Serial Version UID.
+     */
+    private static final long            serialVersionUID = -2922010862735630588L;
+
 
     private final int                    index;
     private final TreeMap<Integer, CELL> entries;
@@ -30,7 +59,7 @@ public class CellContainer<CELL extends ICell<T>, T>
 
     /**
      * Returns the index.
-     * 
+     *
      * @return the index.
      */
     public int getIndex() {
@@ -40,8 +69,8 @@ public class CellContainer<CELL extends ICell<T>, T>
 
 
     /**
-     * Creates a new instance of the {@link CellContainer} class.
-     * 
+     * Creates a new instance of the {@code CellContainer} class.
+     *
      * @param index
      *            the index of the container.
      */
@@ -54,16 +83,16 @@ public class CellContainer<CELL extends ICell<T>, T>
 
     /**
      * Returns the {@link ICell cell} value for the provided valueIndex in this
-     * {@link CellContainer}.
-     * 
+     * {@code CellContainer}.
+     *
      * @param valueIndex
      *            the valueIndex.
      * @return the {@link ICell Cell} value.
      */
     @Override
-    public T get(int valueIndex) {
+    public T get(final int valueIndex) {
 
-        CELL valueCell = this.entries.get(valueIndex);
+        final CELL valueCell = this.entries.get(valueIndex);
         if (valueCell != null) {
 
             return this.entries.get(valueIndex).getValue();
@@ -74,21 +103,21 @@ public class CellContainer<CELL extends ICell<T>, T>
 
     /**
      * Returns the {@link ICell} for the provided valueIndex in this
-     * {@link CellContainer}.
-     * 
+     * {@code CellContainer}.
+     *
      * @param valueIndex
      *            the valueIndex
      * @return the {@link ICell Cell}.
      */
-    public CELL getCell(int valueIndex) {
+    public CELL getCell(final int valueIndex) {
 
         return this.entries.get(valueIndex);
     }
 
 
     /**
-     * Returns the {@link ICell Cells} of this {@link CellContainer}.
-     * 
+     * Returns the {@link ICell Cells} of this {@code CellContainer}.
+     *
      * @return the {@link ICell Cells}.
      */
     public Collection<CELL> getCells() {
@@ -99,16 +128,16 @@ public class CellContainer<CELL extends ICell<T>, T>
 
     /**
      * Adds the value to the table in the specified cell.
-     * 
+     *
      * @param cell
      *            the table cell.
      * @return {@code true} if the table did not already contain the value;
      *         {@code false} otherwise.
      */
-    public boolean add(CELL cell) {
+    public boolean add(final CELL cell) {
 
-        boolean rowIsIndex = cell.getRow() == this.index;
-        boolean columnIsIndex = cell.getColumn() == this.index;
+        final boolean rowIsIndex = cell.getRow() == this.index;
+        final boolean columnIsIndex = cell.getColumn() == this.index;
 
         if (rowIsIndex) {
 
@@ -127,15 +156,15 @@ public class CellContainer<CELL extends ICell<T>, T>
 
     /**
      * Removes the cell at the specified valueIndex from the
-     * {@link CellContainer} row.
-     * 
+     * {@code CellContainer} row.
+     *
      * @param valueIndex
      *            the value index.
-     * @return {@code true}, if this {@link CellContainer} contained the cell;
+     * @return {@code true}, if this {@code CellContainer} contained the cell;
      *         {@code false} otherwise.
      */
     @Override
-    public T remove(int valueIndex) {
+    public T remove(final int valueIndex) {
 
         return this.entries.remove(valueIndex).getValue();
     }
@@ -143,16 +172,16 @@ public class CellContainer<CELL extends ICell<T>, T>
 
     /**
      * Removes the {@link Cell} from the table.
-     * 
+     *
      * @param cell
      *            the cell to remove.
-     * @return {@code true}, if the {@link CellContainer} contained the cell;
+     * @return {@code true}, if the {@code CellContainer} contained the cell;
      *         {@code false} otherwise.
      */
     public boolean remove(final CELL cell) {
 
-        boolean rowIsIndex = cell.getRow() == this.index;
-        boolean columnIsIndex = cell.getColumn() == this.index;
+        final boolean rowIsIndex = cell.getRow() == this.index;
+        final boolean columnIsIndex = cell.getColumn() == this.index;
 
         if (rowIsIndex) {
 
@@ -169,9 +198,9 @@ public class CellContainer<CELL extends ICell<T>, T>
 
 
     /**
-     * Returns whether or not this {@link CellContainer} is empty.
-     * 
-     * @return {@code true}, if this {@link CellContainer} is empty;
+     * Returns whether or not this {@code CellContainer} is empty.
+     *
+     * @return {@code true}, if this {@code CellContainer} is empty;
      *         {@code false} otherwise.
      */
     @Override
@@ -182,8 +211,8 @@ public class CellContainer<CELL extends ICell<T>, T>
 
 
     /**
-     * Returns the size of this {@link CellContainer}.
-     * 
+     * Returns the size of this {@code CellContainer}.
+     *
      * @return the size.
      */
     @Override
@@ -194,16 +223,16 @@ public class CellContainer<CELL extends ICell<T>, T>
 
 
     @Override
-    public int compareTo(CellContainer<CELL, T> other) {
+    public int compareTo(final CellContainer<CELL, T> other) {
 
         return this.getIndex() - other.getIndex();
     }
 
 
     /**
-     * Returns an {@link Iterator} over the cells of this {@link CellContainer}.
-     * 
-     * @return an {@link Iterator} over the cells of this {@link CellContainer}.
+     * Returns an {@link Iterator} over the cells of this {@code CellContainer}.
+     *
+     * @return an {@link Iterator} over the cells of this {@code CellContainer}.
      */
     public Iterator<CELL> cellIterator() {
 

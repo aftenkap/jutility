@@ -2,21 +2,47 @@ package org.jutility.common.datatype.util;
 
 
 
-/**
- * The {@link NumberUtils} class provides utility methods for dealing with generic
- * {@link Number numbers}.
+//@formatter:off
+/*
+ * #%L
+ * jutility-common
+ * %%
+ * Copyright (C) 2013 - 2014 jutility.org
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  * 
- * @author Peter J. Radics
- * @version 0.1
- * @version 0.1
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
  */
-public class NumberUtils {
+//@formatter:on
+
+
+/**
+ * The {@code NumberUtils} class provides utility methods for dealing with
+ * generic {@link Number numbers}.
+ *
+ * @author Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.0
+ */
+public final class NumberUtils {
 
 
     /**
      * Parses the provided {@link String} into the desired {@link Number}
      * format.
-     * 
+     *
+     * @param <R>
+     *            the desired return type.
+     *
      * @param string
      *            the {@link String} to parse.
      * @param returnType
@@ -26,7 +52,7 @@ public class NumberUtils {
      *             if parsing the {@link String} does not produce a valid
      *             instance of the desired {@link Number} type.
      */
-    public static <R extends Number> R parse(final String string,
+    public static final <R extends Number> R parse(final String string,
             final Class<R> returnType)
             throws NumberFormatException {
 
@@ -63,53 +89,56 @@ public class NumberUtils {
 
     /**
      * Casts the number to the provided return type.
-     * 
+     *
+     * @param <R>
+     *            the desired return type.
+     *
      * @param number
      *            the number to convert.
      * @param returnType
      *            the return type.
      * @return the number in the return type.
      */
-    public static <R extends Number> R cast(final Number number,
+    public static final <R extends Number> R cast(final Number number,
             final Class<R> returnType) {
 
-        if (number == null || returnType == null) {
+        if ((number == null) || (returnType == null)) {
             return null;
         }
 
         if (returnType == Double.class) {
 
-            Double value = number.doubleValue();
+            final Double value = number.doubleValue();
 
             return returnType.cast(value);
         }
         else if (returnType == Float.class) {
 
-            Float value = number.floatValue();
+            final Float value = number.floatValue();
 
             return returnType.cast(value);
         }
         else if (returnType == Long.class) {
 
-            Long value = number.longValue();
+            final Long value = number.longValue();
 
             return returnType.cast(value);
         }
         else if (returnType == Integer.class) {
 
-            Integer value = number.intValue();
+            final Integer value = number.intValue();
 
             return returnType.cast(value);
         }
         else if (returnType == Short.class) {
 
-            Short value = number.shortValue();
+            final Short value = number.shortValue();
 
             return returnType.cast(value);
         }
         else if (returnType == Byte.class) {
 
-            Byte value = number.byteValue();
+            final Byte value = number.byteValue();
 
             return returnType.cast(value);
         }
@@ -121,16 +150,19 @@ public class NumberUtils {
 
     /**
      * Casts the value to the provided return type.
-     * 
+     *
+     * @param <R>
+     *            the desired return type.
+     *
      * @param value
      *            the value to convert.
      * @param returnType
      *            the return type.
      * @return the number in the return type.
      */
-    public static <R> R cast(final Object value, final Class<R> returnType) {
+    public static final <R> R cast(final Object value, final Class<R> returnType) {
 
-        if (value == null || returnType == null) {
+        if ((value == null) || (returnType == null)) {
             return null;
         }
 
@@ -146,14 +178,32 @@ public class NumberUtils {
 
     /**
      * Creates an array of a generic type from the provided elements.
-     * 
+     *
+     * @param <T>
+     *            the desired return type.
+     *
+     * @param type
+     *            the type of the array.
+     *
      * @param elements
      *            the elements comprising the desired array.
      * @return an array containing all elements.
      */
-    @SafeVarargs
-    public static <T> T[] createArray(final T... elements) {
+    public static final <T> T[] createArray(final Class<? extends T> type,
+            final T... elements) {
 
-        return elements;
+
+        @SuppressWarnings("unchecked")
+        final T[] array = (T[]) java.lang.reflect.Array.newInstance(type,
+                elements.length);
+
+        int i = 0;
+        for (final T element : elements) {
+
+            array[i] = element;
+            i++;
+        }
+
+        return array;
     }
 }

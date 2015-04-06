@@ -1,38 +1,66 @@
 package org.jutility.common.datatype.tree;
 
 
+//@formatter:off
+/*
+ * #%L
+ * jutility-common
+ * %%
+ * Copyright (C) 2013 - 2014 jutility.org
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+//@formatter:on
+
+
 import java.util.AbstractCollection;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 
 /**
  * The {@link Tree} class provides an implementation of a tree with an arbitrary
  * number of children per node. It adheres to the {@link Collection} interface.
- * <p/>
+ * <p>
  * Thread safety: Fully thread safe through locking around critical sections.
- * 
- * @author Peter J. Radics
- * @version 1.0
+ * </p>
+ *
  * @param <E>
  *            the type of the tree.
+ * @author Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.0
  */
 public class Tree<E>
-        extends AbstractCollection<E>
-        implements Collection<E> {
+        extends AbstractCollection<E> {
 
+    private static final Logger LOG = LoggerFactory.getLogger(Tree.class);
 
-    private TreeNode<E> root;
-    private final Lock  rootLock;
+    private TreeNode<E>         root;
+    private final Lock          rootLock;
 
 
 
     /**
      * Returns the root {@link TreeNode node}.
-     * 
+     *
      * @return the root {@link TreeNode node}.
      */
     protected TreeNode<E> getRoot() {
@@ -46,11 +74,11 @@ public class Tree<E>
 
     /**
      * Sets the root {@link TreeNode node}.
-     * 
+     *
      * @param value
      *            the root {@link TreeNode node}.
      */
-    protected void setRoot(TreeNode<E> value) {
+    protected void setRoot(final TreeNode<E> value) {
 
         this.rootLock.lock();
         this.root = value;
@@ -59,7 +87,7 @@ public class Tree<E>
 
 
     /**
-     * Creates a new instance of the {@link Tree} class.
+     * Creates a new instance of the {@code Tree} class.
      */
     public Tree() {
 
@@ -70,13 +98,13 @@ public class Tree<E>
     }
 
     /**
-     * Creates a new instance of the {@link Tree} class and adds all elements of
+     * Creates a new instance of the {@code Tree} class and adds all elements of
      * the provided {@link Collection}.
-     * 
+     *
      * @param collection
      *            the elements to add.
      */
-    public Tree(Collection<? extends E> collection) {
+    public Tree(final Collection<? extends E> collection) {
 
         this();
 
@@ -84,11 +112,7 @@ public class Tree<E>
     }
 
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.util.AbstractCollection#clear()
-     */
+
     @Override
     public void clear() {
 
@@ -98,11 +122,6 @@ public class Tree<E>
     }
 
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.util.AbstractCollection#isEmpty()
-     */
     @Override
     public boolean isEmpty() {
 
@@ -114,28 +133,21 @@ public class Tree<E>
     }
 
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.util.AbstractCollection#size()
-     */
     @Override
     public int size() {
 
         int i = 0;
-        for (Iterator<E> iterator = this.iterator(); iterator.hasNext();) {
-            iterator.next();
+        for (final E e : this) {
+
+            if (e != null) {
+
+                Tree.LOG.debug(e.toString());
+            }
             i++;
         }
         return i;
     }
 
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.util.AbstractCollection#iterator()
-     */
     @Override
     public Iterator<E> iterator() {
 
@@ -143,15 +155,11 @@ public class Tree<E>
     }
 
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.util.AbstractCollection#add(java.lang.Object)
-     */
     @Override
-    public boolean add(E element) {
+    public boolean add(final E element) {
 
         if (this.contains(element)) {
+
             return false;
         }
         else {
@@ -174,22 +182,24 @@ public class Tree<E>
     /**
      * Adds the provided child element as a child of the provided parent
      * element.
-     * 
+     *
      * @param parent
      *            the parent element.
      * @param child
      *            the child element.
-     * @return <code>true</code>, if the child was successfully inserted (i.e.,
-     *         the parent element was found); <code>false</code> otherwise.
+     * @return {@code true}, if the child was successfully inserted (i.e., the
+     *         parent element was found); {@code false} otherwise.
      */
-    public boolean addChild(E parent, E child) {
+    public boolean addChild(final E parent, final E child) {
 
-        PreorderTreeIterator<E> it = new PreorderTreeIterator<E>(this);
+        final PreorderTreeIterator<E> it = new PreorderTreeIterator<E>(this);
 
         boolean inserted = false;
 
         while (it.hasNext()) {
+
             if (it.next().equals(parent)) {
+
                 it.getTreeNode().addChild(child);
                 inserted = true;
                 break;
@@ -202,7 +212,7 @@ public class Tree<E>
     /**
      * Returns a {@link PreorderTreeIterator pre-order iterator} over the
      * {@link Tree}
-     * 
+     *
      * @return a {@link PreorderTreeIterator pre-order iterator} over the
      *         {@link Tree}
      */
@@ -214,7 +224,7 @@ public class Tree<E>
     /**
      * Returns a {@link PostorderTreeIterator post-order iterator} over the
      * {@link Tree}
-     * 
+     *
      * @return a {@link PostorderTreeIterator post-order iterator} over the
      *         {@link Tree}
      */
@@ -228,41 +238,43 @@ public class Tree<E>
      * Determines whether the {@link Tree trees} are permutations of each other
      * (i.e., have the same content but potentially different order of
      * children).
-     * 
+     *
      * @param lhs
      *            the left-hand side tree.
      * @param rhs
      *            the right-hand side tree.
-     * @return <code>true</code>, if the trees are permutations of each other;
-     *         <code>false</code> otherwise.
+     * @return {@code true}, if the trees are permutations of each other;
+     *         {@code false} otherwise.
      */
-    public static boolean isPermutationOf(Tree<?> lhs, Tree<?> rhs) {
+    public static boolean isPermutationOf(final Tree<?> lhs, final Tree<?> rhs) {
 
 
         boolean result = false;
-        int lhsSize = lhs.size();
-        int rhsSize = rhs.size();
-        boolean sameSize = lhsSize == rhsSize;
+        final int lhsSize = lhs.size();
+        final int rhsSize = rhs.size();
+        final boolean sameSize = lhsSize == rhsSize;
 
 
         if (sameSize) {
 
-            PreorderTreeIterator<?> lhsIt = lhs.preorderIterator();
+            final PreorderTreeIterator<?> lhsIt = lhs.preorderIterator();
 
             boolean sameNode = false;
             boolean foundINode = false;
 
             while (lhsIt.hasNext()) {
-                Object lhsElement = lhsIt.next();
-                TreeNode<?> lhsTreeNode = lhsIt.getTreeNode();
 
-                PreorderTreeIterator<?> rhsIt = rhs.preorderIterator();
+                final Object lhsElement = lhsIt.next();
+                final TreeNode<?> lhsTreeNode = lhsIt.getTreeNode();
+
+                final PreorderTreeIterator<?> rhsIt = rhs.preorderIterator();
                 while (rhsIt.hasNext()) {
 
-                    Object rhsElement = rhsIt.next();
-                    TreeNode<?> rhsTreeNode = rhsIt.getTreeNode();
+                    final Object rhsElement = rhsIt.next();
+                    final TreeNode<?> rhsTreeNode = rhsIt.getTreeNode();
 
                     if (lhsElement.equals(rhsElement)) {
+
                         foundINode = true;
                         sameNode = Tree.sameNodeContent(lhsTreeNode,
                                 rhsTreeNode);
@@ -271,17 +283,19 @@ public class Tree<E>
 
                 }
                 if (!foundINode) {
+
                     break;
                 }
                 else {
+
                     if (!sameNode) {
+
                         break;
                     }
                 }
             }
+
             result = foundINode && sameNode;
-
-
         }
 
         return result;
@@ -292,26 +306,29 @@ public class Tree<E>
     /**
      * Determines whether or not the two {@link TreeNode nodes} have the same
      * content (potentially in different order).
-     * 
+     *
      * @param lhs
      *            the left-hand side {@link TreeNode node}.
      * @param rhs
      *            the right-hand side {@link TreeNode node}.
-     * @return <code>true</code>, if the {@link TreeNode nodes} have the same
-     *         content; <code>false</code> otherwise.
+     * @return {@code true}, if the {@link TreeNode nodes} have the same
+     *         content; {@code false} otherwise.
      */
-    private static boolean sameNodeContent(TreeNode<?> lhs, TreeNode<?> rhs) {
+    private static boolean sameNodeContent(final TreeNode<?> lhs,
+            final TreeNode<?> rhs) {
 
-        int lhsChildSize = lhs.getChildren().size();
-        int rhsChildSize = rhs.getChildren().size();
+        final int lhsChildSize = lhs.getChildren().size();
+        final int rhsChildSize = rhs.getChildren().size();
 
         boolean same = ((lhs.getElement().equals(rhs.getElement())) && (lhsChildSize == rhsChildSize));
 
 
         if (same) {
 
-            for (TreeNode<?> lhsChild : lhs.getChildren()) {
+            for (final TreeNode<?> lhsChild : lhs.getChildren()) {
+
                 if (!rhs.getChildren().contains(lhsChild)) {
+
                     same = false;
                     break;
                 }
@@ -320,5 +337,4 @@ public class Tree<E>
 
         return same;
     }
-
 }
