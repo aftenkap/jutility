@@ -1,6 +1,28 @@
 package org.jutility.io.csv;
 
 
+// @formatter:off
+/*
+ * #%L
+ * jutility-io
+ * %%
+ * Copyright (C) 2013 - 2014 jutility.org
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+//@formatter:on
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
@@ -27,10 +49,12 @@ import org.supercsv.prefs.CsvPreference;
 
 
 /**
- * 
+ * The {@code CsvSerializer} class provides an implementation of the
+ * {@link ISerializer} interface for CSV files.
  * 
  * @author Peter J. Radics
- * @version 0.1
+ * @version 0.1.2
+ * @since 0.1.0
  */
 public class CsvSerializer
         implements ISerializer {
@@ -39,9 +63,9 @@ public class CsvSerializer
     private static CsvSerializer s_Instance;
 
     /**
-     * Returns the Singleton instance of the OWLSerializer.
+     * Returns the Singleton instance of the {@code CsvSerializer}.
      * 
-     * @return the Singleton instnace.
+     * @return the Singleton instance.
      */
     public static CsvSerializer Instance() {
 
@@ -60,46 +84,6 @@ public class CsvSerializer
     }
 
 
-
-    //
-    // /**
-    // * Sets up the processors used for the examples. There are 10 CSV columns,
-    // * so 10 processors are defined. Empty columns are read as null (hence the
-    // * NotNull() for mandatory columns).
-    // *
-    // * @return the cell processors
-    // */
-    // private static CellProcessor[] getProcessors() {
-    //
-    // final String emailRegex = "[a-z0-9\\._]+@[a-z0-9\\.]+"; // just an
-    // // example, not
-    // // very robust!
-    // StrRegEx.registerMessage(emailRegex, "must be a valid email address");
-    //
-    // final CellProcessor[] processors = new CellProcessor[] {
-    // new UniqueHashCode(), // customerNo (must be unique)
-    // new NotNull(), // firstName
-    // new NotNull(), // lastName
-    // new ParseDate("dd/MM/yyyy"), // birthDate
-    // new NotNull(), // mailingAddress
-    // new Optional(new ParseBool()), // married
-    // new Optional(new ParseInt()), // numberOfKids
-    // new NotNull(), // favouriteQuote
-    // new StrRegEx(emailRegex), // email
-    // new LMinMax(0L, LMinMax.MAX_LONG) // loyaltyPoints
-    // };
-    //
-    // return processors;
-    // }
-
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * graphVisualizer.conversion.ISerializer#supportsSerializationOf(java.lang
-     * .Class)
-     */
     @Override
     public boolean supportsSerializationOf(Class<?> type) {
 
@@ -111,13 +95,6 @@ public class CsvSerializer
     }
 
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * graphVisualizer.conversion.ISerializer#supportsDeserializationOf(java
-     * .lang.Class)
-     */
     @Override
     public boolean supportsDeserializationOf(Class<?> type) {
 
@@ -140,16 +117,52 @@ public class CsvSerializer
                     + documentType + " is not supported!");
         }
 
-        // Table<?> table = Table.class.cast(document);
+        Table<?> table = Table.class.cast(document);
         ICsvMapWriter mapWriter = null;
         try {
+
             mapWriter = new CsvMapWriter(new FileWriter(filename),
                     CsvPreference.STANDARD_PREFERENCE);
-            // for (;)
-            //
-            // mapWriter.writeHeader(header);
-            //
-            // mapWriter.w
+
+            String[] header = new String[table.columns()];
+
+            for (int i = 0; i < table.columns(); i++) {
+
+                Object value = table.get(0, i);
+
+                if (value != null) {
+
+                    header[i] = value.toString();
+                }
+                else {
+
+                    header[i] = "";
+                }
+            }
+
+            mapWriter.writeHeader(header);
+
+            for (int row = 1; row < table.rows(); row++) {
+
+                Map<String, String> values = new LinkedHashMap<String, String>();
+
+                for (int column = 0; column < table.columns(); column++) {
+
+                    String key = header[column];
+                    Object value = table.get(row, column);
+
+                    if (value != null) {
+
+                        values.put(key, value.toString());
+                    }
+                    else {
+
+                        values.put(key, "");
+                    }
+                }
+
+                mapWriter.write(values, header);
+            }
         }
 
         catch (IOException e) {
@@ -159,7 +172,9 @@ public class CsvSerializer
         finally {
 
             if (mapWriter != null) {
+
                 try {
+
                     mapWriter.close();
                 }
                 catch (IOException e) {
@@ -167,19 +182,8 @@ public class CsvSerializer
                     e.printStackTrace();
                 }
             }
-
         }
-
     }
-
-    // @Override
-    // public <T> T deserialize(String filename, Class<? extends T> type)
-    // throws SerializationException {
-    //
-    // return this.deserialize(new File(filename), type);
-    // }
-
-
 
     @Override
     public <T> T deserialize(File file, Class<? extends T> type)
@@ -218,9 +222,11 @@ public class CsvSerializer
         ITable<String> table = new Table<String>();
         ICsvMapReader mapReader = null;
         try {
+
             mapReader = new CsvMapReader(new BufferedReader(
                     new InputStreamReader(url.openStream())),
                     CsvPreference.STANDARD_PREFERENCE);
+
             // the header columns are used as the keys to the Map
             final String[] header = mapReader.getHeader(true);
 

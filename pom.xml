@@ -1,28 +1,63 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>jutility-io</artifactId>
 	<packaging>jar</packaging>
 
 	<name>jutility-io</name>
-	<url>http://maven.apache.org</url>
+	<url>http://jutility.org</url>
 
 	<parent>
 		<groupId>org.jutility</groupId>
 		<artifactId>jutility</artifactId>
-		<version>0.1.0-SNAPSHOT</version>
+		<version>0.2.0-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>manual</distribution>
+		</license>
+	</licenses>
+	
+  <scm>
+		<url>scm:git:git@github.com:aftenkap/jutility-io.git</url>
+		<connection>scm:git:git@github.com:aftenkap/jutility-io.git</connection>
+		<developerConnection>scm:git:git@github.com:aftenkap/jutility-io.git
+		</developerConnection>
+	  <tag>master</tag>
+  </scm>
+
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/aftenkap/jutility-io/issues</url>
+	</issueManagement>
+
+  <distributionManagement>
+    <repository>
+      <id>archiva-releases</id>
+      <name>Internal Releases</name>
+      <url>https://vtcgit.com:8443/archiva/repository/internal/</url>
+    </repository>
+    <snapshotRepository>
+      <id>archiva-snapshots</id>
+      <name>Internal Snapshots</name>
+      <url>https://vtcgit.com:8443/archiva/repository/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+		<jutility-version>0.2.0-SNAPSHOT</jutility-version>
 		<!-- Java Version -->
 		<java.version>1.6</java.version>
 
 		<!-- CSV Library -->
-		<net.sf.supercsv.version>2.2.0</net.sf.supercsv.version>
+		<net.sf.supercsv.version>2.3.0</net.sf.supercsv.version>
 
 	</properties>
 
@@ -30,11 +65,23 @@
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<testSourceDirectory>src/test/java</testSourceDirectory>
-
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+			</testResource>
+		</testResources>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
+				<version>3.2</version>
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
@@ -43,7 +90,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.9.1</version>
+				<version>2.10.1</version>
 			</plugin>
 		</plugins>
 
@@ -53,7 +100,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.9.1</version>
+				<version>2.10.1</version>
 				<configuration>
 					<outputDirectory>doc/</outputDirectory>
 					<show>protected</show>
@@ -69,14 +116,14 @@
 		<dependency>
 			<groupId>org.jutility</groupId>
 			<artifactId>jutility-common</artifactId>
-			<version>0.1.0-SNAPSHOT</version>
+			<version>${jutility-version}</version>
 		</dependency>
 
 		<!-- CSV Library -->
 		<dependency>
 			<groupId>net.sf.supercsv</groupId>
 			<artifactId>super-csv</artifactId>
-			<version>2.2.0</version>
+			<version>${net.sf.supercsv.version}</version>
 		</dependency>
 
 	</dependencies>
