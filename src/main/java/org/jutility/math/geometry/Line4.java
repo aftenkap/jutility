@@ -1,29 +1,62 @@
 package org.jutility.math.geometry;
 
 
+// @formatter:off
+/*
+ * #%L
+ * jutility-math
+ * %%
+ * Copyright (C) 2013 - 2014 jutility.org
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+// @formatter:on
+
+
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.jutility.math.vectorAlgebra.IPoint4;
-import org.jutility.math.vectorAlgebra.Point4;
+import org.jutility.math.vectoralgebra.IPoint4;
+import org.jutility.math.vectoralgebra.Point4;
 
 
 /**
- * The generic {@link Line4} class provides a reference implementation of the
+ * The generic {@code Line4} class provides a reference implementation of the
  * {@link ILine4} interface.
  * 
- * @author Peter J. Radics
- * @version 1.0
  * @param <T>
- *            the type of the line.
+ *            the {@link Number} type of the line.
  * 
+ * @author Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.0
  */
 @XmlRootElement(name = "Line4")
 @XmlType(name = "Line4")
 public class Line4<T extends Number>
-        implements ILine4<T> {
+        implements ILine4<T>, Serializable {
+
+
+    /**
+     * Serial Version UID.
+     */
+    private static final long        serialVersionUID = -2050402727422266368L;
+
 
     @XmlAttribute
     private final Class<? extends T> type;
@@ -54,7 +87,7 @@ public class Line4<T extends Number>
 
 
     /**
-     * Creates a new instance of the {@link Line4} class. (Serialization
+     * Creates a new instance of the {@code Line4} class. (Serialization
      * Constructor)
      */
     protected Line4() {
@@ -63,7 +96,7 @@ public class Line4<T extends Number>
     }
 
     /**
-     * Creates a new instance of the {@link Line4} class with the provided type
+     * Creates a new instance of the {@code Line4} class with the provided type
      * and parameters.
      * 
      * @param source
@@ -80,7 +113,7 @@ public class Line4<T extends Number>
     }
 
     /**
-     * Creates a new instance of the {@link Line4} class with the provided type
+     * Creates a new instance of the {@code Line4} class with the provided type
      * and parameters.
      * 
      * @param source
@@ -98,10 +131,12 @@ public class Line4<T extends Number>
             final Class<? extends T> type, final boolean serialization) {
 
         if (source == null && !serialization) {
+
             throw new IllegalArgumentException(
                     "Cannot create a line without a source point!");
         }
         if (sink == null && !serialization) {
+
             throw new IllegalArgumentException(
                     "Cannot create a line without a sink point!");
         }
@@ -113,15 +148,20 @@ public class Line4<T extends Number>
         }
 
         if (source != null && type != null) {
+
             this.source = new Point4<T>(source, type);
         }
         else {
+
             this.source = null;
         }
+
         if (sink != null && type != null) {
+
             this.sink = new Point4<T>(sink, type);
         }
         else {
+
             this.sink = null;
         }
 
@@ -158,7 +198,7 @@ public class Line4<T extends Number>
     @Override
     public String toString() {
 
-        return "Line4 from " + this.getSource() + " to " + this.getSink();
+        return "Line from " + this.getSource() + " to " + this.getSink();
     }
 
     @Override
@@ -185,5 +225,4 @@ public class Line4<T extends Number>
 
         return hash;
     }
-
 }

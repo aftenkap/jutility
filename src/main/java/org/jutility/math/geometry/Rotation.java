@@ -1,39 +1,94 @@
 package org.jutility.math.geometry;
 
 
+//@formatter:off
+/*
+* #%L
+ * * jutility-math
+ * *
+ * %%
+ * Copyright (C) 2013 - 2014 jutility.org
+ * *
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+*/
+//@formatter:on
+
+
+import java.io.Serializable;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import org.jutility.common.datatype.util.NumberComparator;
 import org.jutility.common.datatype.util.NumberUtils;
-import org.jutility.math.vectorAlgebra.IVector4;
-import org.jutility.math.vectorAlgebra.Vector4;
+import org.jutility.math.vectoralgebra.IVector4;
+import org.jutility.math.vectoralgebra.Vector4;
 
 
 /**
  * The generic {@link Rotation} class provides a reference implementation of the
  * {@link IRotation} interface.
  * 
- * @author Peter J. Radics
- * @version 1.0
  * @param <T>
  *            the type of the rotation.
+ * 
+ * @author Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.0
  */
 @XmlRootElement(name = "Rotation")
 @XmlType(name = "Rotation")
 public class Rotation<T extends Number>
-        extends RotationBase<T>
-        implements IRotation<T> {
+        implements IRotation<T>, Serializable {
+
+
+    /**
+     * Serial Version UID.
+     */
+    private static final long        serialVersionUID = -635755269692285133L;
+
+
+    @XmlAttribute
+    private final Class<? extends T> type;
+
+    @XmlElement(name = "RotationAxis", type = Vector4.class)
+    private final IVector4<T>        rotationAxis;
+    @XmlElement(name = "RotationAngle")
+    private final T                  rotationAngle;
 
 
 
     @Override
-    public IVector4<T> getAxis() {
+    public Class<? extends T> getType() {
 
-        if (super.getAxis() instanceof IVector4) {
-            return (IVector4<T>) super.getAxis();
-        }
-        return null;
+        return this.type;
+    }
+
+
+    @Override
+    public T getRotationAngle() {
+
+        return this.rotationAngle;
+    }
+
+    @Override
+    public IVector4<T> getRotationAxis() {
+
+        return this.rotationAxis;
     }
 
 
@@ -119,10 +174,32 @@ public class Rotation<T extends Number>
             final Number rotationAngle, final Class<? extends T> type,
             final boolean serialization) {
 
-        super(serialization ? null : new Vector4<T>(rotationAxis, type),
-                serialization ? null : NumberUtils.cast(rotationAngle, type),
-                type, serialization);
+        if (rotationAxis == null && !serialization) {
+            throw new IllegalArgumentException(
+                    "Cannot create a rotation without a rotation axis!");
+        }
+        if (rotationAngle == null && !serialization) {
+            throw new IllegalArgumentException(
+                    "Cannot create a rotation without a rotation angle!");
+        }
 
+        if (type == null && !serialization) {
+            throw new IllegalArgumentException(
+                    "Cannot create a rotation without a type!");
+        }
+
+        if (!serialization) {
+
+            this.rotationAxis = new Vector4<T>(rotationAxis, type);
+            this.rotationAngle = NumberUtils.cast(rotationAngle, type);
+        }
+        else {
+
+            this.rotationAxis = null;
+            this.rotationAngle = null;
+        }
+
+        this.type = type;
     }
 
     /**
@@ -147,11 +224,15 @@ public class Rotation<T extends Number>
     public Rotation(final IRotation<? extends Number> rotationToCopy,
             final Class<? extends T> type) {
 
-        this(rotationToCopy.getAxis(), rotationToCopy.getAngle(), type);
+        this(rotationToCopy.getRotationAxis(), rotationToCopy
+                .getRotationAngle(), type);
     }
 
     /**
      * Provides a rotation by the provided rotation angle around the x axis.
+     * 
+     * @param <T>
+     *            the {@link Number} type of the resulting {@code Rotation}.
      * 
      * @param rotationAngle
      *            the rotation angle.
@@ -169,6 +250,9 @@ public class Rotation<T extends Number>
     /**
      * Provides a rotation by the provided rotation angle around the y axis.
      * 
+     * @param <T>
+     *            the {@link Number} type of the resulting {@code Rotation}.
+     * 
      * @param rotationAngle
      *            the rotation angle.
      * @param type
@@ -184,6 +268,9 @@ public class Rotation<T extends Number>
 
     /**
      * Provides a rotation by the provided rotation angle around the z axis.
+     * 
+     * @param <T>
+     *            the {@link Number} type of the resulting {@code Rotation}.
      * 
      * @param rotationAngle
      *            the rotation angle.
@@ -205,9 +292,9 @@ public class Rotation<T extends Number>
         if (obj != null && obj instanceof Rotation<?>) {
             Rotation<?> other = (Rotation<?>) obj;
 
-            if (this.getAxis().equals(other.getAxis())
-                    && NumberComparator.equals(this.getAngle(),
-                            other.getAngle())) {
+            if (this.getRotationAxis().equals(other.getRotationAxis())
+                    && NumberComparator.equals(this.getRotationAngle(),
+                            other.getRotationAngle())) {
                 return true;
             }
         }
@@ -215,4 +302,18 @@ public class Rotation<T extends Number>
         return false;
     }
 
+    @Override
+    public int hashCode() {
+
+        return 7 + 17 * this.getRotationAxis().hashCode() + 23
+                * this.getRotationAngle().hashCode();
+    }
+
+
+    @Override
+    public String toString() {
+
+        return "Rotation Axis: " + this.rotationAxis + ", Angle: "
+                + this.rotationAngle;
+    }
 }

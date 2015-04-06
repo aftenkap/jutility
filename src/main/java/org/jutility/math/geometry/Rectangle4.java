@@ -1,29 +1,63 @@
 package org.jutility.math.geometry;
 
 
+//@formatter:off
+/*
+* #%L
+ * * jutility-math
+ * *
+ * %%
+ * Copyright (C) 2013 - 2014 jutility.org
+ * *
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+*/
+//@formatter:on
+
+
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.jutility.math.vectorAlgebra.IPoint4;
-import org.jutility.math.vectorAlgebra.Point4;
+import org.jutility.math.vectoralgebra.IPoint4;
+import org.jutility.math.vectoralgebra.Point4;
 
 
 /**
- * The generic {@link Rectangle4} class provides a reference implementation of
+ * The generic {@code Rectangle4} class provides a reference implementation of
  * the {@link IRectangle4} interface.
+ *
+ * @param <T>
+ *            the {@link Number} type of the {@code Rectangle4}.
  * 
  * @author Peter J. Radics
- * @version 1.0
- * @param <T>
- *            the type of the rectangle.
- * 
+ * @version 0.1.2
+ * @since 0.1.0
  */
 @XmlRootElement(name = "Rectangle4")
 @XmlType(name = "Rectangle4")
 public class Rectangle4<T extends Number>
-        implements IRectangle4<T> {
+        implements IRectangle4<T>, Serializable {
+
+    /**
+     * Serial Version UID.
+     */
+    private static final long        serialVersionUID = -5650871897919038389L;
+
 
     @XmlAttribute
     private final Class<? extends T> type;
@@ -70,7 +104,7 @@ public class Rectangle4<T extends Number>
     }
 
     /**
-     * Creates a new instance of the {@link Rectangle4} class. (Serialization
+     * Creates a new instance of the {@code Rectangle4} class. (Serialization
      * Constructor)
      */
     protected Rectangle4() {
@@ -79,7 +113,7 @@ public class Rectangle4<T extends Number>
     }
 
     /**
-     * Creates a new instance of the {@link Rectangle4} class with the provided
+     * Creates a new instance of the {@code Rectangle4} class with the provided
      * type and parameters.
      * 
      * @param bottomLeftCorner
@@ -97,7 +131,7 @@ public class Rectangle4<T extends Number>
     }
 
     /**
-     * Creates a new instance of the {@link Rectangle4} class with the provided
+     * Creates a new instance of the {@code Rectangle4} class with the provided
      * type and parameters.
      * 
      * @param bottomLeftCorner
@@ -182,7 +216,7 @@ public class Rectangle4<T extends Number>
     @Override
     public String toString() {
 
-        return "Rectangle4 [ Top Left: " + this.getTopLeftCorner()
+        return "Rectangle [ Top Left: " + this.getTopLeftCorner()
                 + ", Top Right: " + this.getTopRightCorner()
                 + ", Bottom Left: " + this.getBottomLeftCorner()
                 + ", Bottom Right: " + this.getBottomRightCorner() + " ]";

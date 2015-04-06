@@ -1,29 +1,60 @@
 package org.jutility.math.geometry;
 
 
+//@formatter:off
+/*
+ * #%L
+ * jutility-math
+ * %%
+ * Copyright (C) 2013 - 2014 jutility.org
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+//@formatter:on
+
+
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import org.jutility.common.datatype.tuple.Tuple3;
 import org.jutility.common.datatype.util.NumberComparator;
 import org.jutility.common.datatype.util.NumberUtils;
+import org.jutility.math.arithmetics.ArithmeticOperations;
 
 
 /**
- * The {@link Translation} class provides a reference implementation of the
+ * The {@code Translation} class provides a reference implementation of the
  * {@link ITranslation} interface.
- * 
- * @author Peter J. Radics
- * @version 1.0
+ *
  * @param <T>
- *            the type of this translation.
- * 
+ *            the {@link Number} type of this translation.
+ *
+ * @author Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.0
  */
 @XmlRootElement(name = "Translation")
 @XmlType(name = "Translation")
 public class Translation<T extends Number>
         extends Tuple3<T>
         implements ITranslation<T> {
+
+
+    /**
+     * Serial Version UID.
+     */
+    private static final long serialVersionUID = -8787334514178129836L;
 
 
     @Override
@@ -48,7 +79,7 @@ public class Translation<T extends Number>
 
 
     /**
-     * Constructs a new instance of the {@link Translation} class.
+     * Constructs a new instance of the {@code Translation} class.
      * (Serialization Constructor)
      */
     @SuppressWarnings("unused")
@@ -58,22 +89,22 @@ public class Translation<T extends Number>
     }
 
     /**
-     * Constructs a new instance of the {@link Translation} class with the
+     * Constructs a new instance of the {@code Translation} class with the
      * provided type that represents no translation.
-     * 
+     *
      * @param type
      *            the type of this translation.
      */
-    public Translation(Class<? extends T> type) {
+    public Translation(final Class<? extends T> type) {
 
         this(0, 0, 0, type);
     }
 
 
     /**
-     * Constructs a new instance of the {@link Translation} class with the
+     * Constructs a new instance of the {@code Translation} class with the
      * provided type and parameters.
-     * 
+     *
      * @param xTranslation
      *            the x-translation.
      * @param yTranslation
@@ -83,16 +114,16 @@ public class Translation<T extends Number>
      * @param type
      *            the type of this translation.
      */
-    public Translation(Number xTranslation, Number yTranslation,
-            Number zTranslation, Class<? extends T> type) {
+    public Translation(final Number xTranslation, final Number yTranslation,
+            final Number zTranslation, final Class<? extends T> type) {
 
         this(xTranslation, yTranslation, zTranslation, type, false);
     }
 
     /**
-     * Constructs a new instance of the {@link Translation} class with the
+     * Constructs a new instance of the {@code Translation} class with the
      * provided type and parameters.
-     * 
+     *
      * @param xTranslation
      *            the x-translation.
      * @param yTranslation
@@ -116,7 +147,7 @@ public class Translation<T extends Number>
 
     /**
      * Copy Constructor.
-     * 
+     *
      * @param translationToCopy
      *            the translation to copy.
      */
@@ -127,7 +158,7 @@ public class Translation<T extends Number>
 
     /**
      * Copy Constructor.
-     * 
+     *
      * @param translationToCopy
      *            the translation to copy.
      * @param type
@@ -149,16 +180,16 @@ public class Translation<T extends Number>
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
 
-        if (obj != null && obj instanceof ITranslation<?>) {
-            ITranslation<?> other = (ITranslation<?>) obj;
+        if ((obj != null) && (obj instanceof ITranslation<?>)) {
+            final ITranslation<?> other = (ITranslation<?>) obj;
 
-            boolean sameXTranslation = NumberComparator.equals(
+            final boolean sameXTranslation = NumberComparator.equals(
                     this.getXTranslation(), other.getXTranslation());
-            boolean sameYTranslation = NumberComparator.equals(
+            final boolean sameYTranslation = NumberComparator.equals(
                     this.getYTranslation(), other.getYTranslation());
-            boolean sameZTranslation = NumberComparator.equals(
+            final boolean sameZTranslation = NumberComparator.equals(
                     this.getZTranslation(), other.getZTranslation());
 
             return sameXTranslation && sameYTranslation && sameZTranslation;
@@ -167,20 +198,36 @@ public class Translation<T extends Number>
         return false;
     }
 
-    private static <S extends Number> S cast(Number number,
-            Class<? extends S> type, boolean serialization) {
+    @Override
+    public int hashCode() {
 
-        if (number == null && !serialization) {
+        int hash = 7;
+
+        hash += ArithmeticOperations.multiply(this.getXTranslation(), 11,
+                Integer.class);
+        hash += ArithmeticOperations.multiply(this.getYTranslation(), 13,
+                Integer.class);
+        hash += ArithmeticOperations.multiply(this.getZTranslation(), 17,
+                Integer.class);
+
+        return hash;
+    }
+
+
+    private static <S extends Number> S cast(final Number number,
+            final Class<? extends S> type, final boolean serialization) {
+
+        if ((number == null) && !serialization) {
             throw new IllegalArgumentException(
                     "Cannot create a translation with a null component!");
         }
-        if (type == null && !serialization) {
+        if ((type == null) && !serialization) {
 
             throw new IllegalArgumentException(
                     "Cannot create a translation without a type!");
         }
 
-        if (number != null && type != null) {
+        if ((number != null) && (type != null)) {
             return NumberUtils.cast(number, type);
         }
         else {

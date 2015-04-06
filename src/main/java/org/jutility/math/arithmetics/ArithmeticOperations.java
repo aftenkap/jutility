@@ -1,38 +1,67 @@
 package org.jutility.math.arithmetics;
 
 
+//@formatter:off
+/*
+ * #%L
+ * jutility-math
+ * %%
+ * Copyright (C) 2013 - 2014 jutility.org
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+//@formatter:on
 import org.jutility.common.datatype.util.NumberUtils;
 
 
 /**
- * Provides arithmetic operations.
- * 
+ * THe {@code ArithmeticOperations} class provides factory methods for
+ * arithmetic operations.
+ *
  * @author Peter J. Radics
- * @version 1.0
+ * @version 0.1.2
+ * @since 0.1.0
  */
-public class ArithmeticOperations {
+public final class ArithmeticOperations {
 
     /**
      * Calculates the sum of the provided numbers.
-     * 
+     *
+     * @param <T>
+     *            the {@link Number} type.
+     *
      * @param numbers
      *            the numbers.
      * @return the sum of the numbers.
      */
-    @SafeVarargs
-    public static <T extends Number> Number sum(T... numbers) {
+    public static final <T extends Number> T sum(final T... numbers) {
 
         if (numbers.length == 0) {
+
             throw new IllegalArgumentException(
                     "Need to have at least one operand to calculate sum.");
         }
         else if (numbers.length == 1) {
+
             return numbers[0];
         }
         else {
-            Number sum = ArithmeticOperations.add(numbers[0], numbers[1]);
+
+            T sum = ArithmeticOperations.add(numbers[0], numbers[1]);
 
             for (int i = 2; i < numbers.length; i++) {
+
                 sum = ArithmeticOperations.add(sum, numbers[i]);
             }
             return sum;
@@ -41,87 +70,106 @@ public class ArithmeticOperations {
 
     /**
      * Calculates the sum of the provided numbers.
-     * 
+     *
+     * @param <R>
+     *            the {@link Number} type of the return type.
+     *
      * @param returnType
      *            the desired return type.
-     * 
+     *
      * @param numbers
      *            the numbers.
      * @return the sum of the numbers.
      */
-    @SafeVarargs
-    public static <T extends Number, S extends Number> S sum(
-            Class<? extends S> returnType, T... numbers) {
+    public static final <R extends Number> R sum(
+            final Class<? extends R> returnType, final Number... numbers) {
 
         if (numbers.length == 0) {
+
             throw new IllegalArgumentException(
                     "Need to have at least one operand to calculate sum.");
         }
         else if (numbers.length == 1) {
+
             return NumberUtils.cast(numbers[0], returnType);
         }
         else {
-            S sum = ArithmeticOperations
+
+            R sum = ArithmeticOperations
                     .add(numbers[0], numbers[1], returnType);
 
             for (int i = 2; i < numbers.length; i++) {
+
                 sum = ArithmeticOperations.add(sum, numbers[i], returnType);
             }
+
             return sum;
         }
     }
 
     /**
      * Calculates the product of the provided numbers.
-     * 
+     *
+     * @param <T>
+     *            the {@link Number} type.
+     *
      * @param numbers
      *            the numbers.
      * @return the product of the numbers.
      */
-    @SafeVarargs
-    public static <T extends Number> Number product(T... numbers) {
+    public static final <T extends Number> T product(final T... numbers) {
 
         if (numbers.length == 0) {
+
             throw new IllegalArgumentException(
                     "Need to have at least one operand to calculate product.");
         }
         else if (numbers.length == 1) {
+
             return numbers[0];
         }
         else {
-            Number product = ArithmeticOperations.multiply(numbers[0],
-                    numbers[1]);
+
+            T product = ArithmeticOperations.multiply(numbers[0], numbers[1]);
 
             for (int i = 2; i < numbers.length; i++) {
+
                 product = ArithmeticOperations.multiply(product, numbers[i]);
             }
+
             return product;
         }
     }
 
     /**
      * Calculates the product of the provided numbers.
-     * 
+     *
+     * @param <R>
+     *            the {@link Number} type of the return type.
+     *
+     *
      * @param returnType
      *            the desired return type.
-     * 
+     *
      * @param numbers
      *            the numbers.
      * @return the product of the numbers.
      */
-    @SafeVarargs
-    public static <T extends Number, S extends Number> S product(
-            Class<? extends S> returnType, T... numbers) {
+    public static final <R extends Number> R product(
+            final Class<? extends R> returnType, final Number... numbers) {
 
         if (numbers.length == 0) {
+
             throw new IllegalArgumentException(
                     "Need to have at least one operand to calculate product.");
         }
         else if (numbers.length == 1) {
+
             return NumberUtils.cast(numbers[0], returnType);
         }
         else {
-            S product = ArithmeticOperations.multiply(numbers[0], numbers[1],
+
+            R product = ArithmeticOperations.multiply(numbers[0], numbers[1],
                     returnType);
 
             for (int i = 2; i < numbers.length; i++) {
@@ -134,18 +182,45 @@ public class ArithmeticOperations {
 
     /**
      * Adds two numbers.
-     * 
+     *
+     * @param <T>
+     *            the {@link Number} type of the left-hand side.
+     *
      * @param lhs
      *            the left-hand side.
      * @param rhs
      *            the right-hand side.
      * @return the sum of the numbers.
      */
-    public static <T extends Number, S extends Number> Number add(final T lhs,
-            final S rhs) {
+    @SuppressWarnings("unchecked")
+    public static final <T extends Number> T add(final T lhs, final T rhs) {
+
+
+        final Number result = ArithmeticOperations
+                .add(lhs, rhs, lhs.getClass());
+
+        return (T) result;
+    }
+
+
+    /**
+     * Adds two numbers and casts the result to the desired return type.
+     *
+     * @param <R>
+     *            the {@link Number} type of the returned number.
+     *
+     * @param lhs
+     *            the left-hand side.
+     * @param rhs
+     *            the right-hand side.
+     * @param returnType
+     *            the return type.
+     * @return the sum of the numbers.
+     */
+    public static final <R extends Number> R add(final Number lhs,
+            final Number rhs, final Class<R> returnType) {
 
         Number result = null;
-
 
         if (lhs instanceof Double) {
 
@@ -203,97 +278,81 @@ public class ArithmeticOperations {
                             + " to a value of type " + rhs.getClass() + "!");
         }
 
-        return result;
-    }
-
-
-    /**
-     * Adds two numbers and casts the result to the desired return type.
-     * 
-     * @param lhs
-     *            the left-hand side.
-     * @param rhs
-     *            the right-hand side.
-     * @param returnType
-     *            the return type.
-     * @return the sum of the numbers.
-     */
-    public static <T extends Number, S extends Number, R extends Number> R add(
-            T lhs, S rhs, Class<R> returnType) {
-
-        Number result = ArithmeticOperations.add(lhs, rhs);
-
         return NumberUtils.cast(result, returnType);
     }
 
-    private static <T extends Number> Number add(Double lhs, T rhs) {
+    private static final Double add(final Double lhs, final Number rhs) {
 
-        Double rhsDouble = rhs.doubleValue();
+        final Double rhsDouble = rhs.doubleValue();
 
         return lhs + rhsDouble;
     }
 
-    private static <T extends Number> Number add(T lhs, Double rhs) {
+    private static final Double add(final Number lhs, final Double rhs) {
 
         return ArithmeticOperations.add(rhs, lhs);
     }
 
-    private static <T extends Number> Number add(Float lhs, T rhs) {
+    private static final Float add(final Float lhs, final Number rhs) {
 
-        Float rhsFloat = rhs.floatValue();
+        final Float rhsFloat = rhs.floatValue();
 
         return lhs + rhsFloat;
     }
 
-    private static <T extends Number> Number add(T lhs, Float rhs) {
+    private static final Float add(final Number lhs, final Float rhs) {
 
         return ArithmeticOperations.add(rhs, lhs);
     }
 
-    private static <T extends Number> Number add(Long lhs, T rhs) {
+    private static final Long add(final Long lhs, final Number rhs) {
 
-        Long rhsLong = rhs.longValue();
+        final Long rhsLong = rhs.longValue();
 
         return lhs + rhsLong;
     }
 
-    private static <T extends Number> Number add(T lhs, Long rhs) {
+    private static final Long add(final Number lhs, final Long rhs) {
 
         return ArithmeticOperations.add(rhs, lhs);
     }
 
-    private static <T extends Number> Number add(Integer lhs, T rhs) {
+    private static final Integer add(final Integer lhs, final Number rhs) {
 
-        Integer rhsInteger = rhs.intValue();
+        final Integer rhsInteger = rhs.intValue();
 
         return lhs + rhsInteger;
     }
 
-    private static <T extends Number> Number add(T lhs, Integer rhs) {
+    private static final Integer add(final Number lhs, final Integer rhs) {
 
         return ArithmeticOperations.add(rhs, lhs);
     }
 
-    private static <T extends Number> Number add(Short lhs, T rhs) {
+    private static final Short add(final Short lhs, final Number rhs) {
 
-        Short rhsShort = rhs.shortValue();
+        final Short rhsShort = rhs.shortValue();
 
-        return lhs + rhsShort;
+        final Integer result = lhs + rhsShort;
+
+        return result.shortValue();
     }
 
-    private static <T extends Number> Number add(T lhs, Short rhs) {
+    private static final Short add(final Number lhs, final Short rhs) {
 
         return ArithmeticOperations.add(rhs, lhs);
     }
 
-    private static <T extends Number> Number add(Byte lhs, T rhs) {
+    private static final Byte add(final Byte lhs, final Number rhs) {
 
-        Byte rhsByte = rhs.byteValue();
+        final Byte rhsByte = rhs.byteValue();
 
-        return lhs + rhsByte;
+        final Integer result = lhs + rhsByte;
+
+        return result.byteValue();
     }
 
-    private static <T extends Number> Number add(T lhs, Byte rhs) {
+    private static final Byte add(final Number lhs, final Byte rhs) {
 
         return ArithmeticOperations.add(rhs, lhs);
     }
@@ -302,15 +361,41 @@ public class ArithmeticOperations {
 
     /**
      * Subtracts two numbers.
-     * 
+     *
+     * @param <T>
+     *            the {@link Number} type of the operands.
+     *
      * @param lhs
      *            the left-hand side.
      * @param rhs
      *            the right-hand side.
      * @return the difference of the numbers.
      */
-    public static <T extends Number, S extends Number> Number subtract(T lhs,
-            S rhs) {
+    @SuppressWarnings("unchecked")
+    public static final <T extends Number> T subtract(final T lhs, final T rhs) {
+
+        final Number result = ArithmeticOperations.subtract(lhs, rhs,
+                lhs.getClass());
+
+        return (T) result;
+    }
+
+    /**
+     * Subtracts two numbers and casts the result to the desired return type.
+     *
+     * @param <R>
+     *            the {@link Number} type of the returned number.
+     *
+     * @param lhs
+     *            the left-hand side.
+     * @param rhs
+     *            the right-hand side.
+     * @param returnType
+     *            the return type.
+     * @return the difference of the numbers.
+     */
+    public static final <R extends Number> R subtract(final Number lhs,
+            final Number rhs, final Class<R> returnType) {
 
         Number result = null;
 
@@ -373,125 +458,140 @@ public class ArithmeticOperations {
                             + " from a value of type " + lhs.getClass() + "!");
         }
 
-        return result;
-    }
-
-    /**
-     * Subtracts two numbers and casts the result to the desired return type.
-     * 
-     * @param lhs
-     *            the left-hand side.
-     * @param rhs
-     *            the right-hand side.
-     * @param returnType
-     *            the return type.
-     * @return the difference of the numbers.
-     */
-    public static <T extends Number, S extends Number, R extends Number> R subtract(
-            T lhs, S rhs, Class<R> returnType) {
-
-        Number result = ArithmeticOperations.subtract(lhs, rhs);
-
         return NumberUtils.cast(result, returnType);
     }
 
 
-    private static <T extends Number> Number subtract(Double lhs, T rhs) {
+    private static final Double subtract(final Double lhs, final Number rhs) {
 
-        Double rhsDouble = rhs.doubleValue();
+        final Double rhsDouble = rhs.doubleValue();
 
         return lhs - rhsDouble;
     }
 
-    private static <T extends Number> Number subtract(T lhs, Double rhs) {
+    private static final Double subtract(final Number lhs, final Double rhs) {
 
-        Double lhsDouble = lhs.doubleValue();
+        final Double lhsDouble = lhs.doubleValue();
 
         return lhsDouble - rhs;
     }
 
-    private static <T extends Number> Number subtract(Float lhs, T rhs) {
+    private static final Float subtract(final Float lhs, final Number rhs) {
 
-        Float rhsFloat = rhs.floatValue();
+        final Float rhsFloat = rhs.floatValue();
 
         return lhs - rhsFloat;
     }
 
-    private static <T extends Number> Number subtract(T lhs, Float rhs) {
+    private static final Float subtract(final Number lhs, final Float rhs) {
 
-        Float lhsFloat = lhs.floatValue();
+        final Float lhsFloat = lhs.floatValue();
 
         return lhsFloat - rhs;
     }
 
-    private static <T extends Number> Number subtract(Long lhs, T rhs) {
+    private static final Long subtract(final Long lhs, final Number rhs) {
 
-        Long rhsLong = rhs.longValue();
+        final Long rhsLong = rhs.longValue();
 
         return lhs - rhsLong;
     }
 
-    private static <T extends Number> Number subtract(T lhs, Long rhs) {
+    private static final Long subtract(final Number lhs, final Long rhs) {
 
-        Long lhsLong = lhs.longValue();
+        final Long lhsLong = lhs.longValue();
 
         return lhsLong - rhs;
     }
 
-    private static <T extends Number> Number subtract(Integer lhs, T rhs) {
+    private static final Integer subtract(final Integer lhs, final Number rhs) {
 
-        Integer rhsInteger = rhs.intValue();
+        final Integer rhsInteger = rhs.intValue();
 
         return lhs - rhsInteger;
     }
 
-    private static <T extends Number> Number subtract(T lhs, Integer rhs) {
+    private static final Integer subtract(final Number lhs, final Integer rhs) {
 
-        Integer lhsInteger = lhs.intValue();
+        final Integer lhsInteger = lhs.intValue();
 
         return lhsInteger - rhs;
     }
 
-    private static <T extends Number> Number subtract(Short lhs, T rhs) {
+    private static final Short subtract(final Short lhs, final Number rhs) {
 
-        Short rhsShort = rhs.shortValue();
+        final Short rhsShort = rhs.shortValue();
 
-        return lhs - rhsShort;
+        final Integer result = lhs - rhsShort;
+
+        return result.shortValue();
     }
 
-    private static <T extends Number> Number subtract(T lhs, Short rhs) {
+    private static final Short subtract(final Number lhs, final Short rhs) {
 
-        Short lhsShort = lhs.shortValue();
+        final Short lhsShort = lhs.shortValue();
 
-        return lhsShort - rhs;
+        final Integer result = lhsShort - rhs;
+
+        return result.shortValue();
     }
 
-    private static <T extends Number> Number subtract(Byte lhs, T rhs) {
+    private static final Byte subtract(final Byte lhs, final Number rhs) {
 
-        Byte rhsByte = rhs.byteValue();
+        final Byte rhsByte = rhs.byteValue();
 
-        return lhs - rhsByte;
+        final Integer result = lhs - rhsByte;
+
+        return result.byteValue();
     }
 
-    private static <T extends Number> Number subtract(T lhs, Byte rhs) {
+    private static final Byte subtract(final Number lhs, final Byte rhs) {
 
-        Byte lhsByte = lhs.byteValue();
+        final Byte lhsByte = lhs.byteValue();
 
-        return lhsByte - rhs;
+        final Integer result = lhsByte - rhs;
+
+        return result.byteValue();
     }
 
 
     /**
      * Multiplies two numbers.
-     * 
+     *
+     * @param <T>
+     *            the {@link Number} type of the operands.
+     *
      * @param lhs
      *            the left-hand side.
      * @param rhs
      *            the right-hand side.
      * @return the product of the numbers.
      */
-    public static <T extends Number, S extends Number> Number multiply(T lhs,
-            S rhs) {
+    @SuppressWarnings("unchecked")
+    public static final <T extends Number> T multiply(final T lhs, final T rhs) {
+
+        final Number result = ArithmeticOperations.multiply(lhs, rhs,
+                lhs.getClass());
+
+        return (T) result;
+    }
+
+    /**
+     * Multiplies two numbers and casts the result to the desired return type.
+     *
+     * @param <R>
+     *            the {@link Number} type of the result.
+     *
+     * @param lhs
+     *            the left-hand side.
+     * @param rhs
+     *            the right-hand side.
+     * @param returnType
+     *            the return type.
+     * @return the product of the numbers.
+     */
+    public static final <R extends Number> R multiply(final Number lhs,
+            final Number rhs, final Class<R> returnType) {
 
         Number result = null;
 
@@ -554,97 +654,82 @@ public class ArithmeticOperations {
                             + " with a value of type " + rhs.getClass() + "!");
         }
 
-        return result;
-    }
-
-
-    /**
-     * Multiplies two numbers and casts the result to the desired return type.
-     * 
-     * @param lhs
-     *            the left-hand side.
-     * @param rhs
-     *            the right-hand side.
-     * @param returnType
-     *            the return type.
-     * @return the product of the numbers.
-     */
-    public static <T extends Number, S extends Number, R extends Number> R multiply(
-            T lhs, S rhs, Class<R> returnType) {
-
-        Number result = ArithmeticOperations.multiply(lhs, rhs);
-
         return NumberUtils.cast(result, returnType);
     }
 
-    private static <T extends Number> Number multiply(Double lhs, T rhs) {
 
-        Double rhsDouble = rhs.doubleValue();
+    private static final Double multiply(final Double lhs, final Number rhs) {
+
+        final Double rhsDouble = rhs.doubleValue();
 
         return lhs * rhsDouble;
     }
 
-    private static <T extends Number> Number multiply(T lhs, Double rhs) {
+    private static final Double multiply(final Number lhs, final Double rhs) {
 
         return ArithmeticOperations.multiply(rhs, lhs);
     }
 
-    private static <T extends Number> Number multiply(Float lhs, T rhs) {
+    private static final Float multiply(final Float lhs, final Number rhs) {
 
-        Float rhsFloat = rhs.floatValue();
+        final Float rhsFloat = rhs.floatValue();
 
         return lhs * rhsFloat;
     }
 
-    private static <T extends Number> Number multiply(T lhs, Float rhs) {
+    private static final Float multiply(final Number lhs, final Float rhs) {
 
         return ArithmeticOperations.multiply(rhs, lhs);
     }
 
-    private static <T extends Number> Number multiply(Long lhs, T rhs) {
+    private static final Long multiply(final Long lhs, final Number rhs) {
 
-        Long rhsLong = rhs.longValue();
+        final Long rhsLong = rhs.longValue();
 
         return lhs * rhsLong;
     }
 
-    private static <T extends Number> Number multiply(T lhs, Long rhs) {
+    private static final Long multiply(final Number lhs, final Long rhs) {
 
         return ArithmeticOperations.multiply(rhs, lhs);
     }
 
-    private static <T extends Number> Number multiply(Integer lhs, T rhs) {
+    private static final Integer multiply(final Integer lhs, final Number rhs) {
 
-        Integer rhsInteger = rhs.intValue();
+        final Integer rhsInteger = rhs.intValue();
 
         return lhs * rhsInteger;
     }
 
-    private static <T extends Number> Number multiply(T lhs, Integer rhs) {
+    private static final Integer multiply(final Number lhs, final Integer rhs) {
 
         return ArithmeticOperations.multiply(rhs, lhs);
     }
 
-    private static <T extends Number> Number multiply(Short lhs, T rhs) {
+    private static final Short multiply(final Short lhs, final Number rhs) {
 
-        Short rhsShort = rhs.shortValue();
+        final Short rhsShort = rhs.shortValue();
 
-        return lhs * rhsShort;
+        final Integer result = lhs * rhsShort;
+
+        return result.shortValue();
     }
 
-    private static <T extends Number> Number multiply(T lhs, Short rhs) {
+    private static final Short multiply(final Number lhs, final Short rhs) {
 
         return ArithmeticOperations.multiply(rhs, lhs);
     }
 
-    private static <T extends Number> Number multiply(Byte lhs, T rhs) {
+    private static final Byte multiply(final Byte lhs, final Number rhs) {
 
-        Byte rhsByte = rhs.byteValue();
+        final Byte rhsByte = rhs.byteValue();
 
-        return lhs * rhsByte;
+        final Integer result = lhs * rhsByte;
+
+        return result.byteValue();
     }
 
-    private static <T extends Number> Number multiply(T lhs, Byte rhs) {
+    private static final Byte multiply(final Number lhs, final Byte rhs) {
 
         return ArithmeticOperations.multiply(rhs, lhs);
     }
@@ -652,15 +737,42 @@ public class ArithmeticOperations {
 
     /**
      * Divides two numbers.
-     * 
+     *
+     * @param <T>
+     *            the {@link Number} type of the operands.
+     *
      * @param lhs
      *            the left-hand side.
      * @param rhs
      *            the right-hand side.
      * @return the quotient of the numbers.
      */
-    public static <T extends Number, S extends Number> Number divide(T lhs,
-            S rhs) {
+    @SuppressWarnings("unchecked")
+    public static final <T extends Number> T divide(final T lhs, final T rhs) {
+
+        final Number result = ArithmeticOperations.divide(lhs, rhs,
+                lhs.getClass());
+
+        return (T) result;
+    }
+
+
+    /**
+     * Divides two numbers and casts the result to the desired return type.
+     *
+     * @param <R>
+     *            the {@link Number} type of the result.
+     *
+     * @param lhs
+     *            the left-hand side.
+     * @param rhs
+     *            the right-hand side.
+     * @param returnType
+     *            the return type.
+     * @return the quotient of the numbers.
+     */
+    public static final <R extends Number> R divide(final Number lhs,
+            final Number rhs, final Class<R> returnType) {
 
         Number result = null;
 
@@ -714,7 +826,6 @@ public class ArithmeticOperations {
         }
 
 
-
         if (result == null) {
 
             throw new UnsupportedOperationException(
@@ -722,111 +833,99 @@ public class ArithmeticOperations {
                             + " by a value of type " + lhs.getClass() + "!");
         }
 
-        return result;
-    }
-
-
-    /**
-     * Divides two numbers and casts the result to the desired return type.
-     * 
-     * @param lhs
-     *            the left-hand side.
-     * @param rhs
-     *            the right-hand side.
-     * @param returnType
-     *            the return type.
-     * @return the quotient of the numbers.
-     */
-    public static <T extends Number, S extends Number, R extends Number> R divide(
-            T lhs, S rhs, Class<R> returnType) {
-
-        Number result = ArithmeticOperations.divide(lhs, rhs);
-
         return NumberUtils.cast(result, returnType);
     }
 
 
-    private static <T extends Number> Number divide(Double lhs, T rhs) {
+    private static final Double divide(final Double lhs, final Number rhs) {
 
-        Double rhsDouble = rhs.doubleValue();
+        final Double rhsDouble = rhs.doubleValue();
 
         return lhs / rhsDouble;
     }
 
-    private static <T extends Number> Number divide(T lhs, Double rhs) {
+    private static final Double divide(final Number lhs, final Double rhs) {
 
-        Double lhsDouble = lhs.doubleValue();
+        final Double lhsDouble = lhs.doubleValue();
 
         return lhsDouble / rhs;
     }
 
-    private static <T extends Number> Number divide(Float lhs, T rhs) {
+    private static final Float divide(final Float lhs, final Number rhs) {
 
-        Float rhsFloat = rhs.floatValue();
+        final Float rhsFloat = rhs.floatValue();
 
         return lhs / rhsFloat;
     }
 
-    private static <T extends Number> Number divide(T lhs, Float rhs) {
+    private static final Float divide(final Number lhs, final Float rhs) {
 
-        Float lhsFloat = lhs.floatValue();
+        final Float lhsFloat = lhs.floatValue();
 
         return lhsFloat / rhs;
     }
 
-    private static <T extends Number> Number divide(Long lhs, T rhs) {
+    private static final Long divide(final Long lhs, final Number rhs) {
 
-        Long rhsLong = rhs.longValue();
+        final Long rhsLong = rhs.longValue();
 
         return lhs / rhsLong;
     }
 
-    private static <T extends Number> Number divide(T lhs, Long rhs) {
+    private static final Long divide(final Number lhs, final Long rhs) {
 
-        Long lhsLong = lhs.longValue();
+        final Long lhsLong = lhs.longValue();
 
         return lhsLong / rhs;
     }
 
-    private static <T extends Number> Number divide(Integer lhs, T rhs) {
+    private static final Integer divide(final Integer lhs, final Number rhs) {
 
-        Integer rhsInteger = rhs.intValue();
+        final Integer rhsInteger = rhs.intValue();
 
         return lhs / rhsInteger;
     }
 
-    private static <T extends Number> Number divide(T lhs, Integer rhs) {
+    private static final Integer divide(final Number lhs, final Integer rhs) {
 
-        Integer lhsInteger = lhs.intValue();
+        final Integer lhsInteger = lhs.intValue();
 
         return lhsInteger / rhs;
     }
 
-    private static <T extends Number> Number divide(Short lhs, T rhs) {
+    private static final Short divide(final Short lhs, final Number rhs) {
 
-        Short rhsShort = rhs.shortValue();
+        final Short rhsShort = rhs.shortValue();
 
-        return lhs / rhsShort;
+        final Integer result = lhs / rhsShort;
+
+        return result.shortValue();
     }
 
-    private static <T extends Number> Number divide(T lhs, Short rhs) {
+    private static final Short divide(final Number lhs, final Short rhs) {
 
-        Short lhsShort = lhs.shortValue();
+        final Short lhsShort = lhs.shortValue();
 
-        return lhsShort / rhs;
+        final Integer result = lhsShort / rhs;
+
+        return result.shortValue();
     }
 
-    private static <T extends Number> Number divide(Byte lhs, T rhs) {
+    private static final Byte divide(final Byte lhs, final Number rhs) {
 
-        Byte rhsByte = rhs.byteValue();
+        final Byte rhsByte = rhs.byteValue();
 
-        return lhs / rhsByte;
+        final Integer result = lhs / rhsByte;
+
+        return result.byteValue();
     }
 
-    private static <T extends Number> Number divide(T lhs, Byte rhs) {
+    private static final Byte divide(final Number lhs, final Byte rhs) {
 
-        Byte lhsByte = lhs.byteValue();
+        final Byte lhsByte = lhs.byteValue();
 
-        return lhsByte / rhs;
+        final Integer result = lhsByte / rhs;
+
+        return result.byteValue();
     }
 }
