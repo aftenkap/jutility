@@ -6,7 +6,7 @@ package org.jutility.common.datatype.table;
  * #%L
  * jutility-common
  * %%
- * Copyright (C) 2013 - 2014 jutility.org
+ * Copyright (C) 2013 - 2015 jutility.org
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ import org.slf4j.LoggerFactory;
  *            the type of the table data.
  *
  * @author Peter J. Radics
- * @version 0.1.2
+ * @version 0.1.4
  * @since 0.1.0
  */
 public class Table<T>
@@ -63,6 +63,13 @@ public class Table<T>
 
 
         return this.add(new Cell<T>(row, column, value));
+    }
+
+    @Override
+    public boolean add(CellLocation location, T value) {
+
+        return this.add(new Cell<T>(location.getRow(), location.getColumn(),
+                value));
     }
 
 

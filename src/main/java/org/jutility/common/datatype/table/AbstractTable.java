@@ -6,7 +6,7 @@ package org.jutility.common.datatype.table;
  * #%L
  * jutility-common
  * %%
- * Copyright (C) 2013 - 2014 jutility.org
+ * Copyright (C) 2013 - 2015 jutility.org
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,7 +48,7 @@ import org.jutility.common.reflection.ReflectionUtils;
  *            the type of the table data.
  *
  * @author Peter J. Radics
- * @version 0.1.2
+ * @version 0.1.4
  * @since 0.1.0
  */
 public abstract class AbstractTable<CELL extends ICell<T>, T>
@@ -240,14 +240,35 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
     @Override
     public CellContainer<CELL, T> removeRow(final int index) {
 
-        return this.rows.remove(index);
+        CellContainer<CELL, T> row = this.rows.remove(index);
+
+        Iterator<CELL> cellIterator = row.cellIterator();
+        while (cellIterator.hasNext()) {
+
+            CELL cell = cellIterator.next();
+
+            this.remove(this.getColumn(cell.getColumn()), cell);
+        }
+
+        return row;
     }
 
 
     @Override
     public CellContainer<CELL, T> removeColumn(final int index) {
 
-        return this.columns.remove(index);
+        CellContainer<CELL, T> column = this.columns.remove(index);
+
+
+        Iterator<CELL> cellIterator = column.cellIterator();
+        while (cellIterator.hasNext()) {
+
+            CELL cell = cellIterator.next();
+
+            this.remove(this.getRow(cell.getRow()), cell);
+        }
+
+        return column;
     }
 
 
@@ -342,6 +363,11 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
     }
 
 
+    @Override
+    public boolean remove(CellLocation location) {
+
+        return this.remove(location.getRow(), location.getColumn());
+    }
 
     @Override
     public boolean remove(final CELL cell) {
@@ -377,6 +403,13 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
         }
 
         return removed;
+    }
+
+    @Override
+    public void clear() {
+
+        this.rows.clear();
+        this.columns.clear();
     }
 
     @Override
