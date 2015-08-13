@@ -6,7 +6,7 @@ package org.jutility.common.datatype.table;
  * #%L
  * jutility-common
  * %%
- * Copyright (C) 2013 - 2014 jutility.org
+ * Copyright (C) 2013 - 2015 jutility.org
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ import java.util.List;
  *            the type of the table data.
  *
  * @author Peter J. Radics
- * @version 0.1.2
+ * @version 0.1.4
  * @since 0.1.0
  */
 public interface ITable<T>
@@ -67,10 +67,12 @@ public interface ITable<T>
      *            the table column.
      * @param value
      *            the value to set.
+     * 
      * @return {@code true} if the table did not already contain the value;
      *         {@code false} otherwise.
      */
     public abstract boolean add(int row, int column, T value);
+
 
     /**
      * Returns the value in the cell with the specified row and column.
@@ -79,19 +81,61 @@ public interface ITable<T>
      *            the row.
      * @param column
      *            the column.
+     * 
      * @return the value in the cell or {@code null} if no value exists.
      */
     public abstract T get(int row, int column);
+
+
+
+    /**
+     * Removes the cell at the specified row and column from the table.
+     *
+     * @param row
+     *            the table row.
+     * @param column
+     *            the table column.
+     * 
+     * @return {@code true}, if the table contained the cell; {@code false}
+     *         otherwise.
+     */
+    public abstract boolean remove(int row, int column);
+
+
+    /**
+     * Adds the value to the table at the specified location.
+     * 
+     * @param location
+     *            the location.
+     * @param value
+     *            the value.
+     * 
+     * @return {@code true} if the table did not already contain the value;
+     *         {@code false} otherwise.
+     */
+    public abstract boolean add(CellLocation location, T value);
+
 
     /**
      * Returns the value in the cell with the specified location.
      *
      * @param location
      *            the location.
+     * 
      * @return the value in the cell or {@code null} if no value exists.
      */
     public abstract T get(CellLocation location);
 
+    /**
+     * Removes the cell at the specified location from the table.
+     *
+     * @param location
+     *            the location.
+     * 
+     * @return {@code true}, if the table contained the cell; {@code false}
+     *         otherwise.
+     */
+    public abstract boolean remove(CellLocation location);
 
     /**
      * Returns the rows of this {@link Table}.
@@ -154,18 +198,11 @@ public interface ITable<T>
      */
     public abstract List<T> getValues();
 
-    /**
-     * Removes the cell at the specified row and column from the table.
-     *
-     * @param row
-     *            the table row.
-     * @param column
-     *            the table column.
-     * @return {@code true}, if the table contained the cell; {@code false}
-     *         otherwise.
-     */
-    public abstract boolean remove(int row, int column);
 
+    /**
+     * Clears all values from the {@link ITable}.
+     */
+    public abstract void clear();
 
     /**
      * Returns the {@link CellRange} of this {@link ITable Table}.
