@@ -1,371 +1,273 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.jutility</groupId>
-	<artifactId>jutility</artifactId>
-	<version>0.2.0-SNAPSHOT</version>
+    <groupId>org.jutility</groupId>
+    <artifactId>jutility</artifactId>
+    <version>0.2.0-SNAPSHOT</version>
 
-	<name>jUtility Library</name>
-	<url>http://jutility.org</url>
-	<description>A utility library for Java. This is the root project for
-		all jutility modules.
-	</description>
+    <name>jUtility Library</name>
+    <url>http://jutility.org</url>
+    <description>A utility library for Java. This is the root project for
+        all jutility modules.
+    </description>
 
-	<organization>
-		<name>jutility.org</name>
-		<url>http://jutility.org</url>
-	</organization>
+    <organization>
+        <name>jutility.org</name>
+        <url>http://jutility.org</url>
+    </organization>
 
-	<developers>
-		<developer>
-			<id>aftenkap</id>
-			<name>Peter J. Radics</name>
-			<email>peter.radics@jutility.org</email>
-		</developer>
-	</developers>
+    <developers>
+        <developer>
+            <id>aftenkap</id>
+            <name>Peter J. Radics</name>
+            <email>peter.radics@jutility.org</email>
+        </developer>
+    </developers>
 
-	<inceptionYear>2013</inceptionYear>
+    <inceptionYear>2013</inceptionYear>
 
-	<licenses>
-		<license>
-			<name>Apache License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>manual</distribution>
-		</license>
-	</licenses>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>manual</distribution>
+        </license>
+    </licenses>
 
-	<packaging>pom</packaging>
+    <packaging>pom</packaging>
 
-	<modules>
-		<module>jutility-common</module>
-		<module>jutility-io</module>
-		<module>jutility-javafx</module>
-		<module>jutility-math</module>
-		<module>jutility-all</module>
-	</modules>
-
-
-	<scm>
-		<url>scm:git:git@github.com:aftenkap/jutility.git</url>
-		<connection>scm:git:git@github.com:aftenkap/jutility.git</connection>
-		<developerConnection>scm:git:git@github.com:aftenkap/jutility.git
-		</developerConnection>
-	  <tag>master</tag>
-  </scm>
-
-  <distributionManagement>
-    <repository>
-      <id>archiva-public-releases</id>
-      <name>CGIT Public Releases</name>
-      <url>https://vtcgit.com:8443/archiva/repository/public-releases/</url>
-    </repository>
-    <snapshotRepository>
-      <id>archiva-public-snapshots</id>
-      <name>CGIT Public Snapshots</name>
-      <url>https://vtcgit.com:8443/archiva/repository/public-snapshots/</url>
-    </snapshotRepository>
-  </distributionManagement>
-
-	<issueManagement>
-		<system>GitHub</system>
-		<url>https://github.com/aftenkap/jutility/issues</url>
-	</issueManagement>
-
-	<ciManagement>
-		<system>Jenkins</system>
-		<url>https://vtcgit.com:8443/jenkins</url>
-	</ciManagement>
-
-	<properties>
-		<project.build.sourceEncoding>utf8</project.build.sourceEncoding>
-
-    <sonar.login>sonar</sonar.login>
-    <sonar.password>{u4fwbrPlx9QHRJ8Tl1/5dz7lTP8qxTbP6/CpyMDxm2U=}</sonar.password>
-
-		<!-- Java Version -->
-		<java.version>1.8</java.version>
-
-		<!-- Testing -->
-		<junit.version>4.12</junit.version>
-		<org.hamcrest.version>1.3</org.hamcrest.version>
-
-		<!-- Logging -->
-		<org.slf4j.version>1.7.10</org.slf4j.version>
-	</properties>
+    <modules>
+        <module>jutility-common</module>
+        <module>jutility-io</module>
+        <module>jutility-javafx</module>
+        <module>jutility-math</module>
+        <module>jutility-all</module>
+    </modules>
 
 
-  <prerequisites>
-    <maven>2.2.1</maven>
-  </prerequisites>
+    <scm>
+        <url>scm:git:git@github.com:aftenkap/jutility.git</url>
+        <connection>scm:git:git@github.com:aftenkap/jutility.git</connection>
+        <developerConnection>scm:git:git@github.com:aftenkap/jutility.git
+        </developerConnection>
+        <tag>master</tag>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/aftenkap/jutility/issues</url>
+    </issueManagement>
+
+    <properties>
+        <project.build.sourceEncoding>utf8</project.build.sourceEncoding>
+
+        <sonar.login>sonar</sonar.login>
+        <sonar.password>{u4fwbrPlx9QHRJ8Tl1/5dz7lTP8qxTbP6/CpyMDxm2U=}
+        </sonar.password>
+
+        <org.jutility.version>0.2.0-SNAPSHOT</org.jutility.version>
+
+        <!-- Java Version -->
+        <java.version>1.8</java.version>
+
+        <!-- Testing -->
+        <junit.version>4.12</junit.version>
+        <org.hamcrest.version>1.3</org.hamcrest.version>
+
+        <!-- Logging -->
+        <org.slf4j.version>1.7.24</org.slf4j.version>
+
+        <!-- Jackson JSON Processor -->
+        <com.fasterxml.jackson.version>2.8.6</com.fasterxml.jackson.version>
 
 
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.2</version>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-				</configuration>
-			</plugin>
-      <plugin>
-        <artifactId>maven-clean-plugin</artifactId>
-        <version>2.6.1</version>
-        <executions>
-          <execution>
-            <id>default-clean</id>
-            <phase>clean</phase>
-            <goals>
-              <goal>clean</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-			<plugin>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.10.1</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.18.1</version>
-				<dependencies>
-					<dependency>
-						<groupId>org.apache.maven.surefire</groupId>
-						<artifactId>surefire-junit47</artifactId>
-						<version>2.18.1</version>
-					</dependency>
-				</dependencies>
-			</plugin>
-      <plugin>
-        <artifactId>maven-install-plugin</artifactId>
-        <version>2.5.2</version>
-        <executions>
-          <execution>
-            <id>default-install</id>
-            <phase>install</phase>
-            <goals>
-              <goal>install</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <artifactId>maven-deploy-plugin</artifactId>
-        <version>2.8.2</version>
-        <executions>
-          <execution>
-            <id>default-deploy</id>
-            <phase>deploy</phase>
-            <goals>
-              <goal>deploy</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <artifactId>maven-site-plugin</artifactId>
-        <version>3.4</version>
-        <executions>
-          <execution>
-            <id>default-site</id>
-            <phase>site</phase>
-            <goals>
-              <goal>site</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>target/site</outputDirectory>
-              <reportPlugins>
-                <reportPlugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-javadoc-plugin</artifactId>
-                  <version>2.10.1</version>
-                  <configuration>
+        <maven.clean.plugin.version>3.0.0</maven.clean.plugin.version>
+        <maven.source.plugin.version>3.0.1</maven.source.plugin.version>
+        <maven.compiler.plugin.version>3.6.1</maven.compiler.plugin.version>
+        <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
+        <maven.assembly.plugin.version>3.0.0</maven.assembly.plugin.version>
+        <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
+        <maven.release.plugin.version>2.5.3</maven.release.plugin.version>
+        <maven.javadoc.plugin.version>2.10.4</maven.javadoc.plugin.version>
+        <maven.deploy.plugin.version>2.8.2</maven.deploy.plugin.version>
+        <license.maven.plugin.version>1.12</license.maven.plugin.version>
+    </properties>
+
+
+    <prerequisites>
+        <maven>3.0</maven>
+    </prerequisites>
+
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven.compiler.plugin.version}</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${maven.clean.plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>default-clean</id>
+                            <phase>clean</phase>
+                            <goals>
+                                <goal>clean</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven.javadoc.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven.surefire.plugin.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.apache.maven.surefire</groupId>
+                            <artifactId>surefire-junit47</artifactId>
+                            <version>${maven.surefire.plugin.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>${maven.install.plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>default-install</id>
+                            <phase>install</phase>
+                            <goals>
+                                <goal>install</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${maven.deploy.plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>default-deploy</id>
+                            <phase>deploy</phase>
+                            <goals>
+                                <goal>deploy</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>${maven.release.plugin.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>license-maven-plugin</artifactId>
+                    <version>${license.maven.plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>first</id>
+                            <goals>
+                                <goal>update-file-header</goal>
+                            </goals>
+                            <phase>process-sources</phase>
+                        </execution>
+                        <execution>
+                            <id>download-licenses</id>
+                            <goals>
+                                <goal>download-licenses</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <licenseName>apache_v2</licenseName>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven.javadoc.plugin.version}</version>
+                <configuration>
                     <outputDirectory>doc/</outputDirectory>
                     <show>protected</show>
                     <detectLinks>true</detectLinks>
-                  </configuration>
-                </reportPlugin>
-                <reportPlugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-project-info-reports-plugin</artifactId>
-                  <version>2.8</version>
-                </reportPlugin>
-              </reportPlugins>
-            </configuration>
-          </execution>
-          <execution>
-            <id>default-deploy</id>
-            <phase>site-deploy</phase>
-            <goals>
-              <goal>deploy</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>target/site</outputDirectory>
-              <reportPlugins>
-                <reportPlugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-javadoc-plugin</artifactId>
-                  <version>2.10.1</version>
-                  <configuration>
-                    <outputDirectory>doc/</outputDirectory>
-                    <show>protected</show>
-                    <detectLinks>true</detectLinks>
-                  </configuration>
-                </reportPlugin>
-                <reportPlugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-project-info-reports-plugin</artifactId>
-                  <version>2.8</version>
-                </reportPlugin>
-              </reportPlugins>
-            </configuration>
-          </execution>
-        </executions>
-        <configuration>
-          <outputDirectory>target/site</outputDirectory>
-          <reportPlugins>
-            <reportPlugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-javadoc-plugin</artifactId>
-              <version>2.10.1</version>
-              <configuration>
-                <outputDirectory>doc/</outputDirectory>
-                <show>protected</show>
-                <detectLinks>true</detectLinks>
-              </configuration>
-            </reportPlugin>
-            <reportPlugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-project-info-reports-plugin</artifactId>
-              <version>2.8</version>
-            </reportPlugin>
-          </reportPlugins>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-release-plugin</artifactId>
-        <version>2.5.1</version>
-      </plugin>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>license-maven-plugin</artifactId>
-				<version>1.8</version>
-				<executions>
-					<execution>
-						<id>first</id>
-						<goals>
-							<goal>update-file-header</goal>
-						</goals>
-						<phase>process-sources</phase>
-					</execution>
-					<execution>
-						<id>download-licenses</id>
-						<goals>
-							<goal>download-licenses</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<licenseName>apache_v2</licenseName>
-				</configuration>
-			</plugin>
-		</plugins>
-
-		<pluginManagement>
-			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
-					only. It has no influence on the Maven build itself. -->
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>
-											org.codehaus.mojo
-										</groupId>
-										<artifactId>
-											license-maven-plugin
-										</artifactId>
-										<versionRange>
-											[1.7,)
-										</versionRange>
-										<goals>
-											<goal>
-												update-file-header
-											</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore />
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.9.1</version>
-				<configuration>
-					<outputDirectory>doc/</outputDirectory>
-					<show>protected</show>
-					<detectLinks>true</detectLinks>
-				</configuration>
-			</plugin>
-		</plugins>
-	</reporting>
-
-	<dependencies>
-		<!-- Testing -->
-		<dependency>
-			<groupId>org.hamcrest</groupId>
-			<artifactId>hamcrest-core</artifactId>
-			<version>${org.hamcrest.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
-		</dependency>
+    <!-- Shared Dependencies-->
+    <dependencies>
+        <!-- Testing -->
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+            <version>${org.hamcrest.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
 
 
-		<!-- Logging -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${org.slf4j.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>${org.slf4j.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${org.slf4j.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-	</dependencies>
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${org.slf4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${org.slf4j.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${org.slf4j.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
 
+    <dependencyManagement>
+        <dependencies>
+            <!-- Jackson JSON Processor -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${com.fasterxml.jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${com.fasterxml.jackson.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>
