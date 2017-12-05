@@ -6,7 +6,7 @@
         <groupId>org.jutility</groupId>
         <artifactId>jutility</artifactId>
         <relativePath>../</relativePath>
-        <version>0.1.4</version>
+        <version>0.2.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>jutility-common</artifactId>
@@ -19,7 +19,7 @@
         <url>scm:git:git@github.com:aftenkap/jutility-common.git</url>
         <connection>scm:git:git@github.com:aftenkap/jutility-common.git</connection>
         <developerConnection>scm:git:git@github.com:aftenkap/jutility-common.git</developerConnection>
-      <tag>jutility-0.1.4</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <issueManagement>
