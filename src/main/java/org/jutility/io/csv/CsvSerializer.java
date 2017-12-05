@@ -31,10 +31,12 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.jutility.common.datatype.table.ITable;
 import org.jutility.common.datatype.table.Table;
@@ -51,7 +53,7 @@ import org.supercsv.prefs.CsvPreference;
 /**
  * The {@code CsvSerializer} class provides an implementation of the
  * {@link ISerializer} interface for CSV files.
- * 
+ *
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.0
@@ -64,7 +66,7 @@ public class CsvSerializer
 
     /**
      * Returns the Singleton instance of the {@code CsvSerializer}.
-     * 
+     *
      * @return the Singleton instance.
      */
     public static CsvSerializer Instance() {
@@ -87,22 +89,14 @@ public class CsvSerializer
     @Override
     public boolean supportsSerializationOf(Class<?> type) {
 
-        if (Table.class.isAssignableFrom(type)) {
-
-            return true;
-        }
-        return false;
+        return Table.class.isAssignableFrom(type);
     }
 
 
     @Override
     public boolean supportsDeserializationOf(Class<?> type) {
 
-        if (type.isAssignableFrom(Table.class)) {
-
-            return true;
-        }
-        return false;
+        return type.isAssignableFrom(Table.class);
     }
 
     @Override
@@ -113,8 +107,9 @@ public class CsvSerializer
 
         if (!this.supportsSerializationOf(documentType)) {
 
-            throw new SerializationException("Serialization of type "
-                    + documentType + " is not supported!");
+            throw new SerializationException(
+                    "Serialization of type " + documentType
+                    + " is not supported!");
         }
 
         Table<?> table = Table.class.cast(document);
@@ -144,7 +139,7 @@ public class CsvSerializer
 
             for (int row = 1; row < table.rows(); row++) {
 
-                Map<String, String> values = new LinkedHashMap<String, String>();
+                Map<String, String> values = new LinkedHashMap<>();
 
                 for (int column = 0; column < table.columns(); column++) {
 
@@ -167,7 +162,8 @@ public class CsvSerializer
 
         catch (IOException e) {
 
-            throw new SerializationException("Could not serialize resource.", e);
+            throw new SerializationException("Could not serialize resource.",
+                    e);
         }
         finally {
 
@@ -203,7 +199,8 @@ public class CsvSerializer
         }
         catch (MalformedURLException e) {
 
-            throw new SerializationException("URI " + uri + " is malformed.", e);
+            throw new SerializationException("URI " + uri + " is malformed.",
+                    e);
         }
     }
 
@@ -213,83 +210,69 @@ public class CsvSerializer
 
         if (!this.supportsDeserializationOf(type)) {
 
-            throw new SerializationException("Deserialization of type "
-                    + type.toString() + " is not supported!");
+            throw new SerializationException(
+                    "Deserialization of type " + type.toString()
+                    + " is not supported!");
         }
 
-        Map<String, List<String>> contents = new LinkedHashMap<String, List<String>>();
+        Map<String, List<String>> contents = new LinkedHashMap<>();
 
-        ITable<String> table = new Table<String>();
-        ICsvMapReader mapReader = null;
-        try {
+        ITable<String> table = new Table<>();
+        try (ICsvMapReader mapReader = new CsvMapReader(
+                new BufferedReader(new InputStreamReader(url.openStream())),
+                CsvPreference.STANDARD_PREFERENCE)) {
 
-            mapReader = new CsvMapReader(new BufferedReader(
-                    new InputStreamReader(url.openStream())),
-                    CsvPreference.STANDARD_PREFERENCE);
+
 
             // the header columns are used as the keys to the Map
-            final String[] header = mapReader.getHeader(true);
+            final String[] headerArray = mapReader.getHeader(true);
+            final List<String> header = Arrays.asList(headerArray);
 
-            int headerIndex = 0;
-            for (String columnHeader : header) {
+            AtomicInteger headerIndex = new AtomicInteger(0);
+            header.forEach(columnHeader -> {
 
+                contents.put(columnHeader, new LinkedList<>());
 
-                contents.put(columnHeader, new LinkedList<String>());
-                if (columnHeader != null) {
-
-                    table.add(0, headerIndex, columnHeader.trim());
-                }
-                else {
-
-                    table.add(0, headerIndex, null);
-                }
-                headerIndex++;
-            }
+                table.add(0, headerIndex.get(),
+                        columnHeader != null ? columnHeader.trim() : null);
+                headerIndex.incrementAndGet();
+            });
 
             Map<String, String> rowValueMap;
-            while ((rowValueMap = mapReader.read(header)) != null) {
+            while ((rowValueMap = mapReader.read(headerArray)) != null) {
 
-                for (String key : rowValueMap.keySet()) {
-
-                    contents.get(key).add(rowValueMap.get(key));
-                }
+                rowValueMap.keySet()
+                        .forEach(key -> contents.get(key)
+                                            .add(rowValueMap.get(key)));
             }
 
 
-            int column = 0;
-            for (String key : contents.keySet()) {
+            AtomicInteger column = new AtomicInteger(0);
+            contents.keySet()
+                    .forEach(key -> {
 
-                int row = 1;
+                        AtomicInteger row = new AtomicInteger(1);
 
-                List<String> values = contents.get(key);
+                        contents.get(key)
+                                .forEach(value -> {
 
-                for (String value : values) {
+                                    if (value != null) {
 
-                    if (value != null) {
+                                        table.add(row.get(), column.get(),
+                                                value.trim());
+                                    }
+                                    row.incrementAndGet();
+                                });
 
-                        table.add(row, column, value.trim());
-                    }
-                    row++;
-                }
-                column++;
-            }
+                        column.incrementAndGet();
+                    });
 
         }
         catch (IOException e) {
 
-            throw new SerializationException("Could not deserialize CSV file "
-                    + url.toString() + "!", e);
-        }
-        finally {
-
-            try {
-
-                mapReader.close();
-            }
-            catch (IOException e) {
-
-                e.printStackTrace();
-            }
+            throw new SerializationException(
+                    "Could not deserialize CSV file " + url.toString() + "!",
+                    e);
         }
 
         return type.cast(table);

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.jutility.io.xml;
 
 /*
@@ -44,11 +41,11 @@ public class XmlCData {
     /**
      * The CDATA prefix.
      */
-    public static String CDATA_PREFIX = "<![CDATA[";
+    public static final String CDATA_PREFIX = "<![CDATA[";
     /**
      * The CDATA suffix.
      */
-    public static String CDATA_SUFFIX = "]]>";
+    public static final String CDATA_SUFFIX = "]]>";
 
 
     @XmlJavaTypeAdapter(value = XmlCDataAdapter.class)

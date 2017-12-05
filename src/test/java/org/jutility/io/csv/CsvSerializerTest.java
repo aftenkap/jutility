@@ -21,46 +21,48 @@ package org.jutility.io.csv;
  */
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-
-import java.io.File;
-import java.io.IOException;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.jutility.common.datatype.table.Table;
 import org.jutility.io.SerializationException;
 
+import java.io.File;
+import java.io.IOException;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
 
 /**
  * The {@code CsvSerializerTest} class provides unit tests for the
  * {@link CsvSerializer class}.
- * 
+ *
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.2
  */
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class CsvSerializerTest {
 
     private Table<String> referenceTable;
     private File          testFile;
-    private String        filename = "test.csv";
-    private File          tempFile;
+
+    private final String filename = "test.csv";
+    private File tempFile;
 
 
     /**
      * Set up.
-     * 
+     *
      * @throws IOException
-     *             if a temporary file for serialization could not be created.
+     *         if a temporary file for serialization could not be created.
      */
     @Before
     public void setUp()
             throws IOException {
 
-        this.referenceTable = new Table<String>();
+        this.referenceTable = new Table<>();
 
         this.referenceTable.add(0, 0, "foo");
         this.referenceTable.add(0, 1, "bar");
@@ -72,20 +74,21 @@ public class CsvSerializerTest {
         this.referenceTable.add(2, 1, "row2-column1");
         this.referenceTable.add(2, 2, "row2-column2");
 
-        ClassLoader classLoader = this.getClass().getClassLoader();
+        ClassLoader classLoader = this.getClass()
+                                      .getClassLoader();
 
-        this.testFile = new File(classLoader.getResource(this.filename)
-                .getFile());
+        String name = classLoader.getResource(this.filename)
+                                 .getFile();
+        this.testFile = new File(name);
 
         this.tempFile = File.createTempFile("test", "csv");
     }
 
     /**
      * Tear Down.
-     * 
+     *
      * @throws IOException
-     *             if the temporary file created during setup could not be
-     *             removed.
+     *         if the temporary file created during setup could not be removed.
      */
     @After
     public void tearDown()
@@ -107,8 +110,8 @@ public class CsvSerializerTest {
         Table<?> table = null;
         try {
 
-            table = CsvSerializer.Instance().deserialize(this.testFile,
-                    Table.class);
+            table = CsvSerializer.Instance()
+                                 .deserialize(this.testFile, Table.class);
 
         }
         catch (SerializationException e) {
@@ -141,8 +144,9 @@ public class CsvSerializerTest {
 
         try {
 
-            CsvSerializer.Instance().serialize(this.referenceTable,
-                    this.tempFile.getPath());
+            CsvSerializer.Instance()
+                         .serialize(this.referenceTable,
+                                 this.tempFile.getPath());
         }
         catch (SerializationException e) {
 
@@ -153,8 +157,8 @@ public class CsvSerializerTest {
         Table<?> table = null;
         try {
 
-            table = CsvSerializer.Instance().deserialize(this.tempFile,
-                    Table.class);
+            table = CsvSerializer.Instance()
+                                 .deserialize(this.tempFile, Table.class);
 
         }
         catch (SerializationException e) {

@@ -37,16 +37,18 @@ import java.util.Set;
 public class IOManager {
 
     @SuppressWarnings("unused")
-    private final Map<Class<?>, Class<? extends IConverter>> converters;
+    private final                             Map<Class<?>, Class<? extends
+            IConverter>> converters;
     @SuppressWarnings("unused")
-    private final Set<Class<? extends ISerializer>>          serializers;
+    private final                             Set<Class<? extends
+            ISerializer>>          serializers;
 
 
-    private static IOManager                                 s_Instance;
+    private static IOManager s_Instance;
 
     /**
      * Returns the singleton instance of the class.
-     * 
+     *
      * @return the singleton instance.
      */
     public static IOManager Instance() {
@@ -62,16 +64,16 @@ public class IOManager {
 
     private IOManager() {
 
-        this.converters = new LinkedHashMap<Class<?>, Class<? extends IConverter>>();
-        this.serializers = new LinkedHashSet<Class<? extends ISerializer>>();
+        this.converters = new LinkedHashMap<>();
+        this.serializers = new LinkedHashSet<>();
     }
 
 
     /**
      * Registers the provided {@link ISerializer serializer}.
-     * 
+     *
      * @param serializer
-     *            the {@link ISerializer serializer} to register.
+     *         the {@link ISerializer serializer} to register.
      */
     public void registerSerializer(Class<? extends ISerializer> serializer) {
 
@@ -80,9 +82,9 @@ public class IOManager {
 
     /**
      * Unregisters the provided {@link ISerializer serializer}.
-     * 
+     *
      * @param serializer
-     *            the {@link ISerializer serializer} to unregister.
+     *         the {@link ISerializer serializer} to unregister.
      */
     public void unregisterSerializer(Class<? extends ISerializer> serializer) {
 
@@ -93,21 +95,21 @@ public class IOManager {
     @SuppressWarnings("unused")
     private Method getMethod(String name, Class<?> clazz) {
 
-        Method method = null;
+        Method method;
         try {
             method = clazz.getDeclaredMethod(name);
 
         }
         catch (NoSuchMethodException e) {
-            throw new IllegalArgumentException("Trying to register Layout "
-                    + "Component class that does not declare static " + name
-                    + "() method!");
+            throw new IllegalArgumentException(
+                    "Trying to register Layout " + "Component class that does "
+                    + "not declare static " + name + "() method!");
         }
         catch (SecurityException e) {
 
-            throw new IllegalArgumentException("Trying to register Layout "
-                    + "Component class that does not have accessible static "
-                    + name + "() method!");
+            throw new IllegalArgumentException(
+                    "Trying to register Layout " + "Component class that does "
+                    + "not have accessible static " + name + "() method!");
         }
 
         return method;
@@ -116,29 +118,15 @@ public class IOManager {
     @SuppressWarnings("unused")
     private Object invokeMethod(Method method) {
 
-        Object returnValue = null;
         try {
-            returnValue = method.invoke(null, (Object[]) null);
-        }
-        catch (IllegalAccessException e) {
-            throw new IllegalArgumentException("Trying to register Layout "
-                    + "Component class that cannot execute static "
-                    + method.getName() + "() method!");
-        }
-        catch (IllegalArgumentException e) {
 
-            throw new IllegalArgumentException("Trying to register Layout "
-                    + "Component class that cannot execute static "
-                    + method.getName() + "() method!");
+            return method.invoke(null, (Object[]) null);
         }
-        catch (InvocationTargetException e) {
-
-            throw new IllegalArgumentException("Trying to register Layout "
-                    + "Component class that cannot execute static "
-                    + method.getName() + "() method!");
+        catch (IllegalAccessException | IllegalArgumentException |
+                InvocationTargetException e) {
+            throw new IllegalArgumentException(
+                    "Trying to register Layout " + "Component class that cannot"
+                    + " execute static " + method.getName() + "() method!");
         }
-
-        return returnValue;
     }
-
 }

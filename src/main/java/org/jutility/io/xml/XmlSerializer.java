@@ -44,12 +44,11 @@ import org.jutility.io.SerializationException;
 
 
 
-
 /**
  * The {@link XmlSerializer} singleton class implements the {@link ISerializer}
  * interface, providing capabilities to serialize/deserialize any property JAXB
  * annotated class.
- * 
+ *
  * @author Peter J. Radics
  * @version 0.1
  */
@@ -65,7 +64,7 @@ public class XmlSerializer
 
     /**
      * Returns the instance of the {@link XmlSerializer} singleton class.
-     * 
+     *
      * @return the singleton instance.
      */
     public static XmlSerializer Instance() {
@@ -81,9 +80,9 @@ public class XmlSerializer
     /**
      * Registers a {@link Class type} for inclusion in the XmlSerialization
      * context.
-     * 
+     *
      * @param type
-     *            the type.
+     *         the type.
      */
     public void registerClass(Class<?> type) {
 
@@ -94,9 +93,9 @@ public class XmlSerializer
 
     /**
      * Removes a {@link Class type} from the XmlSerialization context.
-     * 
+     *
      * @param type
-     *            the type.
+     *         the type.
      */
     public void unregisterClass(Class<?> type) {
 
@@ -121,12 +120,7 @@ public class XmlSerializer
 
     private boolean supportsType(Class<?> type) {
 
-        if (type.isAnnotationPresent(XmlRootElement.class)) {
-
-            return true;
-        }
-
-        return false;
+        return type.isAnnotationPresent(XmlRootElement.class);
     }
 
     /**
@@ -134,7 +128,7 @@ public class XmlSerializer
      */
     private XmlSerializer() {
 
-        this.contextBounds = new LinkedList<Class<?>>();
+        this.contextBounds = new LinkedList<>();
     }
 
 
@@ -148,13 +142,14 @@ public class XmlSerializer
 
     /**
      * Serializes an XmlSerializable document into a file.
-     * 
+     *
      * @param document
-     *            the document to be serialized.
+     *         the document to be serialized.
      * @param filename
-     *            the file name.
+     *         the file name.
+     *
      * @throws SerializationException
-     *             if serialization fails.
+     *         if serialization fails.
      */
     @Override
     public <T> void serialize(T document, String filename)
@@ -164,14 +159,15 @@ public class XmlSerializer
 
         if (!this.supportsSerializationOf(documentType)) {
 
-            throw new SerializationException("Serialization of type "
-                    + documentType + " is not supported!");
+            throw new SerializationException(
+                    "Serialization of type " + documentType
+                    + " is not supported!");
         }
 
         try {
 
-            JAXBContext context = JAXBContext.newInstance(this
-                    .createContextBounds(documentType));
+            JAXBContext context = JAXBContext.newInstance(
+                    this.createContextBounds(documentType));
 
             Marshaller m = context.createMarshaller();
 
@@ -180,16 +176,18 @@ public class XmlSerializer
             // m.setProperty(
             // "com.sun.xml.internal.bind.xmlHeaders",
             // "com.sun.xml.bind.xmlHeaders",
-            // "\n<!DOCTYPE X3D PUBLIC \"ISO//Web3D//DTD X3D 3.2//EN\" \"http://www.web3d.org/specifications/x3d-3.2.dtd\">");
+            // "\n<!DOCTYPE X3D PUBLIC \"ISO//Web3D//DTD X3D 3.2//EN\"
+            // \"http://www.web3d.org/specifications/x3d-3.2.dtd\">");
             // m.setProperty("com.sun.xml.bind.namespacePrefixMapper",new
             // NamespacePrefixMapperImpl());
             // m.setProperty("jaxb.noNamespaceSchemaLocation",
             // "http://www.web3d.org/specifications/x3d-3.2.xsd");
-            // m.setProperty("com.sun.xml.bind.marshaller.CharacterEscapeHandler",
+            // m.setProperty("com.sun.xml.bind.marshaller
+            // .CharacterEscapeHandler",
             // new CDataCharacterEscapeHandler());
             XMLOutputFactory xof = XMLOutputFactory.newInstance();
-            XMLStreamWriter streamWriter = xof
-                    .createXMLStreamWriter(new FileOutputStream(filename));
+            XMLStreamWriter streamWriter = xof.createXMLStreamWriter(
+                    new FileOutputStream(filename));
             XmlCDataStreamWriter cdataStreamWriter = new XmlCDataStreamWriter(
                     streamWriter);
             m.marshal(document, cdataStreamWriter);
@@ -199,13 +197,10 @@ public class XmlSerializer
 
             throw new SerializationException("Could not write to resource.", e);
         }
-        catch (JAXBException e) {
+        catch (JAXBException | XMLStreamException e) {
 
-            throw new SerializationException("Could not serialize resource.", e);
-        }
-        catch (XMLStreamException e) {
-
-            throw new SerializationException("Could not serialize resource.", e);
+            throw new SerializationException("Could not serialize resource.",
+                    e);
         }
     }
 
@@ -237,7 +232,8 @@ public class XmlSerializer
         }
         catch (MalformedURLException e) {
 
-            throw new SerializationException("URI " + uri + " is malformed.", e);
+            throw new SerializationException("URI " + uri + " is malformed.",
+                    e);
         }
     }
 
@@ -249,27 +245,29 @@ public class XmlSerializer
 
         if (!this.supportsDeserializationOf(type)) {
 
-            throw new SerializationException("Deserialization of type "
-                    + type.toString() + " is not supported!");
+            throw new SerializationException(
+                    "Deserialization of type " + type.toString()
+                    + " is not supported!");
         }
 
-        T doc = null;
+        T doc;
         try {
-            JAXBContext jc = JAXBContext.newInstance(this
-                    .createContextBounds(type));
+            JAXBContext jc = JAXBContext.newInstance(
+                    this.createContextBounds(type));
             Unmarshaller u = jc.createUnmarshaller();
 
             Object deserializedObject = u.unmarshal(url.openStream());
 
-            if (deserializedObject != null
-                    && type.isAssignableFrom(deserializedObject.getClass())) {
+            if (deserializedObject != null && type.isAssignableFrom(
+                    deserializedObject.getClass())) {
 
                 doc = type.cast(deserializedObject);
             }
             else {
 
                 throw new SerializationException(
-                        "Could not deserialize resource -- resource appears to be empty!");
+                        "Could not deserialize resource -- resource appears "
+                        + "to be empty!");
             }
         }
         catch (JAXBException e) {
