@@ -38,12 +38,12 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 
 /**
- * The {@code Polygon2} interface provides a contract for classes implementing
+ * The {@code PolyLine2} interface provides a contract for classes implementing
  * polygons in two-dimensional space based on two-dimensional {@link IPoint2
  * Points}.
  * 
  * @param <T>
- *            the {@link Number} type of the {@code Polygon2}.
+ *            the {@link Number} type of the {@code PolyLine2}.
  * 
  * @author Peter J. Radics
  * @version 0.1.2
@@ -51,11 +51,11 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
  */
 @JsonTypeInfo(use = Id.NAME, include = As.PROPERTY,
         property = "implementingType")
-@JsonSubTypes({ @JsonSubTypes.Type(value = Polygon2.class, name = "Polygon2") })
-public interface IPolygon2<T extends Number> {
+@JsonSubTypes({ @JsonSubTypes.Type(value = PolyLine2.class, name = "PolyLine2") })
+public interface IPolyLine2<T extends Number> {
 
     /**
-     * Returns the type of the {@code IPolygon2}.
+     * Returns the type of the {@code IPolyLine2}.
      * 
      * @return the type.
      */
@@ -63,15 +63,15 @@ public interface IPolygon2<T extends Number> {
 
 
     /**
-     * Returns the {@link IPoint2 Points} of this {@code IPolygon2}.
+     * Returns the {@link IPoint2 Points} of this {@code IPolyLine2}.
      * 
-     * @return the {@link IPoint2 Points} of this {@code IPolygon2}.
+     * @return the {@link IPoint2 Points} of this {@code IPolyLine2}.
      */
     List<IPoint2<T>> getPoints();
 
     /**
      * Adds a {@link IPoint2 Point} to the {@link IPoint2 Points} of this
-     * {@code IPolygon2}.
+     * {@code IPolyLine2}.
      * 
      * @param point
      *            the {@link IPoint2 Point} to add.
@@ -81,7 +81,7 @@ public interface IPolygon2<T extends Number> {
 
     /**
      * Removes a {@link IPoint2 Point} from the {@link IPoint2 Points} of this
-     * {@code IPolygon2}.
+     * {@code IPolyLine2}.
      * 
      * @param point
      *            the {@link IPoint2 Point} to remove.
@@ -90,7 +90,7 @@ public interface IPolygon2<T extends Number> {
     boolean removePoint(final IPoint2<? extends Number> point);
 
     /**
-     * Clears the {@link IPoint2 Points} of this {@code IPolygon2}.
+     * Clears the {@link IPoint2 Points} of this {@code IPolyLine2}.
      */
     void clearPoints();
 }

@@ -54,14 +54,14 @@ public interface IScaleFactor<T extends Number> {
      * 
      * @return the type.
      */
-    public abstract Class<? extends T> getType();
+    Class<? extends T> getType();
 
     /**
      * Returns the scale factor for the x-dimension.
      * 
      * @return the scale factor.
      */
-    public abstract T getScaleFactorX();
+    T getScaleFactorX();
 
 
     /**
@@ -69,7 +69,7 @@ public interface IScaleFactor<T extends Number> {
      * 
      * @return the scale factor.
      */
-    public abstract T getScaleFactorY();
+    T getScaleFactorY();
 
 
     /**
@@ -77,6 +77,6 @@ public interface IScaleFactor<T extends Number> {
      * 
      * @return the scale factor.
      */
-    public abstract T getScaleFactorZ();
+    T getScaleFactorZ();
 }
 

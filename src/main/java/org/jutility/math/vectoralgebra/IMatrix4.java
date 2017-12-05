@@ -48,14 +48,14 @@ public interface IMatrix4<T extends Number> {
      * 
      * @return the type.
      */
-    public abstract Class<? extends T> getType();
+    Class<? extends T> getType();
 
     /**
      * Getter for the first column of the matrix.
      * 
      * @return The first column of the matrix.
      */
-    public abstract ITuple4<T> getI();
+    ITuple4<T> getI();
 
 
     /**
@@ -63,7 +63,7 @@ public interface IMatrix4<T extends Number> {
      * 
      * @return The second column of the matrix.
      */
-    public abstract ITuple4<T> getJ();
+    ITuple4<T> getJ();
 
 
     /**
@@ -71,7 +71,7 @@ public interface IMatrix4<T extends Number> {
      * 
      * @return The third column of the matrix.
      */
-    public abstract ITuple4<T> getK();
+    ITuple4<T> getK();
 
 
     /**
@@ -79,7 +79,7 @@ public interface IMatrix4<T extends Number> {
      * 
      * @return The fourth column of the matrix.
      */
-    public abstract ITuple4<T> getS();
+    ITuple4<T> getS();
 
 
     /**
@@ -87,7 +87,7 @@ public interface IMatrix4<T extends Number> {
      * 
      * @return the matrix in a column-major array.
      */
-    public abstract T[] toColumnMajorArray();
+    T[] toColumnMajorArray();
 
 
     /**
@@ -95,12 +95,12 @@ public interface IMatrix4<T extends Number> {
      * 
      * @return the matrix in a row-major array.
      */
-    public abstract T[] toRowMajorArray();
+    T[] toRowMajorArray();
 
     /**
      * Returns the transpose matrix of this instance.
      * 
      * @return the transpose matrix.
      */
-    public abstract IMatrix4<T> transpose();
+    IMatrix4<T> transpose();
 }

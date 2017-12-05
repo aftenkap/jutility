@@ -45,7 +45,7 @@ public class Vector4Test {
     public void testVector4fTuple4f() {
 
         try {
-            final IVector4<Float> testVector = new Vector4<Float>(
+            final IVector4<Float> testVector = new Vector4<>(
                     Point4.ORIGIN(Float.class));
 
             Assert.fail("Shouldn't be able to copy point into vector: "

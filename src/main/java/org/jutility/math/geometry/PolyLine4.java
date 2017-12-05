@@ -41,26 +41,27 @@ import java.util.List;
 
 
 /**
- * The {@code Polygon4} class provides a reference implementation of the
- * {@link IPolygon4} interface.
+ * The {@code PolyLine4} class provides a reference implementation of the
+ * {@link IPolyLine4} interface.
  *
  * @param <T>
- *         the {@link Number} type of the {@code Polygon4}.
+ *         the {@link Number} type of the {@code PolyLine4}.
  *
  * @author Peter J. Radics
- * @version 0.1.2
- * @since 0.1.0
+ * @version 0.1.3
+ * @since 0.1.3
  */
-@XmlRootElement(name = "Polygon4")
-@XmlType(name = "Polygon4")
-public class Polygon4<T extends Number>
-        implements IPolygon4<T>, Serializable {
+@XmlRootElement(name = "PolyLine4")
+@XmlType(name = "PolyLine4")
+public class PolyLine4<T extends Number>
+        implements IPolyLine4<T>, Serializable {
 
 
     /**
      * Serial Version UID.
      */
-    private static final long serialVersionUID = -6613114341290751004L;
+    private static final long serialVersionUID = 6800878576383614443L;
+
 
 
     @XmlElement(type = Point4.class)
@@ -113,10 +114,10 @@ public class Polygon4<T extends Number>
 
 
     /**
-     * Creates a new instance of the {@code Polygon4} class. (Serialization
+     * Creates a new instance of the {@code PolyLine4} class. (Serialization
      * Constructor)
      */
-    public Polygon4() {
+    public PolyLine4() {
 
 
         this(null, null, true);
@@ -124,19 +125,19 @@ public class Polygon4<T extends Number>
 
 
     /**
-     * Creates a new instance of the {@code Polygon4} class.
+     * Creates a new instance of the {@code PolyLine4} class.
      *
      * @param type
      *         the type.
      */
-    public Polygon4(final Class<? extends T> type) {
+    public PolyLine4(final Class<? extends T> type) {
 
 
         this(null, type, false);
     }
 
     /**
-     * Creates a new instance of the {@link Polygon4} class with the provided
+     * Creates a new instance of the {@link PolyLine4} class with the provided
      * type and parameters.
      *
      * @param <S>
@@ -146,14 +147,14 @@ public class Polygon4<T extends Number>
      * @param type
      *         the type.
      */
-    public <S extends Number> Polygon4(final List<IPoint4<S>> points,
+    public <S extends Number> PolyLine4(final List<IPoint4<S>> points,
             final Class<? extends T> type) {
 
         this(points, type, false);
     }
 
     /**
-     * Creates a new instance of the {@link Polygon4} class with the provided
+     * Creates a new instance of the {@link PolyLine4} class with the provided
      * type and parameters.
      *
      * @param <S>
@@ -165,13 +166,13 @@ public class Polygon4<T extends Number>
      * @param serialization
      *         whether or not the constructor is invoked during serialization.
      */
-    public <S extends Number> Polygon4(final List<IPoint4<S>> points,
+    public <S extends Number> PolyLine4(final List<IPoint4<S>> points,
             final Class<? extends T> type, final boolean serialization) {
 
         if ((type == null) && !serialization) {
 
             throw new IllegalArgumentException(
-                    "Cannot create a polygon without a type!");
+                    "Cannot create a polyline without a type!");
 
         }
 
@@ -180,8 +181,9 @@ public class Polygon4<T extends Number>
 
         if ((points != null) && (type != null)) {
 
-            points.stream().map(point -> new Point4<T>(point, type))
-                    .forEach(this.getPoints()::add);
+            points.stream()
+                  .map(point -> new Point4<T>(point, type))
+                  .forEach(this.getPoints()::add);
         }
     }
 
@@ -192,7 +194,7 @@ public class Polygon4<T extends Number>
      * @param polygonToCopy
      *         the polygon to copy.
      */
-    public Polygon4(final IPolygon4<T> polygonToCopy) {
+    public PolyLine4(final IPolyLine4<T> polygonToCopy) {
 
         this(polygonToCopy, polygonToCopy.getType());
     }
@@ -205,7 +207,7 @@ public class Polygon4<T extends Number>
      * @param type
      *         the desired type of the rectangle to copy.
      */
-    public Polygon4(final IPolygon4<?> polygonToCopy,
+    public PolyLine4(final IPolyLine4<?> polygonToCopy,
             final Class<? extends T> type) {
 
         this(polygonToCopy.getPoints(), type);
@@ -218,11 +220,15 @@ public class Polygon4<T extends Number>
 
         final StringBuilder builder = new StringBuilder();
 
-        builder.append("Polygon4 [ ");
+        builder.append("PolyLine4 [ ");
 
-        this.points.forEach(builder::append);
+        for (final IPoint4<T> point : this.points) {
+
+            builder.append(point.toString());
+        }
 
         builder.append(" ]");
+
 
         return builder.toString();
     }
@@ -235,14 +241,15 @@ public class Polygon4<T extends Number>
 
             return true;
         }
-        if (obj == null || !(obj instanceof IPolygon4<?>)) {
+
+        if (obj == null || !(obj instanceof IPolyLine4<?>)) {
 
             return false;
         }
 
-        final IPolygon4<?> other = (IPolygon4<?>) obj;
+        final IPolyLine4<?> other = (IPolyLine4<?>) obj;
 
-        return this.getPoints().size() == (other.getPoints().size())
+        return this.getPoints().size() == other.getPoints().size()
                 && this.getPoints().containsAll(other.getPoints());
 
     }
@@ -253,11 +260,12 @@ public class Polygon4<T extends Number>
 
         int hash = 7;
 
-        hash += this.getPoints().stream().map(Object::hashCode)
-                .map(hashCode -> 13 * hashCode).reduce(0, Integer::sum);
+        for (final IPoint4<T> point : this.getPoints()) {
+
+            hash += 7 * point.hashCode();
+        }
 
         return hash;
     }
 
 }
-

@@ -76,5 +76,5 @@ public enum ShearComponent {
      * Shear z by y.
      */
     @XmlEnumValue(value = "ShearZbyY")
-    Z_BY_Y;
+    Z_BY_Y
 }

@@ -37,6 +37,7 @@ import org.jutility.common.datatype.util.NumberComparator;
  * @version 0.1.2
  * @since 0.1.0
  */
+@SuppressWarnings({ "ObjectEqualsNull", "EqualsBetweenInconvertibleTypes" })
 public class Tuple4Test {
 
 
@@ -51,8 +52,8 @@ public class Tuple4Test {
             for (float uy = -1; NumberComparator.smallerOrEqual(uy, 1f); uy += 0.1) {
                 for (float uz = -1; NumberComparator.smallerOrEqual(uz, 1f); uz += 0.1) {
                     for (float uw = -1; NumberComparator.smallerOrEqual(uw, 1f); uw += 0.1) {
-                        final Tuple4<Float> testTuple = new Tuple4<Float>(ux,
-                                uy, uz, uw, Float.class);
+                        final Tuple4<Float> testTuple = new Tuple4<>(ux, uy, uz,
+                                uw, Float.class);
 
                         final Float expected[] = { ux, uy, uz, uw };
                         final Float actual[] = testTuple.toArray();
@@ -72,6 +73,7 @@ public class Tuple4Test {
     /**
      * Test method for {@link Tuple4#equals(Object)}.
      */
+    @SuppressWarnings("EqualsBetweenInconvertibleTypes")
     @Test
     public void testEqualsObject() {
 
@@ -80,11 +82,11 @@ public class Tuple4Test {
                 for (float uz = -1; NumberComparator.smallerOrEqual(uz, 1f); uz += 0.1) {
                     for (float uw = -1; NumberComparator.smallerOrEqual(uw, 1f); uw += 0.1) {
 
-                        final Tuple4<Float> testTuple = new Tuple4<Float>(ux,
-                                uy, uz, uw, Float.class);
+                        final Tuple4<Float> testTuple = new Tuple4<>(ux, uy, uz,
+                                uw, Float.class);
 
-                        final Tuple4<Float> notTestTuple = new Tuple4<Float>(
-                                2 + uw, 2 + uy, 2 + uz, 2 + uw, Float.class);
+                        final Tuple4<Float> notTestTuple = new Tuple4<>(2 + uw,
+                                2 + uy, 2 + uz, 2 + uw, Float.class);
                         Assert.assertEquals(testTuple, testTuple);
                         Assert.assertEquals(false,
                                 testTuple.equals(notTestTuple));
@@ -111,8 +113,8 @@ public class Tuple4Test {
 
                     for (float uw = -1; NumberComparator.smallerOrEqual(uw, 1f); uw += 0.1) {
 
-                        final Tuple4<Float> testTuple = new Tuple4<Float>(ux,
-                                uy, uz, uw, Float.class);
+                        final Tuple4<Float> testTuple = new Tuple4<>(ux, uy, uz,
+                                uw, Float.class);
 
                         final int expected = 13
                                 + (7 * new Float(ux).hashCode())
@@ -137,8 +139,8 @@ public class Tuple4Test {
             for (float uy = -1; NumberComparator.smallerOrEqual(uy, 1f); uy += 0.1) {
                 for (float uz = -1; NumberComparator.smallerOrEqual(uz, 1f); uz += 0.1) {
                     for (float uw = -1; NumberComparator.smallerOrEqual(uw, 1f); uw += 0.1) {
-                        final Tuple4<Float> testTuple = new Tuple4<Float>(ux,
-                                uy, uz, uw, Float.class);
+                        final Tuple4<Float> testTuple = new Tuple4<>(ux, uy, uz,
+                                uw, Float.class);
 
                         Assert.assertEquals("(" + ux + ", " + uy + ", " + uz
                                 + ", " + uw + ")", testTuple.toString());

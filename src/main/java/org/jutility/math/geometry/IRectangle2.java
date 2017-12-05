@@ -55,7 +55,7 @@ public interface IRectangle2<T extends Number> {
      * 
      * @return the type.
      */
-    public abstract Class<? extends T> getType();
+    Class<? extends T> getType();
 
 
     /**
@@ -63,26 +63,26 @@ public interface IRectangle2<T extends Number> {
      * 
      * @return the top-left corner.
      */
-    public abstract IPoint2<T> getTopLeftCorner();
+    IPoint2<T> getTopLeftCorner();
 
     /**
      * Returns the bottom-left corner of this rectangle.
      * 
      * @return the bottom-left corner.
      */
-    public abstract IPoint2<T> getBottomLeftCorner();
+    IPoint2<T> getBottomLeftCorner();
 
     /**
      * Returns the top-right corner of this rectangle.
      * 
      * @return the top-right corner.
      */
-    public abstract IPoint2<T> getTopRightCorner();
+    IPoint2<T> getTopRightCorner();
 
     /**
      * Returns the bottom-right corner of this rectangle.
      * 
      * @return the bottom-right corner.
      */
-    public abstract IPoint2<T> getBottomRightCorner();
+    IPoint2<T> getBottomRightCorner();
 }

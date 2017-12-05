@@ -1,6 +1,7 @@
 package org.jutility.math.geometry;
 
 
+
 //@formatter:off
 /*
 * #%L
@@ -29,7 +30,7 @@ package org.jutility.math.geometry;
 
 import java.util.List;
 
-import org.jutility.math.vectoralgebra.IPoint2;
+import org.jutility.math.vectoralgebra.IPoint4;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -38,24 +39,24 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 
 /**
- * The {@code Polygon2} interface provides a contract for classes implementing
- * polygons in two-dimensional space based on two-dimensional {@link IPoint2
- * Points}.
+ * The {@code IPolyLine4} interface provides a contract for classes implementing
+ * multi-line segments in three-dimensional space based on {@link IPoint4
+ * Points} in homogeneous representation.
  * 
  * @param <T>
- *            the {@link Number} type of the {@code Polygon2}.
+ *            the {@link Number} type of the {@code IPolyLine4}.
  * 
  * @author Peter J. Radics
- * @version 0.1.2
- * @since 0.1.0
+ * @version 0.1.3
+ * @since 0.1.3
  */
 @JsonTypeInfo(use = Id.NAME, include = As.PROPERTY,
         property = "implementingType")
-@JsonSubTypes({ @JsonSubTypes.Type(value = Polygon2.class, name = "Polygon2") })
-public interface IPolygon2<T extends Number> {
+@JsonSubTypes({ @JsonSubTypes.Type(value = PolyLine4.class, name = "PolyLine4") })
+public interface IPolyLine4<T extends Number> {
 
     /**
-     * Returns the type of the {@code IPolygon2}.
+     * Returns the type of the {@code IPolyLine4}.
      * 
      * @return the type.
      */
@@ -63,34 +64,34 @@ public interface IPolygon2<T extends Number> {
 
 
     /**
-     * Returns the {@link IPoint2 Points} of this {@code IPolygon2}.
+     * Returns the {@link IPoint4 Points} of this {@link IPolyLine4 Polygon}.
      * 
-     * @return the {@link IPoint2 Points} of this {@code IPolygon2}.
+     * @return the {@link IPoint4 Points} of this {@link IPolyLine4 Polygon}.
      */
-    List<IPoint2<T>> getPoints();
+    List<IPoint4<T>> getPoints();
 
     /**
-     * Adds a {@link IPoint2 Point} to the {@link IPoint2 Points} of this
-     * {@code IPolygon2}.
-     * 
-     * @param point
-     *            the {@link IPoint2 Point} to add.
-     * @return whether or not the collection has been changed by this operation.
-     */
-    boolean addPoint(final IPoint2<? extends Number> point);
-
-    /**
-     * Removes a {@link IPoint2 Point} from the {@link IPoint2 Points} of this
-     * {@code IPolygon2}.
+     * Adds a {@link IPoint4 Point} to the {@link IPoint4 Points} of this
+     * {@code IPolyLine4}.
      * 
      * @param point
-     *            the {@link IPoint2 Point} to remove.
+     *            the {@link IPoint4 Point} to add.
      * @return whether or not the collection has been changed by this operation.
      */
-    boolean removePoint(final IPoint2<? extends Number> point);
+    boolean addPoint(IPoint4<? extends Number> point);
 
     /**
-     * Clears the {@link IPoint2 Points} of this {@code IPolygon2}.
+     * Removes a {@link IPoint4 Point} from the {@link IPoint4 Points} of this
+     * {@code IPolyLine4}.
+     * 
+     * @param point
+     *            the {@link IPoint4 Point} to remove.
+     * @return whether or not the collection has been changed by this operation.
+     */
+    boolean removePoint(IPoint4<? extends Number> point);
+
+    /**
+     * Clears the {@link IPoint4 Points} of this {@code IPolyLine4}.
      */
     void clearPoints();
 }

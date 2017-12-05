@@ -1,10 +1,9 @@
 package org.jutility.math.geometry;
 
 
-
 //@formatter:off
 /*
- * #%L
+* #%L
  * * jutility-math
  * *
  * %%
@@ -23,12 +22,12 @@ package org.jutility.math.geometry;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * #L%
- */
+*/
 //@formatter:on
 
 
-import org.jutility.math.vectoralgebra.IPoint4;
-import org.jutility.math.vectoralgebra.Point4;
+import org.jutility.math.vectoralgebra.IPoint2;
+import org.jutility.math.vectoralgebra.Point2;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
@@ -41,30 +40,30 @@ import java.util.List;
 
 
 /**
- * The {@code Polygon4} class provides a reference implementation of the
- * {@link IPolygon4} interface.
+ * The {@code PolyLine2} class provides a reference implementation of the
+ * {@link IPolyLine2} interface.
  *
  * @param <T>
- *         the {@link Number} type of the {@code Polygon4}.
+ *         the {@link Number} type of the {@code PolyLine2}.
  *
  * @author Peter J. Radics
- * @version 0.1.2
- * @since 0.1.0
+ * @version 0.1.3
+ * @since 0.1.3
  */
-@XmlRootElement(name = "Polygon4")
-@XmlType(name = "Polygon4")
-public class Polygon4<T extends Number>
-        implements IPolygon4<T>, Serializable {
+@XmlRootElement(name = "PolyLine2")
+@XmlType(name = "PolyLine2")
+public class PolyLine2<T extends Number>
+        implements IPolyLine2<T>, Serializable {
 
 
     /**
      * Serial Version UID.
      */
-    private static final long serialVersionUID = -6613114341290751004L;
+    private static final long serialVersionUID = 929794420845305322L;
 
 
-    @XmlElement(type = Point4.class)
-    private final List<IPoint4<T>> points;
+    @XmlElement(type = Point2.class)
+    private final List<IPoint2<T>> points;
 
     @XmlAttribute
     private final Class<? extends T> type;
@@ -78,27 +77,26 @@ public class Polygon4<T extends Number>
     }
 
 
-
     @Override
-    public List<IPoint4<T>> getPoints() {
+    public List<IPoint2<T>> getPoints() {
 
         return Collections.unmodifiableList(this.points);
     }
 
 
     @Override
-    public boolean addPoint(final IPoint4<? extends Number> point) {
+    public boolean addPoint(IPoint2<? extends Number> point) {
 
-        final Point4<T> pointToAdd = new Point4<>(point, this.type);
+        Point2<T> pointToAdd = new Point2<>(point, this.type);
 
         return this.points.add(pointToAdd);
     }
 
 
     @Override
-    public boolean removePoint(final IPoint4<? extends Number> point) {
+    public boolean removePoint(IPoint2<? extends Number> point) {
 
-        final Point4<T> pointToRemove = new Point4<>(point, this.type);
+        Point2<T> pointToRemove = new Point2<>(point, this.type);
 
         return this.points.remove(pointToRemove);
     }
@@ -111,12 +109,11 @@ public class Polygon4<T extends Number>
     }
 
 
-
     /**
-     * Creates a new instance of the {@code Polygon4} class. (Serialization
+     * Creates a new instance of the {@code PolyLine2} class. (Serialization
      * Constructor)
      */
-    public Polygon4() {
+    public PolyLine2() {
 
 
         this(null, null, true);
@@ -124,64 +121,67 @@ public class Polygon4<T extends Number>
 
 
     /**
-     * Creates a new instance of the {@code Polygon4} class.
+     * Creates a new instance of the {@code PolyLine2} class.
      *
      * @param type
      *         the type.
      */
-    public Polygon4(final Class<? extends T> type) {
+    public PolyLine2(final Class<? extends T> type) {
 
 
         this(null, type, false);
     }
 
     /**
-     * Creates a new instance of the {@link Polygon4} class with the provided
+     * Creates a new instance of the {@link PolyLine2} class with the provided
      * type and parameters.
      *
      * @param <S>
-     *         the {@link Number} type of the {@link IPoint4 Points}.
+     *         the {@link Number} type of the {@link IPoint2 Points}.
      * @param points
-     *         the {@link IPoint4 Points}.
+     *         the {@link IPoint2 Points}.
      * @param type
      *         the type.
      */
-    public <S extends Number> Polygon4(final List<IPoint4<S>> points,
+    public <S extends Number> PolyLine2(final List<IPoint2<S>> points,
             final Class<? extends T> type) {
 
         this(points, type, false);
     }
 
     /**
-     * Creates a new instance of the {@link Polygon4} class with the provided
+     * Creates a new instance of the {@link PolyLine2} class with the provided
      * type and parameters.
      *
      * @param <S>
-     *         the {@link Number} type of the {@link IPoint4 Points}.
+     *         the {@link Number} type of the {@link IPoint2 Points}.
      * @param points
-     *         the {@link IPoint4 Points}.
+     *         the {@link IPoint2 Points}.
      * @param type
      *         the type.
      * @param serialization
      *         whether or not the constructor is invoked during serialization.
      */
-    public <S extends Number> Polygon4(final List<IPoint4<S>> points,
+    public <S extends Number> PolyLine2(final List<IPoint2<S>> points,
             final Class<? extends T> type, final boolean serialization) {
 
-        if ((type == null) && !serialization) {
+        if (type == null && !serialization) {
 
             throw new IllegalArgumentException(
-                    "Cannot create a polygon without a type!");
+                    "Cannot create a polyline without a type!");
 
         }
 
         this.points = new LinkedList<>();
         this.type = type;
 
-        if ((points != null) && (type != null)) {
+        if (points != null && type != null) {
 
-            points.stream().map(point -> new Point4<T>(point, type))
-                    .forEach(this.getPoints()::add);
+
+            for (IPoint2<? extends Number> point : points) {
+
+                this.points.add(new Point2<>(point, type));
+            }
         }
     }
 
@@ -192,7 +192,7 @@ public class Polygon4<T extends Number>
      * @param polygonToCopy
      *         the polygon to copy.
      */
-    public Polygon4(final IPolygon4<T> polygonToCopy) {
+    public PolyLine2(final IPolyLine2<T> polygonToCopy) {
 
         this(polygonToCopy, polygonToCopy.getType());
     }
@@ -205,7 +205,7 @@ public class Polygon4<T extends Number>
      * @param type
      *         the desired type of the rectangle to copy.
      */
-    public Polygon4(final IPolygon4<?> polygonToCopy,
+    public PolyLine2(final IPolyLine2<?> polygonToCopy,
             final Class<? extends T> type) {
 
         this(polygonToCopy.getPoints(), type);
@@ -216,48 +216,53 @@ public class Polygon4<T extends Number>
     @Override
     public String toString() {
 
-        final StringBuilder builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
 
-        builder.append("Polygon4 [ ");
+        builder.append("PolyLine2 [ ");
 
-        this.points.forEach(builder::append);
+        for (IPoint2<T> point : this.points) {
+
+            builder.append(point.toString());
+        }
 
         builder.append(" ]");
+
 
         return builder.toString();
     }
 
-
     @Override
     public boolean equals(final Object obj) {
 
-        if (this == obj) {
+        if (obj == this) {
 
             return true;
         }
-        if (obj == null || !(obj instanceof IPolygon4<?>)) {
+
+        if (obj == null || !(obj instanceof IPolyLine2<?>)) {
 
             return false;
         }
 
-        final IPolygon4<?> other = (IPolygon4<?>) obj;
 
-        return this.getPoints().size() == (other.getPoints().size())
+        IPolyLine2<?> other = (IPolyLine2<?>) obj;
+
+        return this.getPoints().size() == other.getPoints().size()
                 && this.getPoints().containsAll(other.getPoints());
 
     }
-
 
     @Override
     public int hashCode() {
 
         int hash = 7;
 
-        hash += this.getPoints().stream().map(Object::hashCode)
-                .map(hashCode -> 13 * hashCode).reduce(0, Integer::sum);
+        hash += this.getPoints()
+                    .stream()
+                    .map(Object::hashCode)
+                    .map(hashCode -> 7 * hashCode)
+                    .reduce(0, Integer::sum);
 
         return hash;
     }
-
 }
-

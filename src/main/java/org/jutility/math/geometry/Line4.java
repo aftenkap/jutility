@@ -149,7 +149,7 @@ public class Line4<T extends Number>
 
         if (source != null && type != null) {
 
-            this.source = new Point4<T>(source, type);
+            this.source = new Point4<>(source, type);
         }
         else {
 
@@ -158,7 +158,7 @@ public class Line4<T extends Number>
 
         if (sink != null && type != null) {
 
-            this.sink = new Point4<T>(sink, type);
+            this.sink = new Point4<>(sink, type);
         }
         else {
 

@@ -53,7 +53,7 @@ public interface IVector4<T extends Number>
      * 
      * @return the length of the vector.
      */
-    public abstract T length();
+    T length();
 
 
     /**
@@ -61,7 +61,7 @@ public interface IVector4<T extends Number>
      * 
      * @return the normalized vector.
      */
-    public abstract IVector4<T> normalizedVector();
+    IVector4<T> normalizedVector();
 
 
     /**
@@ -71,7 +71,7 @@ public interface IVector4<T extends Number>
      *            the provided vector.
      * @return the dot product.
      */
-    public abstract T dotProduct(final IVector4<T> rhs);
+    T dotProduct(final IVector4<T> rhs);
 
 
     /**
@@ -81,5 +81,5 @@ public interface IVector4<T extends Number>
      *            the provided vector.
      * @return the cross product (a vector orthogonal to both vectors).
      */
-    public abstract IVector4<T> crossProduct(final IVector4<T> rhs);
+    IVector4<T> crossProduct(final IVector4<T> rhs);
 }

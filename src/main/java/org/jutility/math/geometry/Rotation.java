@@ -190,7 +190,7 @@ public class Rotation<T extends Number>
 
         if (!serialization) {
 
-            this.rotationAxis = new Vector4<T>(rotationAxis, type);
+            this.rotationAxis = new Vector4<>(rotationAxis, type);
             this.rotationAngle = NumberUtils.cast(rotationAngle, type);
         }
         else {
@@ -243,7 +243,7 @@ public class Rotation<T extends Number>
     public static <T extends Number> Rotation<T> rotationX(
             final Number rotationAngle, final Class<? extends T> type) {
 
-        return new Rotation<T>(Vector4.I_UNIT_VECTOR(type), rotationAngle, type);
+        return new Rotation<>(Vector4.I_UNIT_VECTOR(type), rotationAngle, type);
     }
 
 
@@ -262,7 +262,7 @@ public class Rotation<T extends Number>
     public static <T extends Number> Rotation<T> rotationY(
             final Number rotationAngle, final Class<? extends T> type) {
 
-        return new Rotation<T>(Vector4.J_UNIT_VECTOR(type), rotationAngle, type);
+        return new Rotation<>(Vector4.J_UNIT_VECTOR(type), rotationAngle, type);
     }
 
 
@@ -281,7 +281,7 @@ public class Rotation<T extends Number>
     public static <T extends Number> Rotation<T> rotationZ(
             final Number rotationAngle, final Class<? extends T> type) {
 
-        return new Rotation<T>(Vector4.K_UNIT_VECTOR(type), rotationAngle, type);
+        return new Rotation<>(Vector4.K_UNIT_VECTOR(type), rotationAngle, type);
     }
 
 

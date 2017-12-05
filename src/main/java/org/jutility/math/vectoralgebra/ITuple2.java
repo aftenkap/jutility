@@ -39,7 +39,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
  * implementing two-dimensional numeric tuples.
  *
  * @param <T>
- *            the {@link Number} type of the {@code ITuple2}.
+ *         the {@link Number} type of the {@code ITuple2}.
  *
  * @author Peter J. Radics
  * @version 0.1.2
@@ -55,7 +55,7 @@ public interface ITuple2<T extends Number>
      *
      * @return {@code true}, if the tuple is a point; {@code false} otherwise.
      */
-    public abstract boolean isPoint();
+    boolean isPoint();
 
 
     /**
@@ -63,64 +63,42 @@ public interface ITuple2<T extends Number>
      *
      * @return {@code true}, if the tuple is a vector; {@code false} otherwise.
      */
-    public abstract boolean isVector();
+    boolean isVector();
 
 
 
     /**
      * Compares points by x, then y.
      */
-    public static final Comparator<ITuple2<?>> byX =
+    Comparator<ITuple2<?>> byX =
 
-                                                   new Comparator<ITuple2<?>>() {
+            (lhs, rhs) -> {
 
-                                                       @Override
-                                                       public int compare(
-                                                               final ITuple2<?> lhs,
-                                                               final ITuple2<?> rhs) {
+                final int comparison = NumberComparator.compareTo(lhs.getX(),
+                        rhs.getX());
 
-                                                           final int comparison = NumberComparator
-                                                                   .compareTo(
-                                                                           lhs.getX(),
-                                                                           rhs.getX());
+                if (comparison == 0) {
 
-                                                           if (comparison == 0) {
+                    return NumberComparator.compareTo(lhs.getY(), rhs.getY());
+                }
 
-                                                               return NumberComparator
-                                                                       .compareTo(
-                                                                               lhs.getY(),
-                                                                               rhs.getY());
-                                                           }
-
-                                                           return comparison;
-                                                       }
-                                                   };
+                return comparison;
+            };
     /**
      * Compares points by x, then y.
      */
-    public static final Comparator<ITuple2<?>> byY =
+    Comparator<ITuple2<?>> byY =
 
-                                                   new Comparator<ITuple2<?>>() {
+            (lhs, rhs) -> {
 
-                                                       @Override
-                                                       public int compare(
-                                                               final ITuple2<?> lhs,
-                                                               final ITuple2<?> rhs) {
+                final int comparison = NumberComparator.compareTo(lhs.getY(),
+                        rhs.getY());
 
-                                                           final int comparison = NumberComparator
-                                                                   .compareTo(
-                                                                           lhs.getY(),
-                                                                           rhs.getY());
+                if (comparison == 0) {
 
-                                                           if (comparison == 0) {
+                    return NumberComparator.compareTo(lhs.getX(), rhs.getX());
+                }
 
-                                                               return NumberComparator
-                                                                       .compareTo(
-                                                                               lhs.getX(),
-                                                                               rhs.getX());
-                                                           }
-
-                                                           return comparison;
-                                                       }
-                                                   };
+                return comparison;
+            };
 }

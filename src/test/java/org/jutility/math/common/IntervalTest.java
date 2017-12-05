@@ -40,9 +40,10 @@ import org.slf4j.LoggerFactory;
  * @version 0.1.2
  * @since 0.1.0
  */
+@SuppressWarnings({ "ObjectEqualsNull", "EqualsWithItself" })
 public class IntervalTest {
 
-    private static Logger LOG           = LoggerFactory
+    private static final Logger LOG = LoggerFactory
                                                 .getLogger(IntervalTest.class);
 
     private final Integer intMin        = 0;
@@ -75,7 +76,7 @@ public class IntervalTest {
     private <T extends Number & Comparable<T>> void testConstructor(
             final T min, final T max) {
 
-        final Interval<T> a = new Interval<T>(min, min);
+        final Interval<T> a = new Interval<>(min, min);
 
 
         T lowerBound = a.getLowerBound();
@@ -91,7 +92,7 @@ public class IntervalTest {
         Assert.assertEquals(containsUpperBound, true);
 
 
-        final Interval<T> b = new Interval<T>(max, min, false, false);
+        final Interval<T> b = new Interval<>(max, min, false, false);
 
         lowerBound = b.getLowerBound();
         Assert.assertEquals(lowerBound, min);
@@ -124,12 +125,12 @@ public class IntervalTest {
     private <T extends Number & Comparable<T>> void testGetContainsLowerBound(
             final T min, final T max) {
 
-        Interval<T> instance = new Interval<T>(min, max);
+        Interval<T> instance = new Interval<>(min, max);
         Boolean result = instance.containsLowerBound();
 
         Assert.assertEquals(result, true);
 
-        instance = new Interval<T>(min, max, false, true);
+        instance = new Interval<>(min, max, false, true);
 
         result = instance.containsLowerBound();
 
@@ -154,12 +155,12 @@ public class IntervalTest {
     private <T extends Number & Comparable<T>> void testGetContainsUpperBound(
             final T min, final T max) {
 
-        Interval<T> instance = new Interval<T>(min, max);
+        Interval<T> instance = new Interval<>(min, max);
         Boolean result = instance.containsUpperBound();
 
         Assert.assertEquals(result, true);
 
-        instance = new Interval<T>(min, max, true, false);
+        instance = new Interval<>(min, max, true, false);
 
         result = instance.containsUpperBound();
 
@@ -183,10 +184,10 @@ public class IntervalTest {
     private <T extends Number & Comparable<T>> void testGetLowerBound(
             final T min, final T max) {
 
-        Interval<T> b = new Interval<T>(min, max);
+        Interval<T> b = new Interval<>(min, max);
         Assert.assertEquals(b.getLowerBound(), min);
 
-        b = new Interval<T>(max, max);
+        b = new Interval<>(max, max);
         Assert.assertEquals(b.getLowerBound(), max);
 
     }
@@ -208,11 +209,11 @@ public class IntervalTest {
     private <T extends Number & Comparable<T>> void testGetUpperBound(
             final T min, final T max) {
 
-        Interval<T> b = new Interval<T>(min, max);
+        Interval<T> b = new Interval<>(min, max);
 
         Assert.assertEquals(b.getUpperBound(), max);
 
-        b = new Interval<T>(min, min);
+        b = new Interval<>(min, min);
         Assert.assertEquals(b.getUpperBound(), min);
 
     }
@@ -238,7 +239,7 @@ public class IntervalTest {
             final T larger) {
 
         // [min]
-        final Interval<T> a = new Interval<T>(min, min);
+        final Interval<T> a = new Interval<>(min, min);
         Assert.assertEquals(Boolean.TRUE, a.contains(min));
         Assert.assertEquals(Boolean.FALSE, a.contains(max));
         Assert.assertEquals(Boolean.FALSE, a.contains(within));
@@ -246,7 +247,7 @@ public class IntervalTest {
         Assert.assertEquals(Boolean.FALSE, a.contains(larger));
 
         // [max]
-        final Interval<T> b = new Interval<T>(max, max);
+        final Interval<T> b = new Interval<>(max, max);
         Assert.assertEquals(Boolean.FALSE, b.contains(min));
         Assert.assertEquals(Boolean.TRUE, b.contains(max));
         Assert.assertEquals(Boolean.FALSE, b.contains(within));
@@ -254,7 +255,7 @@ public class IntervalTest {
         Assert.assertEquals(Boolean.FALSE, b.contains(larger));
 
         // [min, max]
-        final Interval<T> c = new Interval<T>(min, max);
+        final Interval<T> c = new Interval<>(min, max);
         Assert.assertEquals(Boolean.TRUE, c.contains(min));
         Assert.assertEquals(Boolean.TRUE, c.contains(max));
         Assert.assertEquals(Boolean.TRUE, c.contains(within));
@@ -262,7 +263,7 @@ public class IntervalTest {
         Assert.assertEquals(Boolean.FALSE, c.contains(larger));
 
         // (min, max]
-        final Interval<T> d = new Interval<T>(min, max, false, true);
+        final Interval<T> d = new Interval<>(min, max, false, true);
         Assert.assertEquals(Boolean.FALSE, d.contains(min));
         Assert.assertEquals(Boolean.TRUE, d.contains(max));
         Assert.assertEquals(Boolean.TRUE, d.contains(within));
@@ -270,7 +271,7 @@ public class IntervalTest {
         Assert.assertEquals(Boolean.FALSE, d.contains(larger));
 
         // [min, max)
-        final Interval<T> e = new Interval<T>(min, max, true, false);
+        final Interval<T> e = new Interval<>(min, max, true, false);
         Assert.assertEquals(Boolean.TRUE, e.contains(min));
         Assert.assertEquals(Boolean.FALSE, e.contains(max));
         Assert.assertEquals(Boolean.TRUE, e.contains(within));
@@ -278,7 +279,7 @@ public class IntervalTest {
         Assert.assertEquals(Boolean.FALSE, e.contains(larger));
 
         // (min, max)
-        final Interval<T> f = new Interval<T>(min, max, false, false);
+        final Interval<T> f = new Interval<>(min, max, false, false);
         Assert.assertEquals(Boolean.FALSE, f.contains(min));
         Assert.assertEquals(Boolean.FALSE, f.contains(max));
         Assert.assertEquals(Boolean.TRUE, f.contains(within));
@@ -309,15 +310,15 @@ public class IntervalTest {
             final T larger) {
 
         // [smaller]
-        final Interval<T> smallerI = new Interval<T>(smaller, smaller);
+        final Interval<T> smallerI = new Interval<>(smaller, smaller);
         // [min]
-        final Interval<T> minI = new Interval<T>(min, min);
+        final Interval<T> minI = new Interval<>(min, min);
         // [within]
-        final Interval<T> withinI = new Interval<T>(within, within);
+        final Interval<T> withinI = new Interval<>(within, within);
         // [max]
-        final Interval<T> maxI = new Interval<T>(max, max);
+        final Interval<T> maxI = new Interval<>(max, max);
         // [larger]
-        final Interval<T> largerI = new Interval<T>(larger, larger);
+        final Interval<T> largerI = new Interval<>(larger, larger);
 
         this.simpleContainmentTest(smallerI, minI, false, false);
         this.simpleContainmentTest(smallerI, withinI, false, false);
@@ -343,27 +344,27 @@ public class IntervalTest {
 
 
         // [smaller, min]
-        final Interval<T> smallerMin = new Interval<T>(smaller, min);
+        final Interval<T> smallerMin = new Interval<>(smaller, min);
         // [smaller, within]
-        final Interval<T> smallerWithin = new Interval<T>(smaller, within);
+        final Interval<T> smallerWithin = new Interval<>(smaller, within);
         // [smaller, max]
-        final Interval<T> smallerMax = new Interval<T>(smaller, max);
+        final Interval<T> smallerMax = new Interval<>(smaller, max);
         // [smaller, larger]
-        final Interval<T> smallerLarger = new Interval<T>(smaller, larger);
+        final Interval<T> smallerLarger = new Interval<>(smaller, larger);
         // [min, within]
-        final Interval<T> minWithin = new Interval<T>(min, within);
+        final Interval<T> minWithin = new Interval<>(min, within);
         // [min, max]
-        final Interval<T> minMax = new Interval<T>(min, max);
+        final Interval<T> minMax = new Interval<>(min, max);
         // [min, max]
-        final Interval<T> minMaxClone = new Interval<T>(min, max);
+        final Interval<T> minMaxClone = new Interval<>(min, max);
         // [min, larger]
-        final Interval<T> minLarger = new Interval<T>(min, larger);
+        final Interval<T> minLarger = new Interval<>(min, larger);
         // [within, max]
-        final Interval<T> withinMax = new Interval<T>(within, max);
+        final Interval<T> withinMax = new Interval<>(within, max);
         // [within, larger]
-        final Interval<T> withinLarger = new Interval<T>(within, larger);
+        final Interval<T> withinLarger = new Interval<>(within, larger);
         // [max, larger]
-        final Interval<T> maxLarger = new Interval<T>(max, larger);
+        final Interval<T> maxLarger = new Interval<>(max, larger);
 
 
         this.complexContainmentTest(minMax, smallerI, false, false, false,
@@ -481,92 +482,92 @@ public class IntervalTest {
         final Boolean rightContainsUpperBound = right.containsUpperBound();
 
 
-        Interval<T> leftCopy = new Interval<T>(left.getLowerBound(),
+        Interval<T> leftCopy = new Interval<>(left.getLowerBound(),
                 left.getUpperBound(), leftContainsLowerBound,
                 leftContainsUpperBound);
-        Interval<T> rightCopy = new Interval<T>(right.getLowerBound(),
+        Interval<T> rightCopy = new Interval<>(right.getLowerBound(),
                 right.getUpperBound(), rightContainsLowerBound,
                 rightContainsUpperBound);
 
 
 
-        leftCopy = new Interval<T>(leftCopy.getLowerBound(),
+        leftCopy = new Interval<>(leftCopy.getLowerBound(),
                 leftCopy.getUpperBound(), true, true);
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, true);
 
         Assert.assertEquals(leftCopy.contains(rightCopy), leftULrightUL);
 
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, true);
         Assert.assertEquals(leftCopy.contains(rightCopy), leftULrightU);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, false);
         Assert.assertEquals(leftCopy.contains(rightCopy), leftULrightL);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, false);
         Assert.assertEquals(leftCopy.contains(rightCopy), leftULright);
 
 
-        leftCopy = new Interval<T>(leftCopy.getLowerBound(),
+        leftCopy = new Interval<>(leftCopy.getLowerBound(),
                 leftCopy.getUpperBound(), false, true);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, true);
         Assert.assertEquals(leftCopy.contains(rightCopy), leftUrightUL);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, true);
         Assert.assertEquals(leftCopy.contains(rightCopy), leftUrightU);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, false);
         Assert.assertEquals(leftCopy.contains(rightCopy), leftUrightL);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, false);
         Assert.assertEquals(leftCopy.contains(rightCopy), leftUright);
 
 
-        leftCopy = new Interval<T>(leftCopy.getLowerBound(),
+        leftCopy = new Interval<>(leftCopy.getLowerBound(),
                 leftCopy.getUpperBound(), true, false);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, true);
         Assert.assertEquals(leftCopy.contains(rightCopy), leftLrightUL);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, true);
         Assert.assertEquals(leftCopy.contains(rightCopy), leftLrightU);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, false);
         Assert.assertEquals(leftCopy.contains(rightCopy), leftLrightL);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, false);
         Assert.assertEquals(leftCopy.contains(rightCopy), leftLright);
 
 
-        leftCopy = new Interval<T>(leftCopy.getLowerBound(),
+        leftCopy = new Interval<>(leftCopy.getLowerBound(),
                 leftCopy.getUpperBound(), false, false);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, true);
         Assert.assertEquals(leftCopy.contains(rightCopy), leftrightUL);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, true);
         Assert.assertEquals(leftCopy.contains(rightCopy), leftrightU);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, false);
         Assert.assertEquals(leftCopy.contains(rightCopy), leftrightL);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, false);
         Assert.assertEquals(leftCopy.contains(rightCopy), leftright);
     }
@@ -594,15 +595,15 @@ public class IntervalTest {
 
 
         // [smaller]
-        final Interval<T> smallerI = new Interval<T>(smaller, smaller);
+        final Interval<T> smallerI = new Interval<>(smaller, smaller);
         // [min]
-        final Interval<T> minI = new Interval<T>(min, min);
+        final Interval<T> minI = new Interval<>(min, min);
         // [within]
-        final Interval<T> withinI = new Interval<T>(within, within);
+        final Interval<T> withinI = new Interval<>(within, within);
         // [max]
-        final Interval<T> maxI = new Interval<T>(max, max);
+        final Interval<T> maxI = new Interval<>(max, max);
         // [larger]
-        final Interval<T> largerI = new Interval<T>(larger, larger);
+        final Interval<T> largerI = new Interval<>(larger, larger);
 
         this.simpleIntersectionTest(smallerI, minI, false);
         this.simpleIntersectionTest(smallerI, withinI, false);
@@ -628,27 +629,27 @@ public class IntervalTest {
 
 
         // [smaller, min]
-        final Interval<T> smallerMin = new Interval<T>(smaller, min);
+        final Interval<T> smallerMin = new Interval<>(smaller, min);
         // [smaller, within]
-        final Interval<T> smallerWithin = new Interval<T>(smaller, within);
+        final Interval<T> smallerWithin = new Interval<>(smaller, within);
         // [smaller, max]
-        final Interval<T> smallerMax = new Interval<T>(smaller, max);
+        final Interval<T> smallerMax = new Interval<>(smaller, max);
         // [smaller, larger]
-        final Interval<T> smallerLarger = new Interval<T>(smaller, larger);
+        final Interval<T> smallerLarger = new Interval<>(smaller, larger);
         // [min, within]
-        final Interval<T> minWithin = new Interval<T>(min, within);
+        final Interval<T> minWithin = new Interval<>(min, within);
         // [min, max]
-        final Interval<T> minMax = new Interval<T>(min, max);
+        final Interval<T> minMax = new Interval<>(min, max);
         // [min, max]
-        final Interval<T> minMaxClone = new Interval<T>(min, max);
+        final Interval<T> minMaxClone = new Interval<>(min, max);
         // [min, larger]
-        final Interval<T> minLarger = new Interval<T>(min, larger);
+        final Interval<T> minLarger = new Interval<>(min, larger);
         // [within, max]
-        final Interval<T> withinMax = new Interval<T>(within, max);
+        final Interval<T> withinMax = new Interval<>(within, max);
         // [within, larger]
-        final Interval<T> withinLarger = new Interval<T>(within, larger);
+        final Interval<T> withinLarger = new Interval<>(within, larger);
         // [max, larger]
-        final Interval<T> maxLarger = new Interval<T>(max, larger);
+        final Interval<T> maxLarger = new Interval<>(max, larger);
 
 
         this.complexIntersectionTest(minMax, smallerI, false, false, false,
@@ -759,84 +760,84 @@ public class IntervalTest {
 
 
 
-        Interval<T> leftCopy = new Interval<T>(left.getLowerBound(),
+        Interval<T> leftCopy = new Interval<>(left.getLowerBound(),
                 left.getUpperBound(), true, true);
 
-        Interval<T> rightCopy = new Interval<T>(right.getLowerBound(),
+        Interval<T> rightCopy = new Interval<>(right.getLowerBound(),
                 right.getUpperBound(), true, true);
         Assert.assertEquals(leftCopy.intersects(rightCopy), leftULrightUL);
 
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, true);
         Assert.assertEquals(leftCopy.intersects(rightCopy), leftULrightU);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, false);
         Assert.assertEquals(leftCopy.intersects(rightCopy), leftULrightL);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, false);
         Assert.assertEquals(leftCopy.intersects(rightCopy), leftULright);
 
 
-        leftCopy = new Interval<T>(leftCopy.getLowerBound(),
+        leftCopy = new Interval<>(leftCopy.getLowerBound(),
                 leftCopy.getUpperBound(), false, true);
 
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, true);
         Assert.assertEquals(leftCopy.intersects(rightCopy), leftUrightUL);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, true);
         Assert.assertEquals(leftCopy.intersects(rightCopy), leftUrightU);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, false);
         Assert.assertEquals(leftCopy.intersects(rightCopy), leftUrightL);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, false);
         Assert.assertEquals(leftCopy.intersects(rightCopy), leftUright);
 
 
-        leftCopy = new Interval<T>(leftCopy.getLowerBound(),
+        leftCopy = new Interval<>(leftCopy.getLowerBound(),
                 leftCopy.getUpperBound(), true, false);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, true);
         Assert.assertEquals(leftCopy.intersects(rightCopy), leftLrightUL);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, true);
         Assert.assertEquals(leftCopy.intersects(rightCopy), leftLrightU);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, false);
         Assert.assertEquals(leftCopy.intersects(rightCopy), leftLrightL);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, false);
         Assert.assertEquals(leftCopy.intersects(rightCopy), leftLright);
 
 
-        leftCopy = new Interval<T>(leftCopy.getLowerBound(),
+        leftCopy = new Interval<>(leftCopy.getLowerBound(),
                 leftCopy.getUpperBound(), false, false);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, true);
         Assert.assertEquals(leftCopy.intersects(rightCopy), leftrightUL);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, true);
         Assert.assertEquals(leftCopy.intersects(rightCopy), leftrightU);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), true, false);
         Assert.assertEquals(leftCopy.intersects(rightCopy), leftrightL);
 
-        rightCopy = new Interval<T>(rightCopy.getLowerBound(),
+        rightCopy = new Interval<>(rightCopy.getLowerBound(),
                 rightCopy.getUpperBound(), false, false);
         Assert.assertEquals(leftCopy.intersects(rightCopy), leftright);
     }
@@ -861,9 +862,9 @@ public class IntervalTest {
             final T min, final T max, final T within, final T smaller,
             final T larger) {
 
-        final Interval<T> minMax = new Interval<T>(min, max);
-        final Interval<T> smallerLarger = new Interval<T>(smaller, larger);
-        final Interval<T> withinWithin = new Interval<T>(within, within);
+        final Interval<T> minMax = new Interval<>(min, max);
+        final Interval<T> smallerLarger = new Interval<>(smaller, larger);
+        final Interval<T> withinWithin = new Interval<>(within, within);
 
         Assert.assertEquals(minMax.contains(smallerLarger),
                 smallerLarger.isContainedIn(minMax));
@@ -893,24 +894,26 @@ public class IntervalTest {
         IntervalTest.LOG.info("\tSuccess.");
     }
 
+    @SuppressWarnings({ "EqualsBetweenInconvertibleTypes", "EqualsWithItself" })
     private <T extends Number & Comparable<T>> void testEquals(final T min,
             final T max, final T within, final T smaller, final T larger) {
 
-        final Interval<T> interval = new Interval<T>(min, max);
+        final Interval<T> interval = new Interval<>(min, max);
 
-        final Interval<T> equalInterval = new Interval<T>(min, max);
-        final Interval<T> intervalWithoutLowerBound = new Interval<T>(min, max,
+        final Interval<T> equalInterval = new Interval<>(min, max);
+        final Interval<T> intervalWithoutLowerBound = new Interval<>(min, max,
                 false, true);
-        final Interval<T> intervalWithoutUpperBound = new Interval<T>(min, max,
+        final Interval<T> intervalWithoutUpperBound = new Interval<>(min, max,
                 true, false);
-        final Interval<T> intervalWithoutBounds = new Interval<T>(min, max,
+        final Interval<T> intervalWithoutBounds = new Interval<>(min, max,
                 false, false);
 
-        final Interval<T> smallerMax = new Interval<T>(smaller, max);
-        final Interval<T> minLarger = new Interval<T>(within, larger);
-        final Interval<T> withinI = new Interval<T>(within, within);
+        final Interval<T> smallerMax = new Interval<>(smaller, max);
+        final Interval<T> minLarger = new Interval<>(within, larger);
+        final Interval<T> withinI = new Interval<>(within, within);
 
         Assert.assertEquals(interval.equals(null), false);
+        //noinspection EqualsBetweenInconvertibleTypes
         Assert.assertEquals(interval.equals(max), false);
 
         Assert.assertEquals(interval.equals(interval), true);
@@ -941,8 +944,8 @@ public class IntervalTest {
     private <T extends Number & Comparable<T>> void testHashCode(final T min,
             final T max) {
 
-        final Interval<T> interval = new Interval<T>(min, max);
-        final Interval<T> equalInterval = new Interval<T>(min, max);
+        final Interval<T> interval = new Interval<>(min, max);
+        final Interval<T> equalInterval = new Interval<>(min, max);
 
         Assert.assertEquals(interval, equalInterval);
         Assert.assertEquals(interval.hashCode(), equalInterval.hashCode());
@@ -973,29 +976,29 @@ public class IntervalTest {
         final String separator = ", ";
 
 
-        final Interval<T> a = new Interval<T>(min, min);
+        final Interval<T> a = new Interval<>(min, min);
         final String zeroInterval = squareBracketOpen + min.toString()
                 + squareBracketClose;
         Assert.assertEquals(zeroInterval, a.toString());
 
-        Interval<T> b = new Interval<T>(min, max);
+        Interval<T> b = new Interval<>(min, max);
         String zeroOneInterval = squareBracketOpen + min.toString() + separator
                 + max.toString() + squareBracketClose;
         Assert.assertEquals(zeroOneInterval, b.toString());
 
-        b = new Interval<T>(b.getLowerBound(), b.getUpperBound(), false,
+        b = new Interval<>(b.getLowerBound(), b.getUpperBound(), false,
                 b.containsUpperBound());
         zeroOneInterval = parenthesisOpen + min.toString() + separator
                 + max.toString() + squareBracketClose;
         Assert.assertEquals(zeroOneInterval, b.toString());
 
-        b = new Interval<T>(b.getLowerBound(), b.getUpperBound(),
+        b = new Interval<>(b.getLowerBound(), b.getUpperBound(),
                 b.containsLowerBound(), false);
         zeroOneInterval = parenthesisOpen + min.toString() + separator
                 + max.toString() + parenthesisClose;
         Assert.assertEquals(zeroOneInterval, b.toString());
 
-        b = new Interval<T>(b.getLowerBound(), b.getUpperBound(), true,
+        b = new Interval<>(b.getLowerBound(), b.getUpperBound(), true,
                 b.containsUpperBound());
         zeroOneInterval = squareBracketOpen + min.toString() + separator
                 + max.toString() + parenthesisClose;

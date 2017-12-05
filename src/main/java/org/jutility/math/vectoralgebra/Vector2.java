@@ -73,7 +73,7 @@ public class Vector2<T extends Number>
     public static final <T extends Number> IVector2<T> I_UNIT_VECTOR(
             Class<? extends T> type) {
 
-        return new Vector2<T>(1, 0, type);
+        return new Vector2<>(1, 0, type);
     }
 
 
@@ -90,7 +90,7 @@ public class Vector2<T extends Number>
     public static final <T extends Number> IVector2<T> J_UNIT_VECTOR(
             Class<? extends T> type) {
 
-        return new Vector2<T>(0, 1, type);
+        return new Vector2<>(0, 1, type);
     }
 
     /**
@@ -106,7 +106,7 @@ public class Vector2<T extends Number>
     public static final <T extends Number> IVector2<T> NULL_VECTOR(
             Class<? extends T> type) {
 
-        return new Vector2<T>(0f, 0f, type);
+        return new Vector2<>(0f, 0f, type);
     }
 
     /**
@@ -218,11 +218,11 @@ public class Vector2<T extends Number>
             T normalizedY = ArithmeticOperations.divide(this.getY(), length,
                     type);
 
-            return new Vector2<T>(normalizedX, normalizedY, type);
+            return new Vector2<>(normalizedX, normalizedY, type);
         }
         else {
 
-            return new Vector2<T>(this);
+            return new Vector2<>(this);
         }
     }
 
@@ -336,7 +336,7 @@ public class Vector2<T extends Number>
     public static final <R extends Number> IVector2<R> perpendicularVector(
             final IVector2<?> value, final Class<? extends R> returnType) {
 
-        return new Vector2<R>(ArithmeticOperations.multiply(-1, value.getY()),
+        return new Vector2<>(ArithmeticOperations.multiply(-1, value.getY()),
                 value.getX(), returnType);
     }
 }

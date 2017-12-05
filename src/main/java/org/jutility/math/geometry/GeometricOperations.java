@@ -838,7 +838,7 @@ public final class GeometricOperations {
         IPoint4<T> translatedSink = GeometricOperations.translate(
                 lineToTranslate.getSink(), translation);
 
-        return new Line4<T>(translatedSource, translatedSink,
+        return new Line4<>(translatedSource, translatedSink,
                 lineToTranslate.getType());
     }
 
@@ -870,7 +870,7 @@ public final class GeometricOperations {
                 lineToTranslate.getSink(), translation, returnType);
 
 
-        return new Line4<R>(translatedSource, translatedSink, returnType);
+        return new Line4<>(translatedSource, translatedSink, returnType);
     }
 
 
@@ -898,7 +898,7 @@ public final class GeometricOperations {
                 lineToTranslate.getSink(), translation);
 
 
-        return new Line4<T>(translatedSource, translatedSink,
+        return new Line4<>(translatedSource, translatedSink,
                 lineToTranslate.getType());
     }
 
@@ -929,7 +929,7 @@ public final class GeometricOperations {
                 lineToTranslate.getSink(), translation, returnType);
 
 
-        return new Line4<R>(translatedSource, translatedSink, returnType);
+        return new Line4<>(translatedSource, translatedSink, returnType);
     }
 
 
@@ -959,7 +959,7 @@ public final class GeometricOperations {
                 scalingMatrix, lineToScale.getSink(), lineToScale.getType());
 
 
-        return new Line4<T>(scaledSource, scaledSink, lineToScale.getType());
+        return new Line4<>(scaledSource, scaledSink, lineToScale.getType());
     }
 
 
@@ -992,7 +992,7 @@ public final class GeometricOperations {
                 scalingMatrix, lineToScale.getSink(), returnType);
 
 
-        return new Line4<R>(scaledSource, scaledSink, returnType);
+        return new Line4<>(scaledSource, scaledSink, returnType);
     }
 
     /**
@@ -1021,7 +1021,7 @@ public final class GeometricOperations {
                 scalingMatrix, lineToScale.getSink(), lineToScale.getType());
 
 
-        return new Line4<T>(scaledSource, scaledSink, lineToScale.getType());
+        return new Line4<>(scaledSource, scaledSink, lineToScale.getType());
     }
 
     /**
@@ -1054,7 +1054,7 @@ public final class GeometricOperations {
                 scalingMatrix, lineToScale.getSink(), returnType);
 
 
-        return new Line4<R>(scaledSource, scaledSink, returnType);
+        return new Line4<>(scaledSource, scaledSink, returnType);
     }
 
     /**
@@ -1083,7 +1083,7 @@ public final class GeometricOperations {
                 scalingMatrix, lineToScale.getSink(), lineToScale.getType());
 
 
-        return new Line4<T>(scaledSource, scaledSink, lineToScale.getType());
+        return new Line4<>(scaledSource, scaledSink, lineToScale.getType());
     }
 
     /**
@@ -1115,7 +1115,7 @@ public final class GeometricOperations {
                 scalingMatrix, lineToScale.getSink(), returnType);
 
 
-        return new Line4<R>(scaledSource, scaledSink, returnType);
+        return new Line4<>(scaledSource, scaledSink, returnType);
     }
 
     /**
@@ -1177,7 +1177,7 @@ public final class GeometricOperations {
                 scalingMatrix, lineToScale.getSink(), returnType);
 
 
-        return new Line4<R>(scaledSource, scaledSink, returnType);
+        return new Line4<>(scaledSource, scaledSink, returnType);
     }
 
     /**
@@ -1203,7 +1203,7 @@ public final class GeometricOperations {
                 lineToShear.getSink(), shearFactor);
 
 
-        return new Line4<T>(shearedSource, shearedSink, lineToShear.getType());
+        return new Line4<>(shearedSource, shearedSink, lineToShear.getType());
     }
 
     /**
@@ -1232,7 +1232,7 @@ public final class GeometricOperations {
                 lineToShear.getSink(), shearFactor, returnType);
 
 
-        return new Line4<R>(shearedSource, shearedSink, returnType);
+        return new Line4<>(shearedSource, shearedSink, returnType);
     }
 
     /**
@@ -1258,7 +1258,7 @@ public final class GeometricOperations {
                 lineToShear.getSink(), shearFactor);
 
 
-        return new Line4<T>(shearedSource, shearedSink, lineToShear.getType());
+        return new Line4<>(shearedSource, shearedSink, lineToShear.getType());
     }
 
     /**
@@ -1286,7 +1286,7 @@ public final class GeometricOperations {
         IPoint4<R> shearedSink = GeometricOperations.revertShear(
                 lineToShear.getSink(), shearFactor, returnType);
 
-        return new Line4<R>(shearedSource, shearedSink, returnType);
+        return new Line4<>(shearedSource, shearedSink, returnType);
     }
 
     /**
@@ -1312,7 +1312,7 @@ public final class GeometricOperations {
                 lineToRotate.getSink(), rotation);
 
 
-        return new Line4<T>(rotatedSource, rotatedSink, lineToRotate.getType());
+        return new Line4<>(rotatedSource, rotatedSink, lineToRotate.getType());
     }
 
     /**
@@ -1341,7 +1341,7 @@ public final class GeometricOperations {
                 lineToRotate.getSink(), rotation, returnType);
 
 
-        return new Line4<R>(rotatedSource, rotatedSink, returnType);
+        return new Line4<>(rotatedSource, rotatedSink, returnType);
     }
 
     /**
@@ -1367,7 +1367,7 @@ public final class GeometricOperations {
                 lineToRotate.getSink(), rotation);
 
 
-        return new Line4<T>(rotatedSource, rotatedSink, lineToRotate.getType());
+        return new Line4<>(rotatedSource, rotatedSink, lineToRotate.getType());
     }
 
     /**
@@ -1421,7 +1421,7 @@ public final class GeometricOperations {
                 lineToRotate.getSink(), rotationAngle);
 
 
-        return new Line4<T>(rotatedSource, rotatedSink, lineToRotate.getType());
+        return new Line4<>(rotatedSource, rotatedSink, lineToRotate.getType());
     }
 
     /**
@@ -1450,7 +1450,7 @@ public final class GeometricOperations {
                 lineToRotate.getSink(), rotationAngle, returnType);
 
 
-        return new Line4<R>(rotatedSource, rotatedSink, returnType);
+        return new Line4<>(rotatedSource, rotatedSink, returnType);
     }
 
     /**
@@ -1476,7 +1476,7 @@ public final class GeometricOperations {
                 lineToRotate.getSink(), rotationAngle);
 
 
-        return new Line4<T>(rotatedSource, rotatedSink, lineToRotate.getType());
+        return new Line4<>(rotatedSource, rotatedSink, lineToRotate.getType());
     }
 
     /**
@@ -1504,7 +1504,7 @@ public final class GeometricOperations {
         IPoint4<R> rotatedSink = GeometricOperations.revertRotateX(
                 lineToRotate.getSink(), rotationAngle, returnType);
 
-        return new Line4<R>(rotatedSource, rotatedSink, returnType);
+        return new Line4<>(rotatedSource, rotatedSink, returnType);
     }
 
     /**
@@ -1530,7 +1530,7 @@ public final class GeometricOperations {
                 lineToRotate.getSink(), rotationAngle);
 
 
-        return new Line4<T>(rotatedSource, rotatedSink, lineToRotate.getType());
+        return new Line4<>(rotatedSource, rotatedSink, lineToRotate.getType());
     }
 
     /**
@@ -1559,7 +1559,7 @@ public final class GeometricOperations {
                 lineToRotate.getSink(), rotationAngle, returnType);
 
 
-        return new Line4<R>(rotatedSource, rotatedSink, returnType);
+        return new Line4<>(rotatedSource, rotatedSink, returnType);
     }
 
     /**
@@ -1585,7 +1585,7 @@ public final class GeometricOperations {
                 lineToRotate.getSink(), rotationAngle);
 
 
-        return new Line4<T>(rotatedSource, rotatedSink, lineToRotate.getType());
+        return new Line4<>(rotatedSource, rotatedSink, lineToRotate.getType());
     }
 
     /**
@@ -1613,7 +1613,7 @@ public final class GeometricOperations {
         IPoint4<R> rotatedSink = GeometricOperations.revertRotateY(
                 lineToRotate.getSink(), rotationAngle, returnType);
 
-        return new Line4<R>(rotatedSource, rotatedSink, returnType);
+        return new Line4<>(rotatedSource, rotatedSink, returnType);
     }
 
     /**
@@ -1639,7 +1639,7 @@ public final class GeometricOperations {
                 lineToRotate.getSink(), rotationAngle);
 
 
-        return new Line4<T>(rotatedSource, rotatedSink, lineToRotate.getType());
+        return new Line4<>(rotatedSource, rotatedSink, lineToRotate.getType());
     }
 
     /**
@@ -1668,7 +1668,7 @@ public final class GeometricOperations {
                 lineToRotate.getSink(), rotationAngle, returnType);
 
 
-        return new Line4<R>(rotatedSource, rotatedSink, returnType);
+        return new Line4<>(rotatedSource, rotatedSink, returnType);
     }
 
     /**
@@ -1694,7 +1694,7 @@ public final class GeometricOperations {
                 lineToRotate.getSink(), rotationAngle);
 
 
-        return new Line4<T>(rotatedSource, rotatedSink, lineToRotate.getType());
+        return new Line4<>(rotatedSource, rotatedSink, lineToRotate.getType());
     }
 
     /**
@@ -1722,7 +1722,7 @@ public final class GeometricOperations {
         IPoint4<R> rotatedSink = GeometricOperations.revertRotateZ(
                 lineToRotate.getSink(), rotationAngle, returnType);
 
-        return new Line4<R>(rotatedSource, rotatedSink, returnType);
+        return new Line4<>(rotatedSource, rotatedSink, returnType);
     }
 
     /**
@@ -1790,10 +1790,10 @@ public final class GeometricOperations {
             Class<? extends R> returnType) {
 
 
-        return new Matrix4<R>(Vector4.I_UNIT_VECTOR(returnType),
+        return new Matrix4<>(Vector4.I_UNIT_VECTOR(returnType),
                 Vector4.J_UNIT_VECTOR(returnType),
-                Vector4.K_UNIT_VECTOR(returnType), new Point4<R>(tx, ty, tz,
-                        returnType), returnType);
+                Vector4.K_UNIT_VECTOR(returnType),
+                new Point4<R>(tx, ty, tz, returnType), returnType);
     }
 
     /**
@@ -1930,15 +1930,14 @@ public final class GeometricOperations {
             final Number sx, final Number sy, final Number sz,
             final Class<? extends R> returnType) {
 
-        List<Class<? extends Number>> classes = new ArrayList<Class<? extends Number>>(
-                3);
+        List<Class<? extends Number>> classes = new ArrayList<>(3);
         classes.add(sx.getClass());
         classes.add(sy.getClass());
         classes.add(sz.getClass());
         Class<? extends Number> highestPrecision = NumberComparator
                 .greatestPrecisionType(classes);
 
-        return new Matrix4<R>(VectorAlgebraicOperations.multiply(
+        return new Matrix4<>(VectorAlgebraicOperations.multiply(
                 Vector4.I_UNIT_VECTOR(highestPrecision), sx),
                 VectorAlgebraicOperations.multiply(
                         Vector4.J_UNIT_VECTOR(highestPrecision), sy),
@@ -2125,9 +2124,9 @@ public final class GeometricOperations {
             final Number shearCoefficient, final ShearComponent shearComponent,
             Class<? extends R> returnType) {
 
-        IVector4<? extends Number> i = null;
-        IVector4<? extends Number> j = null;
-        IVector4<? extends Number> k = null;
+        IVector4<? extends Number> i;
+        IVector4<? extends Number> j;
+        IVector4<? extends Number> k;
 
         switch (shearComponent) {
             case X_BY_Y:
@@ -2165,7 +2164,7 @@ public final class GeometricOperations {
                         "Cannot shear by provided component!");
         }
 
-        return new Matrix4<R>(i, j, k, Point4.ORIGIN(returnType), returnType);
+        return new Matrix4<>(i, j, k, Point4.ORIGIN(returnType), returnType);
     }
 
 
@@ -2351,7 +2350,7 @@ public final class GeometricOperations {
                 highestPrecisionK);
 
 
-        return new Matrix4<T>(i, j, k, Point4.ORIGIN(rotationAxis.getType()),
+        return new Matrix4<>(i, j, k, Point4.ORIGIN(rotationAxis.getType()),
                 rotationAxis.getType());
     }
 
@@ -2433,7 +2432,7 @@ public final class GeometricOperations {
         IVector4<? extends Number> k = new Vector4<Number>(r_xk, r_yk, r_zk,
                 highestPrecisionK);
 
-        return new Matrix4<R>(i, j, k, Point4.ORIGIN(returnType), returnType);
+        return new Matrix4<>(i, j, k, Point4.ORIGIN(returnType), returnType);
     }
 
     /**
@@ -3524,12 +3523,12 @@ public final class GeometricOperations {
 
 
         Double angle = Math.acos(Vector4.dotProduct(normalizedFirstVector,
-                normalizedSecondVector, Double.class).doubleValue());
+                normalizedSecondVector, Double.class));
 
         IVector4<? extends Number> axis = Vector4.crossProduct(
                 normalizedFirstVector, normalizedSecondVector, Double.class);
 
-        return new Rotation<R>(axis.getX(), axis.getY(), axis.getZ(), angle,
+        return new Rotation<>(axis.getX(), axis.getY(), axis.getZ(), angle,
                 returnType);
     }
 }

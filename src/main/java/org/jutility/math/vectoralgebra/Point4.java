@@ -77,7 +77,7 @@ public class Point4<T extends Number>
     public static <T extends Number> IPoint4<T> ORIGIN(
             final Class<? extends T> type) {
 
-        return new Point4<T>(0, 0, 0, type);
+        return new Point4<>(0, 0, 0, type);
     }
 
     /**

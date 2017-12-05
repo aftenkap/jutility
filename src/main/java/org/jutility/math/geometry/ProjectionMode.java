@@ -57,5 +57,5 @@ public enum ProjectionMode {
      * 3D perspective projection.
      */
     @XmlEnumValue(value = "Perspective")
-    PERSPECTIVE;
+    PERSPECTIVE
 }

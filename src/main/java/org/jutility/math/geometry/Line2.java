@@ -148,13 +148,13 @@ public class Line2<T extends Number>
         }
 
         if (source != null && type != null) {
-            this.source = new Point2<T>(source, type);
+            this.source = new Point2<>(source, type);
         }
         else {
             this.source = null;
         }
         if (sink != null && type != null) {
-            this.sink = new Point2<T>(sink, type);
+            this.sink = new Point2<>(sink, type);
         }
         else {
             this.sink = null;

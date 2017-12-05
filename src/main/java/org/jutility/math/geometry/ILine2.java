@@ -55,14 +55,14 @@ public interface ILine2<T extends Number> {
      * 
      * @return the type.
      */
-    public abstract Class<? extends T> getType();
+    Class<? extends T> getType();
 
     /**
      * Returns the source {@link IPoint2 Point} of this line.
      * 
      * @return the source {@link IPoint2 Point}.
      */
-    public abstract IPoint2<T> getSource();
+    IPoint2<T> getSource();
 
 
     /**
@@ -70,5 +70,5 @@ public interface ILine2<T extends Number> {
      * 
      * @return the sink {@link IPoint2 Point}.
      */
-    public abstract IPoint2<T> getSink();
+    IPoint2<T> getSink();
 }

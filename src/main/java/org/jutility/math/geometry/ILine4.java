@@ -54,14 +54,14 @@ public interface ILine4<T extends Number> {
      * 
      * @return the type.
      */
-    public abstract Class<? extends T> getType();
+    Class<? extends T> getType();
 
     /**
      * Returns the source {@link IPoint4 Point} of this line.
      * 
      * @return the source{@link IPoint4 Point}.
      */
-    public abstract IPoint4<T> getSource();
+    IPoint4<T> getSource();
 
 
     /**
@@ -69,5 +69,5 @@ public interface ILine4<T extends Number> {
      * 
      * @return the sink {@link IPoint4 Point}.
      */
-    public abstract IPoint4<T> getSink();
+    IPoint4<T> getSink();
 }
