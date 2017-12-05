@@ -37,6 +37,8 @@ import org.jutility.common.datatype.util.NumberComparator;
  * @version 0.1.2
  * @since 0.1.0
  */
+@SuppressWarnings({ "ObjectEqualsNull", "ConstantConditions",
+                    "EqualsBetweenInconvertibleTypes" })
 public class Matrix4Test {
 
     /**
@@ -49,8 +51,8 @@ public class Matrix4Test {
 
         try {
 
-            final Matrix4<Float> testMatrix = new Matrix4<Float>(null, null,
-                    null, null, Float.class);
+            final Matrix4<Float> testMatrix = new Matrix4<>(null, null, null,
+                    null, Float.class);
 
             Assert.fail("Shouldn't be able to create matrix: " + testMatrix);
         }
@@ -62,7 +64,7 @@ public class Matrix4Test {
         }
         try {
 
-            final Matrix4<Float> testMatrix = new Matrix4<Float>(
+            final Matrix4<Float> testMatrix = new Matrix4<>(
                     Vector4.I_UNIT_VECTOR(Float.class), null, null, null,
                     Float.class);
 
@@ -76,7 +78,7 @@ public class Matrix4Test {
         }
         try {
 
-            final Matrix4<Float> testMatrix = new Matrix4<Float>(
+            final Matrix4<Float> testMatrix = new Matrix4<>(
                     Vector4.I_UNIT_VECTOR(Float.class),
                     Vector4.J_UNIT_VECTOR(Float.class), null, null, Float.class);
 
@@ -90,7 +92,7 @@ public class Matrix4Test {
         }
         try {
 
-            final Matrix4<Float> testMatrix = new Matrix4<Float>(
+            final Matrix4<Float> testMatrix = new Matrix4<>(
                     Vector4.I_UNIT_VECTOR(Float.class),
                     Vector4.J_UNIT_VECTOR(Float.class),
                     Vector4.K_UNIT_VECTOR(Float.class), null, Float.class);
@@ -114,7 +116,7 @@ public class Matrix4Test {
 
         try {
 
-            final Matrix4<Float> testMatrix = new Matrix4<Float>(null);
+            final Matrix4<Float> testMatrix = new Matrix4<>(null);
 
             Assert.fail("Shouldn't be able to create matrix: " + testMatrix);
         }
@@ -122,15 +124,14 @@ public class Matrix4Test {
 
             Assert.assertEquals(true, e instanceof NullPointerException);
         }
-        final Tuple4<Float> i = new Tuple4<Float>(1, 5, 9, 13, Float.class);
-        final Tuple4<Float> j = new Tuple4<Float>(2, 6, 10, 14, Float.class);
-        final Tuple4<Float> k = new Tuple4<Float>(3, 7, 11, 15, Float.class);
-        final Tuple4<Float> s = new Tuple4<Float>(4, 8, 12, 16, Float.class);
+        final Tuple4<Float> i = new Tuple4<>(1, 5, 9, 13, Float.class);
+        final Tuple4<Float> j = new Tuple4<>(2, 6, 10, 14, Float.class);
+        final Tuple4<Float> k = new Tuple4<>(3, 7, 11, 15, Float.class);
+        final Tuple4<Float> s = new Tuple4<>(4, 8, 12, 16, Float.class);
 
-        final Matrix4<Float> testMatrix = new Matrix4<Float>(i, j, k, s,
-                Float.class);
+        final Matrix4<Float> testMatrix = new Matrix4<>(i, j, k, s, Float.class);
 
-        final Matrix4<Float> otherTestMatrix = new Matrix4<Float>(testMatrix);
+        final Matrix4<Float> otherTestMatrix = new Matrix4<>(testMatrix);
 
         Assert.assertEquals(testMatrix, otherTestMatrix);
     }
@@ -142,13 +143,12 @@ public class Matrix4Test {
     @Test
     public void testToColumnMajorArray() {
 
-        final Tuple4<Float> i = new Tuple4<Float>(1, 2, 3, 4, Float.class);
-        final Tuple4<Float> j = new Tuple4<Float>(5, 6, 7, 8, Float.class);
-        final Tuple4<Float> k = new Tuple4<Float>(9, 10, 11, 12, Float.class);
-        final Tuple4<Float> s = new Tuple4<Float>(13, 14, 15, 16, Float.class);
+        final Tuple4<Float> i = new Tuple4<>(1, 2, 3, 4, Float.class);
+        final Tuple4<Float> j = new Tuple4<>(5, 6, 7, 8, Float.class);
+        final Tuple4<Float> k = new Tuple4<>(9, 10, 11, 12, Float.class);
+        final Tuple4<Float> s = new Tuple4<>(13, 14, 15, 16, Float.class);
 
-        final Matrix4<Float> testMatrix = new Matrix4<Float>(i, j, k, s,
-                Float.class);
+        final Matrix4<Float> testMatrix = new Matrix4<>(i, j, k, s, Float.class);
 
         final Float expecteds[] = { 1f, 2f, 3f, 4f, 5f, 6f, 7f, 8f, 9f, 10f,
                 11f, 12f, 13f, 14f, 15f, 16f };
@@ -173,13 +173,12 @@ public class Matrix4Test {
     @Test
     public void testToRowMajorArray() {
 
-        final Tuple4<Float> i = new Tuple4<Float>(1, 5, 9, 13, Float.class);
-        final Tuple4<Float> j = new Tuple4<Float>(2, 6, 10, 14, Float.class);
-        final Tuple4<Float> k = new Tuple4<Float>(3, 7, 11, 15, Float.class);
-        final Tuple4<Float> s = new Tuple4<Float>(4, 8, 12, 16, Float.class);
+        final Tuple4<Float> i = new Tuple4<>(1, 5, 9, 13, Float.class);
+        final Tuple4<Float> j = new Tuple4<>(2, 6, 10, 14, Float.class);
+        final Tuple4<Float> k = new Tuple4<>(3, 7, 11, 15, Float.class);
+        final Tuple4<Float> s = new Tuple4<>(4, 8, 12, 16, Float.class);
 
-        final Matrix4<Float> testMatrix = new Matrix4<Float>(i, j, k, s,
-                Float.class);
+        final Matrix4<Float> testMatrix = new Matrix4<>(i, j, k, s, Float.class);
 
         final Float expecteds[] = { 1f, 2f, 3f, 4f, 5f, 6f, 7f, 8f, 9f, 10f,
                 11f, 12f, 13f, 14f, 15f, 16f };
@@ -194,19 +193,18 @@ public class Matrix4Test {
     @Test
     public void testTranspose() {
 
-        final Tuple4<Float> i = new Tuple4<Float>(1, 2, 3, 4, Float.class);
-        final Tuple4<Float> j = new Tuple4<Float>(5, 6, 7, 8, Float.class);
-        final Tuple4<Float> k = new Tuple4<Float>(9, 10, 11, 12, Float.class);
-        final Tuple4<Float> s = new Tuple4<Float>(13, 14, 15, 16, Float.class);
+        final Tuple4<Float> i = new Tuple4<>(1, 2, 3, 4, Float.class);
+        final Tuple4<Float> j = new Tuple4<>(5, 6, 7, 8, Float.class);
+        final Tuple4<Float> k = new Tuple4<>(9, 10, 11, 12, Float.class);
+        final Tuple4<Float> s = new Tuple4<>(13, 14, 15, 16, Float.class);
 
-        final Tuple4<Float> i1 = new Tuple4<Float>(1, 5, 9, 13, Float.class);
-        final Tuple4<Float> j1 = new Tuple4<Float>(2, 6, 10, 14, Float.class);
-        final Tuple4<Float> k1 = new Tuple4<Float>(3, 7, 11, 15, Float.class);
-        final Tuple4<Float> s1 = new Tuple4<Float>(4, 8, 12, 16, Float.class);
+        final Tuple4<Float> i1 = new Tuple4<>(1, 5, 9, 13, Float.class);
+        final Tuple4<Float> j1 = new Tuple4<>(2, 6, 10, 14, Float.class);
+        final Tuple4<Float> k1 = new Tuple4<>(3, 7, 11, 15, Float.class);
+        final Tuple4<Float> s1 = new Tuple4<>(4, 8, 12, 16, Float.class);
 
-        final Matrix4<Float> testMatrix = new Matrix4<Float>(i, j, k, s,
-                Float.class);
-        final Matrix4<Float> expected = new Matrix4<Float>(i1, j1, k1, s1,
+        final Matrix4<Float> testMatrix = new Matrix4<>(i, j, k, s, Float.class);
+        final Matrix4<Float> expected = new Matrix4<>(i1, j1, k1, s1,
                 Float.class);
 
         Assert.assertEquals(expected, testMatrix.transpose());
@@ -220,13 +218,12 @@ public class Matrix4Test {
     @Test
     public void testToString() {
 
-        final Tuple4<Float> i = new Tuple4<Float>(1, 5, 9, 13, Float.class);
-        final Tuple4<Float> j = new Tuple4<Float>(2, 6, 10, 14, Float.class);
-        final Tuple4<Float> k = new Tuple4<Float>(3, 7, 11, 15, Float.class);
-        final Tuple4<Float> s = new Tuple4<Float>(4, 8, 12, 16, Float.class);
+        final Tuple4<Float> i = new Tuple4<>(1, 5, 9, 13, Float.class);
+        final Tuple4<Float> j = new Tuple4<>(2, 6, 10, 14, Float.class);
+        final Tuple4<Float> k = new Tuple4<>(3, 7, 11, 15, Float.class);
+        final Tuple4<Float> s = new Tuple4<>(4, 8, 12, 16, Float.class);
 
-        final Matrix4<Float> testMatrix = new Matrix4<Float>(i, j, k, s,
-                Float.class);
+        final Matrix4<Float> testMatrix = new Matrix4<>(i, j, k, s, Float.class);
 
         String returnValue = "\n|";
         final Float array[] = testMatrix.toRowMajorArray();
@@ -247,6 +244,7 @@ public class Matrix4Test {
     /**
      * Test method for {@link Matrix4#equals(Object)}.
      */
+    @SuppressWarnings("EqualsBetweenInconvertibleTypes")
     @Test
     public void testEqualsObject() {
 
@@ -259,14 +257,13 @@ public class Matrix4Test {
                     for (float uw = -1; org.jutility.common.datatype.util.NumberComparator
                             .smallerOrEqual(uw, 1f); uw += 0.1) {
 
-                        final Tuple4<Float> testTuple = new Tuple4<Float>(ux,
-                                uy, uz, uw, Float.class);
-                        final Tuple4<Float> testTuple2 = new Tuple4<Float>(
-                                ux + 1, uy, uz, uw, Float.class);
-                        final Matrix4<Float> testMatrix = new Matrix4<Float>(
+                        final Tuple4<Float> testTuple = new Tuple4<>(ux, uy, uz,
+                                uw, Float.class);
+                        final Tuple4<Float> testTuple2 = new Tuple4<>(ux + 1, uy, uz, uw, Float.class);
+                        final Matrix4<Float> testMatrix = new Matrix4<>(
                                 testTuple, testTuple, testTuple, testTuple,
                                 Float.class);
-                        final Matrix4<Float> notTestMatrix = new Matrix4<Float>(
+                        final Matrix4<Float> notTestMatrix = new Matrix4<>(
                                 testTuple2, testTuple, testTuple, testTuple,
                                 Float.class);
 
@@ -288,13 +285,12 @@ public class Matrix4Test {
     @Test
     public void testHashCode() {
 
-        final Tuple4<Float> i = new Tuple4<Float>(1, 5, 9, 13, Float.class);
-        final Tuple4<Float> j = new Tuple4<Float>(2, 6, 10, 14, Float.class);
-        final Tuple4<Float> k = new Tuple4<Float>(3, 7, 11, 15, Float.class);
-        final Tuple4<Float> s = new Tuple4<Float>(4, 8, 12, 16, Float.class);
+        final Tuple4<Float> i = new Tuple4<>(1, 5, 9, 13, Float.class);
+        final Tuple4<Float> j = new Tuple4<>(2, 6, 10, 14, Float.class);
+        final Tuple4<Float> k = new Tuple4<>(3, 7, 11, 15, Float.class);
+        final Tuple4<Float> s = new Tuple4<>(4, 8, 12, 16, Float.class);
 
-        final Matrix4<Float> testMatrix = new Matrix4<Float>(i, j, k, s,
-                Float.class);
+        final Matrix4<Float> testMatrix = new Matrix4<>(i, j, k, s, Float.class);
 
         int hashCode = 23;
         

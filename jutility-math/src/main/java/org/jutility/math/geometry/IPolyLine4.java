@@ -60,7 +60,7 @@ public interface IPolyLine4<T extends Number> {
      * 
      * @return the type.
      */
-    public abstract Class<? extends T> getType();
+    Class<? extends T> getType();
 
 
     /**
@@ -68,7 +68,7 @@ public interface IPolyLine4<T extends Number> {
      * 
      * @return the {@link IPoint4 Points} of this {@link IPolyLine4 Polygon}.
      */
-    public abstract List<IPoint4<T>> getPoints();
+    List<IPoint4<T>> getPoints();
 
     /**
      * Adds a {@link IPoint4 Point} to the {@link IPoint4 Points} of this
@@ -78,7 +78,7 @@ public interface IPolyLine4<T extends Number> {
      *            the {@link IPoint4 Point} to add.
      * @return whether or not the collection has been changed by this operation.
      */
-    public abstract boolean addPoint(IPoint4<? extends Number> point);
+    boolean addPoint(IPoint4<? extends Number> point);
 
     /**
      * Removes a {@link IPoint4 Point} from the {@link IPoint4 Points} of this
@@ -88,10 +88,10 @@ public interface IPolyLine4<T extends Number> {
      *            the {@link IPoint4 Point} to remove.
      * @return whether or not the collection has been changed by this operation.
      */
-    public abstract boolean removePoint(IPoint4<? extends Number> point);
+    boolean removePoint(IPoint4<? extends Number> point);
 
     /**
      * Clears the {@link IPoint4 Points} of this {@code IPolyLine4}.
      */
-    public abstract void clearPoints();
+    void clearPoints();
 }

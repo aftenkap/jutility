@@ -56,14 +56,14 @@ public interface ITriangle4<T extends Number> {
      * 
      * @return the type.
      */
-    public abstract Class<? extends T> getType();
+    Class<? extends T> getType();
 
     /**
      * Returns the first point.
      * 
      * @return the first point.
      */
-    public abstract IPoint4<T> getFirstPoint();
+    IPoint4<T> getFirstPoint();
 
 
     /**
@@ -71,7 +71,7 @@ public interface ITriangle4<T extends Number> {
      * 
      * @return the second point.
      */
-    public abstract IPoint4<T> getSecondPoint();
+    IPoint4<T> getSecondPoint();
 
 
     /**
@@ -79,5 +79,5 @@ public interface ITriangle4<T extends Number> {
      * 
      * @return the third point.
      */
-    public abstract IPoint4<T> getThirdPoint();
+    IPoint4<T> getThirdPoint();
 }

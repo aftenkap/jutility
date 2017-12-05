@@ -59,7 +59,7 @@ public interface IPolygon2<T extends Number> {
      * 
      * @return the type.
      */
-    public abstract Class<? extends T> getType();
+    Class<? extends T> getType();
 
 
     /**
@@ -67,7 +67,7 @@ public interface IPolygon2<T extends Number> {
      * 
      * @return the {@link IPoint2 Points} of this {@code IPolygon2}.
      */
-    public abstract List<IPoint2<T>> getPoints();
+    List<IPoint2<T>> getPoints();
 
     /**
      * Adds a {@link IPoint2 Point} to the {@link IPoint2 Points} of this
@@ -77,7 +77,7 @@ public interface IPolygon2<T extends Number> {
      *            the {@link IPoint2 Point} to add.
      * @return whether or not the collection has been changed by this operation.
      */
-    public abstract boolean addPoint(final IPoint2<? extends Number> point);
+    boolean addPoint(final IPoint2<? extends Number> point);
 
     /**
      * Removes a {@link IPoint2 Point} from the {@link IPoint2 Points} of this
@@ -87,10 +87,10 @@ public interface IPolygon2<T extends Number> {
      *            the {@link IPoint2 Point} to remove.
      * @return whether or not the collection has been changed by this operation.
      */
-    public abstract boolean removePoint(final IPoint2<? extends Number> point);
+    boolean removePoint(final IPoint2<? extends Number> point);
 
     /**
      * Clears the {@link IPoint2 Points} of this {@code IPolygon2}.
      */
-    public abstract void clearPoints();
+    void clearPoints();
 }

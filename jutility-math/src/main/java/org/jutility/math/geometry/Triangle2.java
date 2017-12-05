@@ -172,9 +172,9 @@ public class Triangle2<T extends Number>
 
         if (!serialization) {
 
-            this.firstPoint = new Point2<T>(firstPoint, type);
-            this.secondPoint = new Point2<T>(secondPoint, type);
-            this.thirdPoint = new Point2<T>(thirdPoint, type);
+            this.firstPoint = new Point2<>(firstPoint, type);
+            this.secondPoint = new Point2<>(secondPoint, type);
+            this.thirdPoint = new Point2<>(thirdPoint, type);
         }
         else {
 

@@ -88,7 +88,7 @@ public final class VectorAlgebraicOperations {
         final Number newZ = ArithmeticOperations.add(lhs.getZ(), rhs.getZ());
         final Number newW = ArithmeticOperations.add(lhs.getW(), rhs.getW());
 
-        return new Tuple4<R>(newX, newY, newZ, newW, returnType);
+        return new Tuple4<>(newX, newY, newZ, newW, returnType);
     }
 
 
@@ -128,7 +128,7 @@ public final class VectorAlgebraicOperations {
             final IVector4<?> lhs, final IVector4<?> rhs,
             final Class<? extends R> returnType) {
 
-        return new Vector4<R>(VectorAlgebraicOperations.add((ITuple4<?>) lhs,
+        return new Vector4<>(VectorAlgebraicOperations.add((ITuple4<?>) lhs,
                 (ITuple4<?>) rhs, returnType));
     }
 
@@ -168,7 +168,7 @@ public final class VectorAlgebraicOperations {
     public static final <R extends Number> IPoint4<R> add(final IPoint4<?> lhs,
             final IVector4<?> rhs, final Class<? extends R> returnType) {
 
-        return new Point4<R>(VectorAlgebraicOperations.add((ITuple4<?>) lhs,
+        return new Point4<>(VectorAlgebraicOperations.add((ITuple4<?>) lhs,
                 (ITuple4<?>) rhs, returnType));
     }
 
@@ -267,7 +267,7 @@ public final class VectorAlgebraicOperations {
         final Number newW = ArithmeticOperations.subtract(lhs.getW(),
                 rhs.getW());
 
-        return new Tuple4<R>(newX, newY, newZ, newW, returnType);
+        return new Tuple4<>(newX, newY, newZ, newW, returnType);
     }
 
 
@@ -307,8 +307,9 @@ public final class VectorAlgebraicOperations {
             final IPoint4<?> lhs, final IPoint4<?> rhs,
             final Class<? extends R> returnType) {
 
-        return new Vector4<R>(VectorAlgebraicOperations.subtract(
-                (ITuple4<?>) lhs, (ITuple4<?>) rhs, returnType));
+        return new Vector4<>(
+                VectorAlgebraicOperations.subtract((ITuple4<?>) lhs, (ITuple4
+                        <?>) rhs, returnType));
     }
 
 
@@ -349,8 +350,8 @@ public final class VectorAlgebraicOperations {
             final IPoint4<?> lhs, final IVector4<?> rhs,
             final Class<? extends R> returnType) {
 
-        return new Point4<R>(VectorAlgebraicOperations.subtract(
-                (ITuple4<?>) lhs, (ITuple4<?>) rhs, returnType));
+        return new Point4<>(VectorAlgebraicOperations.subtract((ITuple4<?>) lhs,
+                (ITuple4<?>) rhs, returnType));
     }
 
 
@@ -404,7 +405,7 @@ public final class VectorAlgebraicOperations {
         final Number newZ = ArithmeticOperations.multiply(lhs.getZ(), rhs);
         final Number newW = ArithmeticOperations.multiply(lhs.getW(), rhs);
 
-        return new Tuple4<R>(newX, newY, newZ, newW, returnType);
+        return new Tuple4<>(newX, newY, newZ, newW, returnType);
     }
 
 
@@ -444,8 +445,9 @@ public final class VectorAlgebraicOperations {
             final IVector4<?> lhs, final Number rhs,
             final Class<? extends R> returnType) {
 
-        return new Vector4<R>(VectorAlgebraicOperations.multiply(
-                (ITuple4<?>) lhs, rhs, returnType));
+        return new Vector4<>(
+                VectorAlgebraicOperations.multiply((ITuple4<?>) lhs, rhs,
+                        returnType));
     }
 
 
@@ -580,7 +582,7 @@ public final class VectorAlgebraicOperations {
 
         final Number w = ArithmeticOperations.sum(iw_vx, jw_vy, kw_vz, sw_vw);
 
-        return new Tuple4<R>(x, y, z, w, returnType);
+        return new Tuple4<>(x, y, z, w, returnType);
     }
 
 
@@ -620,8 +622,8 @@ public final class VectorAlgebraicOperations {
             final IMatrix4<?> lhs, final IPoint4<?> rhs,
             final Class<? extends R> returnType) {
 
-        return new Point4<R>(VectorAlgebraicOperations.multiply(lhs,
-                (ITuple4<?>) rhs, returnType));
+        return new Point4<>(VectorAlgebraicOperations.multiply(lhs, (ITuple4<?>) rhs,
+                returnType));
     }
 
 
@@ -661,8 +663,8 @@ public final class VectorAlgebraicOperations {
             final IMatrix4<?> lhs, final IVector4<?> rhs,
             final Class<? extends R> returnType) {
 
-        return new Vector4<R>(VectorAlgebraicOperations.multiply(lhs,
-                (ITuple4<?>) rhs, returnType));
+        return new Vector4<>(VectorAlgebraicOperations.multiply(lhs, (ITuple4<?>) rhs,
+                returnType));
     }
 
 
@@ -892,27 +894,27 @@ public final class VectorAlgebraicOperations {
 
         final Class<? extends Number> highestPrecisionI = NumberComparator
                 .greaterPrecisionType(r_ix, r_iy, r_iz, r_iw);
-        final Tuple4<Number> i = new Tuple4<Number>(r_ix, r_iy, r_iz, r_iw,
+        final Tuple4<Number> i = new Tuple4<>(r_ix, r_iy, r_iz, r_iw,
                 highestPrecisionI);
 
 
         final Class<? extends Number> highestPrecisionJ = NumberComparator
                 .greaterPrecisionType(r_jx, r_jy, r_jz, r_jw);
-        final Tuple4<Number> j = new Tuple4<Number>(r_jx, r_jy, r_jz, r_jw,
+        final Tuple4<Number> j = new Tuple4<>(r_jx, r_jy, r_jz, r_jw,
                 highestPrecisionJ);
 
 
         final Class<? extends Number> highestPrecisionK = NumberComparator
                 .greaterPrecisionType(r_kx, r_ky, r_kz, r_kw);
-        final Tuple4<Number> k = new Tuple4<Number>(r_kx, r_ky, r_kz, r_kw,
+        final Tuple4<Number> k = new Tuple4<>(r_kx, r_ky, r_kz, r_kw,
                 highestPrecisionK);
 
 
         final Class<? extends Number> highestPrecisionS = NumberComparator
                 .greaterPrecisionType(r_sx, r_sy, r_sz, r_sw);
-        final Tuple4<Number> s = new Tuple4<Number>(r_sx, r_sy, r_sz, r_sw,
+        final Tuple4<Number> s = new Tuple4<>(r_sx, r_sy, r_sz, r_sw,
                 highestPrecisionS);
 
-        return new Matrix4<R>(i, j, k, s, returnType);
+        return new Matrix4<>(i, j, k, s, returnType);
     }
 }

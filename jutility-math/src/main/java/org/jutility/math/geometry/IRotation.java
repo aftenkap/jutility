@@ -52,7 +52,7 @@ public interface IRotation<T extends Number> {
      * 
      * @return the type.
      */
-    public abstract Class<? extends T> getType();
+    Class<? extends T> getType();
 
 
     /**
@@ -60,7 +60,7 @@ public interface IRotation<T extends Number> {
      * 
      * @return the rotation angle.
      */
-    public abstract T getRotationAngle();
+    T getRotationAngle();
 
 
     /**
@@ -68,5 +68,5 @@ public interface IRotation<T extends Number> {
      * 
      * @return the rotation axis.
      */
-    public abstract IVector4<T> getRotationAxis();
+    IVector4<T> getRotationAxis();
 }

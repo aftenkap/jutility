@@ -44,14 +44,14 @@ public interface IShearFactor<T extends Number> {
      * 
      * @return the type.
      */
-    public abstract Class<? extends T> getType();
+    Class<? extends T> getType();
 
     /**
      * Returns the shear coefficient.
      * 
      * @return the shear coefficient.
      */
-    public abstract T getShearCoefficient();
+    T getShearCoefficient();
 
 
     /**
@@ -59,5 +59,5 @@ public interface IShearFactor<T extends Number> {
      * 
      * @return the identifier.
      */
-    public abstract ShearComponent getShearComponent();
+    ShearComponent getShearComponent();
 }

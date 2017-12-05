@@ -45,7 +45,7 @@ public class Point4Test {
     public void testCopyConstructor() {
 
         try {
-            final Point4<Float> testVector = new Point4<Float>(
+            final Point4<Float> testVector = new Point4<>(
                     Vector4.I_UNIT_VECTOR(Float.class));
 
             Assert.fail("Shouldn't be able to copy vector into point: "

@@ -53,7 +53,7 @@ public final class Converter {
             final IRotation<? extends Number> value,
             final Class<? extends T> returnType) {
 
-        return new Rotation<T>(value, returnType);
+        return new Rotation<>(value, returnType);
     }
 
 
@@ -76,7 +76,7 @@ public final class Converter {
             final IScaleFactor<? extends Number> value,
             final Class<? extends T> returnType) {
 
-        return new ScaleFactor<T>(value, returnType);
+        return new ScaleFactor<>(value, returnType);
     }
 
     /**
@@ -96,6 +96,6 @@ public final class Converter {
             final ILine4<? extends Number> value,
             final Class<? extends T> returnType) {
 
-        return new Line4<T>(value, returnType);
+        return new Line4<>(value, returnType);
     }
 }

@@ -51,14 +51,14 @@ public interface ITranslation<T extends Number> {
      * 
      * @return the type.
      */
-    public abstract Class<? extends T> getType();
+    Class<? extends T> getType();
 
     /**
      * The translation in the x-dimension.
      * 
      * @return the translation in the x-dimension.
      */
-    public abstract T getXTranslation();
+    T getXTranslation();
 
 
     /**
@@ -66,7 +66,7 @@ public interface ITranslation<T extends Number> {
      * 
      * @return the translation in the y-dimension.
      */
-    public abstract T getYTranslation();
+    T getYTranslation();
 
 
     /**
@@ -74,5 +74,5 @@ public interface ITranslation<T extends Number> {
      * 
      * @return the translation in the y-dimension.
      */
-    public abstract T getZTranslation();
+    T getZTranslation();
 }

@@ -165,12 +165,12 @@ public class Rectangle4<T extends Number>
         }
         if (bottomLeftCorner != null && topRightCorner != null && type != null) {
 
-            this.bottomLeftCorner = new Point4<T>(bottomLeftCorner, type);
-            this.topRightCorner = new Point4<T>(topRightCorner, type);
+            this.bottomLeftCorner = new Point4<>(bottomLeftCorner, type);
+            this.topRightCorner = new Point4<>(topRightCorner, type);
 
-            this.topLeftCorner = new Point4<T>(bottomLeftCorner.getX(),
+            this.topLeftCorner = new Point4<>(bottomLeftCorner.getX(),
                     topRightCorner.getY(), bottomLeftCorner.getZ(), type);
-            this.bottomRightCorner = new Point4<T>(topRightCorner.getX(),
+            this.bottomRightCorner = new Point4<>(topRightCorner.getX(),
                     bottomLeftCorner.getY(), topRightCorner.getZ(), type);
 
         }

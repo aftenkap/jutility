@@ -26,27 +26,26 @@ package org.jutility.math.geometry;
 //@formatter:on
 
 
-import java.io.Serializable;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import org.jutility.math.vectoralgebra.IPoint2;
+import org.jutility.math.vectoralgebra.Point2;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-
-import org.jutility.math.vectoralgebra.IPoint2;
-import org.jutility.math.vectoralgebra.Point2;
+import java.io.Serializable;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 
 /**
  * The {@code Polygon2} class provides a reference implementation of the
  * {@link IPolygon2} interface.
- * 
+ *
  * @param <T>
- *            the {@link Number} type of the {@code Polygon2}.
- * 
+ *         the {@link Number} type of the {@code Polygon2}.
+ *
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.0
@@ -60,11 +59,11 @@ public class Polygon2<T extends Number>
     /**
      * Serial Version UID.
      */
-    private static final long        serialVersionUID = -1012970139602788337L;
+    private static final long serialVersionUID = -1012970139602788337L;
 
 
     @XmlElement(type = Point2.class)
-    private final List<IPoint2<T>>   points;
+    private final List<IPoint2<T>> points;
 
     @XmlAttribute
     private final Class<? extends T> type;
@@ -88,7 +87,7 @@ public class Polygon2<T extends Number>
     @Override
     public boolean addPoint(IPoint2<? extends Number> point) {
 
-        Point2<T> pointToAdd = new Point2<T>(point, this.type);
+        Point2<T> pointToAdd = new Point2<>(point, this.type);
 
         return this.points.add(pointToAdd);
     }
@@ -97,7 +96,7 @@ public class Polygon2<T extends Number>
     @Override
     public boolean removePoint(IPoint2<? extends Number> point) {
 
-        Point2<T> pointToRemove = new Point2<T>(point, this.type);
+        Point2<T> pointToRemove = new Point2<>(point, this.type);
 
         return this.points.remove(pointToRemove);
     }
@@ -123,9 +122,9 @@ public class Polygon2<T extends Number>
 
     /**
      * Creates a new instance of the {@code Polygon2} class.
-     * 
+     *
      * @param type
-     *            the type.
+     *         the type.
      */
     public Polygon2(final Class<? extends T> type) {
 
@@ -136,14 +135,13 @@ public class Polygon2<T extends Number>
     /**
      * Creates a new instance of the {@link Polygon2} class with the provided
      * type and parameters.
-     * 
+     *
      * @param <S>
-     *            the {@link Number} type of the {@link IPoint2 Points}.
-     * 
+     *         the {@link Number} type of the {@link IPoint2 Points}.
      * @param points
-     *            the {@link IPoint2 Points}.
+     *         the {@link IPoint2 Points}.
      * @param type
-     *            the type.
+     *         the type.
      */
     public <S extends Number> Polygon2(final List<IPoint2<S>> points,
             final Class<? extends T> type) {
@@ -154,17 +152,15 @@ public class Polygon2<T extends Number>
     /**
      * Creates a new instance of the {@link Polygon2} class with the provided
      * type and parameters.
-     * 
+     *
      * @param <S>
-     *            the {@link Number} type of the {@link IPoint2 Points}.
-     * 
+     *         the {@link Number} type of the {@link IPoint2 Points}.
      * @param points
-     *            the {@link IPoint2 Points}.
+     *         the {@link IPoint2 Points}.
      * @param type
-     *            the type.
+     *         the type.
      * @param serialization
-     *            whether or not the constructor is invoked during
-     *            serialization.
+     *         whether or not the constructor is invoked during serialization.
      */
     public <S extends Number> Polygon2(final List<IPoint2<S>> points,
             final Class<? extends T> type, final boolean serialization) {
@@ -176,25 +172,23 @@ public class Polygon2<T extends Number>
 
         }
 
-        this.points = new LinkedList<IPoint2<T>>();
+        this.points = new LinkedList<>();
         this.type = type;
 
         if (points != null && type != null) {
 
-
-            for (IPoint2<? extends Number> point : points) {
-
-                this.points.add(new Point2<T>(point, type));
-            }
+            points.stream()
+                    .map(point -> new Point2<T>(point, type))
+                    .forEach(this.points::add);
         }
     }
 
 
     /**
      * Copy Constructor.
-     * 
+     *
      * @param polygonToCopy
-     *            the polygon to copy.
+     *         the polygon to copy.
      */
     public Polygon2(final IPolygon2<T> polygonToCopy) {
 
@@ -203,11 +197,11 @@ public class Polygon2<T extends Number>
 
     /**
      * Copy Constructor.
-     * 
+     *
      * @param polygonToCopy
-     *            the polygon to cop
+     *         the polygon to cop
      * @param type
-     *            the desired type of the rectangle to copy.
+     *         the desired type of the rectangle to copy.
      */
     public Polygon2(final IPolygon2<?> polygonToCopy,
             final Class<? extends T> type) {
@@ -238,25 +232,22 @@ public class Polygon2<T extends Number>
     @Override
     public boolean equals(final Object obj) {
 
-        if (obj != null && obj instanceof IPolygon2<?>) {
+        if (this == obj) {
 
-            IPolygon2<?> other = (IPolygon2<?>) obj;
-
-            boolean same = true;
-
-            for (IPoint2<?> point : other.getPoints()) {
-
-                if (!this.getPoints().contains(point)) {
-
-                    same = false;
-                    break;
-                }
-            }
-
-
-            return same;
+            return true;
         }
-        return false;
+        if (obj == null || !(obj instanceof IPolygon2<?>)) {
+
+            return false;
+        }
+
+        IPolygon2<?> other = (IPolygon2<?>) obj;
+
+        return this.getPoints()
+                .size() == other.getPoints()
+                .size() && this.getPoints()
+                .containsAll(other.getPoints());
+
     }
 
     @Override
@@ -264,10 +255,11 @@ public class Polygon2<T extends Number>
 
         int hash = 7;
 
-        for (IPoint2<T> point : this.getPoints()) {
-
-            hash += 7 * point.hashCode();
-        }
+        hash += this.getPoints()
+                .stream()
+                .map(Object::hashCode)
+                .map(hashCode -> 13 * hashCode)
+                .reduce(0, Integer::sum);
 
         return hash;
     }

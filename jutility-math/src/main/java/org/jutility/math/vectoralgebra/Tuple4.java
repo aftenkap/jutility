@@ -44,10 +44,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 /**
  * The generic {@code Tuple4} class provides a reference implementation of the
  * {@link ITuple4} interface.
- * 
+ *
  * @param <T>
  *            the {@link Number} type of the {@code Tuple4}.
- * 
+ *
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.0
@@ -84,7 +84,7 @@ public class Tuple4<T extends Number>
     /**
      * Creates a new instance of the {@code Tuple4} class with the provided type
      * and values.
-     * 
+     *
      * @param x
      *            The X coordinate.
      * @param y
@@ -106,7 +106,7 @@ public class Tuple4<T extends Number>
     /**
      * Creates a new instance of the {@code Tuple4} class with the provided type
      * and values.
-     * 
+     *
      * @param x
      *            The X coordinate.
      * @param y
@@ -130,7 +130,7 @@ public class Tuple4<T extends Number>
 
     /**
      * Copy Constructor.
-     * 
+     *
      * @param tupleToCopy
      *            the tuple to copy.
      */
@@ -141,7 +141,7 @@ public class Tuple4<T extends Number>
 
     /**
      * Copy Constructor.
-     * 
+     *
      * @param tupleToCopy
      *            the tuple to copy.
      * @param type

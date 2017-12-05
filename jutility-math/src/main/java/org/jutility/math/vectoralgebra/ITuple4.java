@@ -57,7 +57,7 @@ public interface ITuple4<T extends Number>
      * @return {@code true}, if the homogeneous coordinate is 1; {@code false}
      *         otherwise.
      */
-    public abstract boolean isPoint();
+    boolean isPoint();
 
 
     /**
@@ -67,5 +67,5 @@ public interface ITuple4<T extends Number>
      * @return {@code true}, if the homogeneous coordinate is not 1;
      *         {@code false} otherwise.
      */
-    public abstract boolean isVector();
+    boolean isVector();
 }

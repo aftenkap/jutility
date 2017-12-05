@@ -190,10 +190,10 @@ public class Matrix4<T extends Number>
 
         if (!serialization) {
 
-            this.i = new Tuple4<T>(i, type);
-            this.j = new Tuple4<T>(j, type);
-            this.k = new Tuple4<T>(k, type);
-            this.s = new Tuple4<T>(s, type);
+            this.i = new Tuple4<>(i, type);
+            this.j = new Tuple4<>(j, type);
+            this.k = new Tuple4<>(k, type);
+            this.s = new Tuple4<>(s, type);
         }
         else {
 
@@ -290,16 +290,28 @@ public class Matrix4<T extends Number>
     @Override
     public Matrix4<T> transpose() {
 
-        final Tuple4<T> it = new Tuple4<T>(this.getI().getX(), this.getJ()
-                .getX(), this.getK().getX(), this.getS().getX(), this.getType());
-        final Tuple4<T> jt = new Tuple4<T>(this.getI().getY(), this.getJ()
-                .getY(), this.getK().getY(), this.getS().getY(), this.getType());
-        final Tuple4<T> kt = new Tuple4<T>(this.getI().getZ(), this.getJ()
-                .getZ(), this.getK().getZ(), this.getS().getZ(), this.getType());
-        final Tuple4<T> st = new Tuple4<T>(this.getI().getW(), this.getJ()
-                .getW(), this.getK().getW(), this.getS().getW(), this.getType());
+        final Tuple4<T> it = new Tuple4<>(this.getI()
+                .getX(), this.getJ()
+                .getX(), this.getK()
+                .getX(), this.getS()
+                .getX(), this.getType());
+        final Tuple4<T> jt = new Tuple4<>(this.getI()
+                .getY(), this.getJ()
+                .getY(), this.getK()
+                .getY(), this.getS()
+                .getY(), this.getType());
+        final Tuple4<T> kt = new Tuple4<>(this.getI()
+                .getZ(), this.getJ()
+                .getZ(), this.getK()
+                .getZ(), this.getS()
+                .getZ(), this.getType());
+        final Tuple4<T> st = new Tuple4<>(this.getI()
+                .getW(), this.getJ()
+                .getW(), this.getK()
+                .getW(), this.getS()
+                .getW(), this.getType());
 
-        return new Matrix4<T>(it, jt, kt, st, this.getType());
+        return new Matrix4<>(it, jt, kt, st, this.getType());
     }
 
 
@@ -342,7 +354,7 @@ public class Matrix4<T extends Number>
     public String toString() {
 
         final StringBuilder returnValue = new StringBuilder("\n|");
-        final Object array[] = new Object[16];
+        final Number array[] = new Number[16];
 
         array[0] = this.getI().getX();
         array[1] = this.getJ().getX();
@@ -371,7 +383,8 @@ public class Matrix4<T extends Number>
                 returnValue.append("\t\t|\n|");
             }
 
-            returnValue.append("\t\t" + String.format("%.3f", array[v]));
+            returnValue.append("\t\t")
+                    .append(String.format("%.3f", array[v]));
         }
 
         returnValue.append("\t\t|\n");

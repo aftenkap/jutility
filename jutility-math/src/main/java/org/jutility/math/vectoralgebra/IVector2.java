@@ -53,7 +53,7 @@ public interface IVector2<T extends Number>
      * 
      * @return the length of the vector.
      */
-    public abstract T length();
+    T length();
 
 
     /**
@@ -61,7 +61,7 @@ public interface IVector2<T extends Number>
      * 
      * @return the normalized vector.
      */
-    public abstract IVector2<T> normalizedVector();
+    IVector2<T> normalizedVector();
 
 
     /**
@@ -71,7 +71,7 @@ public interface IVector2<T extends Number>
      *            the provided vector.
      * @return the dot product.
      */
-    public abstract T dotProduct(final IVector2<T> rhs);
+    T dotProduct(final IVector2<T> rhs);
 
 
     /**
@@ -79,5 +79,5 @@ public interface IVector2<T extends Number>
      * 
      * @return a vector counterclockwise perpendicular to this vector.
      */
-    public abstract IVector2<T> perpendicularVector();
+    IVector2<T> perpendicularVector();
 }

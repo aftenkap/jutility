@@ -72,7 +72,7 @@ public class Vector4<T extends Number>
     public static final <T extends Number> IVector4<T> I_UNIT_VECTOR(
             final Class<? extends T> type) {
 
-        return new Vector4<T>(1, 0, 0, type);
+        return new Vector4<>(1, 0, 0, type);
     }
 
 
@@ -89,7 +89,7 @@ public class Vector4<T extends Number>
     public static final <T extends Number> IVector4<T> J_UNIT_VECTOR(
             final Class<? extends T> type) {
 
-        return new Vector4<T>(0f, 1f, 0f, type);
+        return new Vector4<>(0f, 1f, 0f, type);
     }
 
 
@@ -106,7 +106,7 @@ public class Vector4<T extends Number>
     public static final <T extends Number> IVector4<T> K_UNIT_VECTOR(
             final Class<? extends T> type) {
 
-        return new Vector4<T>(0f, 0f, 1f, type);
+        return new Vector4<>(0f, 0f, 1f, type);
     }
 
 
@@ -123,7 +123,7 @@ public class Vector4<T extends Number>
     public static final <T extends Number> IVector4<T> NULL_VECTOR(
             final Class<? extends T> type) {
 
-        return new Vector4<T>(0f, 0f, 0f, type);
+        return new Vector4<>(0f, 0f, 0f, type);
     }
 
     /**
@@ -233,11 +233,11 @@ public class Vector4<T extends Number>
             final T normalizedZ = ArithmeticOperations.divide(this.getZ(),
                     length, type);
 
-            return new Vector4<T>(normalizedX, normalizedY, normalizedZ, type);
+            return new Vector4<>(normalizedX, normalizedY, normalizedZ, type);
         }
         else {
 
-            return new Vector4<T>(this);
+            return new Vector4<>(this);
         }
     }
 
@@ -369,6 +369,6 @@ public class Vector4<T extends Number>
         final Number yValue = ArithmeticOperations.subtract(zx, xz);
         final Number zValue = ArithmeticOperations.subtract(xy, yx);
 
-        return new Vector4<R>(xValue, yValue, zValue, returnType);
+        return new Vector4<>(xValue, yValue, zValue, returnType);
     }
 }

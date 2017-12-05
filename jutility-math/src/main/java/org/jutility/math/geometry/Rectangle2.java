@@ -77,8 +77,9 @@ public class Rectangle2<T extends Number>
     @Override
     public IPoint2<T> getBottomLeftCorner() {
 
-        return new Point2<T>(this.getTopLeftCorner().getX(), this
-                .getBottomRightCorner().getY(), this.type);
+        return new Point2<>(this.getTopLeftCorner()
+                .getX(), this.getBottomRightCorner()
+                .getY(), this.type);
     }
 
     @Override
@@ -96,8 +97,9 @@ public class Rectangle2<T extends Number>
     @Override
     public IPoint2<T> getTopRightCorner() {
 
-        return new Point2<T>(this.getBottomRightCorner().getX(), this
-                .getTopLeftCorner().getY(), this.type);
+        return new Point2<>(this.getBottomRightCorner()
+                .getX(), this.getTopLeftCorner()
+                .getY(), this.type);
     }
 
     /**
@@ -187,7 +189,7 @@ public class Rectangle2<T extends Number>
 
         if (topLeftCorner != null && type != null) {
 
-            this.topLeftCorner = new Point2<T>(topLeftCorner, type);
+            this.topLeftCorner = new Point2<>(topLeftCorner, type);
         }
         else {
 
@@ -195,7 +197,7 @@ public class Rectangle2<T extends Number>
         }
         if (bottomRightCorner != null && type != null) {
 
-            this.bottomRightCorner = new Point2<T>(bottomRightCorner, type);
+            this.bottomRightCorner = new Point2<>(bottomRightCorner, type);
         }
         else {
 

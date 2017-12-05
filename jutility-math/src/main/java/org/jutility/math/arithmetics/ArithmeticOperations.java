@@ -45,6 +45,7 @@ public final class ArithmeticOperations {
      *            the numbers.
      * @return the sum of the numbers.
      */
+    @SafeVarargs
     public static final <T extends Number> T sum(final T... numbers) {
 
         if (numbers.length == 0) {
@@ -117,6 +118,7 @@ public final class ArithmeticOperations {
      *            the numbers.
      * @return the product of the numbers.
      */
+    @SafeVarargs
     public static final <T extends Number> T product(final T... numbers) {
 
         if (numbers.length == 0) {
@@ -281,55 +283,55 @@ public final class ArithmeticOperations {
         return NumberUtils.cast(result, returnType);
     }
 
-    private static final Double add(final Double lhs, final Number rhs) {
+    private static Double add(final Double lhs, final Number rhs) {
 
         final Double rhsDouble = rhs.doubleValue();
 
         return lhs + rhsDouble;
     }
 
-    private static final Double add(final Number lhs, final Double rhs) {
+    private static Double add(final Number lhs, final Double rhs) {
 
         return ArithmeticOperations.add(rhs, lhs);
     }
 
-    private static final Float add(final Float lhs, final Number rhs) {
+    private static Float add(final Float lhs, final Number rhs) {
 
         final Float rhsFloat = rhs.floatValue();
 
         return lhs + rhsFloat;
     }
 
-    private static final Float add(final Number lhs, final Float rhs) {
+    private static Float add(final Number lhs, final Float rhs) {
 
         return ArithmeticOperations.add(rhs, lhs);
     }
 
-    private static final Long add(final Long lhs, final Number rhs) {
+    private static Long add(final Long lhs, final Number rhs) {
 
         final Long rhsLong = rhs.longValue();
 
         return lhs + rhsLong;
     }
 
-    private static final Long add(final Number lhs, final Long rhs) {
+    private static Long add(final Number lhs, final Long rhs) {
 
         return ArithmeticOperations.add(rhs, lhs);
     }
 
-    private static final Integer add(final Integer lhs, final Number rhs) {
+    private static Integer add(final Integer lhs, final Number rhs) {
 
         final Integer rhsInteger = rhs.intValue();
 
         return lhs + rhsInteger;
     }
 
-    private static final Integer add(final Number lhs, final Integer rhs) {
+    private static Integer add(final Number lhs, final Integer rhs) {
 
         return ArithmeticOperations.add(rhs, lhs);
     }
 
-    private static final Short add(final Short lhs, final Number rhs) {
+    private static Short add(final Short lhs, final Number rhs) {
 
         final Short rhsShort = rhs.shortValue();
 
@@ -338,12 +340,12 @@ public final class ArithmeticOperations {
         return result.shortValue();
     }
 
-    private static final Short add(final Number lhs, final Short rhs) {
+    private static Short add(final Number lhs, final Short rhs) {
 
         return ArithmeticOperations.add(rhs, lhs);
     }
 
-    private static final Byte add(final Byte lhs, final Number rhs) {
+    private static Byte add(final Byte lhs, final Number rhs) {
 
         final Byte rhsByte = rhs.byteValue();
 
@@ -352,7 +354,7 @@ public final class ArithmeticOperations {
         return result.byteValue();
     }
 
-    private static final Byte add(final Number lhs, final Byte rhs) {
+    private static Byte add(final Number lhs, final Byte rhs) {
 
         return ArithmeticOperations.add(rhs, lhs);
     }
@@ -462,63 +464,63 @@ public final class ArithmeticOperations {
     }
 
 
-    private static final Double subtract(final Double lhs, final Number rhs) {
+    private static Double subtract(final Double lhs, final Number rhs) {
 
         final Double rhsDouble = rhs.doubleValue();
 
         return lhs - rhsDouble;
     }
 
-    private static final Double subtract(final Number lhs, final Double rhs) {
+    private static Double subtract(final Number lhs, final Double rhs) {
 
         final Double lhsDouble = lhs.doubleValue();
 
         return lhsDouble - rhs;
     }
 
-    private static final Float subtract(final Float lhs, final Number rhs) {
+    private static Float subtract(final Float lhs, final Number rhs) {
 
         final Float rhsFloat = rhs.floatValue();
 
         return lhs - rhsFloat;
     }
 
-    private static final Float subtract(final Number lhs, final Float rhs) {
+    private static Float subtract(final Number lhs, final Float rhs) {
 
         final Float lhsFloat = lhs.floatValue();
 
         return lhsFloat - rhs;
     }
 
-    private static final Long subtract(final Long lhs, final Number rhs) {
+    private static Long subtract(final Long lhs, final Number rhs) {
 
         final Long rhsLong = rhs.longValue();
 
         return lhs - rhsLong;
     }
 
-    private static final Long subtract(final Number lhs, final Long rhs) {
+    private static Long subtract(final Number lhs, final Long rhs) {
 
         final Long lhsLong = lhs.longValue();
 
         return lhsLong - rhs;
     }
 
-    private static final Integer subtract(final Integer lhs, final Number rhs) {
+    private static Integer subtract(final Integer lhs, final Number rhs) {
 
         final Integer rhsInteger = rhs.intValue();
 
         return lhs - rhsInteger;
     }
 
-    private static final Integer subtract(final Number lhs, final Integer rhs) {
+    private static Integer subtract(final Number lhs, final Integer rhs) {
 
         final Integer lhsInteger = lhs.intValue();
 
         return lhsInteger - rhs;
     }
 
-    private static final Short subtract(final Short lhs, final Number rhs) {
+    private static Short subtract(final Short lhs, final Number rhs) {
 
         final Short rhsShort = rhs.shortValue();
 
@@ -527,7 +529,7 @@ public final class ArithmeticOperations {
         return result.shortValue();
     }
 
-    private static final Short subtract(final Number lhs, final Short rhs) {
+    private static Short subtract(final Number lhs, final Short rhs) {
 
         final Short lhsShort = lhs.shortValue();
 
@@ -536,7 +538,7 @@ public final class ArithmeticOperations {
         return result.shortValue();
     }
 
-    private static final Byte subtract(final Byte lhs, final Number rhs) {
+    private static Byte subtract(final Byte lhs, final Number rhs) {
 
         final Byte rhsByte = rhs.byteValue();
 
@@ -545,7 +547,7 @@ public final class ArithmeticOperations {
         return result.byteValue();
     }
 
-    private static final Byte subtract(final Number lhs, final Byte rhs) {
+    private static Byte subtract(final Number lhs, final Byte rhs) {
 
         final Byte lhsByte = lhs.byteValue();
 
@@ -658,55 +660,55 @@ public final class ArithmeticOperations {
     }
 
 
-    private static final Double multiply(final Double lhs, final Number rhs) {
+    private static Double multiply(final Double lhs, final Number rhs) {
 
         final Double rhsDouble = rhs.doubleValue();
 
         return lhs * rhsDouble;
     }
 
-    private static final Double multiply(final Number lhs, final Double rhs) {
+    private static Double multiply(final Number lhs, final Double rhs) {
 
         return ArithmeticOperations.multiply(rhs, lhs);
     }
 
-    private static final Float multiply(final Float lhs, final Number rhs) {
+    private static Float multiply(final Float lhs, final Number rhs) {
 
         final Float rhsFloat = rhs.floatValue();
 
         return lhs * rhsFloat;
     }
 
-    private static final Float multiply(final Number lhs, final Float rhs) {
+    private static Float multiply(final Number lhs, final Float rhs) {
 
         return ArithmeticOperations.multiply(rhs, lhs);
     }
 
-    private static final Long multiply(final Long lhs, final Number rhs) {
+    private static Long multiply(final Long lhs, final Number rhs) {
 
         final Long rhsLong = rhs.longValue();
 
         return lhs * rhsLong;
     }
 
-    private static final Long multiply(final Number lhs, final Long rhs) {
+    private static Long multiply(final Number lhs, final Long rhs) {
 
         return ArithmeticOperations.multiply(rhs, lhs);
     }
 
-    private static final Integer multiply(final Integer lhs, final Number rhs) {
+    private static Integer multiply(final Integer lhs, final Number rhs) {
 
         final Integer rhsInteger = rhs.intValue();
 
         return lhs * rhsInteger;
     }
 
-    private static final Integer multiply(final Number lhs, final Integer rhs) {
+    private static Integer multiply(final Number lhs, final Integer rhs) {
 
         return ArithmeticOperations.multiply(rhs, lhs);
     }
 
-    private static final Short multiply(final Short lhs, final Number rhs) {
+    private static Short multiply(final Short lhs, final Number rhs) {
 
         final Short rhsShort = rhs.shortValue();
 
@@ -715,12 +717,12 @@ public final class ArithmeticOperations {
         return result.shortValue();
     }
 
-    private static final Short multiply(final Number lhs, final Short rhs) {
+    private static Short multiply(final Number lhs, final Short rhs) {
 
         return ArithmeticOperations.multiply(rhs, lhs);
     }
 
-    private static final Byte multiply(final Byte lhs, final Number rhs) {
+    private static Byte multiply(final Byte lhs, final Number rhs) {
 
         final Byte rhsByte = rhs.byteValue();
 
@@ -729,7 +731,7 @@ public final class ArithmeticOperations {
         return result.byteValue();
     }
 
-    private static final Byte multiply(final Number lhs, final Byte rhs) {
+    private static Byte multiply(final Number lhs, final Byte rhs) {
 
         return ArithmeticOperations.multiply(rhs, lhs);
     }
@@ -837,63 +839,63 @@ public final class ArithmeticOperations {
     }
 
 
-    private static final Double divide(final Double lhs, final Number rhs) {
+    private static Double divide(final Double lhs, final Number rhs) {
 
         final Double rhsDouble = rhs.doubleValue();
 
         return lhs / rhsDouble;
     }
 
-    private static final Double divide(final Number lhs, final Double rhs) {
+    private static Double divide(final Number lhs, final Double rhs) {
 
         final Double lhsDouble = lhs.doubleValue();
 
         return lhsDouble / rhs;
     }
 
-    private static final Float divide(final Float lhs, final Number rhs) {
+    private static Float divide(final Float lhs, final Number rhs) {
 
         final Float rhsFloat = rhs.floatValue();
 
         return lhs / rhsFloat;
     }
 
-    private static final Float divide(final Number lhs, final Float rhs) {
+    private static Float divide(final Number lhs, final Float rhs) {
 
         final Float lhsFloat = lhs.floatValue();
 
         return lhsFloat / rhs;
     }
 
-    private static final Long divide(final Long lhs, final Number rhs) {
+    private static Long divide(final Long lhs, final Number rhs) {
 
         final Long rhsLong = rhs.longValue();
 
         return lhs / rhsLong;
     }
 
-    private static final Long divide(final Number lhs, final Long rhs) {
+    private static Long divide(final Number lhs, final Long rhs) {
 
         final Long lhsLong = lhs.longValue();
 
         return lhsLong / rhs;
     }
 
-    private static final Integer divide(final Integer lhs, final Number rhs) {
+    private static Integer divide(final Integer lhs, final Number rhs) {
 
         final Integer rhsInteger = rhs.intValue();
 
         return lhs / rhsInteger;
     }
 
-    private static final Integer divide(final Number lhs, final Integer rhs) {
+    private static Integer divide(final Number lhs, final Integer rhs) {
 
         final Integer lhsInteger = lhs.intValue();
 
         return lhsInteger / rhs;
     }
 
-    private static final Short divide(final Short lhs, final Number rhs) {
+    private static Short divide(final Short lhs, final Number rhs) {
 
         final Short rhsShort = rhs.shortValue();
 
@@ -902,7 +904,7 @@ public final class ArithmeticOperations {
         return result.shortValue();
     }
 
-    private static final Short divide(final Number lhs, final Short rhs) {
+    private static Short divide(final Number lhs, final Short rhs) {
 
         final Short lhsShort = lhs.shortValue();
 
@@ -911,7 +913,7 @@ public final class ArithmeticOperations {
         return result.shortValue();
     }
 
-    private static final Byte divide(final Byte lhs, final Number rhs) {
+    private static Byte divide(final Byte lhs, final Number rhs) {
 
         final Byte rhsByte = rhs.byteValue();
 
@@ -920,7 +922,7 @@ public final class ArithmeticOperations {
         return result.byteValue();
     }
 
-    private static final Byte divide(final Number lhs, final Byte rhs) {
+    private static Byte divide(final Number lhs, final Byte rhs) {
 
         final Byte lhsByte = lhs.byteValue();
 
