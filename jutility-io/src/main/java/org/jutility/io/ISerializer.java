@@ -50,7 +50,7 @@ public interface ISerializer {
      * @return {@code true} if the converter supports the format; {@code false}
      *         otherwise.
      */
-    public abstract boolean supportsSerializationOf(Class<?> type);
+    boolean supportsSerializationOf(Class<?> type);
 
     /**
      * Determines whether or not the {@link ISerializer serializer} supports
@@ -61,7 +61,7 @@ public interface ISerializer {
      * @return {@code true} if the converter supports the format; {@code false}
      *         otherwise.
      */
-    public abstract boolean supportsDeserializationOf(Class<?> type);
+    boolean supportsDeserializationOf(Class<?> type);
 
     /**
      * Serializes a document into a file
@@ -76,7 +76,7 @@ public interface ISerializer {
      * @throws SerializationException
      *             if serialization fails.
      */
-    public abstract <T> void serialize(final T document, final String filename)
+    <T> void serialize(final T document, final String filename)
             throws SerializationException;
 
 
@@ -95,7 +95,7 @@ public interface ISerializer {
      * @throws SerializationException
      *             if deserialization fails.
      */
-    public abstract <T> T deserialize(final File file, Class<? extends T> type)
+    <T> T deserialize(final File file, Class<? extends T> type)
             throws SerializationException;
 
     /**
@@ -109,8 +109,7 @@ public interface ISerializer {
      * @throws SerializationException
      *             if deserialization fails.
      */
-    public abstract <T> T deserialize(final URI uri,
-            final Class<? extends T> type)
+    <T> T deserialize(final URI uri, final Class<? extends T> type)
             throws SerializationException;
 
 
@@ -128,6 +127,6 @@ public interface ISerializer {
      * @throws SerializationException
      *             if deserialization fails.
      */
-    public abstract <T> T deserialize(final URL url, Class<? extends T> type)
+    <T> T deserialize(final URL url, Class<? extends T> type)
             throws SerializationException;
 }
