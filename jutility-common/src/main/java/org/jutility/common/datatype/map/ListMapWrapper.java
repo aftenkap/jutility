@@ -56,7 +56,7 @@ public class ListMapWrapper<K, E>
      */
     private static final long serialVersionUID = -604106384904749465L;
 
-    private static Logger     LOG              = LoggerFactory
+    private static final Logger LOG = LoggerFactory
                                                        .getLogger(ListMapWrapper.class);
 
     private final Class<K>    keyType;
@@ -98,7 +98,7 @@ public class ListMapWrapper<K, E>
     @Override
     public ListIterator<E> listIterator(final int index) {
 
-        return new MappedListIterator<K, E>(this, index);
+        return new MappedListIterator<>(this, index);
     }
 
 
@@ -207,7 +207,7 @@ public class ListMapWrapper<K, E>
         @Override
         public void add(final E e) {
 
-            final Map<K, E> backupMap = new LinkedHashMap<K, E>();
+            final Map<K, E> backupMap = new LinkedHashMap<>();
 
             final int current = this.currentIndex;
             while (this.mapIterator.hasNext()) {
@@ -238,7 +238,7 @@ public class ListMapWrapper<K, E>
 
             if ((index > this.map.size()) || (index < 0)) {
 
-                if ((index != -1) || ((index == -1) && !initialization)) {
+                if (index != -1 || !initialization) {
 
                     throw new IndexOutOfBoundsException("Index: " + index
                             + ", size: " + this.map.size());

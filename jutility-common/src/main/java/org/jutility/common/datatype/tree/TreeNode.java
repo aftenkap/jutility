@@ -42,7 +42,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * </p>
  *
  * @param <E>
- *            the type of the tree node's elements.
+ *         the type of the tree node's elements.
  *
  * @author Peter J. Radics
  * @version 0.1.2
@@ -51,10 +51,10 @@ import java.util.concurrent.locks.ReentrantLock;
 public class TreeNode<E> {
 
 
-    private final E                 element;
+    private final E element;
 
-    private TreeNode<E>             parent;
-    private final Lock              parentLock;
+    private       TreeNode<E> parent;
+    private final Lock        parentLock;
 
     private final List<TreeNode<E>> children;
     private final Lock              childLock;
@@ -74,7 +74,7 @@ public class TreeNode<E> {
      * Returns whether or not the tree node has a parent.
      *
      * @return {@code true}, if the tree node has a parent; {@code false}
-     *         otherwise.
+     * otherwise.
      */
     public boolean hasParent() {
 
@@ -88,9 +88,10 @@ public class TreeNode<E> {
      */
     public TreeNode<E> getParent() {
 
-        TreeNode<E> parentCopy = null;
+        TreeNode<E> parentCopy;
         this.parentLock.lock();
         parentCopy = this.parent;
+        this.parentLock.unlock();
         return parentCopy;
     }
 
@@ -98,7 +99,7 @@ public class TreeNode<E> {
      * Sets the tree node's parent.
      *
      * @param parent
-     *            the parent.
+     *         the parent.
      */
     private void setParent(final TreeNode<E> parent) {
 
@@ -112,11 +113,12 @@ public class TreeNode<E> {
      * Returns whether or not the tree node has children.
      *
      * @return {@code true}, if the tree node has children; {@code false}
-     *         otherwise.
+     * otherwise.
      */
     public boolean hasChildren() {
 
-        return !this.getChildren().isEmpty();
+        return !this.getChildren()
+                    .isEmpty();
     }
 
     /**
@@ -126,11 +128,12 @@ public class TreeNode<E> {
      */
     public List<TreeNode<E>> getChildren() {
 
-        List<TreeNode<E>> returnValue = null;
+        List<TreeNode<E>> returnValue;
         this.childLock.lock();
 
-        returnValue = Collections.unmodifiableList(new ArrayList<TreeNode<E>>(
-                this.children));
+        returnValue = Collections.unmodifiableList(
+                new ArrayList<>(this.children));
+        this.childLock.unlock();
         return returnValue;
     }
 
@@ -139,7 +142,7 @@ public class TreeNode<E> {
      * Creates a new instance of the {@code TreeNode} class.
      *
      * @param element
-     *            the element of the newly created {@code TreeNode}.
+     *         the element of the newly created {@code TreeNode}.
      */
     protected TreeNode(final E element) {
 
@@ -150,9 +153,9 @@ public class TreeNode<E> {
      * Creates a new instance of the {@code TreeNode} class.
      *
      * @param element
-     *            the element of the newly created {@code TreeNode}.
+     *         the element of the newly created {@code TreeNode}.
      * @param parent
-     *            the parent of the newly created {@code TreeNode}.
+     *         the parent of the newly created {@code TreeNode}.
      */
     protected TreeNode(final E element, final TreeNode<E> parent) {
 
@@ -166,7 +169,7 @@ public class TreeNode<E> {
         this.parent = parent;
         this.parentLock = new ReentrantLock();
 
-        this.children = new LinkedList<TreeNode<E>>();
+        this.children = new LinkedList<>();
         this.childLock = new ReentrantLock();
 
         if (this.parent != null) {
@@ -179,7 +182,7 @@ public class TreeNode<E> {
      * Adds the provided {@code TreeNode} as a child of this instance.
      *
      * @param child
-     *            the {@code TreeNode} to add as a child.
+     *         the {@code TreeNode} to add as a child.
      */
     protected void addChild(final TreeNode<E> child) {
 
@@ -201,18 +204,18 @@ public class TreeNode<E> {
      * instance.
      *
      * @param childElement
-     *            the element to add as a child.
+     *         the element to add as a child.
      */
     protected void addChild(final E childElement) {
 
-        this.addChild(new TreeNode<E>(childElement, this));
+        this.addChild(new TreeNode<>(childElement, this));
     }
 
     /**
      * Removes the provided {@code TreeNode} from the children of this instance.
      *
      * @param child
-     *            the {@code TreeNode} to add as a child.
+     *         the {@code TreeNode} to add as a child.
      */
     protected void removeChild(final TreeNode<E> child) {
 
@@ -238,11 +241,11 @@ public class TreeNode<E> {
      * children of this instance.
      *
      * @param childElement
-     *            the element to add as a child.
+     *         the element to add as a child.
      */
     protected void removeChild(final E childElement) {
 
-        this.removeChild(new TreeNode<E>(childElement, this));
+        this.removeChild(new TreeNode<>(childElement, this));
     }
 
 
@@ -250,9 +253,9 @@ public class TreeNode<E> {
      * Replaces a {@code TreeNode} with a different {@code TreeNode} instance.
      *
      * @param childToReplace
-     *            the {@code TreeNode} to replace.
+     *         the {@code TreeNode} to replace.
      * @param childToReplaceWith
-     *            the {@code TreeNode} to act as replacement.
+     *         the {@code TreeNode} to act as replacement.
      */
     protected void replaceChild(final TreeNode<E> childToReplace,
             final TreeNode<E> childToReplaceWith) {
@@ -269,12 +272,13 @@ public class TreeNode<E> {
 
             if (index == -1) {
                 throw new NoSuchElementException(
-                        "The provided child to be replaced could not be found!");
+                        "The provided child to be replaced could not be "
+                        + "found!");
             }
             else {
 
-                final int otherIndex = this.children
-                        .indexOf(childToReplaceWith);
+                final int otherIndex = this.children.indexOf(
+                        childToReplaceWith);
 
                 final TreeNode<E> currentChild = this.children.get(index);
                 currentChild.setParent(null);
@@ -283,8 +287,8 @@ public class TreeNode<E> {
 
                 if ((otherIndex != -1) && (index != otherIndex)) {
 
-                    final TreeNode<E> otherChild = this.children
-                            .get(otherIndex);
+                    final TreeNode<E> otherChild = this.children.get(
+                            otherIndex);
                     otherChild.setParent(null);
                     this.children.remove(otherIndex);
                 }
@@ -301,15 +305,15 @@ public class TreeNode<E> {
      * different element.
      *
      * @param childElementToReplace
-     *            the element to replace.
+     *         the element to replace.
      * @param childElementToReplaceWith
-     *            the element to act as replacement.
+     *         the element to act as replacement.
      */
     protected void replaceChild(final E childElementToReplace,
             final E childElementToReplaceWith) {
 
-        this.replaceChild(new TreeNode<E>(childElementToReplace),
-                new TreeNode<E>(childElementToReplaceWith));
+        this.replaceChild(new TreeNode<>(childElementToReplace),
+                new TreeNode<>(childElementToReplaceWith));
     }
 
     /**
@@ -358,7 +362,9 @@ public class TreeNode<E> {
 
         if (this.hasParent()) {
 
-            return this.getParent().getChildren().size() - 1;
+            return this.getParent()
+                       .getChildren()
+                       .size() - 1;
         }
 
         return numberOfSiblings;
@@ -376,7 +382,8 @@ public class TreeNode<E> {
         if ((o != null) && (o instanceof TreeNode)) {
             final TreeNode<?> treeNode = (TreeNode<?>) o;
 
-            return (this.getElement().equals(treeNode.getElement()));
+            return (this.getElement()
+                        .equals(treeNode.getElement()));
         }
         return false;
 

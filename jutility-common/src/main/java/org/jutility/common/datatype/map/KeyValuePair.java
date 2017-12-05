@@ -37,9 +37,10 @@ import javax.xml.bind.annotation.XmlType;
  * keys and values.
  *
  * @param <KEY>
- *            The key type.
+ *         The key type.
  * @param <VALUE>
- *            The value type.
+ *         The value type.
+ *
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.0
@@ -57,11 +58,9 @@ public class KeyValuePair<KEY, VALUE>
     private static final long serialVersionUID = -2177494404526358079L;
 
 
-    @XmlElement
-    private final KEY         key;
+    @XmlElement private final KEY key;
 
-    @XmlElement
-    private VALUE             value;
+    @XmlElement private VALUE value;
 
 
     /**
@@ -88,7 +87,7 @@ public class KeyValuePair<KEY, VALUE>
      * Sets the value to the value provided.
      *
      * @param value
-     *            the new value.
+     *         the new value.
      */
     public void setValue(final VALUE value) {
 
@@ -109,7 +108,7 @@ public class KeyValuePair<KEY, VALUE>
      * provided key.
      *
      * @param key
-     *            the key.
+     *         the key.
      */
     public KeyValuePair(final KEY key) {
 
@@ -121,9 +120,9 @@ public class KeyValuePair<KEY, VALUE>
      * provided key and value.
      *
      * @param key
-     *            the key.
+     *         the key.
      * @param value
-     *            the value.
+     *         the value.
      */
     public KeyValuePair(final KEY key, final VALUE value) {
 
@@ -135,18 +134,18 @@ public class KeyValuePair<KEY, VALUE>
      * provided key and value.
      *
      * @param key
-     *            the key.
+     *         the key.
      * @param value
-     *            the value.
+     *         the value.
      * @param serialization
-     *            whether or not the constructor is used during serialization.
+     *         whether or not the constructor is used during serialization.
      */
     private KeyValuePair(final KEY key, final VALUE value,
-            final boolean serialization) {
+                         final boolean serialization) {
 
         if ((key == null) && !serialization) {
-            throw new IllegalArgumentException("Cannot create key-value pair "
-                    + "without key!");
+            throw new IllegalArgumentException(
+                    "Cannot create key-value pair " + "without key!");
         }
 
         this.key = key;
@@ -165,11 +164,12 @@ public class KeyValuePair<KEY, VALUE>
 
             final KeyValuePair<?, ?> other = (KeyValuePair<?, ?>) obj;
 
-            final boolean sameKey = this.getKey().equals(other.getKey());
+            final boolean sameKey = this.getKey()
+                                        .equals(other.getKey());
 
-            final boolean sameValue = (this.getValue() == other.getValue())
-                    || ((this.getValue() != null) && this.getValue().equals(
-                            other.getValue()));
+            final boolean sameValue = (this.getValue() == other.getValue()) || (
+                    (this.getValue() != null) && this.getValue()
+                                                     .equals(other.getValue()));
 
             return sameKey && sameValue;
         }
@@ -180,18 +180,20 @@ public class KeyValuePair<KEY, VALUE>
     public int hashCode() {
 
         int hash = 7;
-        hash = 83 * (this.getKey() != null ? this.getKey().hashCode() : 0);
-        hash = 87 * (this.getValue() != null ? this.getValue().hashCode() : 0);
+        hash += 83 * (this.getKey() != null ?  this.getKey().hashCode() : 0);
+        hash += 87 * (this.getValue() != null ? this.getValue().hashCode() :  0);
         return hash;
     }
 
     @Override
     public String toString() {
 
-        String string = this.getKey().toString() + ": ";
+        String string = this.getKey()
+                            .toString() + ": ";
         if (this.getValue() != null) {
 
-            string += this.getValue().toString();
+            string += this.getValue()
+                          .toString();
         }
         else {
             string += "<null>";

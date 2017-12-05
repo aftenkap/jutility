@@ -43,9 +43,9 @@ import org.jutility.common.reflection.ReflectionUtils;
  * </p>
  *
  * @param <CELL>
- *            the type of the cells contained in the table.
+ *         the type of the cells contained in the table.
  * @param <T>
- *            the type of the table data.
+ *         the type of the table data.
  *
  * @author Peter J. Radics
  * @version 0.1.4
@@ -57,12 +57,12 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
     /**
      * Serial Version UID.
      */
-    private static final long                              serialVersionUID = -4547481051474631317L;
+    private static final long serialVersionUID = -4547481051474631317L;
 
     private final TreeMap<Integer, CellContainer<CELL, T>> columns;
     private final TreeMap<Integer, CellContainer<CELL, T>> rows;
 
-    private IterationOrder                                 iterationOrder;
+    private IterationOrder iterationOrder;
 
 
     @Override
@@ -92,12 +92,12 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
      * provided {@link IterationOrder iteration order}.
      *
      * @param iterationOrder
-     *            the {@link IterationOrder IterationOrder} of the class.
+     *         the {@link IterationOrder IterationOrder} of the class.
      */
     public AbstractTable(final IterationOrder iterationOrder) {
 
-        this.columns = new TreeMap<Integer, CellContainer<CELL, T>>();
-        this.rows = new TreeMap<Integer, CellContainer<CELL, T>>();
+        this.columns = new TreeMap<>();
+        this.rows = new TreeMap<>();
 
         this.iterationOrder = iterationOrder;
     }
@@ -107,7 +107,7 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
      * Constructor)
      *
      * @param table
-     *            the table to copy.
+     *         the table to copy.
      */
     public AbstractTable(final ITable<? extends T> table) {
 
@@ -136,12 +136,12 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
 
         if (column == null) {
 
-            column = new CellContainer<CELL, T>(cell.getColumn());
+            column = new CellContainer<>(cell.getColumn());
             this.columns.put(cell.getColumn(), column);
         }
         if (row == null) {
 
-            row = new CellContainer<CELL, T>(cell.getRow());
+            row = new CellContainer<>(cell.getRow());
             this.rows.put(cell.getRow(), row);
         }
 
@@ -151,8 +151,9 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
         if (rowAdded != columnAdded) {
 
             throw new IllegalStateException(
-                    "Adding cell to rows and columns did not return same status: (rows added: "
-                            + rowAdded + ", columns added: " + columnAdded);
+                    "Adding cell to rows and columns did not return same "
+                    + "status: (rows added: " + rowAdded + ", columns added: "
+                    + columnAdded);
         }
 
         return rowAdded;
@@ -296,8 +297,8 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
     @Override
     public Collection<CELL> getCells() {
 
-        final ArrayList<CELL> list = new ArrayList<CELL>(this.rows()
-                + this.columns());
+        final ArrayList<CELL> list = new ArrayList<>(
+                this.rows() + this.columns());
 
         final Iterator<CELL> it = this.cellIterator();
 
@@ -313,7 +314,7 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
     @Override
     public List<T> getValues() {
 
-        final ArrayList<T> list = new ArrayList<T>(this.rows() + this.columns());
+        final ArrayList<T> list = new ArrayList<>(this.rows() + this.columns());
 
         for (final T element : this) {
             list.add(element);
@@ -340,23 +341,21 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
             if (rowRemoved != columnRemoved) {
 
                 throw new IllegalStateException(
-                        "Removing cell from rows and columns did not return same status: (rows removed: "
-                                + rowRemoved
-                                + ", columns removed: "
-                                + columnRemoved);
+                        "Removing cell from rows and columns did not return "
+                        + "same status: (rows removed: " + rowRemoved
+                        + ", columns removed: " + columnRemoved);
             }
 
             return rowRemoved;
 
 
         }
-        else if (((cellRow != null) && (cellColumn == null))
-                || ((cellRow == null) && (cellColumn != null))) {
+        else if (cellRow != null || cellColumn != null) {
 
             throw new IllegalStateException(
-                    "Cell not contained in both rows and columns: (row contained: "
-                            + (cellRow != null) + ", column contained: "
-                            + (cellColumn != null) + "!");
+                    "Cell not contained in both rows and columns: (row "
+                    + "contained: " + (cellRow != null) + ", column contained: "
+                    + (cellColumn != null) + "!");
         }
 
         return false;
@@ -381,24 +380,25 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
      * empty.
      *
      * @param container
-     *            the container to remove the cell from.
+     *         the container to remove the cell from.
      * @param cell
-     *            the cell to remove.
+     *         the cell to remove.
+     *
      * @return {@code true}, if the container was changed; {@code false}
-     *         otherwise.
+     * otherwise.
      */
     boolean remove(final CellContainer<CELL, T> container, final CELL cell) {
 
         final boolean removed = container.remove(cell);
         if (container.isEmpty()) {
 
-            if (this.rows.containsValue(container)) {
+            if (container.equals(this.rows.get(container.getIndex()))) {
 
                 this.rows.remove(container.getIndex());
             }
-            else if (this.columns.containsValue(container)) {
+            if (container.equals(this.columns.get(container.getIndex()))) {
 
-                this.columns.remove(container);
+                this.columns.remove(container.getIndex());
             }
         }
 
@@ -442,13 +442,15 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
     @Override
     public int size() {
 
-        return this.getCells().size();
+        return this.getCells()
+                   .size();
     }
 
     @Override
     public String toString() {
 
-        return this.getCells().toString();
+        return this.getCells()
+                   .toString();
     }
 
 
@@ -472,14 +474,14 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
     @Override
     public Iterator<T> rowMajorOrderIterator() {
 
-        return new ICell.CellValueIterator<T>(this.rowMajorOrderCellIterator());
+        return new ICell.CellValueIterator<>(this.rowMajorOrderCellIterator());
     }
 
 
     @Override
     public Iterator<T> columnMajorOrderIterator() {
 
-        return new ICell.CellValueIterator<T>(
+        return new ICell.CellValueIterator<>(
                 this.columnMajorOrderCellIterator());
     }
 
@@ -503,47 +505,46 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
     @Override
     public Iterator<CELL> rowMajorOrderCellIterator() {
 
-        return new TableCellIterator<CELL, T>(this, IterationOrder.ROW_MAJOR);
+        return new TableCellIterator<>(this, IterationOrder.ROW_MAJOR);
     }
 
 
     @Override
     public Iterator<CELL> columnMajorOrderCellIterator() {
 
-        return new TableCellIterator<CELL, T>(this, IterationOrder.COLUMN_MAJOR);
+        return new TableCellIterator<>(this, IterationOrder.COLUMN_MAJOR);
     }
 
     /**
      * The {@code Table.TableCellIterator} class provides a wrapper around the
      * {@link Iterator} of a row or column.
      *
+     * @param <T>
+     *         the value type of the table cells.
+     *
      * @author Peter J. Radics
      * @version 0.1.2
      * @since 0.1.0
-     *
-     * @param <V>
-     *            the value type of the table cells.
      */
     private static class TableCellIterator<CELL extends ICell<T>, T>
             implements Iterator<CELL> {
 
-        private final ICellTable<CELL, T>              table;
-        private final IterationOrder                   iterationOrder;
+        private final ICellTable<CELL, T> table;
+        private final IterationOrder      iterationOrder;
 
         private final Iterator<CellContainer<CELL, T>> cellContainerIterator;
 
-        private Iterator<CELL>                         cellIterator;
-        private CELL                                   currentCell;
-        private CellContainer<CELL, T>                 currentContainer;
+        private Iterator<CELL>         cellIterator;
+        private CELL                   currentCell;
+        private CellContainer<CELL, T> currentContainer;
 
         /**
          * Creates a new instance of the {@code TableCellIterator} class.
          *
          * @param table
-         *            the {@link ICellTable} to iterate over.
+         *         the {@link ICellTable} to iterate over.
          * @param iterationOrder
-         *            the {@link IterationOrder iteration order} to use.
-         *
+         *         the {@link IterationOrder iteration order} to use.
          */
         public TableCellIterator(final ICellTable<CELL, T> table,
                 final IterationOrder iterationOrder) {
@@ -554,12 +555,12 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
             switch (this.iterationOrder) {
                 case COLUMN_MAJOR:
                     this.cellContainerIterator = this.table.getColumns()
-                            .iterator();
+                                                           .iterator();
                     break;
                 case ROW_MAJOR:
                 default:
                     this.cellContainerIterator = this.table.getRows()
-                            .iterator();
+                                                           .iterator();
                     break;
 
             }
@@ -570,20 +571,14 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
         @Override
         public boolean hasNext() {
 
-            if (this.cellIterator == null) {
+            if (this.cellIterator == null
+                && this.cellContainerIterator.hasNext()) {
 
-                if (this.cellContainerIterator.hasNext()) {
-
-                    this.currentContainer = this.cellContainerIterator.next();
-                    this.cellIterator = this.currentContainer.cellIterator();
-                }
+                this.currentContainer = this.cellContainerIterator.next();
+                this.cellIterator = this.currentContainer.cellIterator();
             }
 
-            if (this.cellIterator != null) {
-
-                return this.cellIterator.hasNext();
-            }
-            return false;
+            return this.cellIterator != null && this.cellIterator.hasNext();
         }
 
         @Override
@@ -606,9 +601,11 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
 
                 throw new IllegalStateException(
                         "The {@link TableCellIterator#next()} method has not "
-                                + "yet been called, or the {@link TableCellIterator#remove()} "
-                                + "method has already been called after the last call to the "
-                                + "{@link TableCellIterator#next()} method");
+                        + "yet been called, or the "
+                        + "{@link TableCellIterator#remove()} "
+                        + "method has already been called after the last call"
+                        + " to the "
+                        + "{@link TableCellIterator#next()} method");
             }
 
             // Removing the element from the row or column respectively
@@ -625,8 +622,8 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
                 case COLUMN_MAJOR:
 
                     // Removing the element from the row.
-                    final CellContainer<CELL, T> row = this.table
-                            .getRow(this.currentCell.getRow());
+                    final CellContainer<CELL, T> row = this.table.getRow(
+                            this.currentCell.getRow());
 
                     row.remove(this.currentCell);
                     if (row.isEmpty()) {
@@ -638,8 +635,8 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
                 default:
 
                     // Removing the element from the column.
-                    final CellContainer<CELL, T> column = this.table
-                            .getColumn(this.currentCell.getColumn());
+                    final CellContainer<CELL, T> column = this.table.getColumn(
+                            this.currentCell.getColumn());
 
                     column.remove(this.currentCell);
                     if (column.isEmpty()) {
@@ -657,9 +654,10 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
      * Returns the effective type of the provided table.
      *
      * @param table
-     *            the table.
+     *         the table.
+     *
      * @return the effective type of the table (the shared ancestor class of all
-     *         values in the table).
+     * values in the table).
      */
     public static Class<?> getEffectiveType(final ITable<?> table) {
 
@@ -687,22 +685,19 @@ public abstract class AbstractTable<CELL extends ICell<T>, T>
 
                     if (valueClass.isAssignableFrom(superType)) {
 
-                        System.out.println("Can cast " + superType + " to "
-                                + valueClass);
+                        System.out.println(
+                                "Can cast " + superType + " to " + valueClass);
                         superType = valueClass;
                     }
                     else if (superType.isAssignableFrom(valueClass)) {
                         // nothing to do
-                        System.out.println("Can cast " + valueClass + " to "
-                                + superType);
+                        System.out.println(
+                                "Can cast " + valueClass + " to " + superType);
                     }
                     else {
-                        System.out.println("LCD of "
-                                + superType
-                                + " and "
-                                + valueClass
-                                + ": "
-                                + ReflectionUtils.getSharedAncestorClass(
+                        System.out.println(
+                                "LCD of " + superType + " and " + valueClass
+                                + ": " + ReflectionUtils.getSharedAncestorClass(
                                         superType, valueClass));
                         superType = ReflectionUtils.getSharedAncestorClass(
                                 superType, valueClass);

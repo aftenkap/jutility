@@ -46,7 +46,7 @@ public interface ITuple3<T>
      *
      * @return The X coordinate.
      */
-    public abstract T getX();
+    T getX();
 
 
     /**
@@ -54,7 +54,7 @@ public interface ITuple3<T>
      *
      * @return The Y coordinate.
      */
-    public abstract T getY();
+    T getY();
 
 
     /**
@@ -62,5 +62,5 @@ public interface ITuple3<T>
      *
      * @return The Z coordinate.
      */
-    public abstract T getZ();
+    T getZ();
 }

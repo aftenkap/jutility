@@ -48,14 +48,14 @@ public interface ITuple<T> {
      *
      * @return the type.
      */
-    public abstract Class<? extends T> getType();
+    Class<? extends T> getType();
 
     /**
      * Returns the dimension of this tuple.
      *
      * @return the dimension.
      */
-    public abstract int getDimension();
+    int getDimension();
 
     /**
      * Getter for the component at the provided index.
@@ -65,12 +65,12 @@ public interface ITuple<T> {
      *
      * @return The component with the provided index.
      */
-    public abstract T get(final int index);
+    T get(final int index);
 
     /**
      * Creates an array representation of the tuple.
      *
      * @return The array representation of the tuple.
      */
-    public abstract T[] toArray();
+    T[] toArray();
 }

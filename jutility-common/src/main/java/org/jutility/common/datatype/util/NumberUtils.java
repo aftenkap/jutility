@@ -189,6 +189,7 @@ public final class NumberUtils {
      *            the elements comprising the desired array.
      * @return an array containing all elements.
      */
+    @SafeVarargs
     public static final <T> T[] createArray(final Class<? extends T> type,
             final T... elements) {
 

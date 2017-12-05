@@ -51,7 +51,7 @@ public interface ITuple4<T>
      *
      * @return The X component.
      */
-    public abstract T getX();
+    T getX();
 
 
     /**
@@ -59,7 +59,7 @@ public interface ITuple4<T>
      *
      * @return The Y component.
      */
-    public abstract T getY();
+    T getY();
 
 
     /**
@@ -67,7 +67,7 @@ public interface ITuple4<T>
      *
      * @return The Z component.
      */
-    public abstract T getZ();
+    T getZ();
 
 
     /**
@@ -75,5 +75,5 @@ public interface ITuple4<T>
      *
      * @return The W component.
      */
-    public abstract T getW();
+    T getW();
 }

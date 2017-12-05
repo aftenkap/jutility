@@ -36,7 +36,8 @@ import java.util.SortedSet;
  * The {@code BTree} class provides a B-Tree implementation.
  *
  * @param <VALUE>
- *            the value type.
+ *         the value type.
+ *
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.0
@@ -48,8 +49,8 @@ public class BTree<VALUE extends Comparable<VALUE>>
     private final int maximumNumberOfChildren;
     private final int minimumNumberOfChildren;
 
-    private int       height;
-    private int       size;
+    private int height;
+    private int size;
 
     private BTreeNode root;
 
@@ -58,13 +59,13 @@ public class BTree<VALUE extends Comparable<VALUE>>
      * Creates a new instance of the {@code BTree} class.
      *
      * @param maximumNumberOfChildren
-     *            the maximum number of children.
+     *         the maximum number of children.
      */
     public BTree(final int maximumNumberOfChildren) {
 
         this.maximumNumberOfChildren = maximumNumberOfChildren;
-        this.minimumNumberOfChildren = (int) Math
-                .ceil(maximumNumberOfChildren / 2.0);
+        this.minimumNumberOfChildren = (int) Math.ceil(
+                maximumNumberOfChildren / 2.0);
 
         this.root = new BTreeNode();
     }
@@ -84,7 +85,7 @@ public class BTree<VALUE extends Comparable<VALUE>>
      * Sets the root node.
      *
      * @param root
-     *            the root node.
+     *         the root node.
      */
     protected void setRoot(final BTreeNode root) {
 
@@ -126,7 +127,7 @@ public class BTree<VALUE extends Comparable<VALUE>>
      * Sets the height.
      *
      * @param height
-     *            the height.
+     *         the height.
      */
     void setHeight(final int height) {
 
@@ -162,7 +163,8 @@ public class BTree<VALUE extends Comparable<VALUE>>
      * Returns the value at key.
      *
      * @param key
-     *            the key.
+     *         the key.
+     *
      * @return the value.
      */
     public VALUE get(final VALUE key) {
@@ -174,7 +176,8 @@ public class BTree<VALUE extends Comparable<VALUE>>
      * Removes the value at key.
      *
      * @param key
-     *            the key.
+     *         the key.
+     *
      * @return the value.
      */
     public VALUE remove(final VALUE key) {
@@ -241,7 +244,7 @@ public class BTree<VALUE extends Comparable<VALUE>>
     @Override
     public Iterator<VALUE> iterator() {
 
-        return new BTreeInOrderIterator<VALUE>(this);
+        return new BTreeInOrderIterator<>(this);
     }
 
 
@@ -309,9 +312,10 @@ public class BTree<VALUE extends Comparable<VALUE>>
     public class BTreeNode {
 
 
-        private List<VALUE>     entries;
-        private List<BTreeNode> children;
-        private BTreeNode       parent;
+        private final List<VALUE>     entries;
+        private final List<BTreeNode> children;
+
+        private BTreeNode parent;
 
 
         /**
@@ -328,7 +332,8 @@ public class BTree<VALUE extends Comparable<VALUE>>
          * Returns the entry at the given index.
          *
          * @param index
-         *            the index.
+         *         the index.
+         *
          * @return the entry at the given index.
          */
         public VALUE getEntry(final int index) {
@@ -340,9 +345,9 @@ public class BTree<VALUE extends Comparable<VALUE>>
          * Adds the entry at the given index.
          *
          * @param index
-         *            the index.
+         *         the index.
          * @param entry
-         *            the entry to add.
+         *         the entry to add.
          */
         public void addEntry(final int index, final VALUE entry) {
 
@@ -353,7 +358,7 @@ public class BTree<VALUE extends Comparable<VALUE>>
          * Adds an entry.
          *
          * @param entry
-         *            the entry to add.
+         *         the entry to add.
          */
         public void addEntry(final VALUE entry) {
 
@@ -364,7 +369,8 @@ public class BTree<VALUE extends Comparable<VALUE>>
          * Removes the entry at the given index.
          *
          * @param index
-         *            the index.
+         *         the index.
+         *
          * @return the removed entry.
          */
         public VALUE removeEntry(final int index) {
@@ -386,7 +392,8 @@ public class BTree<VALUE extends Comparable<VALUE>>
          * Returns the child with the given index.
          *
          * @param index
-         *            the index.
+         *         the index.
+         *
          * @return the child with the given index.
          */
         public BTreeNode getChild(final int index) {
@@ -398,9 +405,9 @@ public class BTree<VALUE extends Comparable<VALUE>>
          * Adds a child at the given index.
          *
          * @param index
-         *            the index.
+         *         the index.
          * @param child
-         *            the child to add.
+         *         the child to add.
          */
         public void addChild(final int index, final BTreeNode child) {
 
@@ -412,7 +419,7 @@ public class BTree<VALUE extends Comparable<VALUE>>
          * Adds a child.
          *
          * @param child
-         *            the child to add.
+         *         the child to add.
          */
         public void addChild(final BTreeNode child) {
 
@@ -424,7 +431,8 @@ public class BTree<VALUE extends Comparable<VALUE>>
          * Removes the child at the given index.
          *
          * @param index
-         *            the index.
+         *         the index.
+         *
          * @return the removed child.
          */
         public BTreeNode removeChild(final int index) {
@@ -448,7 +456,7 @@ public class BTree<VALUE extends Comparable<VALUE>>
          * Sets the parent of this node.
          *
          * @param parent
-         *            the parent.
+         *         the parent.
          */
         public void setParent(final BTreeNode parent) {
 
@@ -469,13 +477,13 @@ public class BTree<VALUE extends Comparable<VALUE>>
          * parent.
          *
          * @param parent
-         *            the parent.
+         *         the parent.
          */
         public BTreeNode(final BTreeNode parent) {
 
-            this.entries = new ArrayList<VALUE>(
+            this.entries = new ArrayList<>(
                     BTree.this.getMaximumNumberOfChildren() - 1);
-            this.children = new ArrayList<BTreeNode>(
+            this.children = new ArrayList<>(
                     BTree.this.getMaximumNumberOfChildren());
             this.parent = parent;
         }
@@ -485,7 +493,8 @@ public class BTree<VALUE extends Comparable<VALUE>>
          * Finds the entry.
          *
          * @param entry
-         *            the entry to find.
+         *         the entry to find.
+         *
          * @return the value of the entry.
          */
         public VALUE find(final Comparable<?> entry) {
@@ -500,7 +509,8 @@ public class BTree<VALUE extends Comparable<VALUE>>
                 insertionIndex = (insertionIndex + 1) * -1;
 
                 if (insertionIndex < this.children.size()) {
-                    return this.getChild(insertionIndex).find(entry);
+                    return this.getChild(insertionIndex)
+                               .find(entry);
                 }
                 else {
                     return null;
@@ -530,7 +540,7 @@ public class BTree<VALUE extends Comparable<VALUE>>
             }
             else {
                 return this.children.get(this.children.size() - 1)
-                        .findLargestEntry();
+                                    .findLargestEntry();
             }
         }
 
@@ -553,7 +563,8 @@ public class BTree<VALUE extends Comparable<VALUE>>
                 }
             }
             else {
-                return this.children.get(0).findSmallestEntry();
+                return this.children.get(0)
+                                    .findSmallestEntry();
             }
         }
 
@@ -563,7 +574,8 @@ public class BTree<VALUE extends Comparable<VALUE>>
          * Inserts an entry.
          *
          * @param entry
-         *            the entry to insert.
+         *         the entry to insert.
+         *
          * @return the replaced entry.
          */
         public VALUE insert(final VALUE entry) {
@@ -589,7 +601,8 @@ public class BTree<VALUE extends Comparable<VALUE>>
             // internal node
             if (this.children.size() != 0) {
 
-                replacedEntry = this.getChild(insertionIndex).insert(entry);
+                replacedEntry = this.getChild(insertionIndex)
+                                    .insert(entry);
             }
             // leaf node
             else {
@@ -599,7 +612,8 @@ public class BTree<VALUE extends Comparable<VALUE>>
                 this.merge(nodeToInsert, insertionIndex);
             }
 
-            if (this.entries.size() >= BTree.this.getMaximumNumberOfChildren()) {
+            if (this.entries.size()
+                >= BTree.this.getMaximumNumberOfChildren()) {
 
                 // System.out.println("Splitting!");
                 this.split();
@@ -617,14 +631,16 @@ public class BTree<VALUE extends Comparable<VALUE>>
             // + this.children.size());
             // System.out.println("\tMerging "
             // + nodeToMergeWith.getEntries().size() + " entries.");
-            for (int i = 0; i < nodeToMergeWith.getEntries().size(); i++) {
+            for (int i = 0; i < nodeToMergeWith.getEntries()
+                                               .size(); i++) {
 
                 this.addEntry(insertionIndex, nodeToMergeWith.getEntry(i));
             }
 
             // System.out.println("\tMerging "
             // + nodeToMergeWith.getChildren().size() + " children.");
-            for (int i = 0; i < nodeToMergeWith.getChildren().size(); i++) {
+            for (int i = 0; i < nodeToMergeWith.getChildren()
+                                               .size(); i++) {
 
                 this.addChild(insertionIndex + i, nodeToMergeWith.getChild(i));
             }
@@ -641,9 +657,8 @@ public class BTree<VALUE extends Comparable<VALUE>>
             final BTreeNode rightNode = new BTreeNode(this);
 
 
-            final List<VALUE> allEntries = new ArrayList<VALUE>(
-                    this.getEntries());
-            final List<BTreeNode> allChildren = new ArrayList<BTreeNode>(
+            final List<VALUE> allEntries = new ArrayList<>(this.getEntries());
+            final List<BTreeNode> allChildren = new ArrayList<>(
                     this.getChildren());
 
             this.entries.clear();
@@ -692,13 +707,14 @@ public class BTree<VALUE extends Comparable<VALUE>>
             if (this.parent != null) {
 
                 this.parent.removeChild(this.index());
-                int insertionIndex = Arrays.binarySearch(this.parent
-                        .getEntries().toArray(), this.getEntry(0));
+                int insertionIndex = Arrays.binarySearch(
+                        this.parent.getEntries()
+                                   .toArray(), this.getEntry(0));
 
                 if (insertionIndex >= 0) {
                     throw new IllegalStateException(
                             "There seems to be a duplicate entry for key "
-                                    + this.getEntry(0));
+                            + this.getEntry(0));
                 }
                 else {
                     insertionIndex = (insertionIndex + 1) * -1;
@@ -719,7 +735,8 @@ public class BTree<VALUE extends Comparable<VALUE>>
          * Removes the entry.
          *
          * @param entry
-         *            the entry to remove.
+         *         the entry to remove.
+         *
          * @return the removed entry.
          */
         public VALUE remove(final VALUE entry) {
@@ -745,12 +762,13 @@ public class BTree<VALUE extends Comparable<VALUE>>
 
                 if (!found) {
 
-                    removedValue = this.getChild(insertionIndex).remove(entry);
+                    removedValue = this.getChild(insertionIndex)
+                                       .remove(entry);
                 }
                 else {
 
-                    final BTreeNode affectedChild = this
-                            .getChild(insertionIndex);
+                    final BTreeNode affectedChild = this.getChild(
+                            insertionIndex);
 
                     // Choose a new separator (either the largest element in the
                     // left subtree or the smallest element in the right
@@ -786,8 +804,8 @@ public class BTree<VALUE extends Comparable<VALUE>>
             if (parent != null) {
                 // System.out.println(toStringHelper(parent, "Parent: "));
 
-                if (this.entries.size() < (BTree.this
-                        .getMinimumNumberOfChildren() - 1)) {
+                if (this.entries.size() < (
+                        BTree.this.getMinimumNumberOfChildren() - 1)) {
 
                     // System.out.println("Rebalancing:");
                     // System.out.println(toStringHelper(this, "Tree: "));
@@ -803,25 +821,29 @@ public class BTree<VALUE extends Comparable<VALUE>>
                     // least minimumNumberOfChildren keys. Furthermore, the
                     // heights of the siblings remain unchanged. Therefore, the
                     // resulting tree is a valid B-tree.
-                    if ((leftSibling != null)
-                            && (leftSibling.getEntries().size() >= BTree.this
-                                    .getMinimumNumberOfChildren())) {
+                    if ((leftSibling != null) && (leftSibling.getEntries()
+                                                             .size()
+                                                  >= BTree.this
+                                                          .getMinimumNumberOfChildren())) {
 
                         // System.out.println("LL Rotation!");
                         final int index = leftSibling.index();
 
-                        final VALUE maxLeft = leftSibling
-                                .removeEntry(leftSibling.getEntries().size() - 1);
+                        final VALUE maxLeft = leftSibling.removeEntry(
+                                leftSibling.getEntries()
+                                           .size() - 1);
 
                         final VALUE parentKey = parent.removeEntry(index);
 
                         parent.addEntry(index, maxLeft);
                         this.addEntry(0, parentKey);
 
-                        if (!leftSibling.getChildren().isEmpty()) {
+                        if (!leftSibling.getChildren()
+                                        .isEmpty()) {
                             final BTreeNode maxChildLeft = leftSibling
-                                    .removeChild(leftSibling.getChildren()
-                                            .size() - 1);
+                                    .removeChild(
+                                    leftSibling.getChildren()
+                                               .size() - 1);
                             this.addChild(0, maxChildLeft);
                         }
 
@@ -832,9 +854,10 @@ public class BTree<VALUE extends Comparable<VALUE>>
                     // also has a sibling immediately on the right with a least
                     // minimumNumberOfChildren keys. In this case, the tree can
                     // be balanced by doing an RR rotation.
-                    else if ((rightSibling != null)
-                            && (rightSibling.getEntries().size() >= BTree.this
-                                    .getMinimumNumberOfChildren())) {
+                    else if ((rightSibling != null) && (
+                            rightSibling.getEntries()
+                                        .size()
+                            >= BTree.this.getMinimumNumberOfChildren())) {
 
                         // System.out.println("RR Rotation!");
                         final int index = rightSibling.index();
@@ -846,9 +869,11 @@ public class BTree<VALUE extends Comparable<VALUE>>
 
                         this.addEntry(0, parentKey);
 
-                        if (!rightSibling.getChildren().isEmpty()) {
+                        if (!rightSibling.getChildren()
+                                         .isEmpty()) {
                             final BTreeNode minChildRight = rightSibling
-                                    .removeChild(0);
+                                    .removeChild(
+                                    0);
                             this.addChild(minChildRight);
                         }
                     }
@@ -875,7 +900,8 @@ public class BTree<VALUE extends Comparable<VALUE>>
 
                         if (leftSibling != null) {
 
-                            // System.out.println("Merging left into this node!");
+                            // System.out.println("Merging left into this
+                            // node!");
                             final int index = leftSibling.index();
 
                             // remove key from parent
@@ -891,7 +917,8 @@ public class BTree<VALUE extends Comparable<VALUE>>
                         }
                         else if (rightSibling != null) {
 
-                            // System.out.println("Merging this into right node!");
+                            // System.out.println("Merging this into right
+                            // node!");
                             final int index = this.index();
                             // remove key from parent
                             final VALUE parentKey = parent.removeEntry(index);
@@ -915,7 +942,7 @@ public class BTree<VALUE extends Comparable<VALUE>>
                             // height--;
                             throw new IllegalStateException(
                                     "Tree corrupted: Leaf Node with a single "
-                                            + "child detected!");
+                                    + "child detected!");
                         }
                     }
 
@@ -928,7 +955,8 @@ public class BTree<VALUE extends Comparable<VALUE>>
                         // System.out.println("Children: " +
                         // this.children.size());
                         BTree.this.setRoot(this.getChild(0));
-                        BTree.this.getRoot().setParent(null);
+                        BTree.this.getRoot()
+                                  .setParent(null);
                         // System.out.println("B: Reducing height from " +
                         // height);
                         BTree.this.setHeight(BTree.this.height() - 1);
@@ -948,15 +976,18 @@ public class BTree<VALUE extends Comparable<VALUE>>
 
         private int index() {
 
-            return this.parent.getChildren().indexOf(this);
+            return this.parent.getChildren()
+                              .indexOf(this);
         }
 
         private BTreeNode rightSibling() {
 
             BTreeNode rightSibling = null;
 
-            if (this.index() < (this.parent.getChildren().size() - 1)) {
-                rightSibling = this.parent.getChildren().get(this.index() + 1);
+            if (this.index() < (this.parent.getChildren()
+                                           .size() - 1)) {
+                rightSibling = this.parent.getChildren()
+                                          .get(this.index() + 1);
             }
 
             return rightSibling;
@@ -968,7 +999,8 @@ public class BTree<VALUE extends Comparable<VALUE>>
 
 
             if (this.index() > 0) {
-                leftSibling = this.parent.getChildren().get(this.index() - 1);
+                leftSibling = this.parent.getChildren()
+                                         .get(this.index() - 1);
             }
 
             return leftSibling;
@@ -997,8 +1029,8 @@ public class BTree<VALUE extends Comparable<VALUE>>
         }
         for (; j < max; j++) {
             if (j < children.size()) {
-                returnValue += this.toStringHelper(children.get(j), indent
-                        + "\t");
+                returnValue += this.toStringHelper(children.get(j),
+                        indent + "\t");
             }
             if (j < entries.size()) {
                 returnValue += indent + entries.get(j) + "\n";
@@ -1012,16 +1044,16 @@ public class BTree<VALUE extends Comparable<VALUE>>
 
     /**
      * @param args
-     *            unused
+     *         unused
      */
     public static void main(final String[] args) {
 
-        final BTree<String> st = new BTree<String>(3);
+        final BTree<String> st = new BTree<>(3);
 
         System.out.println("Maximum number of children:  "
-                + st.getMaximumNumberOfChildren());
+                           + st.getMaximumNumberOfChildren());
         System.out.println("Minimum number of children:  "
-                + st.getMinimumNumberOfChildren());
+                           + st.getMinimumNumberOfChildren());
 
         // st.put("D", "128.112.136.12");
         st.add("D");

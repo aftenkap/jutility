@@ -53,8 +53,8 @@ public class TreeTest {
     @Before
     public void setUp() {
 
-        this.stringTree = new Tree<String>();
-        this.stringList = new ArrayList<String>();
+        this.stringTree = new Tree<>();
+        this.stringList = new ArrayList<>();
 
         this.stringList.add("A");
         this.stringList.add("B");
@@ -144,8 +144,8 @@ public class TreeTest {
         Assert.assertNotNull(e);
         Assert.assertTrue(e instanceof IllegalStateException);
         Assert.assertEquals(
-                "Cannot remove element without calling next() immediately before.",
-                e.getMessage());
+                "Cannot remove element without calling next() immediately "
+                + "before.", e.getMessage());
 
         System.out.println("Iterator: passed!");
     }
@@ -153,8 +153,7 @@ public class TreeTest {
     /**
      * Test method for
      * {@link org.jutility.common.datatype.tree.Tree#add(java.lang.Object)},
-     * {@link org.jutility.common.datatype.tree.Tree#addChild(java.lang.Object, java.lang.Object)}
-     * ,{@link java.util.AbstractCollection#contains(java.lang.Object)},
+     * {@link org.jutility.common.datatype.tree.Tree#addChild(java.lang.Object, java.lang.Object)} ,{@link java.util.AbstractCollection#contains(java.lang.Object)},
      * {@link org.jutility.common.datatype.tree.Tree#remove(java.lang.Object)},
      * and {@link org.jutility.common.datatype.tree.Tree#size()}.
      */
@@ -286,8 +285,8 @@ public class TreeTest {
         Assert.assertNotNull(e);
         Assert.assertTrue(e instanceof IllegalStateException);
         Assert.assertEquals(
-                "Cannot remove element without calling next() immediately before.",
-                e.getMessage());
+                "Cannot remove element without calling next() immediately "
+                + "before.", e.getMessage());
 
 
         Assert.assertEquals("[]", this.stringTree.toString());
@@ -318,7 +317,8 @@ public class TreeTest {
         System.out.println(this.stringTree);
 
         Assert.assertTrue(this.stringTree.addChild("D", "C"));
-        Assert.assertEquals("[F, B, A, D, C, O, G]", this.stringTree.toString());
+        Assert.assertEquals("[F, B, A, D, C, O, G]",
+                this.stringTree.toString());
         System.out.println(this.stringTree);
 
         Assert.assertTrue(this.stringTree.addChild("D", "E"));
@@ -416,8 +416,8 @@ public class TreeTest {
         Assert.assertNotNull(e);
         Assert.assertTrue(e instanceof IllegalStateException);
         Assert.assertEquals(
-                "Cannot remove element without calling next() immediately before.",
-                e.getMessage());
+                "Cannot remove element without calling next() immediately "
+                + "before.", e.getMessage());
 
         Assert.assertEquals("[]", this.toPostorderString(this.stringTree));
         System.out.println(this.toPostorderString(this.stringTree));
@@ -428,7 +428,7 @@ public class TreeTest {
         System.out.println(this.toPostorderString(this.stringTree));
         it = this.stringTree.postorderIterator();
         Assert.assertEquals("F", it.next());
-        Assert.assertEquals(new TreeNode<String>("F"), it.getTreeNode());
+        Assert.assertEquals(new TreeNode<>("F"), it.getTreeNode());
 
         this.postorderRemove(this.stringTree, "F");
         Assert.assertTrue(this.stringTree.isEmpty());
@@ -565,8 +565,8 @@ public class TreeTest {
     @Test
     public void testInheritedMethods() {
 
-        this.stringTree = new Tree<String>(this.stringList);
-        Assert.assertTrue(this.stringList.containsAll(this.stringList));
+        this.stringTree = new Tree<>(this.stringList);
+        Assert.assertTrue(this.stringTree.containsAll(this.stringList));
 
 
         System.out.println("Constructor(Collection): passed!");
@@ -591,7 +591,7 @@ public class TreeTest {
         for (final String string : this.stringList) {
             Assert.assertTrue(this.stringTree.contains(string));
         }
-        Assert.assertTrue(this.stringList.containsAll(this.stringList));
+        Assert.assertTrue(this.stringTree.containsAll(this.stringList));
         Assert.assertTrue(this.stringTree.add("Z"));
         Assert.assertTrue(this.stringTree.containsAll(this.stringList));
 
@@ -620,7 +620,8 @@ public class TreeTest {
             if (i > 0) {
                 returnValue.append(", ");
             }
-            returnValue.append(it.next().toString());
+            returnValue.append(it.next()
+                                 .toString());
             i++;
         }
 

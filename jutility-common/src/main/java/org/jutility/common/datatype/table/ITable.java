@@ -48,7 +48,7 @@ public interface ITable<T>
      *
      * @return the {@link IterationOrder} of the {@link Table}.
      */
-    public abstract IterationOrder getIterationOrder();
+    IterationOrder getIterationOrder();
 
     /**
      * Sets the {@link IterationOrder} of the {@link Table}.
@@ -56,7 +56,7 @@ public interface ITable<T>
      * @param iterationOrder
      *            the new {@link IterationOrder}.
      */
-    public abstract void setIterationOrder(IterationOrder iterationOrder);
+    void setIterationOrder(IterationOrder iterationOrder);
 
     /**
      * Adds the value to the table in the specified row and column.
@@ -71,7 +71,7 @@ public interface ITable<T>
      * @return {@code true} if the table did not already contain the value;
      *         {@code false} otherwise.
      */
-    public abstract boolean add(int row, int column, T value);
+    boolean add(int row, int column, T value);
 
 
     /**
@@ -84,7 +84,7 @@ public interface ITable<T>
      * 
      * @return the value in the cell or {@code null} if no value exists.
      */
-    public abstract T get(int row, int column);
+    T get(int row, int column);
 
 
 
@@ -99,7 +99,7 @@ public interface ITable<T>
      * @return {@code true}, if the table contained the cell; {@code false}
      *         otherwise.
      */
-    public abstract boolean remove(int row, int column);
+    boolean remove(int row, int column);
 
 
     /**
@@ -113,7 +113,7 @@ public interface ITable<T>
      * @return {@code true} if the table did not already contain the value;
      *         {@code false} otherwise.
      */
-    public abstract boolean add(CellLocation location, T value);
+    boolean add(CellLocation location, T value);
 
 
     /**
@@ -124,7 +124,7 @@ public interface ITable<T>
      * 
      * @return the value in the cell or {@code null} if no value exists.
      */
-    public abstract T get(CellLocation location);
+    T get(CellLocation location);
 
     /**
      * Removes the cell at the specified location from the table.
@@ -135,14 +135,14 @@ public interface ITable<T>
      * @return {@code true}, if the table contained the cell; {@code false}
      *         otherwise.
      */
-    public abstract boolean remove(CellLocation location);
+    boolean remove(CellLocation location);
 
     /**
      * Returns the rows of this {@link Table}.
      *
      * @return the rows of this {@link Table}.
      */
-    public abstract Collection<? extends List<T>> getRows();
+    Collection<? extends List<T>> getRows();
 
     /**
      * Returns the row with the provided index.
@@ -152,7 +152,7 @@ public interface ITable<T>
      * @return the row with the provided index or {@code null}, if the table
      *         does not contain a row with the provided index.
      */
-    public abstract List<T> getRow(int index);
+    List<T> getRow(int index);
 
     /**
      * Removes the row with the provided index.
@@ -162,14 +162,14 @@ public interface ITable<T>
      * @return the removed row or {@code null}, if the table did not contain a
      *         row with the provided index.
      */
-    public abstract List<T> removeRow(int index);
+    List<T> removeRow(int index);
 
     /**
      * Returns the columns of this {@code ITable}.
      *
      * @return the columns of this {@code ITable}.
      */
-    public abstract Collection<? extends List<T>> getColumns();
+    Collection<? extends List<T>> getColumns();
 
     /**
      * Returns the {@link CellContainer Column} with the provided index.
@@ -179,7 +179,7 @@ public interface ITable<T>
      * @return the column with the provided index or {@code null}, if the table
      *         does not contain a column with the provided index.
      */
-    public abstract List<T> getColumn(int index);
+    List<T> getColumn(int index);
 
     /**
      * Removes the column with the provided index.
@@ -189,48 +189,48 @@ public interface ITable<T>
      * @return the removed column or {@code null}, if the table did not contain
      *         a column with the provided index.
      */
-    public abstract List<T> removeColumn(int index);
+    List<T> removeColumn(int index);
 
     /**
      * Returns the {@link ICell cell} values of this {@code ITable}.
      *
      * @return the {@link ICell cell} values.
      */
-    public abstract List<T> getValues();
+    List<T> getValues();
 
 
     /**
      * Clears all values from the {@link ITable}.
      */
-    public abstract void clear();
+    void clear();
 
     /**
      * Returns the {@link CellRange} of this {@link ITable Table}.
      *
      * @return the {@link CellRange} of this {@link ITable Table}.
      */
-    public abstract CellRange cellRange();
+    CellRange cellRange();
 
     /**
      * Returns the number of rows of the table.
      *
      * @return the number of rows of the table.
      */
-    public abstract int rows();
+    int rows();
 
     /**
      * Returns the number of columns of the table.
      *
      * @return the number of columns of the table.
      */
-    public abstract int columns();
+    int columns();
 
     /**
      * Returns the size of the table (the number of cells).
      *
      * @return the size of the table.
      */
-    public abstract int size();
+    int size();
 
     /**
      * Returns an {@link Iterator} over the values of the table with row-major
@@ -239,7 +239,7 @@ public interface ITable<T>
      * @return an {@link Iterator} over the values of the table with row-major
      *         order.
      */
-    public abstract Iterator<T> rowMajorOrderIterator();
+    Iterator<T> rowMajorOrderIterator();
 
     /**
      * Returns an {@link Iterator} over the values of the table with
@@ -248,5 +248,5 @@ public interface ITable<T>
      * @return an {@link Iterator} over the values of the table with
      *         column-major order.
      */
-    public abstract Iterator<T> columnMajorOrderIterator();
+    Iterator<T> columnMajorOrderIterator();
 }

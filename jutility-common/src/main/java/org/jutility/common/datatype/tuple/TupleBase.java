@@ -133,6 +133,7 @@ public abstract class TupleBase<T>
      * @param type
      *            The type of this tuple.
      */
+    @SafeVarargs
     protected TupleBase(final Class<? extends T> type, final T... components) {
 
         this(components, type, false);
@@ -150,6 +151,7 @@ public abstract class TupleBase<T>
      *            whether or not the constructor is invoked during
      *            serialization.
      */
+    @SafeVarargs
     protected TupleBase(final Class<? extends T> type,
             final boolean serialization, final T... components) {
 
@@ -184,7 +186,7 @@ public abstract class TupleBase<T>
                     "Cannot create a tuple without a type!");
         }
 
-        this.components = new LinkedList<T>();
+        this.components = new LinkedList<>();
 
         if ((components != null) && (type != null)) {
 

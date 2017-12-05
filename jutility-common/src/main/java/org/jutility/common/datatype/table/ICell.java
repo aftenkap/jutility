@@ -33,7 +33,7 @@ import java.util.Iterator;
  * value type.
  *
  * @param <T>
- *            the type of values to be contained in the cell.
+ *         the type of values to be contained in the cell.
  *
  * @author Peter J. Radics
  * @version 0.1.2
@@ -46,100 +46,79 @@ public interface ICell<T> {
      *
      * @return the row.
      */
-    public abstract int getRow();
+    int getRow();
 
     /**
      * Sets the row.
      *
      * @param row
-     *            the row.
+     *         the row.
      */
-    public abstract void setRow(final int row);
+    void setRow(final int row);
 
     /**
      * Returns the column.
      *
      * @return the column.
      */
-    public abstract int getColumn();
+    int getColumn();
 
     /**
      * Sets the column.
      *
      * @param column
-     *            the column.
+     *         the column.
      */
-    public abstract void setColumn(final int column);
+    void setColumn(final int column);
 
     /**
      * Returns the {@link CellLocation location} of this sell.
      *
      * @return the {@link CellLocation location} of this sell.
      */
-    public abstract CellLocation getLocation();
+    CellLocation getLocation();
 
 
     /**
      * Sets the {@link CellLocation location} of this sell.
      *
      * @param location
-     *            the {@link CellLocation location} of this sell.
+     *         the {@link CellLocation location} of this sell.
      */
-    public abstract void setLocation(final CellLocation location);
+    void setLocation(final CellLocation location);
 
     /**
      * Returns the value.
      *
      * @return the value.
      */
-    public abstract T getValue();
+    T getValue();
 
     /**
      * Sets the value.
      *
      * @param value
-     *            the value.
+     *         the value.
      */
-    public abstract void setValue(final T value);
+    void setValue(final T value);
 
 
     /**
      * A {@link Comparator} for {@link ICell Cells} using row-major order.
-     *
      */
-    public static Comparator<ICell<?>> rowMajorOrder    = new Comparator<ICell<?>>() {
-
-                                                            @Override
-                                                            public int compare(
-                                                                    final ICell<?> lhs,
-                                                                    final ICell<?> rhs) {
-
-                                                                return CellLocation.rowMajorOrder
-                                                                        .compare(
-                                                                                lhs.getLocation(),
-                                                                                rhs.getLocation());
-                                                            }
-                                                        };
+    Comparator<ICell<?>> rowMajorOrder = (lhs, rhs) ->
+            CellLocation.rowMajorOrder.compare(
+            lhs.getLocation(), rhs.getLocation());
 
 
     /**
      * A {@link Comparator} for {@link ICell Cells} using column-major order.
      */
-    public static Comparator<ICell<?>> columnMajorOrder =
+    Comparator<ICell<?>> columnMajorOrder =
 
-                                                        new Comparator<ICell<?>>() {
+            (lhs, rhs) -> CellLocation.columnMajorOrder.compare(
+                    lhs.getLocation(), rhs.getLocation());
 
-                                                            @Override
-                                                            public int compare(
-                                                                    final ICell<?> lhs,
-                                                                    final ICell<?> rhs) {
-
-                                                                return CellLocation.columnMajorOrder
-                                                                        .compare(
-                                                                                lhs.getLocation(),
-                                                                                rhs.getLocation());
-                                                            }
-                                                        };
 
 
     /**
@@ -147,12 +126,13 @@ public interface ICell<T> {
      * {@link Iterator} of a row or column.
      *
      * @param <V>
-     *            the value type of the table cells.
+     *         the value type of the table cells.
+     *
      * @author Peter J. Radics
      * @version 0.1.2
      * @since 0.1.0
      */
-    public static class CellValueIterator<V>
+    class CellValueIterator<V>
             implements Iterator<V> {
 
         private final Iterator<? extends ICell<V>> iterator;
@@ -161,7 +141,7 @@ public interface ICell<T> {
          * Creates a new instance of the {@code ICell.CellValueIterator} class.
          *
          * @param iterator
-         *            the cell iterator to use with this iterator.
+         *         the cell iterator to use with this iterator.
          */
         public CellValueIterator(final Iterator<? extends ICell<V>> iterator) {
 
@@ -177,7 +157,8 @@ public interface ICell<T> {
         @Override
         public V next() {
 
-            return this.iterator.next().getValue();
+            return this.iterator.next()
+                    .getValue();
         }
 
         @Override
