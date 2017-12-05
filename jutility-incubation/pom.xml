@@ -28,12 +28,8 @@
 
     <scm>
         <url>scm:git:git@github.com:aftenkap/jutility-incubation.git</url>
-        <connection>scm:git:git@github.com:aftenkap/jutility-incubation.git
-        </connection>
-        <developerConnection>
-            scm:git:git@github.com:aftenkap/jutility-incubation.git
-        </developerConnection>
-        <tag>master</tag>
+        <connection>scm:git:git@github.com:aftenkap/jutility-incubation.git</connection>
+        <developerConnection>scm:git:git@github.com:aftenkap/jutility-incubation.git</developerConnection>
     </scm>
 
     <issueManagement>
