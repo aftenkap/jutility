@@ -241,9 +241,10 @@ public class CsvSerializer
             Map<String, String> rowValueMap;
             while ((rowValueMap = mapReader.read(headerArray)) != null) {
 
+                final Map<String, String> finalRowValueMap = rowValueMap;
                 rowValueMap.keySet()
                         .forEach(key -> contents.get(key)
-                                            .add(rowValueMap.get(key)));
+                                            .add(finalRowValueMap.get(key)));
             }
 
 
