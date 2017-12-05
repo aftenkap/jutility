@@ -1,101 +1,104 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.jutility</groupId>
-	<artifactId>jutility-all</artifactId>
+    <parent>
+        <groupId>org.jutility</groupId>
+        <artifactId>jutility</artifactId>
+        <version>0.2.0-SNAPSHOT</version>
+        <relativePath>../</relativePath>
+    </parent>
 
-	<name>jUtility Library Bundle</name>
-	<description>The jutility-all bundle provides a full assembly of the
-		modules of the jUtility library.
-	</description>
-	<url>http://jutility.org</url>
+    <artifactId>jutility-all</artifactId>
+
+    <name>jUtility Library Bundle</name>
+    <description>The jutility-all bundle provides a full assembly of the
+        modules of the jUtility library.
+    </description>
+    <url>http://jutility.org</url>
 
 
-	<parent>
-		<groupId>org.jutility</groupId>
-		<artifactId>jutility</artifactId>
-		<version>0.2.0-SNAPSHOT</version>
-		<relativePath>../</relativePath>
-	</parent>
+    <inceptionYear>2013</inceptionYear>
 
-	<inceptionYear>2013</inceptionYear>
+    <packaging>pom</packaging>
 
-	<packaging>pom</packaging>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${maven.assembly.plugin.version}</version>
+                <configuration>
+                    <appendAssemblyId>false</appendAssemblyId>
 
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>${maven.assembly.plugin.version}</version>
-				<configuration>
-					<appendAssemblyId>false</appendAssemblyId>
+                    <descriptors>
+                        <descriptor>assembly.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly
+                        </id> <!-- this is used for inheritance merges -->
+                        <phase>package
+                        </phase> <!-- bind to the packaging phase -->
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven.source.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven.javadoc.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
 
-					<descriptors>
-						<descriptor>assembly.xml</descriptor>
-					</descriptors>
-				</configuration>
-				<executions>
-					<execution>
-						<id>make-assembly</id> <!-- this is used for inheritance merges -->
-						<phase>package</phase> <!-- bind to the packaging phase -->
-						<goals>
-							<goal>single</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<version>${maven.source.plugin.version}</version>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>${maven.javadoc.plugin.version}</version>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
+    </build>
 
-	</build>
+    <dependencies>
 
-	<dependencies>
-
-		<dependency>
-			<groupId>org.jutility</groupId>
-			<artifactId>jutility-common</artifactId>
-			<version>${org.jutility.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jutility</groupId>
-			<artifactId>jutility-io</artifactId>
-			<version>${org.jutility.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jutility</groupId>
-			<artifactId>jutility-javafx</artifactId>
-			<version>${org.jutility.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jutility</groupId>
-			<artifactId>jutility-math</artifactId>
-			<version>${org.jutility.version}</version>
-		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.jutility</groupId>
+            <artifactId>jutility-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jutility</groupId>
+            <artifactId>jutility-io</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jutility</groupId>
+            <artifactId>jutility-javafx</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jutility</groupId>
+            <artifactId>jutility-math</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>
