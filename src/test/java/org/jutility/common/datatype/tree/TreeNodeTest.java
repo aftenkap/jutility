@@ -24,12 +24,12 @@ package org.jutility.common.datatype.tree;
 //@formatter:on
 
 
-import java.util.List;
-import java.util.NoSuchElementException;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.List;
+import java.util.NoSuchElementException;
 
 
 /**
@@ -39,6 +39,8 @@ import org.junit.Test;
  * @version 0.1.2
  * @since 0.1.0
  */
+@SuppressWarnings({ "ConstantConditions", "EqualsBetweenInconvertibleTypes",
+                    "ObjectEqualsNull" })
 public class TreeNodeTest {
 
 
@@ -52,16 +54,16 @@ public class TreeNodeTest {
     @Before
     public void setUp() {
 
-        this.testNode = new TreeNode<String>("A");
-        this.parent = new TreeNode<String>("B");
-        this.child = new TreeNode<String>("C", this.parent);
+        this.testNode = new TreeNode<>("A");
+        this.parent = new TreeNode<>("B");
+        this.child = new TreeNode<>("C", this.parent);
     }
 
     /**
      * Test method for
-     * {@link org.jutility.common.datatype.tree.TreeNode#TreeNode(Object)} and
-     * {@link org.jutility.common.datatype.tree.TreeNode#TreeNode(Object, TreeNode)}
-     * .
+     * {@link org.jutility.common.datatype.tree.TreeNode#TreeNode(Object)}
+     * and {@link org.jutility.common.datatype.tree.TreeNode#TreeNode(Object,
+     * TreeNode)} .
      */
     @SuppressWarnings("unused")
     @Test
@@ -69,6 +71,7 @@ public class TreeNodeTest {
 
         Exception ex = null;
         try {
+            //noinspection ConstantConditions
             new TreeNode<String>(null);
         }
         catch (final Exception e) {
@@ -215,7 +218,7 @@ public class TreeNodeTest {
         Assert.assertEquals(this.child, parentNodeChildren.get(0));
 
         final TreeNode<String> actualNode = parentNodeChildren.get(1);
-        Assert.assertEquals(new TreeNode<String>("E"), actualNode);
+        Assert.assertEquals(new TreeNode<>("E"), actualNode);
 
         Assert.assertEquals(this.parent, this.child.getParent());
         Assert.assertEquals(this.parent, actualNode.getParent());
@@ -254,9 +257,9 @@ public class TreeNodeTest {
     }
 
     /**
-     * Test method for
-     * {@link org.jutility.common.datatype.tree.TreeNode#replaceChild(org.jutility.common.datatype.tree.TreeNode, org.jutility.common.datatype.tree.TreeNode)}
-     * .
+     * Test method for {@link org.jutility.common.datatype.tree
+     * .TreeNode#replaceChild(org.jutility.common.datatype.tree.TreeNode,
+     * org.jutility.common.datatype.tree.TreeNode)} .
      */
     @Test
     public void testReplaceChildTreeNode() {
@@ -341,9 +344,9 @@ public class TreeNodeTest {
     }
 
     /**
-     * Test method for
-     * {@link org.jutility.common.datatype.tree.TreeNode#replaceChild(java.lang.Object, java.lang.Object)}
-     * .
+     * Test method for {@link org.jutility.common.datatype.tree
+     * .TreeNode#replaceChild(java.lang.Object,
+     * java.lang.Object)} .
      */
     @Test
     public void testReplaceChildE() {
@@ -369,7 +372,7 @@ public class TreeNodeTest {
         List<TreeNode<String>> parentNodeChildren = this.parent.getChildren();
         Assert.assertEquals(1, parentNodeChildren.size());
         TreeNode<String> actualNode = parentNodeChildren.get(0);
-        Assert.assertEquals(new TreeNode<String>("E"), actualNode);
+        Assert.assertEquals(new TreeNode<>("E"), actualNode);
 
         Assert.assertNull(this.child.getParent());
         Assert.assertEquals(this.parent, actualNode.getParent());
@@ -389,8 +392,8 @@ public class TreeNodeTest {
         actualNode = parentNodeChildren.get(0);
         newActualNode = parentNodeChildren.get(1);
 
-        Assert.assertEquals(new TreeNode<String>("E"), actualNode);
-        Assert.assertEquals(new TreeNode<String>("C"), newActualNode);
+        Assert.assertEquals(new TreeNode<>("E"), actualNode);
+        Assert.assertEquals(new TreeNode<>("C"), newActualNode);
 
         Assert.assertEquals(this.parent, actualNode.getParent());
         Assert.assertEquals(this.parent, newActualNode.getParent());
@@ -403,7 +406,7 @@ public class TreeNodeTest {
         parentNodeChildren = this.parent.getChildren();
         Assert.assertEquals(1, parentNodeChildren.size());
         actualNode = parentNodeChildren.get(0);
-        Assert.assertEquals(new TreeNode<String>("C"), actualNode);
+        Assert.assertEquals(new TreeNode<>("C"), actualNode);
 
     }
 
@@ -434,7 +437,7 @@ public class TreeNodeTest {
     @Test
     public void testEqualsObject() {
 
-        Assert.assertEquals(new TreeNode<String>("A"), this.testNode);
+        Assert.assertEquals(new TreeNode<>("A"), this.testNode);
         Assert.assertFalse(this.testNode.equals(null));
         Assert.assertFalse(this.testNode.equals("A"));
         Assert.assertFalse(this.testNode.equals(this.parent));

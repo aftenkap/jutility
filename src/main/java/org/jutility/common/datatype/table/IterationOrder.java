@@ -41,5 +41,5 @@ public enum IterationOrder {
     /**
      * Iteration as a column-major table.
      */
-    COLUMN_MAJOR;
+    COLUMN_MAJOR
 }

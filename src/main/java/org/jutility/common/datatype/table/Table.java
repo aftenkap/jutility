@@ -62,14 +62,14 @@ public class Table<T>
     public boolean add(final int row, final int column, final T value) {
 
 
-        return this.add(new Cell<T>(row, column, value));
+        return this.add(new Cell<>(row, column, value));
     }
 
     @Override
     public boolean add(CellLocation location, T value) {
 
-        return this.add(new Cell<T>(location.getRow(), location.getColumn(),
-                value));
+        return this.add(
+                new Cell<>(location.getRow(), location.getColumn(), value));
     }
 
 
@@ -124,7 +124,7 @@ public class Table<T>
     public static <S> ITable<S> convert(final ITable<? extends S> table,
             final Class<S> type) {
 
-        return new Table<S>(table);
+        return new Table<>(table);
     }
 
     /**

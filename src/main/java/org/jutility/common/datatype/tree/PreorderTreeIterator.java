@@ -25,20 +25,20 @@ import java.util.NoSuchElementException;
 
 
 /**
+ * @param <E>
+ *         the value type.
  *
  * @author Peter J. Radics
  * @version 1.0
- * @param <E>
- *            the value type.
  */
 public class PreorderTreeIterator<E>
         implements Iterator<E> {
 
 
-    private final Tree<E>                 tree;
+    private final Tree<E> tree;
 
     private final LinkedList<TreeNode<E>> stack;
-    private TreeNode<E>                   currentNode;
+    private       TreeNode<E>             currentNode;
 
 
 
@@ -46,14 +46,14 @@ public class PreorderTreeIterator<E>
      * Creates a new instance of the {@code PreorderTreeIterator} class.
      *
      * @param tree
-     *            the tree to iterate over.
+     *         the tree to iterate over.
      */
     protected PreorderTreeIterator(final Tree<E> tree) {
 
 
         this.tree = tree;
 
-        this.stack = new LinkedList<TreeNode<E>>();
+        this.stack = new LinkedList<>();
 
         if (!this.tree.isEmpty()) {
             this.stack.addFirst(this.tree.getRoot());
@@ -80,16 +80,11 @@ public class PreorderTreeIterator<E>
 
             this.currentNode = this.stack.removeFirst();
 
-            final E returnValue = this.currentNode.getElement();
+            return this.currentNode.getElement();
+        }
 
-            // System.out.println("Currently at: " + returnValue);
-            // System.out.println("Stack: " + this.stack.toString());
-            return returnValue;
-        }
-        else {
-            throw new NoSuchElementException(
-                    "Trying to iterate past the last element of the tree.");
-        }
+        throw new NoSuchElementException(
+                "Trying to iterate past the last element of the tree.");
     }
 
 
@@ -98,7 +93,8 @@ public class PreorderTreeIterator<E>
 
         if (this.currentNode == null) {
             throw new IllegalStateException(
-                    "Cannot remove element without calling next() immediately before.");
+                    "Cannot remove element without calling next() immediately"
+                    + " before.");
         }
         else {
 
@@ -106,9 +102,11 @@ public class PreorderTreeIterator<E>
             if (this.currentNode.getParent() != null) {
 
                 // Leaf node
-                if (this.currentNode.getChildren().isEmpty()) {
+                if (this.currentNode.getChildren()
+                        .isEmpty()) {
 
-                    this.currentNode.getParent().removeChild(this.currentNode);
+                    this.currentNode.getParent()
+                            .removeChild(this.currentNode);
                 }
                 // Not leaf node
                 else {
@@ -117,7 +115,8 @@ public class PreorderTreeIterator<E>
                     final TreeNode<E> parent = this.currentNode.getParent();
 
                     final TreeNode<E> firstChild = this.currentNode
-                            .getChildren().get(0);
+                            .getChildren()
+                            .get(0);
 
                     this.currentNode.removeChild(firstChild);
 
@@ -151,19 +150,22 @@ public class PreorderTreeIterator<E>
             // Root
             else {
                 // Leaf node
-                if (this.currentNode.getChildren().isEmpty()) {
+                if (this.currentNode.getChildren()
+                        .isEmpty()) {
                     this.tree.setRoot(null);
                 }
                 // Not leaf node
                 else {
 
                     // System.out
-                    // .println("In haaaaaaare!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                    // .println("In
+                    // haaaaaaare!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                     // System.out.println("Stack: " + this.stack);
 
 
                     final TreeNode<E> firstChild = this.currentNode
-                            .getChildren().get(0);
+                            .getChildren()
+                            .get(0);
                     // if (!this.stack.peekFirst().equals(firstChild)) {
                     //
                     // throw new IllegalStateException(
@@ -210,16 +212,6 @@ public class PreorderTreeIterator<E>
         }
     }
 
-    /**
-     * Inserts an element into the tree. The element is inserted immediately
-     * before the next element that would be returned by next, if any. (If the
-     * tree contains no elements, the new element becomes the root of the tree.)
-     * The new element is inserted before the implicit cursor: a subsequent call
-     * to next would be unaffected.
-     *
-     * @param element
-     *            the element to be inserted.
-     */
     // public void insert(E element) {
     //
     // if (this.currentNode == null) {
@@ -306,8 +298,8 @@ public class PreorderTreeIterator<E>
         if (!children.isEmpty()) {
 
             this.stack.removeFirst();
-            final ListIterator<TreeNode<E>> it = children.listIterator(children
-                    .size());
+            final ListIterator<TreeNode<E>> it = children.listIterator(
+                    children.size());
 
 
             // We enqueue all children in reverse order

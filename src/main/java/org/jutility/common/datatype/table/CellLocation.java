@@ -24,10 +24,10 @@ package org.jutility.common.datatype.table;
 // @formatter:on
 
 
-import java.util.Comparator;
-
 import org.jutility.common.datatype.tuple.ITuple2;
 import org.jutility.common.datatype.tuple.Tuple2;
+
+import java.util.Comparator;
 
 
 /**
@@ -85,9 +85,9 @@ public class CellLocation
      * provided values.
      *
      * @param row
-     *            the row index.
+     *         the row index.
      * @param column
-     *            the column index.
+     *         the column index.
      */
     public CellLocation(final int row, final int column) {
 
@@ -99,8 +99,7 @@ public class CellLocation
      * provided {@link ITuple2} {@code <}{@link Integer} {@code >}.
      *
      * @param tupleToCopy
-     *            the {@link ITuple2} {@code <}{@link Integer} {@code >} to
-     *            copy.
+     *         the {@link ITuple2} {@code <}{@link Integer} {@code >} to copy.
      */
     public CellLocation(final ITuple2<Integer> tupleToCopy) {
 
@@ -111,96 +110,19 @@ public class CellLocation
     /**
      * A {@link Comparator} for {@link CellLocation CellLocations} using
      * row-major order.
-     *
      */
-    public static Comparator<CellLocation> rowMajorOrder    =
-
-                                                            new Comparator<CellLocation>() {
-
-                                                                @Override
-                                                                public int compare(
-                                                                        final CellLocation lhs,
-                                                                        final CellLocation rhs) {
-
-                                                                    final int compareRows = lhs
-                                                                            .getRow()
-                                                                            - rhs.getRow();
-
-                                                                    // If rows
-                                                                    // are
-                                                                    // equal,
-                                                                    // determine
-                                                                    // order by
-                                                                    // column
-                                                                    // index
-                                                                    // order.
-                                                                    if (compareRows == 0) {
-
-                                                                        return lhs
-                                                                                .getColumn()
-                                                                                - rhs.getColumn();
-                                                                    }
-
-                                                                    // If rows
-                                                                    // are
-                                                                    // not
-                                                                    // equal,
-                                                                    // determine
-                                                                    // order by
-                                                                    // row
-                                                                    // index
-                                                                    // order.
-                                                                    return compareRows;
-                                                                }
-                                                            };
-
+    public static final Comparator<CellLocation> rowMajorOrder = Comparator
+            .comparing(CellLocation::getRow)
+            .thenComparing(CellLocation::getColumn);
 
 
     /**
      * A {@link Comparator} for {@link CellLocation CellLocations} using
      * column-major order.
      */
-    public static Comparator<CellLocation> columnMajorOrder = new Comparator<CellLocation>() {
-
-                                                                @Override
-                                                                public int compare(
-                                                                        final CellLocation lhs,
-                                                                        final CellLocation rhs) {
-
-                                                                    final int compareColumns = lhs
-                                                                            .getColumn()
-                                                                            - rhs.getColumn();
-
-
-                                                                    // If
-                                                                    // columns
-                                                                    // are
-                                                                    // equal,
-                                                                    // determine
-                                                                    // order by
-                                                                    // row
-                                                                    // index
-                                                                    // order.
-                                                                    if (compareColumns == 0) {
-
-                                                                        return lhs
-                                                                                .getRow()
-                                                                                - rhs.getRow();
-                                                                    }
-
-                                                                    // If
-                                                                    // columns
-                                                                    // are
-                                                                    // not
-                                                                    // equal,
-                                                                    // determine
-                                                                    // order by
-                                                                    // column
-                                                                    // index
-                                                                    // order.
-                                                                    return compareColumns;
-                                                                }
-                                                            };
+    public static final Comparator<CellLocation> columnMajorOrder = Comparator
+            .comparing(CellLocation::getColumn)
+            .thenComparing(CellLocation::getRow);
 
 
     @Override

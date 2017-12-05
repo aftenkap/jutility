@@ -35,9 +35,10 @@ import java.util.TreeMap;
  * {@link ITable} .
  *
  * @param <CELL>
- *            the cell type
+ *         the cell type
  * @param <T>
- *            the type of the contents.
+ *         the type of the contents.
+ *
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.0
@@ -50,7 +51,7 @@ public class CellContainer<CELL extends ICell<T>, T>
     /**
      * Serial Version UID.
      */
-    private static final long            serialVersionUID = -2922010862735630588L;
+    private static final long serialVersionUID = -2922010862735630588L;
 
 
     private final int                    index;
@@ -72,12 +73,12 @@ public class CellContainer<CELL extends ICell<T>, T>
      * Creates a new instance of the {@code CellContainer} class.
      *
      * @param index
-     *            the index of the container.
+     *         the index of the container.
      */
     public CellContainer(final int index) {
 
         this.index = index;
-        this.entries = new TreeMap<Integer, CELL>();
+        this.entries = new TreeMap<>();
     }
 
 
@@ -86,7 +87,8 @@ public class CellContainer<CELL extends ICell<T>, T>
      * {@code CellContainer}.
      *
      * @param valueIndex
-     *            the valueIndex.
+     *         the valueIndex.
+     *
      * @return the {@link ICell Cell} value.
      */
     @Override
@@ -95,7 +97,8 @@ public class CellContainer<CELL extends ICell<T>, T>
         final CELL valueCell = this.entries.get(valueIndex);
         if (valueCell != null) {
 
-            return this.entries.get(valueIndex).getValue();
+            return this.entries.get(valueIndex)
+                    .getValue();
         }
         return null;
     }
@@ -106,7 +109,8 @@ public class CellContainer<CELL extends ICell<T>, T>
      * {@code CellContainer}.
      *
      * @param valueIndex
-     *            the valueIndex
+     *         the valueIndex
+     *
      * @return the {@link ICell Cell}.
      */
     public CELL getCell(final int valueIndex) {
@@ -130,9 +134,10 @@ public class CellContainer<CELL extends ICell<T>, T>
      * Adds the value to the table in the specified cell.
      *
      * @param cell
-     *            the table cell.
+     *         the table cell.
+     *
      * @return {@code true} if the table did not already contain the value;
-     *         {@code false} otherwise.
+     * {@code false} otherwise.
      */
     public boolean add(final CELL cell) {
 
@@ -150,8 +155,10 @@ public class CellContainer<CELL extends ICell<T>, T>
 
 
         throw new IllegalArgumentException("Trying to add cell " + cell
-                + " to container where neither row nor column match"
-                + " container index (index = " + this.getIndex() + ")!");
+                                           + " to container where neither row"
+                                           + " nor column match"
+                                           + " container index (index = "
+                                           + this.getIndex() + ")!");
     }
 
     /**
@@ -159,14 +166,16 @@ public class CellContainer<CELL extends ICell<T>, T>
      * {@code CellContainer} row.
      *
      * @param valueIndex
-     *            the value index.
+     *         the value index.
+     *
      * @return {@code true}, if this {@code CellContainer} contained the cell;
-     *         {@code false} otherwise.
+     * {@code false} otherwise.
      */
     @Override
     public T remove(final int valueIndex) {
 
-        return this.entries.remove(valueIndex).getValue();
+        return this.entries.remove(valueIndex)
+                .getValue();
     }
 
 
@@ -174,9 +183,10 @@ public class CellContainer<CELL extends ICell<T>, T>
      * Removes the {@link Cell} from the table.
      *
      * @param cell
-     *            the cell to remove.
+     *         the cell to remove.
+     *
      * @return {@code true}, if the {@code CellContainer} contained the cell;
-     *         {@code false} otherwise.
+     * {@code false} otherwise.
      */
     public boolean remove(final CELL cell) {
 
@@ -188,20 +198,16 @@ public class CellContainer<CELL extends ICell<T>, T>
             return this.entries.remove(cell.getColumn()) != null;
         }
 
-        if (columnIsIndex) {
+        return columnIsIndex && this.entries.remove(cell.getRow()) != null;
 
-            return this.entries.remove(cell.getRow()) != null;
-        }
-
-        return false;
     }
 
 
     /**
      * Returns whether or not this {@code CellContainer} is empty.
      *
-     * @return {@code true}, if this {@code CellContainer} is empty;
-     *         {@code false} otherwise.
+     * @return {@code true}, if this {@code CellContainer} is empty; {@code
+     * false} otherwise.
      */
     @Override
     public boolean isEmpty() {
@@ -236,14 +242,15 @@ public class CellContainer<CELL extends ICell<T>, T>
      */
     public Iterator<CELL> cellIterator() {
 
-        return this.entries.values().iterator();
+        return this.entries.values()
+                .iterator();
     }
 
 
     @Override
     public Iterator<T> iterator() {
 
-        return new ICell.CellValueIterator<T>(this.cellIterator());
+        return new ICell.CellValueIterator<>(this.cellIterator());
     }
 
 

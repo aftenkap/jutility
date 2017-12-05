@@ -52,14 +52,14 @@ public final class NumberComparator {
      * {@link NumberConstants#DELTA_D}.
      *
      * @param <T>
-     *            the type of the left-hand side number.
+     *         the type of the left-hand side number.
      * @param <S>
-     *            the type of the right-hand side number.
-     *
+     *         the type of the right-hand side number.
      * @param lhs
-     *            the left-hand side.
+     *         the left-hand side.
      * @param rhs
-     *            the right-hand side.
+     *         the right-hand side.
+     *
      * @return the sum of the numbers.
      */
     public static final <T extends Number, S extends Number> int compareTo(
@@ -123,7 +123,7 @@ public final class NumberComparator {
 
             throw new IllegalArgumentException(
                     "Cannot compare a value of type " + lhs.getClass()
-                            + " to a value of type " + rhs.getClass() + "!");
+                    + " to a value of type " + rhs.getClass() + "!");
         }
 
         return result;
@@ -134,17 +134,17 @@ public final class NumberComparator {
      * floating-point comparison.
      *
      * @param <T>
-     *            the type of the left-hand side number.
+     *         the type of the left-hand side number.
      * @param <S>
-     *            the type of the right-hand side number.
-     *
+     *         the type of the right-hand side number.
      * @param lhs
-     *            the left-hand side.
+     *         the left-hand side.
      * @param rhs
-     *            the right-hand side.
+     *         the right-hand side.
      * @param delta
-     *            the precision of the floating-point comparison (ignored for
-     *            non-floating-point {@link Number Numbers}).
+     *         the precision of the floating-point comparison (ignored for
+     *         non-floating-point {@link Number Numbers}).
+     *
      * @return the sum of the numbers.
      */
     public static final <T extends Number, S extends Number> int compareTo(
@@ -212,19 +212,19 @@ public final class NumberComparator {
 
             throw new IllegalArgumentException(
                     "Cannot compare a value of type " + lhs.getClass()
-                            + " to a value of type " + rhs.getClass() + "!");
+                    + " to a value of type " + rhs.getClass() + "!");
         }
 
         return result;
     }
 
-    private static final <T extends Number> int compareTo(final Double lhs,
+    private static <T extends Number> int compareTo(final Double lhs,
             final T rhs) {
 
         return NumberComparator.compareTo(lhs, rhs, NumberConstants.DELTA_D);
     }
 
-    private static final <T extends Number> int compareTo(final Double lhs,
+    private static <T extends Number> int compareTo(final Double lhs,
             final T rhs, final double delta) {
 
         final Double rhsDouble = rhs.doubleValue();
@@ -242,13 +242,13 @@ public final class NumberComparator {
         }
     }
 
-    private static final <T extends Number> int compareTo(final T lhs,
+    private static <T extends Number> int compareTo(final T lhs,
             final Double rhs) {
 
         return NumberComparator.compareTo(lhs, rhs, NumberConstants.DELTA_D);
     }
 
-    private static final <T extends Number> int compareTo(final T lhs,
+    private static <T extends Number> int compareTo(final T lhs,
             final Double rhs, final double delta) {
 
         final Double lhsDouble = lhs.doubleValue();
@@ -267,13 +267,13 @@ public final class NumberComparator {
     }
 
 
-    private static final <T extends Number> int compareTo(final Float lhs,
+    private static <T extends Number> int compareTo(final Float lhs,
             final T rhs) {
 
         return NumberComparator.compareTo(lhs, rhs, NumberConstants.DELTA_F);
     }
 
-    private static final <T extends Number> int compareTo(final Float lhs,
+    private static <T extends Number> int compareTo(final Float lhs,
             final T rhs, final float delta) {
 
         final Float rhsFloat = rhs.floatValue();
@@ -291,13 +291,13 @@ public final class NumberComparator {
         }
     }
 
-    private static final <T extends Number> int compareTo(final T lhs,
+    private static <T extends Number> int compareTo(final T lhs,
             final Float rhs) {
 
         return NumberComparator.compareTo(lhs, rhs, NumberConstants.DELTA_F);
     }
 
-    private static final <T extends Number> int compareTo(final T lhs,
+    private static <T extends Number> int compareTo(final T lhs,
             final Float rhs, final float delta) {
 
         final Float lhsDouble = lhs.floatValue();
@@ -315,7 +315,7 @@ public final class NumberComparator {
         }
     }
 
-    private static final <T extends Number> int compareTo(final Long lhs,
+    private static <T extends Number> int compareTo(final Long lhs,
             final T rhs) {
 
         final Long rhsLong = rhs.longValue();
@@ -323,7 +323,7 @@ public final class NumberComparator {
         return lhs.compareTo(rhsLong);
     }
 
-    private static final <T extends Number> int compareTo(final T lhs,
+    private static <T extends Number> int compareTo(final T lhs,
             final Long rhs) {
 
         final Long lhsLong = lhs.longValue();
@@ -331,7 +331,7 @@ public final class NumberComparator {
         return lhsLong.compareTo(rhs);
     }
 
-    private static final <T extends Number> int compareTo(final Integer lhs,
+    private static <T extends Number> int compareTo(final Integer lhs,
             final T rhs) {
 
         final Integer rhsInteger = rhs.intValue();
@@ -339,7 +339,7 @@ public final class NumberComparator {
         return lhs.compareTo(rhsInteger);
     }
 
-    private static final <T extends Number> int compareTo(final T lhs,
+    private static <T extends Number> int compareTo(final T lhs,
             final Integer rhs) {
 
         final Integer lhsInteger = lhs.intValue();
@@ -347,7 +347,7 @@ public final class NumberComparator {
         return lhsInteger.compareTo(rhs);
     }
 
-    private static final <T extends Number> int compareTo(final Short lhs,
+    private static <T extends Number> int compareTo(final Short lhs,
             final T rhs) {
 
         final Short rhsShort = rhs.shortValue();
@@ -355,7 +355,7 @@ public final class NumberComparator {
         return lhs.compareTo(rhsShort);
     }
 
-    private static final <T extends Number> int compareTo(final T lhs,
+    private static <T extends Number> int compareTo(final T lhs,
             final Short rhs) {
 
         final Short lhsShort = lhs.shortValue();
@@ -363,7 +363,7 @@ public final class NumberComparator {
         return lhsShort.compareTo(rhs);
     }
 
-    private static final <T extends Number> int compareTo(final Byte lhs,
+    private static <T extends Number> int compareTo(final Byte lhs,
             final T rhs) {
 
         final Byte rhsByte = rhs.byteValue();
@@ -371,7 +371,7 @@ public final class NumberComparator {
         return lhs.compareTo(rhsByte);
     }
 
-    private static final <T extends Number> int compareTo(final T lhs,
+    private static <T extends Number> int compareTo(final T lhs,
             final Byte rhs) {
 
         final Byte lhsByte = lhs.byteValue();
@@ -386,27 +386,24 @@ public final class NumberComparator {
      * right-hand side {@link Number}.
      *
      * @param <T>
-     *            the type of the left-hand side number.
+     *         the type of the left-hand side number.
      * @param <S>
-     *            the type of the right-hand side number.
-     *
+     *         the type of the right-hand side number.
      * @param lhs
-     *            the left-hand side.
+     *         the left-hand side.
      * @param rhs
-     *            the right-hand side.
+     *         the right-hand side.
+     *
      * @return {@code true}, if the left-hand side is numerically smaller than
-     *         the right-hand side; {@code false} otherwise.
+     * the right-hand side; {@code false} otherwise.
      */
-    public static final <T extends Number, S extends Number> boolean smallerThan(
+    public static final <T extends Number, S extends Number> boolean
+    smallerThan(
             final T lhs, final S rhs) {
 
         final int difference = NumberComparator.compareTo(lhs, rhs);
 
-        if (difference < 0) {
-            return true;
-        }
-
-        return false;
+        return difference < 0;
     }
 
     /**
@@ -414,27 +411,24 @@ public final class NumberComparator {
      * equal to the right-hand side {@link Number}.
      *
      * @param <T>
-     *            the type of the left-hand side number.
+     *         the type of the left-hand side number.
      * @param <S>
-     *            the type of the right-hand side number.
-     *
+     *         the type of the right-hand side number.
      * @param lhs
-     *            the left-hand side.
+     *         the left-hand side.
      * @param rhs
-     *            the right-hand side.
+     *         the right-hand side.
+     *
      * @return {@code true}, if the left-hand side is numerically smaller than
-     *         or equal to the right-hand side; {@code false} otherwise.
+     * or equal to the right-hand side; {@code false} otherwise.
      */
-    public static final <T extends Number, S extends Number> boolean smallerOrEqual(
+    public static final <T extends Number, S extends Number> boolean
+    smallerOrEqual(
             final T lhs, final S rhs) {
 
         final int difference = NumberComparator.compareTo(lhs, rhs);
 
-        if (difference <= 0) {
-            return true;
-        }
-
-        return false;
+        return difference <= 0;
     }
 
 
@@ -444,27 +438,23 @@ public final class NumberComparator {
      * right-hand side {@link Number}.
      *
      * @param <T>
-     *            the type of the left-hand side number.
+     *         the type of the left-hand side number.
      * @param <S>
-     *            the type of the right-hand side number.
-     *
+     *         the type of the right-hand side number.
      * @param lhs
-     *            the left-hand side.
+     *         the left-hand side.
      * @param rhs
-     *            the right-hand side.
+     *         the right-hand side.
+     *
      * @return {@code true}, if the left-hand side is numerically equal to the
-     *         right-hand side; {@code false} otherwise.
+     * right-hand side; {@code false} otherwise.
      */
     public static final <T extends Number, S extends Number> boolean equals(
             final T lhs, final S rhs) {
 
         final int difference = NumberComparator.compareTo(lhs, rhs);
 
-        if (difference == 0) {
-            return true;
-        }
-
-        return false;
+        return difference == 0;
     }
 
     /**
@@ -472,27 +462,25 @@ public final class NumberComparator {
      * equal to the right-hand side {@link Number}.
      *
      * @param <T>
-     *            the type of the left-hand side number.
+     *         the type of the left-hand side number.
      * @param <S>
-     *            the type of the right-hand side number.
-     *
+     *         the type of the right-hand side number.
      * @param lhs
-     *            the left-hand side.
+     *         the left-hand side.
      * @param rhs
-     *            the right-hand side.
+     *         the right-hand side.
+     *
      * @return {@code true}, if the left-hand side is numerically greater than
-     *         or equal to the right-hand side; {@code false} otherwise.
+     * or equal to the right-hand side; {@code false} otherwise.
      */
-    public static final <T extends Number, S extends Number> boolean greaterOrEqual(
+    public static final <T extends Number, S extends Number> boolean
+    greaterOrEqual(
             final T lhs, final S rhs) {
 
         final int difference = NumberComparator.compareTo(lhs, rhs);
 
-        if (difference >= 0) {
-            return true;
-        }
+        return difference >= 0;
 
-        return false;
     }
 
     /**
@@ -500,27 +488,25 @@ public final class NumberComparator {
      * right-hand side {@link Number}.
      *
      * @param <T>
-     *            the type of the left-hand side number.
+     *         the type of the left-hand side number.
      * @param <S>
-     *            the type of the right-hand side number.
-     *
+     *         the type of the right-hand side number.
      * @param lhs
-     *            the left-hand side.
+     *         the left-hand side.
      * @param rhs
-     *            the right-hand side.
+     *         the right-hand side.
+     *
      * @return {@code true}, if the left-hand side is numerically greater than
-     *         the right-hand side; {@code false} otherwise.
+     * the right-hand side; {@code false} otherwise.
      */
-    public static final <T extends Number, S extends Number> boolean greaterThan(
+    public static final <T extends Number, S extends Number> boolean
+    greaterThan(
             final T lhs, final S rhs) {
 
         final int difference = NumberComparator.compareTo(lhs, rhs);
 
-        if (difference > 0) {
-            return true;
-        }
+        return difference > 0;
 
-        return false;
     }
 
 
@@ -528,19 +514,20 @@ public final class NumberComparator {
      * Compares the precision of two {@link Number Numbers}.
      *
      * @param <T>
-     *            the type of the left-hand side number.
+     *         the type of the left-hand side number.
      * @param <S>
-     *            the type of the right-hand side number.
-     *
+     *         the type of the right-hand side number.
      * @param lhs
-     *            the left-hand side.
+     *         the left-hand side.
      * @param rhs
-     *            the right-hand side.
+     *         the right-hand side.
+     *
      * @return {@code -1} if the left-hand side precision is smaller; {@code 0}
-     *         if the precisions are equal; {@code 1} if the left-hand side
-     *         precision is greater.
+     * if the precisions are equal; {@code 1} if the left-hand side precision is
+     * greater.
      */
-    public static final <T extends Number, S extends Number> int comparePrecision(
+    public static final <T extends Number, S extends Number> int
+    comparePrecision(
             final T lhs, final S rhs) {
 
 
@@ -637,8 +624,8 @@ public final class NumberComparator {
 
         throw new IllegalArgumentException(
                 "Cannot compare precision of a value of type " + lhs.getClass()
-                        + " to the precision of a value of type "
-                        + rhs.getClass() + "!");
+                + " to the precision of a value of type " + rhs.getClass()
+                + "!");
     }
 
 
@@ -648,27 +635,25 @@ public final class NumberComparator {
      * smaller than the precision of the right-hand side {@link Number}.
      *
      * @param <T>
-     *            the type of the left-hand side number.
+     *         the type of the left-hand side number.
      * @param <S>
-     *            the type of the right-hand side number.
-     *
+     *         the type of the right-hand side number.
      * @param lhs
-     *            the left-hand side.
+     *         the left-hand side.
      * @param rhs
-     *            the right-hand side.
+     *         the right-hand side.
+     *
      * @return {@code true}, if the left-hand side precision is smaller than the
-     *         right-hand side precision; {@code false} otherwise.
+     * right-hand side precision; {@code false} otherwise.
      */
-    public static final <T extends Number, S extends Number> boolean smallerPrecision(
+    public static final <T extends Number, S extends Number> boolean
+    smallerPrecision(
             final T lhs, final S rhs) {
 
         final int difference = NumberComparator.comparePrecision(lhs, rhs);
 
-        if (difference < 0) {
-            return true;
-        }
+        return difference < 0;
 
-        return false;
     }
 
     /**
@@ -677,27 +662,25 @@ public final class NumberComparator {
      * {@link Number}.
      *
      * @param <T>
-     *            the type of the left-hand side number.
+     *         the type of the left-hand side number.
      * @param <S>
-     *            the type of the right-hand side number.
-     *
+     *         the type of the right-hand side number.
      * @param lhs
-     *            the left-hand side.
+     *         the left-hand side.
      * @param rhs
-     *            the right-hand side.
+     *         the right-hand side.
+     *
      * @return {@code true}, if the left-hand side precision is smaller than or
-     *         equal to the right-hand side precision; {@code false} otherwise.
+     * equal to the right-hand side precision; {@code false} otherwise.
      */
-    public static final <T extends Number, S extends Number> boolean smallerOrEqualPrecision(
+    public static final <T extends Number, S extends Number> boolean
+    smallerOrEqualPrecision(
             final T lhs, final S rhs) {
 
         final int difference = NumberComparator.comparePrecision(lhs, rhs);
 
-        if (difference <= 0) {
-            return true;
-        }
+        return difference <= 0;
 
-        return false;
     }
 
     /**
@@ -705,27 +688,25 @@ public final class NumberComparator {
      * equal to the precision of the right-hand side {@link Number}.
      *
      * @param <T>
-     *            the type of the left-hand side number.
+     *         the type of the left-hand side number.
      * @param <S>
-     *            the type of the right-hand side number.
-     *
+     *         the type of the right-hand side number.
      * @param lhs
-     *            the left-hand side.
+     *         the left-hand side.
      * @param rhs
-     *            the right-hand side.
+     *         the right-hand side.
+     *
      * @return {@code true}, if the left-hand side precision is equal to the
-     *         right-hand side precision; {@code false} otherwise.
+     * right-hand side precision; {@code false} otherwise.
      */
-    public static final <T extends Number, S extends Number> boolean equalPrecision(
+    public static final <T extends Number, S extends Number> boolean
+    equalPrecision(
             final T lhs, final S rhs) {
 
         final int difference = NumberComparator.comparePrecision(lhs, rhs);
 
-        if (difference == 0) {
-            return true;
-        }
+        return difference == 0;
 
-        return false;
     }
 
     /**
@@ -734,27 +715,25 @@ public final class NumberComparator {
      * {@link Number}.
      *
      * @param <T>
-     *            the type of the left-hand side number.
+     *         the type of the left-hand side number.
      * @param <S>
-     *            the type of the right-hand side number.
-     *
+     *         the type of the right-hand side number.
      * @param lhs
-     *            the left-hand side.
+     *         the left-hand side.
      * @param rhs
-     *            the right-hand side.
+     *         the right-hand side.
+     *
      * @return {@code true}, if the left-hand side precision is greater than or
-     *         equal to the right-hand side precision; {@code false} otherwise.
+     * equal to the right-hand side precision; {@code false} otherwise.
      */
-    public static final <T extends Number, S extends Number> boolean greaterOrEqualPrecision(
+    public static final <T extends Number, S extends Number> boolean
+    greaterOrEqualPrecision(
             final T lhs, final S rhs) {
 
         final int difference = NumberComparator.comparePrecision(lhs, rhs);
 
-        if (difference >= 0) {
-            return true;
-        }
+        return difference >= 0;
 
-        return false;
     }
 
     /**
@@ -762,27 +741,25 @@ public final class NumberComparator {
      * greater than the precision of the right-hand side {@link Number}.
      *
      * @param <T>
-     *            the type of the left-hand side number.
+     *         the type of the left-hand side number.
      * @param <S>
-     *            the type of the right-hand side number.
-     *
+     *         the type of the right-hand side number.
      * @param lhs
-     *            the left-hand side.
+     *         the left-hand side.
      * @param rhs
-     *            the right-hand side.
+     *         the right-hand side.
+     *
      * @return {@code true}, if the left-hand side precision is greater than the
-     *         right-hand side precision; {@code false} otherwise.
+     * right-hand side precision; {@code false} otherwise.
      */
-    public static final <T extends Number, S extends Number> boolean greaterPrecision(
+    public static final <T extends Number, S extends Number> boolean
+    greaterPrecision(
             final T lhs, final S rhs) {
 
         final int difference = NumberComparator.comparePrecision(lhs, rhs);
 
-        if (difference > 0) {
-            return true;
-        }
+        return difference > 0;
 
-        return false;
     }
 
     /**
@@ -790,7 +767,8 @@ public final class NumberComparator {
      * precision of the {@link Number Numbers} provided.
      *
      * @param numbers
-     *            the {@link Number Numbers} to compare.
+     *         the {@link Number Numbers} to compare.
+     *
      * @return the {@link Class} with the greater precision.
      */
     public static final Class<? extends Number> greaterPrecisionType(
@@ -804,12 +782,11 @@ public final class NumberComparator {
             }
             else {
 
-                final List<Class<? extends Number>> classes = new ArrayList<Class<? extends Number>>(
-                        2);
+                final List<Class<? extends Number>> classes = new ArrayList<>(2);
                 classes.add(greatestPrecisionType);
                 classes.add(number.getClass());
-                greatestPrecisionType = NumberComparator
-                        .greatestPrecisionType(classes);
+                greatestPrecisionType = NumberComparator.greatestPrecisionType(
+                        classes);
             }
         }
 
@@ -821,19 +798,20 @@ public final class NumberComparator {
      * Compares the precision of two {@link Class Classes}.
      *
      * @param <T>
-     *            the type of the left-hand side number.
+     *         the type of the left-hand side number.
      * @param <S>
-     *            the type of the right-hand side number.
-     *
+     *         the type of the right-hand side number.
      * @param lhs
-     *            the left-hand side.
+     *         the left-hand side.
      * @param rhs
-     *            the right-hand side.
+     *         the right-hand side.
+     *
      * @return {@code -1} if the left-hand side precision is smaller; {@code 0}
-     *         if the precisions are equal; {@code 1} if the left-hand side
-     *         precision is greater.
+     * if the precisions are equal; {@code 1} if the left-hand side precision is
+     * greater.
      */
-    public static final <T extends Number, S extends Number> int comparePrecision(
+    public static final <T extends Number, S extends Number> int
+    comparePrecision(
             final Class<? extends T> lhs, final Class<? extends S> rhs) {
 
 
@@ -928,8 +906,9 @@ public final class NumberComparator {
 
 
 
-        throw new IllegalArgumentException("Cannot compare precision of  type "
-                + lhs + " to the precision of  type " + rhs + "!");
+        throw new IllegalArgumentException(
+                "Cannot compare precision of  type " + lhs
+                + " to the precision of  type " + rhs + "!");
     }
 
 
@@ -938,7 +917,8 @@ public final class NumberComparator {
      * the {@link Class} with the greatest precision.
      *
      * @param numberTypes
-     *            the number types to compare.
+     *         the number types to compare.
+     *
      * @return the {@link Class} with the greatest precision.
      */
     public static final Class<? extends Number> greatestPrecisionType(
@@ -966,17 +946,18 @@ public final class NumberComparator {
      * precisions of the two {@link Number Numbers}.
      *
      * @param <T>
-     *            the type of the left-hand side number.
+     *         the type of the left-hand side number.
      * @param <S>
-     *            the type of the right-hand side number.
-     *
+     *         the type of the right-hand side number.
      * @param lhs
-     *            the left-hand side.
+     *         the left-hand side.
      * @param rhs
-     *            the right-hand side.
+     *         the right-hand side.
+     *
      * @return the {@link Class} with the smaller precision.
      */
-    public static final <T extends Number, S extends Number> Class<? extends Number> smallerPrecisionType(
+    public static final <T extends Number, S extends Number> Class<? extends
+            Number> smallerPrecisionType(
             final T lhs, final S rhs) {
 
         final int difference = NumberComparator.comparePrecision(lhs, rhs);
@@ -995,29 +976,27 @@ public final class NumberComparator {
      * equal to the precision of the right-hand side {@link Number}.
      *
      * @param <T>
-     *            the type of the left-hand side number.
+     *         the type of the left-hand side number.
      * @param <S>
-     *            the type of the right-hand side number.
-     *
+     *         the type of the right-hand side number.
      * @param lhs
-     *            the left-hand side.
+     *         the left-hand side.
      * @param rhs
-     *            the right-hand side.
+     *         the right-hand side.
+     *
      * @return {@code true}, if the left-hand side value is equal to the
-     *         right-hand side value, and the left-hand side precision is equal
-     *         to the right-hand side precision; {@code false} otherwise.
+     * right-hand side value, and the left-hand side precision is equal to the
+     * right-hand side precision; {@code false} otherwise.
      */
-    public static final <T extends Number, S extends Number> boolean equalValueAndPrecision(
+    public static final <T extends Number, S extends Number> boolean
+    equalValueAndPrecision(
             final T lhs, final S rhs) {
 
         final int differenceValue = NumberComparator.compareTo(lhs, rhs);
         final int differencePrecision = NumberComparator.comparePrecision(lhs,
                 rhs);
 
-        if ((differenceValue == 0) && (differencePrecision == 0)) {
-            return true;
-        }
+        return (differenceValue == 0) && (differencePrecision == 0);
 
-        return false;
     }
 }

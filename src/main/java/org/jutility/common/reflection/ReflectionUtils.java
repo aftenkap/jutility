@@ -62,21 +62,23 @@ import org.slf4j.LoggerFactory;
 public class ReflectionUtils {
 
 
-    private static final Logger LOG = LoggerFactory
-                                            .getLogger(ReflectionUtils.class);
+    private static final Logger LOG = LoggerFactory.getLogger(
+            ReflectionUtils.class);
 
     /**
      * Checks whether the provided {@link Field} has the provided {@link Class
      * type}.
      *
      * @param field
-     *            the {@link Field}.
+     *         the {@link Field}.
      * @param returnType
-     *            the {@link Class return type}.
+     *         the {@link Class return type}.
+     *
      * @return {@code true}, if the {@link Field} has the provided {@link Class
-     *         return type}; {@code false} otherwise.
+     * return type}; {@code false} otherwise.
      */
-    public static boolean hasType(final Field field, final Class<?> returnType) {
+    public static boolean hasType(final Field field,
+            final Class<?> returnType) {
 
         return returnType == field.getType();
     }
@@ -87,11 +89,12 @@ public class ReflectionUtils {
      * to the provided {@link Class type}.
      *
      * @param field
-     *            the {@link Field}.
+     *         the {@link Field}.
      * @param type
-     *            the {@link Class return type}.
+     *         the {@link Class return type}.
+     *
      * @return {@code true}, if the {@link Field} can be assigned to the
-     *         provided {@link Class type}; {@code false} otherwise.
+     * provided {@link Class type}; {@code false} otherwise.
      */
     public static boolean canBeAssignedToType(final Field field,
             final Class<?> type) {
@@ -104,11 +107,12 @@ public class ReflectionUtils {
      * by the provided {@link Class type}.
      *
      * @param field
-     *            the {@link Field}.
+     *         the {@link Field}.
      * @param type
-     *            the {@link Class return type}.
+     *         the {@link Class return type}.
+     *
      * @return {@code true}, if the {@link Field} can be assigned by objects of
-     *         the provided {@link Class type}; {@code false} otherwise.
+     * the provided {@link Class type}; {@code false} otherwise.
      */
     public static boolean canBeAssignedByType(final Field field,
             final Class<?> type) {
@@ -122,11 +126,12 @@ public class ReflectionUtils {
      * return type}.
      *
      * @param method
-     *            the {@link Method}.
+     *         the {@link Method}.
      * @param returnType
-     *            the {@link Class return type}.
-     * @return {@code true}, if the {@link Method} has the provided
-     *         {@link Class return type}; {@code false} otherwise.
+     *         the {@link Class return type}.
+     *
+     * @return {@code true}, if the {@link Method} has the provided {@link Class
+     * return type}; {@code false} otherwise.
      */
     public static boolean hasReturnType(final Method method,
             final Class<?> returnType) {
@@ -140,11 +145,12 @@ public class ReflectionUtils {
      * assigned to the provided {@link Class type}.
      *
      * @param method
-     *            the {@link Method}.
+     *         the {@link Method}.
      * @param returnType
-     *            the {@link Class return type}.
-     * @return {@code true}, if the {@link Method} has the provided
-     *         {@link Class return type}; {@code false} otherwise.
+     *         the {@link Class return type}.
+     *
+     * @return {@code true}, if the {@link Method} has the provided {@link Class
+     * return type}; {@code false} otherwise.
      */
     public static boolean hasCompatibleReturnType(final Method method,
             final Class<?> returnType) {
@@ -157,11 +163,12 @@ public class ReflectionUtils {
      * {@link Class parameter types}.
      *
      * @param method
-     *            the {@link Method}.
+     *         the {@link Method}.
      * @param parameterTypes
-     *            the {@link Class parameter types}.
-     * @return {@code true}, if the {@link Method} has the provided
-     *         {@link Class parameter types}; {@code false} otherwise.
+     *         the {@link Class parameter types}.
+     *
+     * @return {@code true}, if the {@link Method} has the provided {@link Class
+     * parameter types}; {@code false} otherwise.
      */
     public static boolean hasParameterTypes(final Method method,
             final Collection<Class<?>> parameterTypes) {
@@ -170,12 +177,13 @@ public class ReflectionUtils {
 
         if (parameterTypes == null) {
 
-            return (methodParameterTypes == null)
-                    || (methodParameterTypes.length == 0);
+            return (methodParameterTypes == null) || (
+                    methodParameterTypes.length == 0);
         }
         else if (methodParameterTypes != null) {
 
-            final boolean sameSize = parameterTypes.size() == methodParameterTypes.length;
+            final boolean sameSize =
+                    parameterTypes.size() == methodParameterTypes.length;
 
             if (sameSize) {
                 int i = 0;
@@ -200,12 +208,13 @@ public class ReflectionUtils {
      * to those of the provided {@link Method}.
      *
      * @param method
-     *            the {@link Method}.
+     *         the {@link Method}.
      * @param parameterTypes
-     *            the {@link Class parameter types}.
+     *         the {@link Class parameter types}.
+     *
      * @return {@code true}, if the {@link Class parameter types} provided are
-     *         compatible to those of the provided {@link Method}; {@code false}
-     *         otherwise.
+     * compatible to those of the provided {@link Method}; {@code false}
+     * otherwise.
      */
     public static boolean hasCompatibleParameterTypes(final Method method,
             final Collection<Class<?>> parameterTypes) {
@@ -218,14 +227,15 @@ public class ReflectionUtils {
         }
         else if (methodParameterTypes != null) {
 
-            final boolean sameSize = parameterTypes.size() == methodParameterTypes.length;
+            final boolean sameSize =
+                    parameterTypes.size() == methodParameterTypes.length;
 
             if (sameSize) {
                 int i = 0;
                 for (final Class<?> parameterType : parameterTypes) {
 
-                    if (!methodParameterTypes[i]
-                            .isAssignableFrom(parameterType)) {
+                    if (!methodParameterTypes[i].isAssignableFrom(
+                            parameterType)) {
 
                         return false;
                     }
@@ -244,18 +254,19 @@ public class ReflectionUtils {
      * Attempts to find a {@link Field} with the provided name.
      *
      * @param type
-     *            the {@link Class} to examine.
+     *         the {@link Class} to examine.
      * @param fieldName
-     *            the name of the {@link Field}.
+     *         the name of the {@link Field}.
+     *
      * @return the {@link Field} with the provided name.
+     *
      * @throws ReflectionException
-     *             if no {@link Field} with that name exists in the
-     *             {@link Class}.
+     *         if no {@link Field} with that name exists in the {@link Class}.
      */
     public static Field getField(final Class<?> type, final String fieldName)
             throws ReflectionException {
 
-        Field field = null;
+        Field field;
 
         try {
 
@@ -263,23 +274,26 @@ public class ReflectionUtils {
         }
         catch (final NoSuchFieldException e) {
 
-            ReflectionUtils.LOG.error("No field with signature "
-                    + ReflectionUtils.buildSignature(null, type, Object.class,
-                            fieldName, null) + " exists!");
-            throw new ReflectionException("No field with signature "
-                    + ReflectionUtils.buildSignature(null, type, Object.class,
-                            fieldName, null) + " exists!");
+            ReflectionUtils.LOG.error(
+                    "No field with signature " + ReflectionUtils.buildSignature(
+                            null, type, Object.class, fieldName, null)
+                    + " exists!");
+            throw new ReflectionException(
+                    "No field with signature " + ReflectionUtils.buildSignature(
+                            null, type, Object.class, fieldName, null)
+                    + " exists!");
         }
         catch (final SecurityException e) {
 
             ReflectionUtils.LOG.error("Could not retrieve field "
-                    + ReflectionUtils.buildSignature(null, type, Object.class,
-                            fieldName, null)
-                    + " due to insufficient accessibility!");
+                                      + ReflectionUtils.buildSignature(null,
+                    type, Object.class, fieldName, null)
+                                      + " due to insufficient accessibility!");
             throw new ReflectionException("Could not retrieve field "
-                    + ReflectionUtils.buildSignature(null, type, Object.class,
-                            fieldName, null)
-                    + " due to insufficient accessibility!");
+                                          + ReflectionUtils.buildSignature(null,
+                    type, Object.class, fieldName, null)
+                                          + " due to insufficient "
+                                          + "accessibility!");
         }
 
         return field;
@@ -291,12 +305,14 @@ public class ReflectionUtils {
      * Attempts to find a {@link Constructor} with the provided parameter types.
      *
      * @param type
-     *            the {@link Class} to examine.
+     *         the {@link Class} to examine.
      * @param parameterTypes
-     *            the parameter types of the {@link Constructor}.
+     *         the parameter types of the {@link Constructor}.
+     *
      * @return the {@link Constructor} with the provided parameter types.
+     *
      * @throws ReflectionException
-     *             if a matching constructor was not found.
+     *         if a matching constructor was not found.
      */
     public static Constructor<?> getConstructor(final Class<?> type,
             final Collection<Class<?>> parameterTypes)
@@ -332,8 +348,8 @@ public class ReflectionUtils {
 
                                 if (!ReflectionUtils
                                         .isAssignablePrimitiveToBoxed(
-                                                constructorParameterTypes[i],
-                                                parameterType)) {
+                                        constructorParameterTypes[i],
+                                        parameterType)) {
 
 
                                     parametersMatch = false;
@@ -341,7 +357,7 @@ public class ReflectionUtils {
                                 }
                             }
                             else {
-                                
+
                                 parametersMatch = false;
                                 break;
                             }
@@ -362,12 +378,14 @@ public class ReflectionUtils {
             }
         }
 
-        ReflectionUtils.LOG.error("Could not find constructor "
-                + ReflectionUtils.buildSignature(null, null, null,
-                        type.getCanonicalName(), parameterTypes) + "!");
-        throw new ReflectionException("Could not find constructor "
-                + ReflectionUtils.buildSignature(null, null, null,
-                        type.getCanonicalName(), parameterTypes) + "!");
+        ReflectionUtils.LOG.error(
+                "Could not find constructor " + ReflectionUtils.buildSignature(
+                        null, null, null, type.getCanonicalName(),
+                        parameterTypes) + "!");
+        throw new ReflectionException(
+                "Could not find constructor " + ReflectionUtils.buildSignature(
+                        null, null, null, type.getCanonicalName(),
+                        parameterTypes) + "!");
     }
 
 
@@ -402,51 +420,51 @@ public class ReflectionUtils {
 
             return (boxed.equals(java.lang.Long.class));
         }
-        if (primitive.equals(java.lang.Short.TYPE)) {
+        return primitive.equals(Short.TYPE) && (boxed.equals(Short.class));
 
-            return (boxed.equals(java.lang.Short.class));
-        }
-
-        return false;
     }
 
     /**
      * Attempts to find a {@link Method} with the provided name.
      *
      * @param type
-     *            the {@link Class} to examine.
+     *         the {@link Class} to examine.
      * @param methodName
-     *            the name of the {@link Method}.
+     *         the name of the {@link Method}.
      * @param parameterTypes
-     *            the parameter types of the method.
+     *         the parameter types of the method.
+     *
      * @return the {@link Method} with the provided name or {@code null}, if no
-     *         {@link Method} with that name exists in the {@link Class}.
+     * {@link Method} with that name exists in the {@link Class}.
+     *
      * @throws ReflectionException
-     *             if no method with th
+     *         if no method with th
      */
-    public static Method getMethod(final Class<?> type,
-            final String methodName, final Collection<Class<?>> parameterTypes)
+    public static Method getMethod(final Class<?> type, final String methodName,
+            final Collection<Class<?>> parameterTypes)
             throws ReflectionException {
 
-        return ReflectionUtils
-                .getMethod(type, null, methodName, parameterTypes);
+        return ReflectionUtils.getMethod(type, null, methodName,
+                parameterTypes);
     }
 
     /**
      * Attempts to find a {@link Method} with the provided name.
      *
      * @param type
-     *            the {@link Class} to examine.
+     *         the {@link Class} to examine.
      * @param returnType
-     *            the desired return type of the class.
+     *         the desired return type of the class.
      * @param methodName
-     *            the name of the {@link Method}.
+     *         the name of the {@link Method}.
      * @param parameterTypes
-     *            the parameter types of the method.
+     *         the parameter types of the method.
+     *
      * @return the {@link Method} with the provided name.
+     *
      * @throws ReflectionException
-     *             if no method with the provided signature exists in the
-     *             provided type.
+     *         if no method with the provided signature exists in the provided
+     *         type.
      */
     public static Method getMethod(final Class<?> type,
             final Class<?> returnType, final String methodName,
@@ -460,13 +478,13 @@ public class ReflectionUtils {
             return methods.get(0);
         }
 
-        Method method = null;
-        Method method2 = null;
+        Method method;
+        Method method2;
 
         try {
 
             if (parameterTypes == null) {
-                method2 = type.getMethod(methodName, new Class<?>[0]);
+                method2 = type.getMethod(methodName);
             }
             else {
                 method2 = type.getMethod(methodName,
@@ -479,41 +497,42 @@ public class ReflectionUtils {
         catch (final NoSuchMethodException e) {
 
             ReflectionUtils.LOG.error("No method with signature "
-                    + ReflectionUtils.buildSignature(null, type, returnType,
-                            methodName, parameterTypes) + " exists!");
+                                      + ReflectionUtils.buildSignature(null,
+                    type, returnType, methodName, parameterTypes) + " exists!");
             throw new ReflectionException("No method with signature "
-                    + ReflectionUtils.buildSignature(null, type, returnType,
-                            methodName, parameterTypes) + " exists!");
+                                          + ReflectionUtils.buildSignature(null,
+                    type, returnType, methodName, parameterTypes) + " exists!");
         }
         catch (final SecurityException e) {
 
             ReflectionUtils.LOG.error("Could not retrieve method "
-                    + ReflectionUtils.buildSignature(null, type, returnType,
-                            methodName, parameterTypes)
-                    + " due to insufficient accessibility!");
+                                      + ReflectionUtils.buildSignature(null,
+                    type, returnType, methodName, parameterTypes)
+                                      + " due to insufficient accessibility!");
             throw new ReflectionException("Could not retrieve method "
-                    + ReflectionUtils.buildSignature(null, type, returnType,
-                            methodName, parameterTypes)
-                    + " due to insufficient accessibility!");
+                                          + ReflectionUtils.buildSignature(null,
+                    type, returnType, methodName, parameterTypes)
+                                          + " due to insufficient "
+                                          + "accessibility!");
         }
 
 
         if (!ReflectionUtils.hasCompatibleReturnType(method, returnType)) {
 
-            ReflectionUtils.LOG.error("Method "
-                    + ReflectionUtils.getSignature(method)
+            ReflectionUtils.LOG.error(
+                    "Method " + ReflectionUtils.getSignature(method)
                     + " has incompatible return type!");
-            throw new ReflectionException("Method "
-                    + ReflectionUtils.getSignature(method)
+            throw new ReflectionException(
+                    "Method " + ReflectionUtils.getSignature(method)
                     + " has incompatible return type!");
         }
         if (!ReflectionUtils.hasParameterTypes(method, parameterTypes)) {
 
-            ReflectionUtils.LOG.error("Method "
-                    + ReflectionUtils.getSignature(method)
+            ReflectionUtils.LOG.error(
+                    "Method " + ReflectionUtils.getSignature(method)
                     + " has incompatible parameter types!");
-            throw new ReflectionException("Method "
-                    + ReflectionUtils.getSignature(method)
+            throw new ReflectionException(
+                    "Method " + ReflectionUtils.getSignature(method)
                     + " has incompatible parameter types!");
         }
 
@@ -524,29 +543,32 @@ public class ReflectionUtils {
      * Attempts to find a {@link Method} with the provided name.
      *
      * @param type
-     *            the {@link Class} to examine.
+     *         the {@link Class} to examine.
      * @param returnType
-     *            the desired return type of the class.
+     *         the desired return type of the class.
      * @param parameterTypes
-     *            the parameter types of the method.
+     *         the parameter types of the method.
+     *
      * @return a {@link Method} with the provided signature.
+     *
      * @throws ReflectionException
-     *             if no method with the provided signature exists in the
-     *             provided type.
+     *         if no method with the provided signature exists in the provided
+     *         type.
      */
     public static List<Method> getMethods(final Class<?> type,
-            final Class<?> returnType, final Collection<Class<?>> parameterTypes)
+            final Class<?> returnType,
+            final Collection<Class<?>> parameterTypes)
             throws ReflectionException {
 
-        final List<Method> methods = new LinkedList<Method>();
+        final List<Method> methods = new LinkedList<>();
 
         final Method[] classMethods = type.getMethods();
 
         for (final Method method : classMethods) {
 
             if (ReflectionUtils.hasCompatibleReturnType(method, returnType)
-                    && ReflectionUtils.hasCompatibleParameterTypes(method,
-                            parameterTypes)) {
+                && ReflectionUtils.hasCompatibleParameterTypes(method,
+                    parameterTypes)) {
 
                 methods.add(method);
             }
@@ -558,12 +580,14 @@ public class ReflectionUtils {
         }
         else {
 
-            ReflectionUtils.LOG.error("Could not find method "
-                    + ReflectionUtils.buildSignature(null, type, returnType,
-                            null, parameterTypes) + "!");
-            throw new ReflectionException("Could not find method "
-                    + ReflectionUtils.buildSignature(null, type, returnType,
-                            null, parameterTypes) + "!");
+            ReflectionUtils.LOG.error(
+                    "Could not find method " + ReflectionUtils.buildSignature(
+                            null, type, returnType, null, parameterTypes)
+                    + "!");
+            throw new ReflectionException(
+                    "Could not find method " + ReflectionUtils.buildSignature(
+                            null, type, returnType, null, parameterTypes)
+                    + "!");
         }
     }
 
@@ -571,14 +595,15 @@ public class ReflectionUtils {
      * Attempts to find a {@link Method} or accessor with the provided name.
      *
      * @param type
-     *            the {@link Class} to examine.
+     *         the {@link Class} to examine.
      * @param methodOrPropertyName
-     *            the name of the {@link Method} or property.
+     *         the name of the {@link Method} or property.
+     *
      * @return the {@link Method} with the provided name or {@code null}, if no
-     *         {@link Method} or property with that name exist in the
-     *         {@link Class}.
+     * {@link Method} or property with that name exist in the {@link Class}.
+     *
      * @throws ReflectionException
-     *             if the retrieval fails.
+     *         if the retrieval fails.
      */
     public static Method getMethodOrAccessor(final Class<?> type,
             final String methodOrPropertyName)
@@ -591,8 +616,8 @@ public class ReflectionUtils {
         }
         catch (final ReflectionException e) {
 
-            ReflectionUtils.LOG.debug(
-                    "Is not a method " + methodOrPropertyName, e);
+            ReflectionUtils.LOG.debug("Is not a method " + methodOrPropertyName,
+                    e);
             return ReflectionUtils.getAccessor(type, methodOrPropertyName);
         }
     }
@@ -601,20 +626,21 @@ public class ReflectionUtils {
      * Attempts to find a {@link Method} or mutator with the provided name.
      *
      * @param type
-     *            the {@link Class} to examine.
+     *         the {@link Class} to examine.
      * @param methodOrPropertyName
-     *            the name of the {@link Method} or property.
+     *         the name of the {@link Method} or property.
+     *
      * @return the {@link Method} with the provided name or {@code null}, if no
-     *         {@link Method} or property with that name exist in the
-     *         {@link Class}.
+     * {@link Method} or property with that name exist in the {@link Class}.
+     *
      * @throws ReflectionException
-     *             if the retrieval fails.
+     *         if the retrieval fails.
      */
     public static Method getMethodOrMutator(final Class<?> type,
             final String methodOrPropertyName)
             throws ReflectionException {
 
-        final Collection<Class<?>> parameterTypes = new LinkedList<Class<?>>();
+        final Collection<Class<?>> parameterTypes = new LinkedList<>();
         parameterTypes.add(Object.class);
 
         try {
@@ -634,13 +660,15 @@ public class ReflectionUtils {
      * with the provided name.
      *
      * @param type
-     *            the {@link Class} to examine.
+     *         the {@link Class} to examine.
      * @param fieldName
-     *            the name of the {@link Field}.
+     *         the name of the {@link Field}.
+     *
      * @return the name of the accessor for the {@link Field} with the provided
-     *         name.
+     * name.
+     *
      * @throws ReflectionException
-     *             if an exception occurs during introspection.
+     *         if an exception occurs during introspection.
      */
     public static String getAccessorName(final Class<?> type,
             final String fieldName)
@@ -656,13 +684,15 @@ public class ReflectionUtils {
      * {@link Field}.
      *
      * @param type
-     *            the {@link Class} to examine.
+     *         the {@link Class} to examine.
      * @param field
-     *            the {@link Field}.
+     *         the {@link Field}.
+     *
      * @return the name of the accessor for the {@link Field} with the provided
-     *         name.
+     * name.
+     *
      * @throws ReflectionException
-     *             if an exception occurs during introspection.
+     *         if an exception occurs during introspection.
      */
     public static String getAccessorName(final Class<?> type, final Field field)
             throws ReflectionException {
@@ -676,19 +706,22 @@ public class ReflectionUtils {
      * provided name.
      *
      * @param type
-     *            the {@link Class} to examine.
+     *         the {@link Class} to examine.
      * @param fieldName
-     *            the name of the {@link Field}.
+     *         the name of the {@link Field}.
+     *
      * @return the accessor for the {@link Field} with the provided name.
+     *
      * @throws ReflectionException
-     *             if an exception occurs during introspection.
+     *         if an exception occurs during introspection.
      */
-    public static Method getAccessor(final Class<?> type, final String fieldName)
+    public static Method getAccessor(final Class<?> type,
+            final String fieldName)
             throws ReflectionException {
 
         final String beanFieldName = Introspector.decapitalize(fieldName);
 
-        BeanInfo info = null;
+        BeanInfo info;
         try {
 
             info = Introspector.getBeanInfo(type);
@@ -703,8 +736,9 @@ public class ReflectionUtils {
 
         for (final PropertyDescriptor pd : info.getPropertyDescriptors()) {
 
-            Method getter = null;
-            if (pd.getName().equals(beanFieldName)) {
+            Method getter;
+            if (pd.getName()
+                    .equals(beanFieldName)) {
 
                 getter = pd.getReadMethod();
                 if (getter != null) {
@@ -714,8 +748,9 @@ public class ReflectionUtils {
             }
         }
 
-        final String capitalizedFieldName = Character.toUpperCase(beanFieldName
-                .charAt(0)) + beanFieldName.substring(1);
+        final String capitalizedFieldName =
+                Character.toUpperCase(beanFieldName.charAt(0))
+                + beanFieldName.substring(1);
         String getterName = "get" + capitalizedFieldName;
 
         try {
@@ -728,10 +763,12 @@ public class ReflectionUtils {
         }
         catch (final SecurityException e) {
 
-            ReflectionUtils.LOG.error("Could not access method " + getterName
-                    + " in class " + type + "!", e);
-            throw new ReflectionException("Could not access method "
-                    + getterName + " in class " + type + "!", e);
+            ReflectionUtils.LOG.error(
+                    "Could not access method " + getterName + " in class "
+                    + type + "!", e);
+            throw new ReflectionException(
+                    "Could not access method " + getterName + " in class "
+                    + type + "!", e);
         }
 
         getterName = "is" + capitalizedFieldName;
@@ -746,29 +783,33 @@ public class ReflectionUtils {
         }
         catch (final SecurityException e) {
 
-            ReflectionUtils.LOG.error("Could not access method " + getterName
-                    + " in class " + type + "!", e);
-            throw new ReflectionException("Could not access method "
-                    + getterName + " in class " + type + "!", e);
+            ReflectionUtils.LOG.error(
+                    "Could not access method " + getterName + " in class "
+                    + type + "!", e);
+            throw new ReflectionException(
+                    "Could not access method " + getterName + " in class "
+                    + type + "!", e);
         }
 
-        ReflectionUtils.LOG.error("Could not find accessor for field "
-                + fieldName);
-        throw new ReflectionException("Could not find accessor for field "
-                + fieldName);
+        ReflectionUtils.LOG.error(
+                "Could not find accessor for field " + fieldName);
+        throw new ReflectionException(
+                "Could not find accessor for field " + fieldName);
     }
 
     /**
      * Attempts to find the accessor (getter) for the provided {@link Field}.
      *
      * @param type
-     *            the {@link Class} to examine.
+     *         the {@link Class} to examine.
      * @param field
-     *            the {@link Field}.
+     *         the {@link Field}.
+     *
      * @return the accessor for the provided {@link Field} or {@code null}, if
-     *         no accessor exists.
+     * no accessor exists.
+     *
      * @throws ReflectionException
-     *             if an exception occurs during introspection.
+     *         if an exception occurs during introspection.
      */
     public static Method getAccessor(final Class<?> type, final Field field)
             throws ReflectionException {
@@ -781,13 +822,15 @@ public class ReflectionUtils {
      * with the provided name.
      *
      * @param type
-     *            the {@link Class} to examine.
+     *         the {@link Class} to examine.
      * @param fieldName
-     *            the name of the {@link Field}.
+     *         the name of the {@link Field}.
+     *
      * @return the name of the mutator for the {@link Field} with the provided
-     *         name or {@code null}, if no mutator exists.
+     * name or {@code null}, if no mutator exists.
+     *
      * @throws ReflectionException
-     *             if an exception occurs during introspection.
+     *         if an exception occurs during introspection.
      */
     public static String getMutatorName(final Class<?> type,
             final String fieldName)
@@ -804,13 +847,15 @@ public class ReflectionUtils {
      * {@link Field}.
      *
      * @param type
-     *            the {@link Class} to examine.
+     *         the {@link Class} to examine.
      * @param field
-     *            the {@link Field}.
+     *         the {@link Field}.
+     *
      * @return the name of the mutator for the {@link Field} with the provided
-     *         name.
+     * name.
+     *
      * @throws ReflectionException
-     *             if an exception occurs during retrieval.
+     *         if an exception occurs during retrieval.
      */
     public static String getMutatorName(final Class<?> type, final Field field)
             throws ReflectionException {
@@ -824,12 +869,14 @@ public class ReflectionUtils {
      * provided name.
      *
      * @param type
-     *            the {@link Class} to examine.
+     *         the {@link Class} to examine.
      * @param fieldName
-     *            the name of the {@link Field}.
+     *         the name of the {@link Field}.
+     *
      * @return the mutator for the {@link Field} with the provided name.
+     *
      * @throws ReflectionException
-     *             if an exception occurs during retrieval.
+     *         if an exception occurs during retrieval.
      */
     public static Method getMutator(final Class<?> type, final String fieldName)
             throws ReflectionException {
@@ -849,10 +896,11 @@ public class ReflectionUtils {
                     "Could not find Java Bean information for type " + type, e);
         }
 
-        Method setter = null;
+        Method setter;
         for (final PropertyDescriptor pd : info.getPropertyDescriptors()) {
 
-            if (pd.getName().equals(beanFieldName)) {
+            if (pd.getName()
+                    .equals(beanFieldName)) {
 
                 setter = pd.getWriteMethod();
                 if (setter != null) {
@@ -863,16 +911,18 @@ public class ReflectionUtils {
         }
 
 
-        final String capitalizedFieldName = Character.toUpperCase(beanFieldName
-                .charAt(0)) + beanFieldName.substring(1);
+        final String capitalizedFieldName =
+                Character.toUpperCase(beanFieldName.charAt(0))
+                + beanFieldName.substring(1);
         final String setterName = "set" + capitalizedFieldName;
 
         try {
 
             for (final Method method : type.getDeclaredMethods()) {
 
-                if (method.getName().equals(setterName)
-                        && (method.getParameterTypes().length == 1)) {
+                if (method.getName()
+                            .equals(setterName) && (
+                            method.getParameterTypes().length == 1)) {
 
                     return method;
                 }
@@ -880,29 +930,33 @@ public class ReflectionUtils {
         }
         catch (final SecurityException e) {
 
-            ReflectionUtils.LOG.error("Could not access method " + setterName
-                    + " in class " + type + "!", e);
-            throw new ReflectionException("Could not access method "
-                    + setterName + " in class " + type + "!", e);
+            ReflectionUtils.LOG.error(
+                    "Could not access method " + setterName + " in class "
+                    + type + "!", e);
+            throw new ReflectionException(
+                    "Could not access method " + setterName + " in class "
+                    + type + "!", e);
         }
 
 
-        ReflectionUtils.LOG.error("Could not find mutator for field "
-                + fieldName);
-        throw new ReflectionException("Could not find mutator for field "
-                + fieldName);
+        ReflectionUtils.LOG.error(
+                "Could not find mutator for field " + fieldName);
+        throw new ReflectionException(
+                "Could not find mutator for field " + fieldName);
     }
 
     /**
      * Attempts to find the mutator (setter) for the provided {@link Field}.
      *
      * @param type
-     *            the {@link Class} to examine.
+     *         the {@link Class} to examine.
      * @param field
-     *            the {@link Field}.
+     *         the {@link Field}.
+     *
      * @return the mutator for the {@link Field}.
+     *
      * @throws ReflectionException
-     *             if an exception occurs during retrieval.
+     *         if an exception occurs during retrieval.
      */
     public static Method getMutator(final Class<?> type, final Field field)
             throws ReflectionException {
@@ -917,15 +971,16 @@ public class ReflectionUtils {
      * type}.
      *
      * @param <T>
-     *            the desired return type.
-     *
+     *         the desired return type.
      * @param returnType
-     *            the desired {@link Class return type}.
+     *         the desired {@link Class return type}.
      * @param value
-     *            the value to cast.
+     *         the value to cast.
+     *
      * @return the value cast to the {@link Class return type}.
+     *
      * @throws ReflectionException
-     *             if the cast was not successful.
+     *         if the cast was not successful.
      */
     public static <T> T castValue(final Class<T> returnType, final Object value)
             throws ReflectionException {
@@ -935,11 +990,13 @@ public class ReflectionUtils {
             return returnType.cast(value);
         }
 
-        ReflectionUtils.LOG.error("Could not cast value of type "
-                + value.getClass().getCanonicalName() + " to type "
+        ReflectionUtils.LOG.error(
+                "Could not cast value of type " + value.getClass()
+                        .getCanonicalName() + " to type "
                 + returnType.getCanonicalName() + "!");
-        throw new ReflectionException("Could not cast value of type "
-                + value.getClass().getCanonicalName() + " to type "
+        throw new ReflectionException(
+                "Could not cast value of type " + value.getClass()
+                        .getCanonicalName() + " to type "
                 + returnType.getCanonicalName() + "!");
     }
 
@@ -948,18 +1005,19 @@ public class ReflectionUtils {
      * provided object.
      *
      * @param <T>
-     *            the desired return type.
-     *
+     *         the desired return type.
      * @param source
-     *            the source object.
+     *         the source object.
      * @param fieldOrAccessorOrMethod
-     *            the field, accessor, or method name.
+     *         the field, accessor, or method name.
      * @param returnType
-     *            the desired return type.
+     *         the desired return type.
+     *
      * @return the value of the field, accessor, or method.
+     *
      * @throws ReflectionException
-     *             if the return type of the field, accessor, or method is not
-     *             compatible with the desired return type.
+     *         if the return type of the field, accessor, or method is not
+     *         compatible with the desired return type.
      */
     public static <T> T getValue(final Object source,
             final String fieldOrAccessorOrMethod,
@@ -981,16 +1039,14 @@ public class ReflectionUtils {
         }
         else {
 
-            ReflectionUtils.LOG
-                    .error("Return type "
-                            + returnValue.getClass()
-                            + " of provided field or method not compatible with desired return type "
-                            + returnType + "!");
+            ReflectionUtils.LOG.error("Return type " + returnValue.getClass()
+                                      + " of provided field or method not "
+                                      + "compatible with desired return type "
+                                      + returnType + "!");
             throw new ReflectionException(
-                    "Return type "
-                            + returnValue.getClass()
-                            + " of provided field or method not compatible with desired return type "
-                            + returnType + "!");
+                    "Return type " + returnValue.getClass()
+                    + " of provided field or method not compatible with "
+                    + "desired return type " + returnType + "!");
         }
 
     }
@@ -1000,13 +1056,15 @@ public class ReflectionUtils {
      * provided object.
      *
      * @param source
-     *            the source object.
+     *         the source object.
      * @param fieldOrAccessorOrMethod
-     *            the field, accessor, or method name.
+     *         the field, accessor, or method name.
+     *
      * @return the value of the field, accessor, or method.
+     *
      * @throws ReflectionException
-     *             if the return type of the field, accessor, or method is not
-     *             compatible with the desired return type.
+     *         if the return type of the field, accessor, or method is not
+     *         compatible with the desired return type.
      */
     public static Object getValue(final Object source,
             final String fieldOrAccessorOrMethod)
@@ -1024,7 +1082,7 @@ public class ReflectionUtils {
 
             ReflectionUtils.LOG.info(
                     "Couldn't get Methor or accessor with name "
-                            + fieldOrAccessorOrMethod, e);
+                    + fieldOrAccessorOrMethod, e);
         }
 
         try {
@@ -1035,8 +1093,9 @@ public class ReflectionUtils {
         }
         catch (final ReflectionException e) {
 
-            ReflectionUtils.LOG.info("Couldn't get Field with name "
-                    + fieldOrAccessorOrMethod, e);
+            ReflectionUtils.LOG.info(
+                    "Couldn't get Field with name " + fieldOrAccessorOrMethod,
+                    e);
         }
 
 
@@ -1050,12 +1109,14 @@ public class ReflectionUtils {
      * method attempts to override its accessibility.
      *
      * @param source
-     *            the {@link Object} to modify.
+     *         the {@link Object} to modify.
      * @param field
-     *            the {@link Field} to set.
+     *         the {@link Field} to set.
+     *
      * @return the value of the {@link Field}.
+     *
      * @throws ReflectionException
-     *             if retrieval fails.
+     *         if retrieval fails.
      */
     public static Object getValue(final Object source, final Field field)
             throws ReflectionException {
@@ -1068,27 +1129,30 @@ public class ReflectionUtils {
      * provided {@link Object}.
      *
      * @param source
-     *            the {@link Object} to modify.
+     *         the {@link Object} to modify.
      * @param field
-     *            the {@link Field} to set.
+     *         the {@link Field} to set.
      * @param overrideAccessibility
-     *            whether or not to attempt overriding the accessibility of the
-     *            {@link Field}.
+     *         whether or not to attempt overriding the accessibility of the
+     *         {@link Field}.
+     *
      * @return the value of the {@link Field}.
+     *
      * @throws ReflectionException
-     *             if the retrieval fails.
+     *         if the retrieval fails.
      */
     public static Object getValue(final Object source, final Field field,
             final boolean overrideAccessibility)
             throws ReflectionException {
 
-        Object returnValue = null;
+        Object returnValue;
 
-        final boolean accessibilityChanged = false;
+        boolean accessibilityChanged = false;
 
         if (overrideAccessibility) {
 
-            ReflectionUtils.setAccessibility(field, true);
+            accessibilityChanged = ReflectionUtils.setAccessibility(field,
+                    true);
         }
 
         try {
@@ -1099,20 +1163,22 @@ public class ReflectionUtils {
 
             throw new ReflectionException(
                     "Could not retrieve value of non-static field "
-                            + ReflectionUtils.getSignature(field)
-                            + " without an instance!");
+                    + ReflectionUtils.getSignature(field)
+                    + " without an instance!");
         }
         catch (final IllegalArgumentException e) {
 
             throw new ReflectionException("Could not retrieve value of field "
-                    + ReflectionUtils.getSignature(field)
-                    + " from object with type " + source.getClass() + "!");
+                                          + ReflectionUtils.getSignature(field)
+                                          + " from object with type "
+                                          + source.getClass() + "!");
         }
         catch (final IllegalAccessException e) {
 
             throw new ReflectionException("Could not retrieve value of field "
-                    + ReflectionUtils.getSignature(field)
-                    + " due to insufficient accessibility!");
+                                          + ReflectionUtils.getSignature(field)
+                                          + " due to insufficient "
+                                          + "accessibility!");
         }
 
         if (accessibilityChanged) {
@@ -1129,14 +1195,16 @@ public class ReflectionUtils {
      * method attempts to override its accessibility.
      *
      * @param source
-     *            the {@link Object} to modify.
+     *         the {@link Object} to modify.
      * @param field
-     *            the {@link Field} to set.
+     *         the {@link Field} to set.
      * @param accessor
-     *            the {@link Method accessor}.
+     *         the {@link Method accessor}.
+     *
      * @return the value of the {@link Field}.
+     *
      * @throws ReflectionException
-     *             if retrieval fails.
+     *         if retrieval fails.
      */
     public static Object getValue(final Object source, final Field field,
             final Method accessor)
@@ -1152,25 +1220,26 @@ public class ReflectionUtils {
      * are not accessible, the method attempts to override the accessibility.
      *
      * @param source
-     *            the {@link Object} to modify.
+     *         the {@link Object} to modify.
      * @param field
-     *            the {@link Field} to set.
+     *         the {@link Field} to set.
      * @param accessor
-     *            the {@link Method accessor}.
+     *         the {@link Method accessor}.
      * @param preferAccessor
-     *            whether or not to prefer retrieving the value through the
-     *            {@link Method accessor} as opposed to through the
-     *            {@link Field}.
+     *         whether or not to prefer retrieving the value through the {@link
+     *         Method accessor} as opposed to through the {@link Field}.
+     *
      * @return the value of the {@link Field}.
+     *
      * @throws ReflectionException
-     *             if retrieval fails.
+     *         if retrieval fails.
      */
     public static Object getValue(final Object source, final Field field,
             final Method accessor, final boolean preferAccessor)
             throws ReflectionException {
 
-        return ReflectionUtils.getValue(source, field, accessor,
-                preferAccessor, true);
+        return ReflectionUtils.getValue(source, field, accessor, preferAccessor,
+                true);
     }
 
 
@@ -1179,21 +1248,22 @@ public class ReflectionUtils {
      * provided {@link Object}.
      *
      * @param source
-     *            the {@link Object} to modify.
+     *         the {@link Object} to modify.
      * @param field
-     *            the {@link Field} to set.
+     *         the {@link Field} to set.
      * @param accessor
-     *            the {@link Method accessor}.
+     *         the {@link Method accessor}.
      * @param preferAccessor
-     *            whether or not to prefer retrieving the value through the
-     *            {@link Method accessor} as opposed to through the
-     *            {@link Field}.
+     *         whether or not to prefer retrieving the value through the {@link
+     *         Method accessor} as opposed to through the {@link Field}.
      * @param overrideAccessibility
-     *            whether or not to attempt overriding the accessibility of the
-     *            {@link Method accessor} and {@link Field}.
+     *         whether or not to attempt overriding the accessibility of the
+     *         {@link Method accessor} and {@link Field}.
+     *
      * @return the value of the {@link Field}.
+     *
      * @throws ReflectionException
-     *             if retrieval fails.
+     *         if retrieval fails.
      */
     public static Object getValue(final Object source, final Field field,
             final Method accessor, final boolean preferAccessor,
@@ -1206,7 +1276,7 @@ public class ReflectionUtils {
                     "Cannot retrieve value without a field or accessor!");
         }
 
-        Object returnValue = null;
+        Object returnValue;
 
         if (preferAccessor) {
 
@@ -1215,7 +1285,7 @@ public class ReflectionUtils {
                 returnValue = ReflectionUtils.invokeMethod(source, accessor,
                         null, overrideAccessibility);
             }
-            else if (field != null) {
+            else {
 
                 returnValue = ReflectionUtils.getValue(source, field,
                         overrideAccessibility);
@@ -1228,7 +1298,7 @@ public class ReflectionUtils {
                 returnValue = ReflectionUtils.getValue(source, field,
                         overrideAccessibility);
             }
-            else if (accessor != null) {
+            else {
 
                 returnValue = ReflectionUtils.invokeMethod(source, accessor,
                         null, overrideAccessibility);
@@ -1247,21 +1317,23 @@ public class ReflectionUtils {
      * preferred.
      *
      * @param source
-     *            the {@link Object} to modify.
+     *         the {@link Object} to modify.
      * @param field
-     *            the {@link Field} to set.
+     *         the {@link Field} to set.
      * @param accessor
-     *            the {@link Method accessor}.
+     *         the {@link Method accessor}.
+     *
      * @return the value collection of the {@link Field}.
+     *
      * @throws ReflectionException
-     *             if the retrieval fails.
+     *         if the retrieval fails.
      */
     public static Collection<?> getValueCollection(final Object source,
             final Field field, final Method accessor)
             throws ReflectionException {
 
-        return ReflectionUtils.getValueCollection(source, field, accessor,
-                true, true);
+        return ReflectionUtils.getValueCollection(source, field, accessor, true,
+                true);
     }
 
     /**
@@ -1271,18 +1343,19 @@ public class ReflectionUtils {
      * accessibility.
      *
      * @param source
-     *            the {@link Object} to modify.
+     *         the {@link Object} to modify.
      * @param field
-     *            the {@link Field} to set.
+     *         the {@link Field} to set.
      * @param accessor
-     *            the {@link Method accessor}.
+     *         the {@link Method accessor}.
      * @param preferAccessor
-     *            whether or not to prefer retrieving the value through the
-     *            {@link Method accessor} as opposed to through the
-     *            {@link Field}.
+     *         whether or not to prefer retrieving the value through the {@link
+     *         Method accessor} as opposed to through the {@link Field}.
+     *
      * @return the value collection of the {@link Field}.
+     *
      * @throws ReflectionException
-     *             if the retrieval fails.
+     *         if the retrieval fails.
      */
     public static Collection<?> getValueCollection(final Object source,
             final Field field, final Method accessor,
@@ -1298,21 +1371,22 @@ public class ReflectionUtils {
      * in the provided {@link Object}.
      *
      * @param source
-     *            the {@link Object} to modify.
+     *         the {@link Object} to modify.
      * @param field
-     *            the {@link Field} to set.
+     *         the {@link Field} to set.
      * @param accessor
-     *            the {@link Method accessor}.
+     *         the {@link Method accessor}.
      * @param preferAccessor
-     *            whether or not to prefer retrieving the value through the
-     *            {@link Method accessor} as opposed to through the
-     *            {@link Field}.
+     *         whether or not to prefer retrieving the value through the {@link
+     *         Method accessor} as opposed to through the {@link Field}.
      * @param overrideAccessibility
-     *            whether or not to attempt overriding the accessibility of the
-     *            {@link Method accessor} and {@link Field}.
+     *         whether or not to attempt overriding the accessibility of the
+     *         {@link Method accessor} and {@link Field}.
+     *
      * @return the value collection of the {@link Field}.
+     *
      * @throws ReflectionException
-     *             if the retrieval fails.
+     *         if the retrieval fails.
      */
     public static Collection<?> getValueCollection(final Object source,
             final Field field, final Method accessor,
@@ -1327,9 +1401,9 @@ public class ReflectionUtils {
             return (Collection<?>) fieldValue;
         }
 
-        throw new ReflectionException("Field "
-                + ReflectionUtils.getSignature(field) + " and accessor "
-                + ReflectionUtils.getSignature(accessor)
+        throw new ReflectionException(
+                "Field " + ReflectionUtils.getSignature(field)
+                + " and accessor " + ReflectionUtils.getSignature(accessor)
                 + " do not return a collection of values!");
     }
 
@@ -1340,13 +1414,14 @@ public class ReflectionUtils {
      * attempts to override its accessibility.
      *
      * @param source
-     *            the {@link Object} to modify.
+     *         the {@link Object} to modify.
      * @param field
-     *            the {@link Field} to set.
+     *         the {@link Field} to set.
      * @param value
-     *            the desired value of the {@link Field}.
+     *         the desired value of the {@link Field}.
+     *
      * @throws ReflectionException
-     *             if setting the field fails.
+     *         if setting the field fails.
      */
     public static void setValue(final Object source, final Field field,
             final Object value)
@@ -1361,16 +1436,17 @@ public class ReflectionUtils {
      * {@link Object}.
      *
      * @param source
-     *            the {@link Object} to modify.
+     *         the {@link Object} to modify.
      * @param field
-     *            the {@link Field} to set.
+     *         the {@link Field} to set.
      * @param value
-     *            the desired value of the {@link Field}.
+     *         the desired value of the {@link Field}.
      * @param overrideAccessibility
-     *            whether or not to attempt overriding the accessibility of the
-     *            {@link Field}.
+     *         whether or not to attempt overriding the accessibility of the
+     *         {@link Field}.
+     *
      * @throws ReflectionException
-     *             if setting the field fails.
+     *         if setting the field fails.
      */
     public static void setValue(final Object source, final Field field,
             final Object value, final boolean overrideAccessibility)
@@ -1381,8 +1457,8 @@ public class ReflectionUtils {
 
         if (overrideAccessibility) {
 
-            accessibilityChanged = ReflectionUtils
-                    .setAccessibility(field, true);
+            accessibilityChanged = ReflectionUtils.setAccessibility(field,
+                    true);
         }
 
         try {
@@ -1393,27 +1469,29 @@ public class ReflectionUtils {
 
             throw new ReflectionException(
                     "Could not set value of non-static field "
-                            + ReflectionUtils.getSignature(field)
-                            + " without an instance!");
+                    + ReflectionUtils.getSignature(field)
+                    + " without an instance!");
         }
         catch (final IllegalArgumentException e) {
 
             throw new ReflectionException("Could not set value of field "
-                    + ReflectionUtils.getSignature(field)
-                    + " from object with type " + value.getClass() + "!");
+                                          + ReflectionUtils.getSignature(field)
+                                          + " from object with type "
+                                          + value.getClass() + "!");
         }
         catch (final IllegalAccessException e) {
 
             throw new ReflectionException("Could not set value of field "
-                    + ReflectionUtils.getSignature(field)
-                    + " due to insufficient accessibility!");
+                                          + ReflectionUtils.getSignature(field)
+                                          + " due to insufficient "
+                                          + "accessibility!");
         }
         catch (final ExceptionInInitializerError e) {
 
             throw new ReflectionException(
                     "Initialization caused by setting value of field "
-                            + ReflectionUtils.getSignature(field)
-                            + " caused an exception!");
+                    + ReflectionUtils.getSignature(field)
+                    + " caused an exception!");
         }
 
         if (accessibilityChanged) {
@@ -1430,15 +1508,16 @@ public class ReflectionUtils {
      * default, use of the {@link Method mutator} is preferred.
      *
      * @param source
-     *            the {@link Object} to modify.
+     *         the {@link Object} to modify.
      * @param field
-     *            the {@link Field} to set.
+     *         the {@link Field} to set.
      * @param mutator
-     *            the {@link Method mutator}.
+     *         the {@link Method mutator}.
      * @param value
-     *            the desired value of the {@link Field}.
+     *         the desired value of the {@link Field}.
+     *
      * @throws ReflectionException
-     *             if setting the field fails.
+     *         if setting the field fails.
      */
     public static void setValue(final Object source, final Field field,
             final Method mutator, final Object value)
@@ -1453,19 +1532,19 @@ public class ReflectionUtils {
      * not accessible, the method attempts to override the accessibility.
      *
      * @param source
-     *            the {@link Object} to modify.
+     *         the {@link Object} to modify.
      * @param field
-     *            the {@link Field} to set.
+     *         the {@link Field} to set.
      * @param mutator
-     *            the {@link Method mutator}.
+     *         the {@link Method mutator}.
      * @param value
-     *            the desired value of the {@link Field}.
+     *         the desired value of the {@link Field}.
      * @param preferMutator
-     *            whether or not to prefer setting the value through the
-     *            {@link Method mutator} as opposed to through the {@link Field}
-     *            .
+     *         whether or not to prefer setting the value through the {@link
+     *         Method mutator} as opposed to through the {@link Field} .
+     *
      * @throws ReflectionException
-     *             if setting the field fails.
+     *         if setting the field fails.
      */
     public static void setValue(final Object source, final Field field,
             final Method mutator, final Object value,
@@ -1482,22 +1561,22 @@ public class ReflectionUtils {
      * attempts to override its accessibility.
      *
      * @param source
-     *            the {@link Object} to modify.
+     *         the {@link Object} to modify.
      * @param field
-     *            the {@link Field} to set.
+     *         the {@link Field} to set.
      * @param mutator
-     *            the {@link Method mutator}.
+     *         the {@link Method mutator}.
      * @param value
-     *            the desired value of the {@link Field}.
+     *         the desired value of the {@link Field}.
      * @param preferMutator
-     *            whether or not to prefer setting the value through the
-     *            {@link Method mutator} as opposed to through the {@link Field}
-     *            .
+     *         whether or not to prefer setting the value through the {@link
+     *         Method mutator} as opposed to through the {@link Field} .
      * @param overrideAccessibility
-     *            whether or not to attempt overriding the accessibility of the
-     *            {@link Method mutator} and {@link Field}.
+     *         whether or not to attempt overriding the accessibility of the
+     *         {@link Method mutator} and {@link Field}.
+     *
      * @throws ReflectionException
-     *             if setting the value fails.
+     *         if setting the value fails.
      */
     public static void setValue(final Object source, final Field field,
             final Method mutator, final Object value,
@@ -1514,12 +1593,12 @@ public class ReflectionUtils {
 
             if (mutator != null) {
 
-                final List<Object> parameterList = new LinkedList<Object>();
+                final List<Object> parameterList = new LinkedList<>();
                 parameterList.add(value);
                 ReflectionUtils.invokeMethod(source, mutator, parameterList,
                         overrideAccessibility);
             }
-            else if (field != null) {
+            else {
 
                 ReflectionUtils.setValue(source, field, value,
                         overrideAccessibility);
@@ -1532,9 +1611,9 @@ public class ReflectionUtils {
                 ReflectionUtils.setValue(source, field, value,
                         overrideAccessibility);
             }
-            else if (mutator != null) {
+            else {
 
-                final List<Object> parameterList = new LinkedList<Object>();
+                final List<Object> parameterList = new LinkedList<>();
                 parameterList.add(value);
                 ReflectionUtils.invokeMethod(source, mutator, parameterList,
                         overrideAccessibility);
@@ -1546,14 +1625,16 @@ public class ReflectionUtils {
      * Attempts to invoke the provided {@link Method} on the provided object.
      *
      * @param source
-     *            the object on which the {@link Method} is to be invoked.
+     *         the object on which the {@link Method} is to be invoked.
      * @param method
-     *            the {@link Method} to invoke.
+     *         the {@link Method} to invoke.
      * @param methodParameters
-     *            the {@link Method Method's} parameters.
+     *         the {@link Method Method's} parameters.
+     *
      * @return the result of the method invocation.
+     *
      * @throws ReflectionException
-     *             if the {@link Method} invocation fails.
+     *         if the {@link Method} invocation fails.
      */
     public static Object invokeMethod(final Object source, final Method method,
             final Collection<?> methodParameters)
@@ -1567,24 +1648,26 @@ public class ReflectionUtils {
      * Attempts to invoke the provided {@link Method} on the provided object.
      *
      * @param source
-     *            the object on which the {@link Method} is to be invoked.
+     *         the object on which the {@link Method} is to be invoked.
      * @param method
-     *            the {@link Method} to invoke.
+     *         the {@link Method} to invoke.
      * @param methodParameters
-     *            the {@link Method Method's} parameters.
+     *         the {@link Method Method's} parameters.
      * @param overrideAccessibility
-     *            whether or not to attempt overriding the accessibility of the
-     *            {@link Field}.
+     *         whether or not to attempt overriding the accessibility of the
+     *         {@link Field}.
+     *
      * @return the result of the method invocation.
+     *
      * @throws ReflectionException
-     *             if the {@link Method} invocation fails.
+     *         if the {@link Method} invocation fails.
      */
     public static Object invokeMethod(final Object source, final Method method,
             final Collection<?> methodParameters,
             final boolean overrideAccessibility)
             throws ReflectionException {
 
-        Object returnValue = null;
+        Object returnValue;
 
         boolean accessibilityChanged = false;
 
@@ -1608,22 +1691,22 @@ public class ReflectionUtils {
         }
         catch (final IllegalAccessException e) {
 
-            throw new ReflectionException("Could not invoke method "
-                    + ReflectionUtils.getSignature(method)
-                    + " due to insufficient accessibility!", e);
+            throw new ReflectionException(
+                    "Could not invoke method " + ReflectionUtils.getSignature(
+                            method) + " due to insufficient accessibility!", e);
         }
         catch (final IllegalArgumentException e) {
 
-            throw new ReflectionException("Method "
-                    + ReflectionUtils.getSignature(method)
+            throw new ReflectionException(
+                    "Method " + ReflectionUtils.getSignature(method)
                     + " could not be executed with parameter(s) "
                     + methodParameters + "!", e);
         }
         catch (final InvocationTargetException e) {
 
-            throw new ReflectionException("Invocation of method "
-                    + ReflectionUtils.getSignature(method)
-                    + " resulted in an exception!", e);
+            throw new ReflectionException(
+                    "Invocation of method " + ReflectionUtils.getSignature(
+                            method) + " resulted in an exception!", e);
         }
 
 
@@ -1638,47 +1721,49 @@ public class ReflectionUtils {
      * Attempts to create a new instance of the provided {@link Class type}.
      *
      * @param <T>
-     *            the desired return type.
-     *
+     *         the desired return type.
      * @param type
-     *            the {@link Class type}
+     *         the {@link Class type}
      * @param constructorParameters
-     *            the {@link Constructor} parameters.
+     *         the {@link Constructor} parameters.
+     *
      * @return a new instance of the {@link Class type}.
+     *
      * @throws ReflectionException
-     *             if a new instance could not be initialized.
+     *         if a new instance could not be initialized.
      */
     public static <T> T createInstance(final Class<? extends T> type,
             final Object[] constructorParameters)
             throws ReflectionException {
 
-        return ReflectionUtils
-                .createInstance(type, constructorParameters, true);
+        return ReflectionUtils.createInstance(type, constructorParameters,
+                true);
     }
 
     /**
      * Attempts to create a new instance of the provided {@link Class type}.
      *
      * @param <T>
-     *            the desired return type.
-     *
+     *         the desired return type.
      * @param type
-     *            the {@link Class type}
+     *         the {@link Class type}
      * @param constructorParameters
-     *            the {@link Constructor} parameters.
+     *         the {@link Constructor} parameters.
      * @param overrideAccessibility
-     *            whether or not to attempt overriding the accessibility of the
-     *            {@link Constructor}.
+     *         whether or not to attempt overriding the accessibility of the
+     *         {@link Constructor}.
+     *
      * @return a new instance of the {@link Class type}.
+     *
      * @throws ReflectionException
-     *             if a new instance could not be initialized.
+     *         if a new instance could not be initialized.
      */
     public static <T> T createInstance(final Class<? extends T> type,
             final Object[] constructorParameters,
             final boolean overrideAccessibility)
             throws ReflectionException {
 
-        final Collection<Class<?>> parameterTypes = new LinkedList<Class<?>>();
+        final Collection<Class<?>> parameterTypes = new LinkedList<>();
 
         Object[] parameterList = constructorParameters;
         if (parameterList == null) {
@@ -1694,16 +1779,16 @@ public class ReflectionUtils {
         final Constructor<?> constructor = ReflectionUtils.getConstructor(type,
                 parameterTypes);
 
-        T retrievedInstance = null;
+        T retrievedInstance;
 
         boolean accessibilityChanged = false;
         if (overrideAccessibility) {
 
-            accessibilityChanged = ReflectionUtils.setAccessibility(
-                    constructor, true);
+            accessibilityChanged = ReflectionUtils.setAccessibility(constructor,
+                    true);
         }
 
-        Object newObject = null;
+        Object newObject;
 
         try {
 
@@ -1711,27 +1796,28 @@ public class ReflectionUtils {
         }
         catch (final InstantiationException e) {
 
-            throw new ReflectionException("Invocation of "
-                    + ReflectionUtils.getSignature(constructor)
+            throw new ReflectionException(
+                    "Invocation of " + ReflectionUtils.getSignature(constructor)
                     + " failed because " + type.getCanonicalName()
                     + " is abstract!", e);
         }
         catch (final IllegalAccessException e) {
 
-            throw new ReflectionException("Invocation of "
-                    + ReflectionUtils.getSignature(constructor)
+            throw new ReflectionException(
+                    "Invocation of " + ReflectionUtils.getSignature(constructor)
                     + " failed because of insufficient accessibility!", e);
         }
         catch (final IllegalArgumentException e) {
 
-            throw new ReflectionException("Invocation of "
-                    + ReflectionUtils.getSignature(constructor)
+            throw new ReflectionException(
+                    "Invocation of " + ReflectionUtils.getSignature(constructor)
                     + " failed because of illegal arguments!", e);
         }
         catch (final InvocationTargetException e) {
 
-            throw new ReflectionException("Failed to invoke "
-                    + ReflectionUtils.getSignature(constructor) + "!", e);
+            throw new ReflectionException(
+                    "Failed to invoke " + ReflectionUtils.getSignature(
+                            constructor) + "!", e);
         }
 
 
@@ -1753,17 +1839,20 @@ public class ReflectionUtils {
      * {@link AccessibleObject} to the provided value.
      *
      * @param accessibleObject
-     *            the {@link AccessibleObject} to modify.
+     *         the {@link AccessibleObject} to modify.
      * @param accessibility
-     *            the desired accessibility.
+     *         the desired accessibility.
+     *
      * @return {@code true}, if the {@link AccessibleObject} was modified;
-     *         {@code false} otherwise.
+     * {@code false} otherwise.
+     *
      * @throws ReflectionException
-     *             it the accessibility of the {@link AccessibleObject} could
-     *             not be changed.
+     *         it the accessibility of the {@link AccessibleObject} could not be
+     *         changed.
      */
     public static boolean setAccessibility(
-            final AccessibleObject accessibleObject, final boolean accessibility)
+            final AccessibleObject accessibleObject,
+            final boolean accessibility)
             throws ReflectionException {
 
         boolean accessibilityChanged = false;
@@ -1786,7 +1875,7 @@ public class ReflectionUtils {
 
                 throw new ReflectionException(
                         "Could not change accessibility of " + name + " to "
-                                + accessibility + "!", e);
+                        + accessibility + "!", e);
             }
         }
 
@@ -1801,12 +1890,13 @@ public class ReflectionUtils {
      * class to be parsed itself).
      *
      * @param type
-     *            the type for which to generate the class hierarchy.
+     *         the type for which to generate the class hierarchy.
+     *
      * @return the class hierarchy.
      */
     public static List<Class<?>> getClassHierarchy(final Class<?> type) {
 
-        final LinkedList<Class<?>> classHierarchy = new LinkedList<Class<?>>();
+        final LinkedList<Class<?>> classHierarchy = new LinkedList<>();
 
         Class<?> current = type;
 
@@ -1825,15 +1915,16 @@ public class ReflectionUtils {
      * Returns the interface hierarchy for this class.
      *
      * @param type
-     *            the type for which to generate the interface hierarchy.
+     *         the type for which to generate the interface hierarchy.
+     *
      * @return the interface hierarchy.
      */
     public static Set<Class<?>> getInterfaceHierarchy(final Class<?> type) {
 
 
-        final Set<Class<?>> interfaceHierarchy = new LinkedHashSet<Class<?>>();
+        final Set<Class<?>> interfaceHierarchy = new LinkedHashSet<>();
 
-        final LinkedList<Class<?>> interfaceQueue = new LinkedList<Class<?>>();
+        final LinkedList<Class<?>> interfaceQueue = new LinkedList<>();
 
         interfaceQueue.addAll(Arrays.asList(type.getInterfaces()));
 
@@ -1851,9 +1942,10 @@ public class ReflectionUtils {
      * Returns the shared ancestor class of the provided classes.
      *
      * @param lhs
-     *            the left-hand side class.
+     *         the left-hand side class.
      * @param rhs
-     *            the right-hand side class.
+     *         the right-hand side class.
+     *
      * @return the shared ancestor class.
      */
     public static Class<?> getSharedAncestorClass(final Class<?> lhs,
@@ -1864,9 +1956,11 @@ public class ReflectionUtils {
             return rhs;
         }
         final List<Class<?>> lhsClassHierarchy = ReflectionUtils
-                .getClassHierarchy(lhs);
+                .getClassHierarchy(
+                lhs);
         final List<Class<?>> rhsClassHierarchy = ReflectionUtils
-                .getClassHierarchy(rhs);
+                .getClassHierarchy(
+                rhs);
 
         int max = lhsClassHierarchy.size();
         if (rhsClassHierarchy.size() < max) {
@@ -1898,18 +1992,21 @@ public class ReflectionUtils {
      * Returns the interfaces shared by the provided classes.
      *
      * @param lhs
-     *            the left-hand side class.
+     *         the left-hand side class.
      * @param rhs
-     *            the right-hand side class.
+     *         the right-hand side class.
+     *
      * @return a set of shared interfaces.
      */
     public static Set<Class<?>> getSharedInterfaces(final Class<?> lhs,
             final Class<?> rhs) {
 
         final Set<Class<?>> lhsInterfaces = ReflectionUtils
-                .getInterfaceHierarchy(lhs);
+                .getInterfaceHierarchy(
+                lhs);
         final Set<Class<?>> rhsInterfaces = ReflectionUtils
-                .getInterfaceHierarchy(rhs);
+                .getInterfaceHierarchy(
+                rhs);
 
         lhsInterfaces.retainAll(rhsInterfaces);
 
@@ -1930,17 +2027,18 @@ public class ReflectionUtils {
      * </p>
      *
      * @param field
-     *            the field of the desired class.
+     *         the field of the desired class.
+     *
      * @return A list of types or an empty list, if the actual type could not be
-     *         determined.
+     * determined.
      */
     public static List<Class<?>> getGenericTypeArguments(final Field field) {
 
-        final List<Class<?>> genericTypeArguments = new ArrayList<Class<?>>();
+        final List<Class<?>> genericTypeArguments = new ArrayList<>();
         if (field.getGenericType() instanceof ParameterizedType) {
 
-            final ParameterizedType parameterizedType = (ParameterizedType) field
-                    .getGenericType();
+            final ParameterizedType parameterizedType = (ParameterizedType)
+                    field.getGenericType();
 
             for (final Type type : parameterizedType.getActualTypeArguments()) {
 
@@ -1971,19 +2069,20 @@ public class ReflectionUtils {
      * </p>
      *
      * @param object
-     *            the object instance of the desired class.
+     *         the object instance of the desired class.
+     *
      * @return A list of types or an empty list, if the actual type could not be
-     *         determined.
+     * determined.
      */
     public static List<Class<?>> getGenericTypeArguments(final Object object) {
 
         final Class<?> objectType = object.getClass();
-        final List<Class<?>> genericTypeArguments = new ArrayList<Class<?>>();
+        final List<Class<?>> genericTypeArguments = new ArrayList<>();
 
         if (objectType.getGenericSuperclass() instanceof ParameterizedType) {
 
-            final ParameterizedType parameterizedType = (ParameterizedType) objectType
-                    .getGenericSuperclass();
+            final ParameterizedType parameterizedType = (ParameterizedType)
+                    objectType.getGenericSuperclass();
 
             for (final Type type : parameterizedType.getActualTypeArguments()) {
 
@@ -2000,7 +2099,8 @@ public class ReflectionUtils {
 
             if (genericInterfaceType instanceof ParameterizedType) {
 
-                final ParameterizedType parameterizedType = (ParameterizedType) genericInterfaceType;
+                final ParameterizedType parameterizedType =
+                        (ParameterizedType) genericInterfaceType;
 
                 for (final Type type : parameterizedType
                         .getActualTypeArguments()) {
@@ -2008,7 +2108,8 @@ public class ReflectionUtils {
                     if (type instanceof Class) {
                         final Class<?> genericTypeArgument = (Class<?>) type;
 
-                        if (!genericTypeArguments.contains(genericTypeArgument)) {
+                        if (!genericTypeArguments.contains(
+                                genericTypeArgument)) {
 
                             genericTypeArguments.add(genericTypeArgument);
                         }
@@ -2035,24 +2136,25 @@ public class ReflectionUtils {
      * </p>
      *
      * @param object
-     *            the object instance of the desired class.
+     *         the object instance of the desired class.
      * @param inheritedType
-     *            the inherited type (Class or Interface).
+     *         the inherited type (Class or Interface).
+     *
      * @return A list of types or an empty list, if the actual type could not be
-     *         determined.
+     * determined.
      */
     public static List<Class<?>> getGenericTypeArgumentsOfInheritedType(
             final Object object, final Class<?> inheritedType) {
 
         final Class<?> objectType = object.getClass();
-        final List<Class<?>> genericTypeArguments = new ArrayList<Class<?>>();
+        final List<Class<?>> genericTypeArguments = new ArrayList<>();
 
 
         boolean found = false;
         if (objectType.getGenericSuperclass() instanceof ParameterizedType) {
 
-            final ParameterizedType parameterizedType = (ParameterizedType) objectType
-                    .getGenericSuperclass();
+            final ParameterizedType parameterizedType = (ParameterizedType)
+                    objectType.getGenericSuperclass();
 
             if (parameterizedType.getRawType() == inheritedType) {
                 found = true;
@@ -2075,7 +2177,8 @@ public class ReflectionUtils {
                 if (genericInterfaceType instanceof ParameterizedType) {
 
 
-                    final ParameterizedType parameterizedType = (ParameterizedType) genericInterfaceType;
+                    final ParameterizedType parameterizedType =
+                            (ParameterizedType) genericInterfaceType;
 
                     if (parameterizedType.getRawType() == inheritedType) {
                         for (final Type type : parameterizedType
@@ -2083,13 +2186,14 @@ public class ReflectionUtils {
 
 
                             if (type instanceof Class) {
-                                final Class<?> genericTypeArgument = (Class<?>) type;
+                                final Class<?> genericTypeArgument =
+                                        (Class<?>) type;
 
-                                if (!genericTypeArguments
-                                        .contains(genericTypeArgument)) {
+                                if (!genericTypeArguments.contains(
+                                        genericTypeArgument)) {
 
-                                    genericTypeArguments
-                                            .add(genericTypeArgument);
+                                    genericTypeArguments.add(
+                                            genericTypeArgument);
                                 }
                             }
                         }
@@ -2109,7 +2213,8 @@ public class ReflectionUtils {
      * Returns the signature of the provided {@link Method}.
      *
      * @param method
-     *            the {@link Method}.
+     *         the {@link Method}.
+     *
      * @return the {@link Method Method's} signature.
      */
     public static String getSignature(final Method method) {
@@ -2124,7 +2229,8 @@ public class ReflectionUtils {
      * Returns the signature of the provided {@link Constructor}.
      *
      * @param constructor
-     *            the {@link Constructor}.
+     *         the {@link Constructor}.
+     *
      * @return the {@link Constructor Constructor's} signature.
      */
     public static String getSignature(final Constructor<?> constructor) {
@@ -2139,7 +2245,8 @@ public class ReflectionUtils {
      * Returns the signature of the provided {@link Field}.
      *
      * @param field
-     *            the {@link Field}.
+     *         the {@link Field}.
+     *
      * @return the {@link Field Field's} signature.
      */
     public static String getSignature(final Field field) {
@@ -2154,36 +2261,41 @@ public class ReflectionUtils {
      * Builds a signature with the provided values.
      *
      * @param modifiers
-     *            the {@link Modifier modifiers}.
+     *         the {@link Modifier modifiers}.
      * @param type
-     *            the defining {@link Class}.
+     *         the defining {@link Class}.
      * @param returnType
-     *            the {@link Class return type}.
+     *         the {@link Class return type}.
      * @param identifier
-     *            the identifier.
+     *         the identifier.
      * @param parameterTypes
-     *            the {@link Class parameter types}.
+     *         the {@link Class parameter types}.
+     *
      * @return the signature.
      */
     public static String buildSignature(final Integer modifiers,
             final Class<?> type, final Class<?> returnType,
-            final String identifier, final Collection<Class<?>> parameterTypes) {
+            final String identifier,
+            final Collection<Class<?>> parameterTypes) {
 
         final StringBuilder signature = new StringBuilder();
 
         if (modifiers != null) {
 
-            signature.append(Modifier.toString(modifiers) + " ");
+            signature.append(Modifier.toString(modifiers))
+                    .append(" ");
         }
 
         if (returnType != null) {
 
-            signature.append(returnType.getCanonicalName() + " ");
+            signature.append(returnType.getCanonicalName())
+                    .append(" ");
         }
 
         if (type != null) {
 
-            signature.append(type.getCanonicalName() + ".");
+            signature.append(type.getCanonicalName())
+                    .append(".");
         }
 
         if ((identifier != null) && !"".equals(identifier)) {
@@ -2218,31 +2330,31 @@ public class ReflectionUtils {
      * Creates a new {@link LinkedList} of the provided {@link Class type}.
      *
      * @param <T>
-     *            the desired return type.
-     *
+     *         the desired return type.
      * @param type
-     *            the desired {@link Class type}.
+     *         the desired {@link Class type}.
+     *
      * @return a new {@link LinkedList} of the provided {@link Class type}.
      */
     public static <T> LinkedList<T> createLinkedList(
             final Class<? extends T> type) {
 
-        return new LinkedList<T>();
+        return new LinkedList<>();
     }
 
     /**
      * Creates a new {@link LinkedHashSet} of the provided {@link Class type}.
      *
      * @param <T>
-     *            the desired return type.
-     *
+     *         the desired return type.
      * @param type
-     *            the desired {@link Class type}.
+     *         the desired {@link Class type}.
+     *
      * @return a new {@link LinkedHashSet} of the provided {@link Class type}.
      */
     public static <T> LinkedHashSet<T> createLinkedHashSet(
             final Class<? extends T> type) {
 
-        return new LinkedHashSet<T>();
+        return new LinkedHashSet<>();
     }
 }

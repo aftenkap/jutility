@@ -149,7 +149,7 @@ public class Interval<T extends Number>
             final S lowerBound, final S upperBound,
             final boolean includeLowerBound, final boolean includeUpperBound) {
 
-        return new Interval<S>(lowerBound, upperBound, includeLowerBound,
+        return new Interval<>(lowerBound, upperBound, includeLowerBound,
                 includeUpperBound);
     }
 

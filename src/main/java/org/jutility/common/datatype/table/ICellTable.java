@@ -52,7 +52,7 @@ public interface ICellTable<CELL extends ICell<T>, T>
      * @return {@code true} if the table did not already contain the value;
      *         {@code false} otherwise.
      */
-    public abstract boolean add(CELL cell);
+    boolean add(CELL cell);
 
     /**
      * Returns the value in the cell with the specified row and column.
@@ -61,7 +61,7 @@ public interface ICellTable<CELL extends ICell<T>, T>
      *            the location.
      * @return the value in the cell or {@code null} if no value exists.
      */
-    public abstract T get(CELL location);
+    T get(CELL location);
 
     /**
      * Returns the cell with the specified row and column.
@@ -73,7 +73,7 @@ public interface ICellTable<CELL extends ICell<T>, T>
      * @return the cell or {@code null} if no cell exists for the provided row
      *         and column.
      */
-    public abstract CELL getCell(int row, int column);
+    CELL getCell(int row, int column);
 
     /**
      * Returns the cell with the specified location.
@@ -83,7 +83,7 @@ public interface ICellTable<CELL extends ICell<T>, T>
      * @return the cell or {@code null} if no cell exists for the provided row
      *         and column.
      */
-    public abstract CELL getCell(CellLocation location);
+    CELL getCell(CellLocation location);
 
     /**
      * Returns the {@link CellContainer Row} with the provided index.
@@ -95,7 +95,7 @@ public interface ICellTable<CELL extends ICell<T>, T>
      *         {@link CellContainer Row} with the provided index.
      */
     @Override
-    public abstract CellContainer<CELL, T> getRow(int index);
+    CellContainer<CELL, T> getRow(int index);
 
     /**
      * Returns the {@link CellContainer Rows} of this {@link Table}.
@@ -103,7 +103,7 @@ public interface ICellTable<CELL extends ICell<T>, T>
      * @return the {@link CellContainer Rows} of this {@link Table}.
      */
     @Override
-    public abstract Collection<CellContainer<CELL, T>> getRows();
+    Collection<CellContainer<CELL, T>> getRows();
 
     /**
      * Returns the {@link CellContainer Column} with the provided index.
@@ -115,7 +115,7 @@ public interface ICellTable<CELL extends ICell<T>, T>
      *         {@link CellContainer Column} with the provided index.
      */
     @Override
-    public abstract CellContainer<CELL, T> getColumn(int index);
+    CellContainer<CELL, T> getColumn(int index);
 
     /**
      * Returns the {@link CellContainer Columns} of this {@link Table}.
@@ -123,14 +123,14 @@ public interface ICellTable<CELL extends ICell<T>, T>
      * @return the {@link CellContainer Columns} of this {@link Table}.
      */
     @Override
-    public abstract Collection<CellContainer<CELL, T>> getColumns();
+    Collection<CellContainer<CELL, T>> getColumns();
 
     /**
      * Returns the {@link ICell cells} of this {@link Table}.
      *
      * @return the {@link ICell cell cells} .
      */
-    public abstract Collection<CELL> getCells();
+    Collection<CELL> getCells();
 
     /**
      * Removes the {@link Cell} from the table.
@@ -140,14 +140,14 @@ public interface ICellTable<CELL extends ICell<T>, T>
      * @return {@code true}, if the table contained the cell; {@code false}
      *         otherwise.
      */
-    public abstract boolean remove(CELL cell);
+    boolean remove(CELL cell);
 
     /**
      * Returns an {@link Iterator} over the cells of the table.
      *
      * @return an {@link Iterator} over the cells of the table.
      */
-    public abstract Iterator<CELL> cellIterator();
+    Iterator<CELL> cellIterator();
 
     /**
      * Returns an {@link Iterator} over the cells of the table with row-major
@@ -156,7 +156,7 @@ public interface ICellTable<CELL extends ICell<T>, T>
      * @return an {@link Iterator} over the cells of the table with row-major
      *         order.
      */
-    public abstract Iterator<CELL> rowMajorOrderCellIterator();
+    Iterator<CELL> rowMajorOrderCellIterator();
 
     /**
      * Returns an {@link Iterator} over the cells of the table with column-major
@@ -165,5 +165,5 @@ public interface ICellTable<CELL extends ICell<T>, T>
      * @return an {@link Iterator} over the cells of the table with column-major
      *         order.
      */
-    public Iterator<CELL> columnMajorOrderCellIterator();
+    Iterator<CELL> columnMajorOrderCellIterator();
 }

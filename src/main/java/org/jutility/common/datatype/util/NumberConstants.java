@@ -37,7 +37,7 @@ public final class NumberConstants {
     /**
      * Precision for float comparisons.
      */
-    public static float  DELTA_F = 0.0001f;
+    public static final float DELTA_F = 0.0001f;
 
     /**
      * Precision for double comparisons.

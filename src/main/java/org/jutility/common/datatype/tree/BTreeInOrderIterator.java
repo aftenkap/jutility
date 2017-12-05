@@ -61,7 +61,7 @@ public class BTreeInOrderIterator<VALUE extends Comparable<VALUE>>
 
         this.currentValue = null;
 
-        this.stack = new LinkedList<VALUE>();
+        this.stack = new LinkedList<>();
 
         this.enqueue(tree.getRoot());
     }

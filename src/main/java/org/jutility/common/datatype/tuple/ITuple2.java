@@ -47,7 +47,7 @@ public interface ITuple2<T>
      *
      * @return The X coordinate.
      */
-    public abstract T getX();
+    T getX();
 
 
     /**
@@ -55,5 +55,5 @@ public interface ITuple2<T>
      *
      * @return The Y coordinate.
      */
-    public abstract T getY();
+    T getY();
 }

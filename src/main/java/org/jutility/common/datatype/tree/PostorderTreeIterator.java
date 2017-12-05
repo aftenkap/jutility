@@ -31,21 +31,21 @@ import java.util.NoSuchElementException;
 
 
 /**
+ * @param <E>
+ *         the value type.
  *
  * @author Peter J. Radics
  * @version 1.0
- * @param <E>
- *            the value type.
  */
 public class PostorderTreeIterator<E>
         implements Iterator<E> {
 
 
 
-    private final Tree<E>                 tree;
+    private final Tree<E> tree;
 
     private final LinkedList<TreeNode<E>> stack;
-    private TreeNode<E>                   currentNode;
+    private       TreeNode<E>             currentNode;
 
 
 
@@ -53,13 +53,13 @@ public class PostorderTreeIterator<E>
      * Creates a new instance of the {@code PostorderTreeIterator} class.
      *
      * @param tree
-     *            the tree to iterate over.
+     *         the tree to iterate over.
      */
     protected PostorderTreeIterator(final Tree<E> tree) {
 
         this.tree = tree;
 
-        this.stack = new LinkedList<TreeNode<E>>();
+        this.stack = new LinkedList<>();
 
         if (!this.tree.isEmpty()) {
             this.stack.addFirst(this.tree.getRoot());
@@ -85,14 +85,11 @@ public class PostorderTreeIterator<E>
 
             this.currentNode = this.stack.removeFirst();
 
-            final E returnValue = this.currentNode.getElement();
+            return this.currentNode.getElement();
+        }
 
-            return returnValue;
-        }
-        else {
-            throw new NoSuchElementException(
-                    "Trying to iterate past the last element of the tree.");
-        }
+        throw new NoSuchElementException(
+                "Trying to iterate past the last element of the tree.");
     }
 
 
@@ -102,7 +99,7 @@ public class PostorderTreeIterator<E>
         if (this.currentNode == null) {
             throw new IllegalStateException(
                     "Cannot remove element without calling next() immediately "
-                            + "before.");
+                    + "before.");
         }
         else {
 
@@ -111,18 +108,20 @@ public class PostorderTreeIterator<E>
             if (this.currentNode.getParent() != null) {
 
                 // Leaf node
-                if (this.currentNode.getChildren().isEmpty()) {
+                if (this.currentNode.getChildren()
+                        .isEmpty()) {
 
-                    this.currentNode.getParent().removeChild(this.currentNode);
+                    this.currentNode.getParent()
+                            .removeChild(this.currentNode);
                 }
                 // Not leaf node
                 else {
 
                     // System.out.println("\n\nIn here");
                     final TreeNode<E> parent = this.currentNode.getParent();
-                    final TreeNode<E> lastChild = this.currentNode
-                            .getChildren().get(
-                                    this.currentNode.getChildren().size() - 1);
+                    final TreeNode<E> lastChild = this.currentNode.getChildren()
+                            .get(this.currentNode.getChildren()
+                                         .size() - 1);
 
                     // System.out.println("Stack: " + this.stack);
                     // System.out.println("Current: "
@@ -155,16 +154,17 @@ public class PostorderTreeIterator<E>
             else {
 
                 // Leaf node
-                if (this.currentNode.getChildren().isEmpty()) {
+                if (this.currentNode.getChildren()
+                        .isEmpty()) {
 
                     this.tree.setRoot(null);
                 }
                 // Not leaf node
                 else {
 
-                    final TreeNode<E> lastChild = this.currentNode
-                            .getChildren().get(
-                                    this.currentNode.getChildren().size() - 1);
+                    final TreeNode<E> lastChild = this.currentNode.getChildren()
+                            .get(this.currentNode.getChildren()
+                                         .size() - 1);
 
                     this.tree.setRoot(lastChild);
 
@@ -226,8 +226,8 @@ public class PostorderTreeIterator<E>
         if (!children.isEmpty()) {
 
 
-            final ListIterator<TreeNode<E>> it = children.listIterator(children
-                    .size());
+            final ListIterator<TreeNode<E>> it = children.listIterator(
+                    children.size());
 
             // We enqueue all children in reverse order
             while (it.hasPrevious()) {

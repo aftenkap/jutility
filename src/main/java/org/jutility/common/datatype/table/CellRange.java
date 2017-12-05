@@ -373,7 +373,7 @@ public class CellRange
      * @version 0.1.2
      * @since 0.1.0
      */
-    public static enum Characteristics {
+    public enum Characteristics {
         /**
          * An empty range.
          */
@@ -402,7 +402,7 @@ public class CellRange
 
         private final String name;
 
-        private Characteristics(final String name) {
+        Characteristics(final String name) {
 
             this.name = name;
         }

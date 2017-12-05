@@ -98,7 +98,7 @@ public class StringWithNumberComparator
             final String lhsToken = lhsTokens[i];
             final String rhsToken = rhsTokens[i];
 
-            int comparison = 0;
+            int comparison;
 
             try {
 

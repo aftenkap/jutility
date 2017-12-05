@@ -45,7 +45,7 @@ public interface IInterval<T> {
      * @return {@code true} if the interval contains its lower bound;
      *         {@code false} otherwise.
      */
-    public abstract Boolean containsLowerBound();
+    Boolean containsLowerBound();
 
     /**
      * Returns whether or not the interval contains its upper bound.
@@ -53,21 +53,21 @@ public interface IInterval<T> {
      * @return {@code true} if the interval contains its upper bound;
      *         {@code false} otherwise.
      */
-    public abstract Boolean containsUpperBound();
+    Boolean containsUpperBound();
 
     /**
      * Returns the lower bound of the interval.
      *
      * @return the lower bound.
      */
-    public abstract T getLowerBound();
+    T getLowerBound();
 
     /**
      * Returns the upper bound of the interval.
      *
      * @return the upper bound.
      */
-    public abstract T getUpperBound();
+    T getUpperBound();
 
     /**
      * Returns whether or not an element is contained within the interval (i.e.,
@@ -79,7 +79,7 @@ public interface IInterval<T> {
      * @return {@code true} if the element is contained in the interval;
      *         {@code false} otherwise.
      */
-    public abstract boolean contains(T element);
+    boolean contains(T element);
 
     /**
      * Returns whether or not another interval is contained within the interval
@@ -91,7 +91,7 @@ public interface IInterval<T> {
      * @return {@code true} if the other interval is contained in the interval;
      *         {@code false} otherwise.
      */
-    public abstract boolean contains(IInterval<T> otherInterval);
+    boolean contains(IInterval<T> otherInterval);
 
     /**
      * Determines whether this interval intersects with the other interval. <br>
@@ -133,7 +133,7 @@ public interface IInterval<T> {
      * @return {@code true}, if the intervals intersect. Otherwise {@code false}
      *         .
      */
-    public abstract Boolean intersects(IInterval<T> otherInterval);
+    Boolean intersects(IInterval<T> otherInterval);
 
     /**
      * Returns whether or not another interval contains this interval (i.e.,
@@ -145,6 +145,6 @@ public interface IInterval<T> {
      * @return {@code true} if the other interval is contained in the interval;
      *         {@code false} otherwise.
      */
-    public abstract Boolean isContainedIn(IInterval<T> otherInterval);
+    Boolean isContainedIn(IInterval<T> otherInterval);
 
 }
