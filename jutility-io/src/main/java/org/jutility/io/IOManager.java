@@ -9,9 +9,9 @@ package org.jutility.io;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,14 +20,12 @@ package org.jutility.io;
  * #L%
  */
 
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
-
 
 /**
  * @author Peter J. Radics
@@ -37,12 +35,11 @@ import java.util.Set;
 public class IOManager {
 
     @SuppressWarnings("unused")
-    private final                             Map<Class<?>, Class<? extends
+    private final Map<Class<?>, Class<? extends
             IConverter>> converters;
     @SuppressWarnings("unused")
-    private final                             Set<Class<? extends
-            ISerializer>>          serializers;
-
+    private final Set<Class<? extends
+            ISerializer>> serializers;
 
     private static IOManager s_Instance;
 
@@ -61,13 +58,11 @@ public class IOManager {
         return s_Instance;
     }
 
-
     private IOManager() {
 
         this.converters = new LinkedHashMap<>();
         this.serializers = new LinkedHashSet<>();
     }
-
 
     /**
      * Registers the provided {@link ISerializer serializer}.
@@ -91,7 +86,6 @@ public class IOManager {
         // TODO: implement
     }
 
-
     @SuppressWarnings("unused")
     private Method getMethod(String name, Class<?> clazz) {
 
@@ -99,17 +93,15 @@ public class IOManager {
         try {
             method = clazz.getDeclaredMethod(name);
 
-        }
-        catch (NoSuchMethodException e) {
+        } catch (NoSuchMethodException e) {
             throw new IllegalArgumentException(
                     "Trying to register Layout " + "Component class that does "
-                    + "not declare static " + name + "() method!");
-        }
-        catch (SecurityException e) {
+                            + "not declare static " + name + "() method!");
+        } catch (SecurityException e) {
 
             throw new IllegalArgumentException(
                     "Trying to register Layout " + "Component class that does "
-                    + "not have accessible static " + name + "() method!");
+                            + "not have accessible static " + name + "() method!");
         }
 
         return method;
@@ -121,12 +113,11 @@ public class IOManager {
         try {
 
             return method.invoke(null, (Object[]) null);
-        }
-        catch (IllegalAccessException | IllegalArgumentException |
+        } catch (IllegalAccessException | IllegalArgumentException |
                 InvocationTargetException e) {
             throw new IllegalArgumentException(
                     "Trying to register Layout " + "Component class that cannot"
-                    + " execute static " + method.getName() + "() method!");
+                            + " execute static " + method.getName() + "() method!");
         }
     }
 }

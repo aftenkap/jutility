@@ -110,7 +110,7 @@ public class CsvSerializerTest {
         Table<?> table = null;
         try {
 
-            table = CsvSerializer.Instance()
+            table = CsvSerializer.instance()
                                  .deserialize(this.testFile, Table.class);
 
         }
@@ -144,7 +144,7 @@ public class CsvSerializerTest {
 
         try {
 
-            CsvSerializer.Instance()
+            CsvSerializer.instance()
                          .serialize(this.referenceTable,
                                  this.tempFile.getPath());
         }
@@ -157,7 +157,7 @@ public class CsvSerializerTest {
         Table<?> table = null;
         try {
 
-            table = CsvSerializer.Instance()
+            table = CsvSerializer.instance()
                                  .deserialize(this.tempFile, Table.class);
 
         }

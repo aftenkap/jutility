@@ -44,8 +44,7 @@ public interface IConverter {
      * @return {@code true} if the converter supports the conversion;
      * {@code false} otherwise.
      */
-    boolean supportsConversion(final Class<?> sourceType,
-            final Class<?> targetType);
+    boolean supportsConversion(final Class<?> sourceType, final Class<?> targetType);
 
     /**
      * Converts the provided object into an instance of the desired return type.
@@ -64,7 +63,6 @@ public interface IConverter {
      * @throws ConversionException
      *         if the return type is not supported or conversion fails.
      */
-    <T, S> S convert(final T documentToConvert,
-            final Class<? extends S> returnType)
+    <T, S> S convert(final T documentToConvert, final Class<? extends S> returnType)
             throws ConversionException;
 }

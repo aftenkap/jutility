@@ -1,6 +1,5 @@
 package org.jutility.io.csv;
 
-
 // @formatter:off
 /*
  * #%L
@@ -42,13 +41,13 @@ import org.jutility.common.datatype.table.ITable;
 import org.jutility.common.datatype.table.Table;
 import org.jutility.io.ISerializer;
 import org.jutility.io.SerializationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.supercsv.io.CsvMapReader;
 import org.supercsv.io.CsvMapWriter;
 import org.supercsv.io.ICsvMapReader;
 import org.supercsv.io.ICsvMapWriter;
 import org.supercsv.prefs.CsvPreference;
-
-
 
 /**
  * The {@code CsvSerializer} class provides an implementation of the
@@ -61,37 +60,34 @@ import org.supercsv.prefs.CsvPreference;
 public class CsvSerializer
         implements ISerializer {
 
-
-    private static CsvSerializer s_Instance;
+    private static final Logger LOGGER = LoggerFactory.getLogger(CsvSerializer.class);
+    private static CsvSerializer instance;
 
     /**
      * Returns the Singleton instance of the {@code CsvSerializer}.
      *
      * @return the Singleton instance.
      */
-    public static CsvSerializer Instance() {
+    public static CsvSerializer instance() {
 
-        if (s_Instance == null) {
+        if (instance == null) {
 
-            s_Instance = new CsvSerializer();
+            instance = new CsvSerializer();
         }
 
-        return s_Instance;
+        return instance;
     }
-
 
     private CsvSerializer() {
 
         // Nothing to be done.
     }
 
-
     @Override
     public boolean supportsSerializationOf(Class<?> type) {
 
         return Table.class.isAssignableFrom(type);
     }
-
 
     @Override
     public boolean supportsDeserializationOf(Class<?> type) {
@@ -107,17 +103,13 @@ public class CsvSerializer
 
         if (!this.supportsSerializationOf(documentType)) {
 
-            throw new SerializationException(
-                    "Serialization of type " + documentType
-                    + " is not supported!");
+            LOGGER.info("Serialization of type {} is not supported!", documentType);
+            throw new SerializationException("Serialization of type " + documentType + " is not supported!");
         }
 
         Table<?> table = Table.class.cast(document);
-        ICsvMapWriter mapWriter = null;
-        try {
-
-            mapWriter = new CsvMapWriter(new FileWriter(filename),
-                    CsvPreference.STANDARD_PREFERENCE);
+        try (ICsvMapWriter mapWriter = new CsvMapWriter(new FileWriter(filename),
+                CsvPreference.STANDARD_PREFERENCE)) {
 
             String[] header = new String[table.columns()];
 
@@ -128,8 +120,7 @@ public class CsvSerializer
                 if (value != null) {
 
                     header[i] = value.toString();
-                }
-                else {
+                } else {
 
                     header[i] = "";
                 }
@@ -149,8 +140,7 @@ public class CsvSerializer
                     if (value != null) {
 
                         values.put(key, value.toString());
-                    }
-                    else {
+                    } else {
 
                         values.put(key, "");
                     }
@@ -158,26 +148,11 @@ public class CsvSerializer
 
                 mapWriter.write(values, header);
             }
-        }
+        } catch (IOException e) {
 
-        catch (IOException e) {
-
+            LOGGER.info("Could not serialize resource.");
             throw new SerializationException("Could not serialize resource.",
                     e);
-        }
-        finally {
-
-            if (mapWriter != null) {
-
-                try {
-
-                    mapWriter.close();
-                }
-                catch (IOException e) {
-
-                    e.printStackTrace();
-                }
-            }
         }
     }
 
@@ -188,7 +163,6 @@ public class CsvSerializer
         return this.deserialize(file.toURI(), type);
     }
 
-
     @Override
     public <T> T deserialize(URI uri, Class<? extends T> type)
             throws SerializationException {
@@ -196,9 +170,9 @@ public class CsvSerializer
         try {
 
             return this.deserialize(uri.toURL(), type);
-        }
-        catch (MalformedURLException e) {
+        } catch (MalformedURLException e) {
 
+            LOGGER.info("URI {} is malformed.", uri);
             throw new SerializationException("URI " + uri + " is malformed.",
                     e);
         }
@@ -210,19 +184,16 @@ public class CsvSerializer
 
         if (!this.supportsDeserializationOf(type)) {
 
+            LOGGER.info("Deserialization of type {} is not supported!", type);
             throw new SerializationException(
-                    "Deserialization of type " + type.toString()
-                    + " is not supported!");
+                    "Deserialization of type " + type + " is not supported!");
         }
 
         Map<String, List<String>> contents = new LinkedHashMap<>();
 
         ITable<String> table = new Table<>();
-        try (ICsvMapReader mapReader = new CsvMapReader(
-                new BufferedReader(new InputStreamReader(url.openStream())),
+        try (ICsvMapReader mapReader = new CsvMapReader(new BufferedReader(new InputStreamReader(url.openStream())),
                 CsvPreference.STANDARD_PREFERENCE)) {
-
-
 
             // the header columns are used as the keys to the Map
             final String[] headerArray = mapReader.getHeader(true);
@@ -244,9 +215,8 @@ public class CsvSerializer
                 final Map<String, String> finalRowValueMap = rowValueMap;
                 rowValueMap.keySet()
                         .forEach(key -> contents.get(key)
-                                            .add(finalRowValueMap.get(key)));
+                                .add(finalRowValueMap.get(key)));
             }
-
 
             AtomicInteger column = new AtomicInteger(0);
             contents.keySet()
@@ -259,8 +229,7 @@ public class CsvSerializer
 
                                     if (value != null) {
 
-                                        table.add(row.get(), column.get(),
-                                                value.trim());
+                                        table.add(row.get(), column.get(), value.trim());
                                     }
                                     row.incrementAndGet();
                                 });
@@ -268,11 +237,11 @@ public class CsvSerializer
                         column.incrementAndGet();
                     });
 
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
 
+            LOGGER.info("Could not deserialize CSV file {}!", url);
             throw new SerializationException(
-                    "Could not deserialize CSV file " + url.toString() + "!",
+                    "Could not deserialize CSV file " + url + "!",
                     e);
         }
 

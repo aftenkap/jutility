@@ -9,9 +9,9 @@ package org.jutility.io.xml;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,7 +19,6 @@ package org.jutility.io.xml;
  * limitations under the License.
  * #L%
  */
-
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -29,7 +28,6 @@ import java.net.URI;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -42,8 +40,6 @@ import javax.xml.stream.XMLStreamWriter;
 import org.jutility.io.ISerializer;
 import org.jutility.io.SerializationException;
 
-
-
 /**
  * The {@link XmlSerializer} singleton class implements the {@link ISerializer}
  * interface, providing capabilities to serialize/deserialize any property JAXB
@@ -55,26 +51,23 @@ import org.jutility.io.SerializationException;
 public class XmlSerializer
         implements ISerializer {
 
-
     private final List<Class<?>> contextBounds;
 
-
-
-    private static XmlSerializer s_Instance;
+    private static XmlSerializer instance;
 
     /**
      * Returns the instance of the {@link XmlSerializer} singleton class.
      *
      * @return the singleton instance.
      */
-    public static XmlSerializer Instance() {
+    public static XmlSerializer instance() {
 
-        if (XmlSerializer.s_Instance == null) {
+        if (XmlSerializer.instance == null) {
 
-            XmlSerializer.s_Instance = new XmlSerializer();
+            XmlSerializer.instance = new XmlSerializer();
         }
 
-        return XmlSerializer.s_Instance;
+        return XmlSerializer.instance;
     }
 
     /**
@@ -99,11 +92,8 @@ public class XmlSerializer
      */
     public void unregisterClass(Class<?> type) {
 
-        if (!this.contextBounds.contains(type)) {
-            this.contextBounds.remove(type);
-        }
+        this.contextBounds.remove(type);
     }
-
 
     @Override
     public boolean supportsSerializationOf(Class<?> type) {
@@ -116,7 +106,6 @@ public class XmlSerializer
 
         return this.supportsType(type);
     }
-
 
     private boolean supportsType(Class<?> type) {
 
@@ -131,11 +120,9 @@ public class XmlSerializer
         this.contextBounds = new LinkedList<>();
     }
 
-
     private Class<?>[] createContextBounds(Class<?> type) {
 
         this.contextBounds.add(0, type);
-
 
         return this.contextBounds.toArray(new Class<?>[0]);
     }
@@ -159,18 +146,14 @@ public class XmlSerializer
 
         if (!this.supportsSerializationOf(documentType)) {
 
-            throw new SerializationException(
-                    "Serialization of type " + documentType
-                    + " is not supported!");
+            throw new SerializationException("Serialization of type " + documentType + " is not supported!");
         }
 
         try {
 
-            JAXBContext context = JAXBContext.newInstance(
-                    this.createContextBounds(documentType));
+            JAXBContext context = JAXBContext.newInstance(this.createContextBounds(documentType));
 
             Marshaller m = context.createMarshaller();
-
 
             m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             // m.setProperty(
@@ -192,27 +175,15 @@ public class XmlSerializer
                     streamWriter);
             m.marshal(document, cdataStreamWriter);
 
-        }
-        catch (java.io.FileNotFoundException e) {
+        } catch (java.io.FileNotFoundException e) {
 
             throw new SerializationException("Could not write to resource.", e);
-        }
-        catch (JAXBException | XMLStreamException e) {
+        } catch (JAXBException | XMLStreamException e) {
 
             throw new SerializationException("Could not serialize resource.",
                     e);
         }
     }
-
-
-    // @Override
-    // public <T> T deserialize(String filename, Class<? extends T> type)
-    // throws SerializationException {
-    //
-    // return this.deserialize(new File(filename), type);
-    // }
-
-
 
     @Override
     public <T> T deserialize(File file, Class<? extends T> type)
@@ -221,7 +192,6 @@ public class XmlSerializer
         return this.deserialize(file.toURI(), type);
     }
 
-
     @Override
     public <T> T deserialize(URI uri, Class<? extends T> type)
             throws SerializationException {
@@ -229,15 +199,11 @@ public class XmlSerializer
         try {
 
             return this.deserialize(uri.toURL(), type);
-        }
-        catch (MalformedURLException e) {
+        } catch (MalformedURLException e) {
 
-            throw new SerializationException("URI " + uri + " is malformed.",
-                    e);
+            throw new SerializationException("URI " + uri + " is malformed.", e);
         }
     }
-
-
 
     @Override
     public <T> T deserialize(URL url, Class<? extends T> type)
@@ -245,9 +211,7 @@ public class XmlSerializer
 
         if (!this.supportsDeserializationOf(type)) {
 
-            throw new SerializationException(
-                    "Deserialization of type " + type.toString()
-                    + " is not supported!");
+            throw new SerializationException("Deserialization of type " + type.toString() + " is not supported!");
         }
 
         T doc;
@@ -262,23 +226,16 @@ public class XmlSerializer
                     deserializedObject.getClass())) {
 
                 doc = type.cast(deserializedObject);
+            } else {
+
+                throw new SerializationException("Could not deserialize resource -- resource appears to be empty!");
             }
-            else {
+        } catch (JAXBException e) {
 
-                throw new SerializationException(
-                        "Could not deserialize resource -- resource appears "
-                        + "to be empty!");
-            }
-        }
-        catch (JAXBException e) {
+            throw new SerializationException("Could not deserialize resource!", e);
+        } catch (IOException e) {
 
-            throw new SerializationException("Could not deserialize resource!",
-                    e);
-        }
-        catch (IOException e) {
-
-            throw new SerializationException("Could not connect to resource!",
-                    e);
+            throw new SerializationException("Could not connect to resource!", e);
         }
 
         return doc;
