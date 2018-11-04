@@ -15,51 +15,12 @@
     <packaging>jar</packaging>
 
     <name>jutility-incubation</name>
-    <url>http://jutility.org</url>
 
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>manual</distribution>
-        </license>
-    </licenses>
-
-
-    <scm>
-        <url>scm:git:git@github.com:aftenkap/jutility-incubation.git</url>
-        <connection>scm:git:git@github.com:aftenkap/jutility-incubation.git</connection>
-        <developerConnection>scm:git:git@github.com:aftenkap/jutility-incubation.git</developerConnection>
-    </scm>
-
-    <issueManagement>
-        <system>GitHub</system>
-        <url>https://github.com/aftenkap/jutility-incubation/issues</url>
-    </issueManagement>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <jutility-version>0.2.0-SNAPSHOT</jutility-version>
-
-        <!-- Database Drivers -->
-        <mysql.version>6.0.6</mysql.version>
-
-    </properties>
-
-
-    <build>
-        <sourceDirectory>src/main/java</sourceDirectory>
-        <testSourceDirectory>src/test/java</testSourceDirectory>
-
-    </build>
 
     <reporting>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${maven.javadoc.plugin.version}</version>
                 <configuration>
                     <outputDirectory>doc/</outputDirectory>
                     <show>protected</show>
@@ -71,6 +32,7 @@
 
 
     <dependencies>
+
         <!-- jutility-common -->
         <dependency>
             <groupId>org.jutility</groupId>
@@ -78,12 +40,14 @@
             <version>${project.version}</version>
         </dependency>
 
+
         <!-- Database Drivers -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql.version}</version>
+            <version>6.0.6</version>
         </dependency>
+
     </dependencies>
 
 </project>
