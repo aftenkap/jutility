@@ -11,9 +11,9 @@ package org.jutility.javafx.control;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,6 +24,10 @@ package org.jutility.javafx.control;
 
 //@formatter:on
 
+
+import org.jutility.javafx.control.labeled.LabeledListView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
@@ -40,10 +44,6 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.util.StringConverter;
-import org.jutility.javafx.control.labeled.LabeledListView;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 
 
 /**
@@ -151,14 +151,13 @@ public class ListViewWithSearchPanel<T>
         this.searchPanel.setVisible(false);
 
         this.searchPanel.getStringFilter()
-                        .converterProperty()
-                        .bind(this.converterProperty());
+                .converterProperty()
+                .bind(this.converterProperty());
 
         this.updateFilteredItems();
 
         this.setupEventHandlers();
     }
-
 
 
     /**
@@ -167,7 +166,7 @@ public class ListViewWithSearchPanel<T>
     public void clear() {
 
         this.getItems()
-            .clear();
+                .clear();
         this.clearSelection();
     }
 
@@ -178,7 +177,7 @@ public class ListViewWithSearchPanel<T>
     public void clearSelection() {
 
         this.getSelectionModel()
-            .clearSelection();
+                .clearSelection();
     }
 
     /**
@@ -189,7 +188,7 @@ public class ListViewWithSearchPanel<T>
     public ReadOnlyObjectProperty<T> selectedItemProperty() {
 
         return this.getSelectionModel()
-                   .selectedItemProperty();
+                .selectedItemProperty();
     }
 
     /**
@@ -200,7 +199,7 @@ public class ListViewWithSearchPanel<T>
     public T getSelectedItem() {
 
         return this.getSelectionModel()
-                   .getSelectedItem();
+                .getSelectedItem();
     }
 
     /**
@@ -211,7 +210,7 @@ public class ListViewWithSearchPanel<T>
     public ReadOnlyIntegerProperty selectedIndexProperty() {
 
         return this.getSelectionModel()
-                   .selectedIndexProperty();
+                .selectedIndexProperty();
     }
 
     /**
@@ -222,7 +221,7 @@ public class ListViewWithSearchPanel<T>
     public int getSelectedIndex() {
 
         return this.getSelectionModel()
-                   .getSelectedIndex();
+                .getSelectedIndex();
     }
 
     /**
@@ -233,7 +232,7 @@ public class ListViewWithSearchPanel<T>
     public ObservableList<T> getSelectedItems() {
 
         return this.getSelectionModel()
-                   .getSelectedItems();
+                .getSelectedItems();
     }
 
     /**
@@ -244,7 +243,7 @@ public class ListViewWithSearchPanel<T>
     public ObservableList<Integer> getSelectedIndices() {
 
         return this.getSelectionModel()
-                   .getSelectedIndices();
+                .getSelectedIndices();
     }
 
     /**
@@ -257,7 +256,7 @@ public class ListViewWithSearchPanel<T>
     public final void removeAll(final T... elements) {
 
         this.getItems()
-            .removeAll(elements);
+                .removeAll(elements);
     }
 
     /**
@@ -270,7 +269,7 @@ public class ListViewWithSearchPanel<T>
     public void remove(final int index) {
 
         this.getItems()
-            .remove(index);
+                .remove(index);
     }
 
     /**
@@ -282,18 +281,17 @@ public class ListViewWithSearchPanel<T>
     public void remove(final T item) {
 
         this.getItems()
-            .remove(item);
+                .remove(item);
     }
-
 
 
     private void setupEventHandlers() {
 
 
         this.itemsProperty()
-            .addListener(
-                    (observable, oldValue, newValue) -> this
-                            .updateFilteredItems());
+                .addListener(
+                        (observable, oldValue, newValue) -> this
+                                .updateFilteredItems());
 
         this.addEventHandler(KeyEvent.KEY_PRESSED, (event) -> {
 
@@ -302,7 +300,7 @@ public class ListViewWithSearchPanel<T>
 
             if (acceleratorKey.match(event) && (this.getItems() != null)
                     && !this.getItems()
-                            .isEmpty()) {
+                    .isEmpty()) {
 
                 this.searchPanel.setVisible(true);
                 this.searchPanel.requestFocus();
@@ -310,52 +308,49 @@ public class ListViewWithSearchPanel<T>
         });
 
 
-
         this.searchPanel.visibleProperty()
-                        .addListener((observable, oldValue, newValue) -> {
+                .addListener((observable, oldValue, newValue) -> {
 
-                            if (Boolean.FALSE.equals(newValue)) {
+                    if (Boolean.FALSE.equals(newValue)) {
 
-                                ListViewWithSearchPanel.LOG.debug(
-                                        "Removing search panel.");
-                                this.setBottomCenterNode(null);
-                                this.getChildren()
-                                    .remove(this.searchPanel);
-                                this.requestFocus();
-                            }
-                            else if (Boolean.TRUE.equals(newValue)
-                                    && !this.getChildren()
-                                            .contains(this.searchPanel)) {
+                        ListViewWithSearchPanel.LOG.debug(
+                                "Removing search panel.");
+                        this.setBottomCenterNode(null);
+                        this.getChildren()
+                                .remove(this.searchPanel);
+                        this.requestFocus();
+                    }
+                    else if (Boolean.TRUE.equals(newValue)
+                            && !this.getChildren()
+                            .contains(this.searchPanel)) {
 
-                                ListViewWithSearchPanel.LOG.debug(
-                                        "Adding search panel.");
-                                this.addNode(this.searchPanel,
-                                        Pos.BOTTOM_CENTER);
-                            }
-                        });
+                        ListViewWithSearchPanel.LOG.debug(
+                                "Adding search panel.");
+                        this.addNode(this.searchPanel,
+                                Pos.BOTTOM_CENTER);
+                    }
+                });
 
         this.searchPanel.getStringFilter()
-                        .filterStringProperty()
-                        .addListener((final Observable observable) -> {
+                .filterStringProperty()
+                .addListener((final Observable observable) -> {
 
-                            ListViewWithSearchPanel.LOG.debug(
-                                    "FilterString invalidated!");
-                            final ObservableList<T> filteredItems = this
-                                    .filteredItemsProperty.get();
+                    ListViewWithSearchPanel.LOG.debug(
+                            "FilterString invalidated!");
+                    final ObservableList<T> filteredItems = this
+                            .filteredItemsProperty.get();
 
-                            if ((filteredItems != null)
-                                    && (filteredItems instanceof
-                                    FilteredList<?>)) {
+                    if (filteredItems instanceof FilteredList<?>) {
 
-                                final FilteredList<T> filteredList = (
-                                        (FilteredList<T>) filteredItems);
-                                ListViewWithSearchPanel.LOG.debug(
-                                        "Invalidating predicate");
-                                filteredList.setPredicate(t -> true);
-                                filteredList.setPredicate(
-                                        this.searchPanel.getStringFilter());
-                            }
-                        });
+                        final FilteredList<T> filteredList = (
+                                (FilteredList<T>) filteredItems);
+                        ListViewWithSearchPanel.LOG.debug(
+                                "Invalidating predicate");
+                        filteredList.setPredicate(t -> true);
+                        filteredList.setPredicate(
+                                this.searchPanel.getStringFilter());
+                    }
+                });
 
     }
 

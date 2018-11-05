@@ -32,7 +32,7 @@ import java.util.Set;
  * @version 0.1.2
  * @since 0.1.0
  */
-public class IOManager {
+public final class IOManager {
 
     @SuppressWarnings("unused")
     private final Map<Class<?>, Class<? extends
@@ -41,21 +41,21 @@ public class IOManager {
     private final Set<Class<? extends
             ISerializer>> serializers;
 
-    private static IOManager s_Instance;
+    private static IOManager instance;
 
     /**
      * Returns the singleton instance of the class.
      *
      * @return the singleton instance.
      */
-    public static IOManager Instance() {
+    public static IOManager instance() {
 
-        if (s_Instance == null) {
+        if (instance == null) {
 
-            s_Instance = new IOManager();
+            instance = new IOManager();
         }
 
-        return s_Instance;
+        return instance;
     }
 
     private IOManager() {
@@ -93,11 +93,13 @@ public class IOManager {
         try {
             method = clazz.getDeclaredMethod(name);
 
-        } catch (NoSuchMethodException e) {
+        }
+        catch (NoSuchMethodException e) {
             throw new IllegalArgumentException(
                     "Trying to register Layout " + "Component class that does "
                             + "not declare static " + name + "() method!");
-        } catch (SecurityException e) {
+        }
+        catch (SecurityException e) {
 
             throw new IllegalArgumentException(
                     "Trying to register Layout " + "Component class that does "
@@ -113,8 +115,9 @@ public class IOManager {
         try {
 
             return method.invoke(null, (Object[]) null);
-        } catch (IllegalAccessException | IllegalArgumentException |
-                InvocationTargetException e) {
+        }
+        catch (IllegalAccessException | IllegalArgumentException
+                | InvocationTargetException e) {
             throw new IllegalArgumentException(
                     "Trying to register Layout " + "Component class that cannot"
                             + " execute static " + method.getName() + "() method!");

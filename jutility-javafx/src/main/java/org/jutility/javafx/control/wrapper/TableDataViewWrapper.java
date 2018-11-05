@@ -13,9 +13,9 @@ package org.jutility.javafx.control.wrapper;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -301,7 +301,7 @@ public class TableDataViewWrapper<T>
      * which items have been selected by the user. Note that it has a generic
      * type that must match the type of the TableView itself.
      *
-     * 
+     *
      * @return the selection model property.
      */
     public final ObjectProperty<TableViewSelectionModel<List<T>>> selectionModelProperty() {
@@ -323,7 +323,7 @@ public class TableDataViewWrapper<T>
 
     /**
      * Sets the value of the selection model property.
-     * 
+     *
      * @param value
      *            the value of the selection model property.
      */
@@ -337,7 +337,7 @@ public class TableDataViewWrapper<T>
      * TableView. Under almost all circumstances leaving this as the default
      * focus model will suffice.
      *
-     * 
+     *
      * @return the focus model property.
      */
     public final ObjectProperty<TableViewFocusModel<List<T>>> focusModelProperty() {

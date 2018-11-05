@@ -11,9 +11,9 @@ package org.jutility.math.vectoralgebra;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -26,7 +26,6 @@ package org.jutility.math.vectoralgebra;
 
 import org.jutility.common.datatype.util.NumberComparator;
 import org.jutility.math.arithmetics.ArithmeticOperations;
-
 
 
 /**
@@ -43,19 +42,20 @@ public final class VectorAlgebraicOperations {
      * Adds the left-hand tuple to the right-hand tuple.
      *
      * @param <T>
-     *            the {@link Number} type of the operands and result.
-     *
+     *         the {@link Number} type of the operands and result.
      * @param lhs
-     *            The left-hand tuple.
+     *         The left-hand tuple.
      * @param rhs
-     *            The right-hand tuple.
+     *         The right-hand tuple.
+     *
      * @return The vector sum of the tuples.
+     *
      * @throws IllegalArgumentException
-     *             if two points are provided.
+     *         if two points are provided.
      * @throws ArithmeticException
-     *             if the result is not a homogeneous coordinate.
+     *         if the result is not a homogeneous coordinate.
      */
-    protected static final <T extends Number> ITuple4<T> add(
+    protected static <T extends Number> ITuple4<T> add(
             final ITuple4<T> lhs, final ITuple4<T> rhs) {
 
         return VectorAlgebraicOperations.add(lhs, rhs, lhs.getType());
@@ -63,23 +63,24 @@ public final class VectorAlgebraicOperations {
 
     /**
      * Adds the left-hand tuple to the right-hand tuple.
-     * 
-     * @param <R>
-     *            the {@link Number} type of the result.
      *
+     * @param <R>
+     *         the {@link Number} type of the result.
      * @param lhs
-     *            The left-hand tuple.
+     *         The left-hand tuple.
      * @param rhs
-     *            The right-hand tuple.
+     *         The right-hand tuple.
      * @param returnType
-     *            the desired return type.
+     *         the desired return type.
+     *
      * @return The vector sum of the tuples.
+     *
      * @throws IllegalArgumentException
-     *             if two points are provided.
+     *         if two points are provided.
      * @throws ArithmeticException
-     *             if the result is not a homogeneous coordinate.
+     *         if the result is not a homogeneous coordinate.
      */
-    protected static final <R extends Number> ITuple4<R> add(
+    protected static <R extends Number> ITuple4<R> add(
             final ITuple4<?> lhs, final ITuple4<?> rhs,
             final Class<? extends R> returnType) {
 
@@ -96,15 +97,15 @@ public final class VectorAlgebraicOperations {
      * Adds the left-hand vector to the right-hand vector.
      *
      * @param <T>
-     *            the {@link Number} type of the operands and result.
-     *
+     *         the {@link Number} type of the operands and result.
      * @param lhs
-     *            The left-hand vector.
+     *         The left-hand vector.
      * @param rhs
-     *            The right-hand vector.
+     *         The right-hand vector.
+     *
      * @return The vector sum of the vectors.
      */
-    public static final <T extends Number> IVector4<T> add(
+    public static <T extends Number> IVector4<T> add(
             final IVector4<T> lhs, final IVector4<T> rhs) {
 
         return VectorAlgebraicOperations.add(lhs, rhs, lhs.getType());
@@ -112,24 +113,24 @@ public final class VectorAlgebraicOperations {
 
     /**
      * Adds the left-hand vector to the right-hand vector.
-     * 
-     * @param <R>
-     *            the {@link Number} type of the result.
      *
+     * @param <R>
+     *         the {@link Number} type of the result.
      * @param lhs
-     *            The left-hand vector.
+     *         The left-hand vector.
      * @param rhs
-     *            The right-hand vector.
+     *         The right-hand vector.
      * @param returnType
-     *            the desired return type.
+     *         the desired return type.
+     *
      * @return The vector sum of the vectors.
      */
-    public static final <R extends Number> IVector4<R> add(
+    public static <R extends Number> IVector4<R> add(
             final IVector4<?> lhs, final IVector4<?> rhs,
             final Class<? extends R> returnType) {
 
-        return new Vector4<>(VectorAlgebraicOperations.add((ITuple4<?>) lhs,
-                (ITuple4<?>) rhs, returnType));
+        return new Vector4<>(VectorAlgebraicOperations.add(lhs,
+                rhs, returnType));
     }
 
 
@@ -137,15 +138,15 @@ public final class VectorAlgebraicOperations {
      * Adds the left-hand point to the right-hand vector.
      *
      * @param <T>
-     *            the {@link Number} type of the operands and result.
-     *
+     *         the {@link Number} type of the operands and result.
      * @param lhs
-     *            The left-hand point.
+     *         The left-hand point.
      * @param rhs
-     *            The right-hand vector.
+     *         The right-hand vector.
+     *
      * @return The vector sum of the point and the vector.
      */
-    public static final <T extends Number> IPoint4<T> add(final IPoint4<T> lhs,
+    public static <T extends Number> IPoint4<T> add(final IPoint4<T> lhs,
             final IVector4<T> rhs) {
 
         return VectorAlgebraicOperations.add(lhs, rhs, lhs.getType());
@@ -153,23 +154,23 @@ public final class VectorAlgebraicOperations {
 
     /**
      * Adds the left-hand point to the right-hand vector.
-     * 
-     * @param <R>
-     *            the {@link Number} type of the result.
      *
+     * @param <R>
+     *         the {@link Number} type of the result.
      * @param lhs
-     *            The left-hand point.
+     *         The left-hand point.
      * @param rhs
-     *            The right-hand vector.
+     *         The right-hand vector.
      * @param returnType
-     *            the desired return type.
+     *         the desired return type.
+     *
      * @return The vector sum of the point and the vector.
      */
-    public static final <R extends Number> IPoint4<R> add(final IPoint4<?> lhs,
+    public static <R extends Number> IPoint4<R> add(final IPoint4<?> lhs,
             final IVector4<?> rhs, final Class<? extends R> returnType) {
 
-        return new Point4<>(VectorAlgebraicOperations.add((ITuple4<?>) lhs,
-                (ITuple4<?>) rhs, returnType));
+        return new Point4<>(VectorAlgebraicOperations.add(lhs,
+                rhs, returnType));
     }
 
 
@@ -177,15 +178,15 @@ public final class VectorAlgebraicOperations {
      * Adds the left-hand vector to the right-hand point.
      *
      * @param <T>
-     *            the {@link Number} type of the operands and result.
-     *
+     *         the {@link Number} type of the operands and result.
      * @param lhs
-     *            The left-hand vector.
+     *         The left-hand vector.
      * @param rhs
-     *            The right-hand point.
+     *         The right-hand point.
+     *
      * @return The vector sum of the vector and the point.
      */
-    public static final <T extends Number> IPoint4<T> add(
+    public static <T extends Number> IPoint4<T> add(
             final IVector4<T> lhs, final IPoint4<T> rhs) {
 
         return VectorAlgebraicOperations.add(rhs, lhs);
@@ -193,19 +194,19 @@ public final class VectorAlgebraicOperations {
 
     /**
      * Adds the left-hand vector to the right-hand point.
-     * 
-     * @param <R>
-     *            the {@link Number} type of the result.
      *
+     * @param <R>
+     *         the {@link Number} type of the result.
      * @param lhs
-     *            The left-hand vector.
+     *         The left-hand vector.
      * @param rhs
-     *            The right-hand point.
+     *         The right-hand point.
      * @param returnType
-     *            the desired return type.
+     *         the desired return type.
+     *
      * @return The vector sum of the vector and the point.
      */
-    public static final <R extends Number> IPoint4<R> add(
+    public static <R extends Number> IPoint4<R> add(
             final IVector4<?> lhs, final IPoint4<?> rhs,
             final Class<? extends R> returnType) {
 
@@ -216,17 +217,18 @@ public final class VectorAlgebraicOperations {
      * Subtracts the right-hand tuple from the left-hand tuple.
      *
      * @param <T>
-     *            the {@link Number} type of the operands and result.
-     *
+     *         the {@link Number} type of the operands and result.
      * @param lhs
-     *            the left-hand tuple.
+     *         the left-hand tuple.
      * @param rhs
-     *            the right-hand tuple.
+     *         the right-hand tuple.
+     *
      * @return the difference between the tuples.
+     *
      * @throws ArithmeticException
-     *             if the operation is not a valid arithmetic operation.
+     *         if the operation is not a valid arithmetic operation.
      */
-    protected static final <T extends Number> ITuple4<T> subtract(
+    protected static <T extends Number> ITuple4<T> subtract(
             final ITuple4<T> lhs, final ITuple4<T> rhs) {
 
         return VectorAlgebraicOperations.subtract(lhs, rhs, lhs.getType());
@@ -234,21 +236,22 @@ public final class VectorAlgebraicOperations {
 
     /**
      * Subtracts the right-hand tuple from the left-hand tuple.
-     * 
-     * @param <R>
-     *            the {@link Number} type of the result.
      *
+     * @param <R>
+     *         the {@link Number} type of the result.
      * @param lhs
-     *            the left-hand tuple.
+     *         the left-hand tuple.
      * @param rhs
-     *            the right-hand tuple.
+     *         the right-hand tuple.
      * @param returnType
-     *            the desired return type.
+     *         the desired return type.
+     *
      * @return the difference between the tuples.
+     *
      * @throws ArithmeticException
-     *             if the operation is not a valid arithmetic operation.
+     *         if the operation is not a valid arithmetic operation.
      */
-    protected static final <R extends Number> ITuple4<R> subtract(
+    protected static <R extends Number> ITuple4<R> subtract(
             final ITuple4<?> lhs, final ITuple4<?> rhs,
             final Class<? extends R> returnType) {
 
@@ -275,15 +278,15 @@ public final class VectorAlgebraicOperations {
      * Subtracts the right-hand point from the left-hand point.
      *
      * @param <T>
-     *            the {@link Number} type of the operands and result.
-     *
+     *         the {@link Number} type of the operands and result.
      * @param lhs
-     *            the left-hand point.
+     *         the left-hand point.
      * @param rhs
-     *            the right-hand point.
+     *         the right-hand point.
+     *
      * @return the difference between the points.
      */
-    public static final <T extends Number> IVector4<T> subtract(
+    public static <T extends Number> IVector4<T> subtract(
             final IPoint4<T> lhs, final IPoint4<T> rhs) {
 
         return VectorAlgebraicOperations.subtract(lhs, rhs, lhs.getType());
@@ -291,25 +294,24 @@ public final class VectorAlgebraicOperations {
 
     /**
      * Subtracts the right-hand point from the left-hand point.
-     * 
-     * @param <R>
-     *            the {@link Number} type of the result.
      *
+     * @param <R>
+     *         the {@link Number} type of the result.
      * @param lhs
-     *            the left-hand point.
+     *         the left-hand point.
      * @param rhs
-     *            the right-hand point.
+     *         the right-hand point.
      * @param returnType
-     *            the desired return type.
+     *         the desired return type.
+     *
      * @return the difference between the points.
      */
-    public static final <R extends Number> IVector4<R> subtract(
+    public static <R extends Number> IVector4<R> subtract(
             final IPoint4<?> lhs, final IPoint4<?> rhs,
             final Class<? extends R> returnType) {
 
         return new Vector4<>(
-                VectorAlgebraicOperations.subtract((ITuple4<?>) lhs, (ITuple4
-                        <?>) rhs, returnType));
+                VectorAlgebraicOperations.subtract(lhs, rhs, returnType));
     }
 
 
@@ -317,15 +319,15 @@ public final class VectorAlgebraicOperations {
      * Subtracts the right-hand vector from the left-hand point.
      *
      * @param <T>
-     *            the {@link Number} type of the operands and result.
-     *
+     *         the {@link Number} type of the operands and result.
      * @param lhs
-     *            the left-hand point.
+     *         the left-hand point.
      * @param rhs
-     *            the right-hand vector.
+     *         the right-hand vector.
+     *
      * @return the difference between the point and the vector.
      */
-    public static final <T extends Number> IPoint4<T> subtract(
+    public static <T extends Number> IPoint4<T> subtract(
             final IPoint4<T> lhs, final IVector4<T> rhs) {
 
         return VectorAlgebraicOperations.subtract(lhs, rhs, lhs.getType());
@@ -334,24 +336,24 @@ public final class VectorAlgebraicOperations {
 
     /**
      * Subtracts the right-hand vector from the left-hand point.
-     * 
-     * @param <R>
-     *            the {@link Number} type of the result.
      *
+     * @param <R>
+     *         the {@link Number} type of the result.
      * @param lhs
-     *            the left-hand point.
+     *         the left-hand point.
      * @param rhs
-     *            the right-hand vector.
+     *         the right-hand vector.
      * @param returnType
-     *            the desired return type.
+     *         the desired return type.
+     *
      * @return the difference between the point and the vector.
      */
-    public static final <R extends Number> IPoint4<R> subtract(
+    public static <R extends Number> IPoint4<R> subtract(
             final IPoint4<?> lhs, final IVector4<?> rhs,
             final Class<? extends R> returnType) {
 
-        return new Point4<>(VectorAlgebraicOperations.subtract((ITuple4<?>) lhs,
-                (ITuple4<?>) rhs, returnType));
+        return new Point4<>(VectorAlgebraicOperations.subtract(lhs,
+                rhs, returnType));
     }
 
 
@@ -359,17 +361,18 @@ public final class VectorAlgebraicOperations {
      * Multiplies the tuple by the provided scalar.
      *
      * @param <T>
-     *            the {@link Number} type of the operands and result.
-     *
+     *         the {@link Number} type of the operands and result.
      * @param lhs
-     *            The tuple.
+     *         The tuple.
      * @param rhs
-     *            The scalar.
+     *         The scalar.
+     *
      * @return The scaled tuple.
+     *
      * @throws ArithmeticException
-     *             if the operation is not a valid arithmetic operation.
+     *         if the operation is not a valid arithmetic operation.
      */
-    protected static final <T extends Number> ITuple4<T> multiply(
+    protected static <T extends Number> ITuple4<T> multiply(
             final ITuple4<T> lhs, final T rhs) {
 
         return VectorAlgebraicOperations.multiply(lhs, rhs, lhs.getType());
@@ -377,21 +380,22 @@ public final class VectorAlgebraicOperations {
 
     /**
      * Multiplies the tuple by the provided scalar.
-     * 
-     * @param <R>
-     *            the {@link Number} type of the result.
      *
+     * @param <R>
+     *         the {@link Number} type of the result.
      * @param lhs
-     *            The tuple.
+     *         The tuple.
      * @param rhs
-     *            The scalar.
+     *         The scalar.
      * @param returnType
-     *            the desired return type.
+     *         the desired return type.
+     *
      * @return The scaled tuple.
+     *
      * @throws ArithmeticException
-     *             if the operation is not a valid arithmetic operation.
+     *         if the operation is not a valid arithmetic operation.
      */
-    protected static final <R extends Number> ITuple4<R> multiply(
+    protected static <R extends Number> ITuple4<R> multiply(
             final ITuple4<?> lhs, final Number rhs,
             final Class<? extends R> returnType) {
 
@@ -413,15 +417,15 @@ public final class VectorAlgebraicOperations {
      * Multiplies the vector by the provided scalar.
      *
      * @param <T>
-     *            the {@link Number} type of the operands and result.
-     *
+     *         the {@link Number} type of the operands and result.
      * @param lhs
-     *            The tuple.
+     *         The tuple.
      * @param rhs
-     *            The scalar.
+     *         The scalar.
+     *
      * @return The scaled tuple.
      */
-    public static final <T extends Number> IVector4<T> multiply(
+    public static <T extends Number> IVector4<T> multiply(
             final IVector4<T> lhs, final T rhs) {
 
         return VectorAlgebraicOperations.multiply(lhs, rhs, lhs.getType());
@@ -429,19 +433,19 @@ public final class VectorAlgebraicOperations {
 
     /**
      * Multiplies the vector by the provided scalar.
-     * 
-     * @param <R>
-     *            the {@link Number} type of the result.
      *
+     * @param <R>
+     *         the {@link Number} type of the result.
      * @param lhs
-     *            The tuple.
+     *         The tuple.
      * @param rhs
-     *            The scalar.
+     *         The scalar.
      * @param returnType
-     *            the desired return type.
+     *         the desired return type.
+     *
      * @return The scaled tuple.
      */
-    public static final <R extends Number> IVector4<R> multiply(
+    public static <R extends Number> IVector4<R> multiply(
             final IVector4<?> lhs, final Number rhs,
             final Class<? extends R> returnType) {
 
@@ -455,15 +459,15 @@ public final class VectorAlgebraicOperations {
      * Multiplies the vector by the provided scalar.
      *
      * @param <T>
-     *            the {@link Number} type of the operands and result.
-     *
+     *         the {@link Number} type of the operands and result.
      * @param lhs
-     *            The scalar.
+     *         The scalar.
      * @param rhs
-     *            The vector.
+     *         The vector.
+     *
      * @return The scaled vector.
      */
-    public static final <T extends Number> IVector4<T> multiply(final T lhs,
+    public static <T extends Number> IVector4<T> multiply(final T lhs,
             final IVector4<T> rhs) {
 
         return VectorAlgebraicOperations.multiply(rhs, lhs);
@@ -471,19 +475,19 @@ public final class VectorAlgebraicOperations {
 
     /**
      * Multiplies the vector by the provided scalar.
-     * 
-     * @param <R>
-     *            the {@link Number} type of the result.
      *
+     * @param <R>
+     *         the {@link Number} type of the result.
      * @param lhs
-     *            The scalar.
+     *         The scalar.
      * @param rhs
-     *            The vector.
+     *         The vector.
      * @param returnType
-     *            the desired return type.
+     *         the desired return type.
+     *
      * @return The scaled vector.
      */
-    public static final <R extends Number> IVector4<R> multiply(
+    public static <R extends Number> IVector4<R> multiply(
             final Number lhs, final IVector4<?> rhs,
             final Class<? extends R> returnType) {
 
@@ -491,20 +495,19 @@ public final class VectorAlgebraicOperations {
     }
 
 
-
     /**
      * Multiplies the matrix by the provided tuple.
      *
      * @param <T>
-     *            the {@link Number} type of the operands and result.
-     *
+     *         the {@link Number} type of the operands and result.
      * @param lhs
-     *            the matrix.
+     *         the matrix.
      * @param rhs
-     *            the tuple.
+     *         the tuple.
+     *
      * @return The resulting tuple.
      */
-    public static final <T extends Number> ITuple4<T> multiply(
+    public static <T extends Number> ITuple4<T> multiply(
             final IMatrix4<T> lhs, final ITuple4<T> rhs) {
 
         return VectorAlgebraicOperations.multiply(lhs, rhs, lhs.getType());
@@ -512,19 +515,19 @@ public final class VectorAlgebraicOperations {
 
     /**
      * Multiplies the matrix by the provided tuple.
-     * 
-     * @param <R>
-     *            the {@link Number} type of the result.
      *
+     * @param <R>
+     *         the {@link Number} type of the result.
      * @param lhs
-     *            the matrix.
+     *         the matrix.
      * @param rhs
-     *            the tuple.
+     *         the tuple.
      * @param returnType
-     *            the desired return type.
+     *         the desired return type.
+     *
      * @return The resulting tuple.
      */
-    public static final <R extends Number> ITuple4<R> multiply(
+    public static <R extends Number> ITuple4<R> multiply(
             final IMatrix4<?> lhs, final ITuple4<?> rhs,
             final Class<? extends R> returnType) {
 
@@ -553,6 +556,7 @@ public final class VectorAlgebraicOperations {
         final Number vz = rhs.getZ();
         final Number vw = rhs.getW();
 
+        //CHECKSTYLE:OFF LocalVariableName LocalFinalVariableName
         final Number ix_vx = ArithmeticOperations.multiply(ix, vx);
         final Number jx_vy = ArithmeticOperations.multiply(jx, vy);
         final Number kx_vz = ArithmeticOperations.multiply(kx, vz);
@@ -579,6 +583,7 @@ public final class VectorAlgebraicOperations {
         final Number jw_vy = ArithmeticOperations.multiply(jw, vy);
         final Number kw_vz = ArithmeticOperations.multiply(kw, vz);
         final Number sw_vw = ArithmeticOperations.multiply(sw, vw);
+        //CHECKSTYLE:ON LocalVariableName LocalFinalVariableName
 
         final Number w = ArithmeticOperations.sum(iw_vx, jw_vy, kw_vz, sw_vw);
 
@@ -590,15 +595,15 @@ public final class VectorAlgebraicOperations {
      * Multiplies the matrix by the provided point.
      *
      * @param <T>
-     *            the {@link Number} type of the operands and result.
-     *
+     *         the {@link Number} type of the operands and result.
      * @param lhs
-     *            the matrix.
+     *         the matrix.
      * @param rhs
-     *            the point.
+     *         the point.
+     *
      * @return The resulting point.
      */
-    public static final <T extends Number> IPoint4<T> multiply(
+    public static <T extends Number> IPoint4<T> multiply(
             final IMatrix4<T> lhs, final IPoint4<T> rhs) {
 
         return VectorAlgebraicOperations.multiply(lhs, rhs, lhs.getType());
@@ -606,19 +611,19 @@ public final class VectorAlgebraicOperations {
 
     /**
      * Multiplies the matrix by the provided point.
-     * 
-     * @param <R>
-     *            the {@link Number} type of the result.
      *
+     * @param <R>
+     *         the {@link Number} type of the result.
      * @param lhs
-     *            the matrix.
+     *         the matrix.
      * @param rhs
-     *            the point.
+     *         the point.
      * @param returnType
-     *            the desired return type.
+     *         the desired return type.
+     *
      * @return The resulting point.
      */
-    public static final <R extends Number> IPoint4<R> multiply(
+    public static <R extends Number> IPoint4<R> multiply(
             final IMatrix4<?> lhs, final IPoint4<?> rhs,
             final Class<? extends R> returnType) {
 
@@ -631,15 +636,15 @@ public final class VectorAlgebraicOperations {
      * Multiplies the matrix by the provided vector.
      *
      * @param <T>
-     *            the {@link Number} type of the operands and result.
-     *
+     *         the {@link Number} type of the operands and result.
      * @param lhs
-     *            the matrix.
+     *         the matrix.
      * @param rhs
-     *            the vector.
+     *         the vector.
+     *
      * @return The resulting vector.
      */
-    public static final <T extends Number> IVector4<T> multiply(
+    public static <T extends Number> IVector4<T> multiply(
             final IMatrix4<T> lhs, final IVector4<T> rhs) {
 
         return VectorAlgebraicOperations.multiply(lhs, rhs, lhs.getType());
@@ -647,19 +652,19 @@ public final class VectorAlgebraicOperations {
 
     /**
      * Multiplies the matrix by the provided vector.
-     * 
-     * @param <R>
-     *            the {@link Number} type of the result.
      *
+     * @param <R>
+     *         the {@link Number} type of the result.
      * @param lhs
-     *            the matrix.
+     *         the matrix.
      * @param rhs
-     *            the vector.
+     *         the vector.
      * @param returnType
-     *            the desired return type.
+     *         the desired return type.
+     *
      * @return The resulting vector.
      */
-    public static final <R extends Number> IVector4<R> multiply(
+    public static <R extends Number> IVector4<R> multiply(
             final IMatrix4<?> lhs, final IVector4<?> rhs,
             final Class<? extends R> returnType) {
 
@@ -672,15 +677,15 @@ public final class VectorAlgebraicOperations {
      * Multiplies the two 4x4 matrices provided.
      *
      * @param <T>
-     *            the {@link Number} type of the operands and result.
-     *
+     *         the {@link Number} type of the operands and result.
      * @param lhs
-     *            the left-hand side matrix.
+     *         the left-hand side matrix.
      * @param rhs
-     *            the right-hand side matrix.
+     *         the right-hand side matrix.
+     *
      * @return the resulting matrix.
      */
-    public static final <T extends Number> IMatrix4<T> multiply(
+    public static <T extends Number> IMatrix4<T> multiply(
             final IMatrix4<T> lhs, final IMatrix4<T> rhs) {
 
         return VectorAlgebraicOperations.multiply(lhs, rhs, lhs.getType());
@@ -688,22 +693,23 @@ public final class VectorAlgebraicOperations {
 
     /**
      * Multiplies the two 4x4 matrices provided.
-     * 
-     * @param <R>
-     *            the {@link Number} type of the result.
      *
+     * @param <R>
+     *         the {@link Number} type of the result.
      * @param lhs
-     *            the left-hand side matrix.
+     *         the left-hand side matrix.
      * @param rhs
-     *            the right-hand side matrix.
+     *         the right-hand side matrix.
      * @param returnType
-     *            the desired return type.
+     *         the desired return type.
+     *
      * @return the resulting matrix.
      */
-    public static final <R extends Number> IMatrix4<R> multiply(
+    public static <R extends Number> IMatrix4<R> multiply(
             final IMatrix4<?> lhs, final IMatrix4<?> rhs,
             final Class<? extends R> returnType) {
 
+        //CHECKSTYLE:OFF LocalVariableName LocalFinalVariableName
         final Number a_ix = lhs.getI().getX();
         final Number a_iy = lhs.getI().getY();
         final Number a_iz = lhs.getI().getZ();
@@ -725,7 +731,6 @@ public final class VectorAlgebraicOperations {
         final Number a_sw = lhs.getS().getW();
 
 
-
         final Number b_ix = rhs.getI().getX();
         final Number b_iy = rhs.getI().getY();
         final Number b_iz = rhs.getI().getZ();
@@ -745,7 +750,6 @@ public final class VectorAlgebraicOperations {
         final Number b_sy = rhs.getS().getY();
         final Number b_sz = rhs.getS().getZ();
         final Number b_sw = rhs.getS().getW();
-
 
 
         final Number a_ix__b_ix = ArithmeticOperations.multiply(a_ix, b_ix);
@@ -783,7 +787,6 @@ public final class VectorAlgebraicOperations {
                 a_kx__b_sz, a_sx__b_sw);
 
 
-
         final Number a_iy__b_ix = ArithmeticOperations.multiply(a_iy, b_ix);
         final Number a_jy__b_iy = ArithmeticOperations.multiply(a_jy, b_iy);
         final Number a_ky__b_iz = ArithmeticOperations.multiply(a_ky, b_iz);
@@ -817,7 +820,6 @@ public final class VectorAlgebraicOperations {
 
         final Number r_sy = ArithmeticOperations.sum(a_iy__b_sx, a_jy__b_sy,
                 a_ky__b_sz, a_sy__b_sw);
-
 
 
         final Number a_iz__b_ix = ArithmeticOperations.multiply(a_iz, b_ix);
@@ -855,7 +857,6 @@ public final class VectorAlgebraicOperations {
                 a_kz__b_sz, a_sz__b_sw);
 
 
-
         final Number a_iw__b_ix = ArithmeticOperations.multiply(a_iw, b_ix);
         final Number a_jw__b_iy = ArithmeticOperations.multiply(a_jw, b_iy);
         final Number a_kw__b_iz = ArithmeticOperations.multiply(a_kw, b_iz);
@@ -889,7 +890,7 @@ public final class VectorAlgebraicOperations {
 
         final Number r_sw = ArithmeticOperations.sum(a_iw__b_sx, a_jw__b_sy,
                 a_kw__b_sz, a_sw__b_sw);
-
+        //CHECKSTYLE:ON LocalVariableName LocalFinalVariableName
 
 
         final Class<? extends Number> highestPrecisionI = NumberComparator

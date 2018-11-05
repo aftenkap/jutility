@@ -9,9 +9,9 @@ package org.jutility.io.database;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -157,7 +157,7 @@ public class ListPropertyInfo
      */
     public Set<String> getAliasedKeySet() {
 
-        Set<String> aliasedKeyList = new LinkedHashSet<String>();
+        Set<String> aliasedKeyList = new LinkedHashSet<>();
 
         for (String key : this.getContainerClassAliasMap().keySet()) {
 
@@ -179,7 +179,7 @@ public class ListPropertyInfo
      */
     public Set<String> getAliasedContainerClassKeySet() {
 
-        Set<String> aliasedKeyList = new LinkedHashSet<String>();
+        Set<String> aliasedKeyList = new LinkedHashSet<>();
 
         for (String key : this.getContainerClassAliasMap().keySet()) {
 
@@ -196,7 +196,7 @@ public class ListPropertyInfo
      */
     public Set<String> getAliasedListTypeKeySet() {
 
-        Set<String> aliasedKeyList = new LinkedHashSet<String>();
+        Set<String> aliasedKeyList = new LinkedHashSet<>();
 
         for (String key : this.getListTypeAliasMap().keySet()) {
 
@@ -311,7 +311,7 @@ public class ListPropertyInfo
     public Map<String, ?> aliasContainerClassKeyValueMap(
             Map<String, ?> keyValueMap) {
 
-        LinkedHashMap<String, Object> aliasedKeyValueMap = new LinkedHashMap<String, Object>(
+        LinkedHashMap<String, Object> aliasedKeyValueMap = new LinkedHashMap<>(
                 keyValueMap.size());
 
         for (String key : keyValueMap.keySet()) {
@@ -335,7 +335,7 @@ public class ListPropertyInfo
     public Map<String, ?> dealiasContainerClassKeyValueMap(
             Map<String, ?> aliasedKeyValueMap) {
 
-        LinkedHashMap<String, Object> keyValueMap = new LinkedHashMap<String, Object>(
+        LinkedHashMap<String, Object> keyValueMap = new LinkedHashMap<>(
                 aliasedKeyValueMap.size());
 
         for (String alias : aliasedKeyValueMap.keySet()) {
@@ -358,7 +358,7 @@ public class ListPropertyInfo
      */
     public Map<String, ?> aliasListTypeKeyValueMap(Map<String, ?> keyValueMap) {
 
-        LinkedHashMap<String, Object> aliasedKeyValueMap = new LinkedHashMap<String, Object>(
+        LinkedHashMap<String, Object> aliasedKeyValueMap = new LinkedHashMap<>(
                 keyValueMap.size());
 
         for (String key : keyValueMap.keySet()) {
@@ -381,7 +381,7 @@ public class ListPropertyInfo
     public Map<String, ?> dealiasListTypeKeyValueMap(
             Map<String, ?> aliasedKeyValueMap) {
 
-        LinkedHashMap<String, Object> keyValueMap = new LinkedHashMap<String, Object>(
+        LinkedHashMap<String, Object> keyValueMap = new LinkedHashMap<>(
                 aliasedKeyValueMap.size());
         for (String alias : aliasedKeyValueMap.keySet()) {
 

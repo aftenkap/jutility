@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.jutility.events;
 
@@ -12,9 +12,9 @@ package org.jutility.events;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,10 +31,10 @@ import java.util.List;
 /**
  * The <CODE>VetoablePropertyChangeSupport</CODE> class provides a reference
  * implementation of the <CODE>IVetoablePropertyChangeSource</CODE> interface.
- * 
+ *
  * @author Peter J. Radics
  * @version 1.0
- * 
+ *
  * @see IVetoablePropertyChangeSource
  */
 public class VetoablePropertyChangeSupport
@@ -46,13 +46,13 @@ public class VetoablePropertyChangeSupport
 
     /**
      * Creates a new <CODE>DataChangeSource</CODE>.
-     * 
+     *
      * @param source
      *            the source of the events.
      */
     public VetoablePropertyChangeSupport(Object source) {
 
-        this.listeners = new LinkedList<IVetoablePropertyChangeListener>();
+        this.listeners = new LinkedList<>();
         this.source = source;
     }
 

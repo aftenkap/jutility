@@ -1,7 +1,6 @@
 package org.jutility.math.vectoralgebra;
 
 
-
 //@formatter:off
 /*
  * #%L
@@ -14,9 +13,9 @@ package org.jutility.math.vectoralgebra;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,7 +24,6 @@ package org.jutility.math.vectoralgebra;
  * #L%
  */
 //@formatter:on
-
 
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -41,7 +39,7 @@ import org.jutility.math.arithmetics.ArithmeticOperations;
  * {@link IVector4} interface.
  *
  * @param <T>
- *            the {@link Number} type of this {@code Vector4}.
+ *         the {@link Number} type of this {@code Vector4}.
  *
  * @author Peter J. Radics
  * @version 0.1.2
@@ -63,14 +61,13 @@ public class Vector4<T extends Number>
      * Creates the i unit vector for the provided type.
      *
      * @param <T>
-     *            the {@link Number} type of the {@link IVector4 Vector}.
-     *
+     *         the {@link Number} type of the {@link IVector4 Vector}.
      * @param type
-     *            the desired type of the vector.
+     *         the desired type of the vector.
+     *
      * @return the i unit vector.
      */
-    public static final <T extends Number> IVector4<T> I_UNIT_VECTOR(
-            final Class<? extends T> type) {
+    public static <T extends Number> IVector4<T> iUnitVector(final Class<? extends T> type) {
 
         return new Vector4<>(1, 0, 0, type);
     }
@@ -80,14 +77,13 @@ public class Vector4<T extends Number>
      * Creates the j unit vector for the provided type.
      *
      * @param <T>
-     *            the {@link Number} type of the {@link IVector4 Vector}.
-     *
+     *         the {@link Number} type of the {@link IVector4 Vector}.
      * @param type
-     *            the desired type of the vector.
+     *         the desired type of the vector.
+     *
      * @return the j unit vector.
      */
-    public static final <T extends Number> IVector4<T> J_UNIT_VECTOR(
-            final Class<? extends T> type) {
+    public static <T extends Number> IVector4<T> jUnitVector(final Class<? extends T> type) {
 
         return new Vector4<>(0f, 1f, 0f, type);
     }
@@ -97,14 +93,13 @@ public class Vector4<T extends Number>
      * Creates the k unit vector for the provided type.
      *
      * @param <T>
-     *            the {@link Number} type of the {@link IVector4 Vector}.
-     *
+     *         the {@link Number} type of the {@link IVector4 Vector}.
      * @param type
-     *            the desired type of the vector.
+     *         the desired type of the vector.
+     *
      * @return the k unit vector.
      */
-    public static final <T extends Number> IVector4<T> K_UNIT_VECTOR(
-            final Class<? extends T> type) {
+    public static <T extends Number> IVector4<T> kUnitVector(final Class<? extends T> type) {
 
         return new Vector4<>(0f, 0f, 1f, type);
     }
@@ -114,14 +109,13 @@ public class Vector4<T extends Number>
      * Creates the null vector for the provided type.
      *
      * @param <T>
-     *            the {@link Number} type of the {@link IVector4 Vector}.
-     *
+     *         the {@link Number} type of the {@link IVector4 Vector}.
      * @param type
-     *            the desired type of the vector.
+     *         the desired type of the vector.
+     *
      * @return the null vector.
      */
-    public static final <T extends Number> IVector4<T> NULL_VECTOR(
-            final Class<? extends T> type) {
+    public static <T extends Number> IVector4<T> nullVector(final Class<? extends T> type) {
 
         return new Vector4<>(0f, 0f, 0f, type);
     }
@@ -141,13 +135,13 @@ public class Vector4<T extends Number>
      * type and values.
      *
      * @param x
-     *            The X coordinate.
+     *         The X coordinate.
      * @param y
-     *            The Y coordinate.
+     *         The Y coordinate.
      * @param z
-     *            The Y coordinate.
+     *         The Y coordinate.
      * @param type
-     *            The type of this tuple.
+     *         The type of this tuple.
      */
     public Vector4(final Number x, final Number y, final Number z,
             final Class<? extends T> type) {
@@ -158,11 +152,11 @@ public class Vector4<T extends Number>
 
     /**
      * Copy constructor.
-     *
+     * <p>
      * Creates a new vector from the tuple provided.
      *
      * @param tuple
-     *            The tuple to be copied.
+     *         The tuple to be copied.
      */
     public Vector4(final ITuple4<T> tuple) {
 
@@ -171,13 +165,13 @@ public class Vector4<T extends Number>
 
     /**
      * Copy constructor.
-     *
+     * <p>
      * Creates a new vector from the tuple provided.
      *
      * @param tuple
-     *            The tuple to be copied.
+     *         The tuple to be copied.
      * @param returnType
-     *            the desired return type.
+     *         the desired return type.
      */
     public Vector4(final ITuple4<? extends Number> tuple,
             final Class<? extends T> returnType) {
@@ -190,7 +184,6 @@ public class Vector4<T extends Number>
                     "Provided parameter is not a vector!");
         }
     }
-
 
 
     @Override
@@ -215,7 +208,6 @@ public class Vector4<T extends Number>
 
         return NumberUtils.cast(squareRoot, type);
     }
-
 
 
     @Override
@@ -251,12 +243,12 @@ public class Vector4<T extends Number>
      * Calculates the dot product of two {@link IVector4 Vectors}.
      *
      * @param <T>
-     *            the {@link Number} type of the input {@link IVector4 Vectors}.
-     *
+     *         the {@link Number} type of the input {@link IVector4 Vectors}.
      * @param lhs
-     *            the left-hand side.
+     *         the left-hand side.
      * @param rhs
-     *            the right-hand side.
+     *         the right-hand side.
+     *
      * @return the dot product.
      */
     public static <T extends Number> T dotProduct(final IVector4<T> lhs,
@@ -269,14 +261,14 @@ public class Vector4<T extends Number>
      * Calculates the dot product of two {@link IVector4 Vectors}.
      *
      * @param <R>
-     *            the {@link Number} type of the dot product.
-     *
+     *         the {@link Number} type of the dot product.
      * @param lhs
-     *            the left-hand side.
+     *         the left-hand side.
      * @param rhs
-     *            the right-hand side.
+     *         the right-hand side.
      * @param returnType
-     *            the desired return type.
+     *         the desired return type.
+     *
      * @return the dot product.
      */
     public static <R extends Number> R dotProduct(final IVector4<?> lhs,
@@ -311,12 +303,12 @@ public class Vector4<T extends Number>
      * Calculates the cross product of the two vectors.
      *
      * @param <T>
-     *            the {@link Number} type of the input {@link IVector4 Vectors}.
-     *
+     *         the {@link Number} type of the input {@link IVector4 Vectors}.
      * @param lhs
-     *            the left-hand side.
+     *         the left-hand side.
      * @param rhs
-     *            the right-hand side.
+     *         the right-hand side.
+     *
      * @return the cross product (a vector orthogonal to both vectors provided).
      */
     public static <T extends Number> IVector4<T> crossProduct(
@@ -336,14 +328,14 @@ public class Vector4<T extends Number>
      * Calculates the cross product of the two vectors.
      *
      * @param <R>
-     *            the {@link Number} type of the cross product.
-     *
+     *         the {@link Number} type of the cross product.
      * @param lhs
-     *            the left-hand side.
+     *         the left-hand side.
      * @param rhs
-     *            the right-hand side.
+     *         the right-hand side.
      * @param returnType
-     *            the desired return type.
+     *         the desired return type.
+     *
      * @return the cross product (a vector orthogonal to both vectors provided).
      */
     public static <R extends Number> IVector4<R> crossProduct(

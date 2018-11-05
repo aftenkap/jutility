@@ -1,6 +1,5 @@
 package org.jutility.common.datatype.util;
 
-
 //@formatter:off
 /*
  * #%L
@@ -11,9 +10,9 @@ package org.jutility.common.datatype.util;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,7 +26,7 @@ package org.jutility.common.datatype.util;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
+import java.util.Objects;
 
 
 /**
@@ -45,11 +44,9 @@ import java.util.List;
 public final class NumberComparator {
 
 
-
     /**
-     * Compares two {@link Number Numbers} with the default precision for
-     * floating-point comparison defined in {@link NumberConstants#DELTA_F} and
-     * {@link NumberConstants#DELTA_D}.
+     * Compares two {@link Number Numbers} with the default precision for floating-point comparison defined in
+     * {@link NumberConstants#DELTA_F} and {@link NumberConstants#DELTA_D}.
      *
      * @param <T>
      *         the type of the left-hand side number.
@@ -60,73 +57,25 @@ public final class NumberComparator {
      * @param rhs
      *         the right-hand side.
      *
-     * @return the sum of the numbers.
+     * @return {@code -1}, if {@code lhs < rhs}; {@code 0}, if {@code lhs == rhs}; {@code 1}, if {@code lhs > rhs}.
      */
-    public static final <T extends Number, S extends Number> int compareTo(
-            final T lhs, final S rhs) {
+    public static <T extends Number, S extends Number> int compareTo(final T lhs, final S rhs) {
 
-        Integer result = null;
+        Objects.requireNonNull(lhs);
+        Objects.requireNonNull(rhs);
 
+        if (lhs instanceof Double || rhs instanceof Double) {
 
-        if (lhs instanceof Double) {
-
-            result = NumberComparator.compareTo((Double) lhs, rhs);
+            return NumberComparator.compareTo(lhs, rhs, NumberConstants.deltaD());
         }
-        else if (rhs instanceof Double) {
+        else if (lhs instanceof Float || rhs instanceof Float) {
 
-            result = NumberComparator.compareTo(lhs, (Double) rhs);
+            return NumberComparator.compareTo(lhs, rhs, NumberConstants.deltaF());
         }
-        else if (lhs instanceof Float) {
+        else {
 
-            result = NumberComparator.compareTo((Float) lhs, rhs);
+            return compareToIntegralNumber(lhs, rhs);
         }
-        else if (rhs instanceof Float) {
-
-            result = NumberComparator.compareTo(lhs, (Float) rhs);
-        }
-        else if (lhs instanceof Long) {
-
-            result = NumberComparator.compareTo((Long) lhs, rhs);
-        }
-        else if (rhs instanceof Long) {
-
-            result = NumberComparator.compareTo(lhs, (Long) rhs);
-        }
-        else if (lhs instanceof Integer) {
-
-            result = NumberComparator.compareTo((Integer) lhs, rhs);
-        }
-        else if (rhs instanceof Integer) {
-
-            result = NumberComparator.compareTo(lhs, (Integer) rhs);
-        }
-        else if (lhs instanceof Short) {
-
-            result = NumberComparator.compareTo((Short) lhs, rhs);
-        }
-        else if (rhs instanceof Short) {
-
-            result = NumberComparator.compareTo(lhs, (Short) rhs);
-        }
-        else if (lhs instanceof Byte) {
-
-            result = NumberComparator.compareTo((Byte) lhs, rhs);
-        }
-        else if (rhs instanceof Byte) {
-
-            result = NumberComparator.compareTo(lhs, (Byte) rhs);
-        }
-
-
-
-        if (result == null) {
-
-            throw new IllegalArgumentException(
-                    "Cannot compare a value of type " + lhs.getClass()
-                    + " to a value of type " + rhs.getClass() + "!");
-        }
-
-        return result;
     }
 
     /**
@@ -142,94 +91,34 @@ public final class NumberComparator {
      * @param rhs
      *         the right-hand side.
      * @param delta
-     *         the precision of the floating-point comparison (ignored for
-     *         non-floating-point {@link Number Numbers}).
+     *         the precision of the floating-point comparison (ignored for non-floating-point {@link Number Numbers}).
      *
-     * @return the sum of the numbers.
+     * @return {@code -1}, if {@code lhs < rhs}; {@code 0}, if {@code lhs == rhs}; {@code 1}, if {@code lhs > rhs}.
      */
-    public static final <T extends Number, S extends Number> int compareTo(
-            final T lhs, final S rhs, final Number delta) {
+    public static <T extends Number, S extends Number> int compareTo(final T lhs, final S rhs, final Number delta) {
 
-        Integer result = null;
+        Objects.requireNonNull(lhs);
+        Objects.requireNonNull(rhs);
 
+        if (lhs instanceof Double || rhs instanceof Double) {
 
-        if (lhs instanceof Double) {
-
-            result = NumberComparator.compareTo((Double) lhs, rhs,
-                    delta.doubleValue());
+            Objects.requireNonNull(delta);
+            return NumberComparator.compareToDouble(lhs.doubleValue(), rhs.doubleValue(), delta.doubleValue());
         }
-        else if (rhs instanceof Double) {
+        else if (lhs instanceof Float || rhs instanceof Float) {
 
-            result = NumberComparator.compareTo(lhs, (Double) rhs,
-                    delta.doubleValue());
+            Objects.requireNonNull(delta);
+            return NumberComparator.compareToFloat(lhs.floatValue(), rhs.floatValue(), delta.floatValue());
         }
-        else if (lhs instanceof Float) {
+        else {
 
-            result = NumberComparator.compareTo((Float) lhs, rhs,
-                    delta.floatValue());
+            return compareToIntegralNumber(lhs, rhs);
         }
-        else if (rhs instanceof Float) {
-
-            result = NumberComparator.compareTo(lhs, (Float) rhs,
-                    delta.floatValue());
-        }
-        else if (lhs instanceof Long) {
-
-            result = NumberComparator.compareTo((Long) lhs, rhs);
-        }
-        else if (rhs instanceof Long) {
-
-            result = NumberComparator.compareTo(lhs, (Long) rhs);
-        }
-        else if (lhs instanceof Integer) {
-
-            result = NumberComparator.compareTo((Integer) lhs, rhs);
-        }
-        else if (rhs instanceof Integer) {
-
-            result = NumberComparator.compareTo(lhs, (Integer) rhs);
-        }
-        else if (lhs instanceof Short) {
-
-            result = NumberComparator.compareTo((Short) lhs, rhs);
-        }
-        else if (rhs instanceof Short) {
-
-            result = NumberComparator.compareTo(lhs, (Short) rhs);
-        }
-        else if (lhs instanceof Byte) {
-
-            result = NumberComparator.compareTo((Byte) lhs, rhs);
-        }
-        else if (rhs instanceof Byte) {
-
-            result = NumberComparator.compareTo(lhs, (Byte) rhs);
-        }
-
-
-
-        if (result == null) {
-
-            throw new IllegalArgumentException(
-                    "Cannot compare a value of type " + lhs.getClass()
-                    + " to a value of type " + rhs.getClass() + "!");
-        }
-
-        return result;
     }
 
-    private static <T extends Number> int compareTo(final Double lhs,
-            final T rhs) {
+    private static int compareToDouble(final double lhs, final double rhs, final double delta) {
 
-        return NumberComparator.compareTo(lhs, rhs, NumberConstants.DELTA_D);
-    }
-
-    private static <T extends Number> int compareTo(final Double lhs,
-            final T rhs, final double delta) {
-
-        final Double rhsDouble = rhs.doubleValue();
-
-        final Double difference = (lhs - rhsDouble);
+        final double difference = (lhs - rhs);
 
         if (Math.abs(difference) < delta) {
             return 0;
@@ -242,18 +131,9 @@ public final class NumberComparator {
         }
     }
 
-    private static <T extends Number> int compareTo(final T lhs,
-            final Double rhs) {
+    private static int compareToFloat(final float lhs, final float rhs, final float delta) {
 
-        return NumberComparator.compareTo(lhs, rhs, NumberConstants.DELTA_D);
-    }
-
-    private static <T extends Number> int compareTo(final T lhs,
-            final Double rhs, final double delta) {
-
-        final Double lhsDouble = lhs.doubleValue();
-
-        final Double difference = (lhsDouble - rhs);
+        final float difference = (lhs - rhs);
 
         if (Math.abs(difference) < delta) {
             return 0;
@@ -266,119 +146,27 @@ public final class NumberComparator {
         }
     }
 
+    private static int compareToIntegralNumber(final Number lhs, final Number rhs) {
+        if (lhs instanceof Long || rhs instanceof Long) {
 
-    private static <T extends Number> int compareTo(final Float lhs,
-            final T rhs) {
-
-        return NumberComparator.compareTo(lhs, rhs, NumberConstants.DELTA_F);
-    }
-
-    private static <T extends Number> int compareTo(final Float lhs,
-            final T rhs, final float delta) {
-
-        final Float rhsFloat = rhs.floatValue();
-
-        final Float difference = (lhs - rhsFloat);
-
-        if (Math.abs(difference) < delta) {
-            return 0;
+            return Long.compare(lhs.longValue(), rhs.longValue());
         }
-        else if (difference < 0) {
-            return -1;
+        else if (lhs instanceof Integer || rhs instanceof Integer) {
+
+            return Integer.compare(lhs.intValue(), rhs.intValue());
         }
-        else {
-            return 1;
+        else if (lhs instanceof Short || rhs instanceof Short) {
+
+            return Short.compare(lhs.shortValue(), rhs.shortValue());
         }
-    }
+        else if (lhs instanceof Byte || rhs instanceof Byte) {
 
-    private static <T extends Number> int compareTo(final T lhs,
-            final Float rhs) {
-
-        return NumberComparator.compareTo(lhs, rhs, NumberConstants.DELTA_F);
-    }
-
-    private static <T extends Number> int compareTo(final T lhs,
-            final Float rhs, final float delta) {
-
-        final Float lhsDouble = lhs.floatValue();
-
-        final Float difference = (lhsDouble - rhs);
-
-        if (Math.abs(difference) < delta) {
-            return 0;
+            return Byte.compare(lhs.byteValue(), rhs.byteValue());
         }
-        else if (difference < 0) {
-            return -1;
-        }
-        else {
-            return 1;
-        }
+
+        throw new IllegalArgumentException("Cannot compare a value of type " + lhs.getClass()
+                + " to a value of type " + rhs.getClass() + "!");
     }
-
-    private static <T extends Number> int compareTo(final Long lhs,
-            final T rhs) {
-
-        final Long rhsLong = rhs.longValue();
-
-        return lhs.compareTo(rhsLong);
-    }
-
-    private static <T extends Number> int compareTo(final T lhs,
-            final Long rhs) {
-
-        final Long lhsLong = lhs.longValue();
-
-        return lhsLong.compareTo(rhs);
-    }
-
-    private static <T extends Number> int compareTo(final Integer lhs,
-            final T rhs) {
-
-        final Integer rhsInteger = rhs.intValue();
-
-        return lhs.compareTo(rhsInteger);
-    }
-
-    private static <T extends Number> int compareTo(final T lhs,
-            final Integer rhs) {
-
-        final Integer lhsInteger = lhs.intValue();
-
-        return lhsInteger.compareTo(rhs);
-    }
-
-    private static <T extends Number> int compareTo(final Short lhs,
-            final T rhs) {
-
-        final Short rhsShort = rhs.shortValue();
-
-        return lhs.compareTo(rhsShort);
-    }
-
-    private static <T extends Number> int compareTo(final T lhs,
-            final Short rhs) {
-
-        final Short lhsShort = lhs.shortValue();
-
-        return lhsShort.compareTo(rhs);
-    }
-
-    private static <T extends Number> int compareTo(final Byte lhs,
-            final T rhs) {
-
-        final Byte rhsByte = rhs.byteValue();
-
-        return lhs.compareTo(rhsByte);
-    }
-
-    private static <T extends Number> int compareTo(final T lhs,
-            final Byte rhs) {
-
-        final Byte lhsByte = lhs.byteValue();
-
-        return lhsByte.compareTo(rhs);
-    }
-
 
 
     /**
@@ -397,9 +185,7 @@ public final class NumberComparator {
      * @return {@code true}, if the left-hand side is numerically smaller than
      * the right-hand side; {@code false} otherwise.
      */
-    public static final <T extends Number, S extends Number> boolean
-    smallerThan(
-            final T lhs, final S rhs) {
+    public static <T extends Number, S extends Number> boolean smallerThan(final T lhs, final S rhs) {
 
         final int difference = NumberComparator.compareTo(lhs, rhs);
 
@@ -422,15 +208,12 @@ public final class NumberComparator {
      * @return {@code true}, if the left-hand side is numerically smaller than
      * or equal to the right-hand side; {@code false} otherwise.
      */
-    public static final <T extends Number, S extends Number> boolean
-    smallerOrEqual(
-            final T lhs, final S rhs) {
+    public static <T extends Number, S extends Number> boolean smallerOrEqual(final T lhs, final S rhs) {
 
         final int difference = NumberComparator.compareTo(lhs, rhs);
 
         return difference <= 0;
     }
-
 
 
     /**
@@ -449,8 +232,7 @@ public final class NumberComparator {
      * @return {@code true}, if the left-hand side is numerically equal to the
      * right-hand side; {@code false} otherwise.
      */
-    public static final <T extends Number, S extends Number> boolean equals(
-            final T lhs, final S rhs) {
+    public static <T extends Number, S extends Number> boolean equals(final T lhs, final S rhs) {
 
         final int difference = NumberComparator.compareTo(lhs, rhs);
 
@@ -473,9 +255,7 @@ public final class NumberComparator {
      * @return {@code true}, if the left-hand side is numerically greater than
      * or equal to the right-hand side; {@code false} otherwise.
      */
-    public static final <T extends Number, S extends Number> boolean
-    greaterOrEqual(
-            final T lhs, final S rhs) {
+    public static <T extends Number, S extends Number> boolean greaterOrEqual(final T lhs, final S rhs) {
 
         final int difference = NumberComparator.compareTo(lhs, rhs);
 
@@ -499,9 +279,7 @@ public final class NumberComparator {
      * @return {@code true}, if the left-hand side is numerically greater than
      * the right-hand side; {@code false} otherwise.
      */
-    public static final <T extends Number, S extends Number> boolean
-    greaterThan(
-            final T lhs, final S rhs) {
+    public static <T extends Number, S extends Number> boolean greaterThan(final T lhs, final S rhs) {
 
         final int difference = NumberComparator.compareTo(lhs, rhs);
 
@@ -526,9 +304,7 @@ public final class NumberComparator {
      * if the precisions are equal; {@code 1} if the left-hand side precision is
      * greater.
      */
-    public static final <T extends Number, S extends Number> int
-    comparePrecision(
-            final T lhs, final S rhs) {
+    public static <T extends Number, S extends Number> int comparePrecision(final T lhs, final S rhs) {
 
 
         // lhs instance of Double
@@ -621,13 +397,9 @@ public final class NumberComparator {
         }
 
 
-
-        throw new IllegalArgumentException(
-                "Cannot compare precision of a value of type " + lhs.getClass()
-                + " to the precision of a value of type " + rhs.getClass()
-                + "!");
+        throw new IllegalArgumentException("Cannot compare precision of a value of type " + lhs.getClass()
+                + " to the precision of a value of type " + rhs.getClass() + "!");
     }
-
 
 
     /**
@@ -646,9 +418,7 @@ public final class NumberComparator {
      * @return {@code true}, if the left-hand side precision is smaller than the
      * right-hand side precision; {@code false} otherwise.
      */
-    public static final <T extends Number, S extends Number> boolean
-    smallerPrecision(
-            final T lhs, final S rhs) {
+    public static <T extends Number, S extends Number> boolean smallerPrecision(final T lhs, final S rhs) {
 
         final int difference = NumberComparator.comparePrecision(lhs, rhs);
 
@@ -673,9 +443,7 @@ public final class NumberComparator {
      * @return {@code true}, if the left-hand side precision is smaller than or
      * equal to the right-hand side precision; {@code false} otherwise.
      */
-    public static final <T extends Number, S extends Number> boolean
-    smallerOrEqualPrecision(
-            final T lhs, final S rhs) {
+    public static <T extends Number, S extends Number> boolean smallerOrEqualPrecision(final T lhs, final S rhs) {
 
         final int difference = NumberComparator.comparePrecision(lhs, rhs);
 
@@ -699,9 +467,7 @@ public final class NumberComparator {
      * @return {@code true}, if the left-hand side precision is equal to the
      * right-hand side precision; {@code false} otherwise.
      */
-    public static final <T extends Number, S extends Number> boolean
-    equalPrecision(
-            final T lhs, final S rhs) {
+    public static <T extends Number, S extends Number> boolean equalPrecision(final T lhs, final S rhs) {
 
         final int difference = NumberComparator.comparePrecision(lhs, rhs);
 
@@ -726,9 +492,7 @@ public final class NumberComparator {
      * @return {@code true}, if the left-hand side precision is greater than or
      * equal to the right-hand side precision; {@code false} otherwise.
      */
-    public static final <T extends Number, S extends Number> boolean
-    greaterOrEqualPrecision(
-            final T lhs, final S rhs) {
+    public static <T extends Number, S extends Number> boolean greaterOrEqualPrecision(final T lhs, final S rhs) {
 
         final int difference = NumberComparator.comparePrecision(lhs, rhs);
 
@@ -752,9 +516,7 @@ public final class NumberComparator {
      * @return {@code true}, if the left-hand side precision is greater than the
      * right-hand side precision; {@code false} otherwise.
      */
-    public static final <T extends Number, S extends Number> boolean
-    greaterPrecision(
-            final T lhs, final S rhs) {
+    public static <T extends Number, S extends Number> boolean greaterPrecision(final T lhs, final S rhs) {
 
         final int difference = NumberComparator.comparePrecision(lhs, rhs);
 
@@ -771,8 +533,7 @@ public final class NumberComparator {
      *
      * @return the {@link Class} with the greater precision.
      */
-    public static final Class<? extends Number> greaterPrecisionType(
-            final Number... numbers) {
+    public static Class<? extends Number> greaterPrecisionType(final Number... numbers) {
 
         Class<? extends Number> greatestPrecisionType = null;
 
@@ -810,9 +571,8 @@ public final class NumberComparator {
      * if the precisions are equal; {@code 1} if the left-hand side precision is
      * greater.
      */
-    public static final <T extends Number, S extends Number> int
-    comparePrecision(
-            final Class<? extends T> lhs, final Class<? extends S> rhs) {
+    public static <T extends Number, S extends Number> int comparePrecision(final Class<? extends T> lhs,
+            final Class<? extends S> rhs) {
 
 
         // lhs is Double
@@ -905,10 +665,9 @@ public final class NumberComparator {
         }
 
 
-
         throw new IllegalArgumentException(
                 "Cannot compare precision of  type " + lhs
-                + " to the precision of  type " + rhs + "!");
+                        + " to the precision of  type " + rhs + "!");
     }
 
 
@@ -921,8 +680,7 @@ public final class NumberComparator {
      *
      * @return the {@link Class} with the greatest precision.
      */
-    public static final Class<? extends Number> greatestPrecisionType(
-            final Collection<Class<? extends Number>> numberTypes) {
+    public static Class<? extends Number> greatestPrecisionType(final Collection<Class<? extends Number>> numberTypes) {
 
         Class<? extends Number> greatestPrecisionType = null;
 
@@ -956,9 +714,8 @@ public final class NumberComparator {
      *
      * @return the {@link Class} with the smaller precision.
      */
-    public static final <T extends Number, S extends Number> Class<? extends
-            Number> smallerPrecisionType(
-            final T lhs, final S rhs) {
+    public static <T extends Number, S extends Number> Class<? extends Number> smallerPrecisionType(final T lhs,
+            final S rhs) {
 
         final int difference = NumberComparator.comparePrecision(lhs, rhs);
 
@@ -968,7 +725,6 @@ public final class NumberComparator {
 
         return rhs.getClass();
     }
-
 
 
     /**
@@ -988,15 +744,11 @@ public final class NumberComparator {
      * right-hand side value, and the left-hand side precision is equal to the
      * right-hand side precision; {@code false} otherwise.
      */
-    public static final <T extends Number, S extends Number> boolean
-    equalValueAndPrecision(
-            final T lhs, final S rhs) {
+    public static <T extends Number, S extends Number> boolean equalValueAndPrecision(final T lhs, final S rhs) {
 
         final int differenceValue = NumberComparator.compareTo(lhs, rhs);
-        final int differencePrecision = NumberComparator.comparePrecision(lhs,
-                rhs);
+        final int differencePrecision = NumberComparator.comparePrecision(lhs, rhs);
 
         return (differenceValue == 0) && (differencePrecision == 0);
-
     }
 }

@@ -12,9 +12,9 @@ package org.jutility.common.datatype.util;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -52,7 +52,7 @@ public final class NumberUtils {
      *             if parsing the {@link String} does not produce a valid
      *             instance of the desired {@link Number} type.
      */
-    public static final <R extends Number> R parse(final String string,
+    public static <R extends Number> R parse(final String string,
             final Class<R> returnType)
             throws NumberFormatException {
 
@@ -99,7 +99,7 @@ public final class NumberUtils {
      *            the return type.
      * @return the number in the return type.
      */
-    public static final <R extends Number> R cast(final Number number,
+    public static <R extends Number> R cast(final Number number,
             final Class<R> returnType) {
 
         if ((number == null) || (returnType == null)) {
@@ -160,7 +160,7 @@ public final class NumberUtils {
      *            the return type.
      * @return the number in the return type.
      */
-    public static final <R> R cast(final Object value, final Class<R> returnType) {
+    public static <R> R cast(final Object value, final Class<R> returnType) {
 
         if ((value == null) || (returnType == null)) {
             return null;
@@ -190,7 +190,7 @@ public final class NumberUtils {
      * @return an array containing all elements.
      */
     @SafeVarargs
-    public static final <T> T[] createArray(final Class<? extends T> type,
+    public static <T> T[] createArray(final Class<? extends T> type,
             final T... elements) {
 
 

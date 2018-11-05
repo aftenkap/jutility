@@ -11,9 +11,9 @@ package org.jutility.common.datatype.table;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -111,7 +111,7 @@ public class CellLocation
      * A {@link Comparator} for {@link CellLocation CellLocations} using
      * row-major order.
      */
-    public static final Comparator<CellLocation> rowMajorOrder = Comparator
+    public static final Comparator<CellLocation> ROW_MAJOR_ORDER = Comparator
             .comparing(CellLocation::getRow)
             .thenComparing(CellLocation::getColumn);
 
@@ -120,7 +120,7 @@ public class CellLocation
      * A {@link Comparator} for {@link CellLocation CellLocations} using
      * column-major order.
      */
-    public static final Comparator<CellLocation> columnMajorOrder = Comparator
+    public static final Comparator<CellLocation> COLUMN_MAJOR_ORDER = Comparator
             .comparing(CellLocation::getColumn)
             .thenComparing(CellLocation::getRow);
 
@@ -128,6 +128,6 @@ public class CellLocation
     @Override
     public int compareTo(final CellLocation other) {
 
-        return CellLocation.rowMajorOrder.compare(this, other);
+        return CellLocation.ROW_MAJOR_ORDER.compare(this, other);
     }
 }

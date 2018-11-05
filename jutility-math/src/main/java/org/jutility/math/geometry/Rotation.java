@@ -13,9 +13,9 @@ package org.jutility.math.geometry;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -42,10 +42,10 @@ import org.jutility.math.vectoralgebra.Vector4;
 /**
  * The generic {@link Rotation} class provides a reference implementation of the
  * {@link IRotation} interface.
- * 
+ *
  * @param <T>
  *            the type of the rotation.
- * 
+ *
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.0
@@ -106,20 +106,20 @@ public class Rotation<T extends Number>
     /**
      * Constructs a new instance of the {@link Rotation} class of the provided
      * type that does not perform any rotation.
-     * 
+     *
      * @param type
      *            the type of the rotation.
      */
     public Rotation(final Class<? extends T> type) {
 
-        this(Vector4.NULL_VECTOR(type), 0, type);
+        this(Vector4.nullVector(type), 0, type);
     }
 
 
     /**
      * Constructs a new instance of the {@link Rotation} class with the provided
      * type and parameters.
-     * 
+     *
      * @param x
      *            the x component of the rotation axis
      * @param y
@@ -128,7 +128,7 @@ public class Rotation<T extends Number>
      *            the z component of the rotation axis
      * @param type
      *            the type or the rotation.
-     * 
+     *
      * @param rotationAngle
      *            the rotation angle.
      */
@@ -142,7 +142,7 @@ public class Rotation<T extends Number>
     /**
      * Constructs a new instance of the {@link Rotation} class with the provided
      * type and parameters.
-     * 
+     *
      * @param rotationAxis
      *            the rotation axis.
      * @param rotationAngle
@@ -160,7 +160,7 @@ public class Rotation<T extends Number>
      * Constructs a new instance of the {@link Rotation} class with the provided
      * type and parameters. The rotation axis provided is normalized to avoid
      * distortion of objects during rotation.
-     * 
+     *
      * @param rotationAxis
      *            the rotation axis.
      * @param rotationAngle
@@ -204,7 +204,7 @@ public class Rotation<T extends Number>
 
     /**
      * Copy Constructor.
-     * 
+     *
      * @param rotationToCopy
      *            the rotation to copy.
      */
@@ -215,7 +215,7 @@ public class Rotation<T extends Number>
 
     /**
      * Copy Constructor.
-     * 
+     *
      * @param rotationToCopy
      *            the rotation to copy.
      * @param type
@@ -230,10 +230,10 @@ public class Rotation<T extends Number>
 
     /**
      * Provides a rotation by the provided rotation angle around the x axis.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the resulting {@code Rotation}.
-     * 
+     *
      * @param rotationAngle
      *            the rotation angle.
      * @param type
@@ -243,16 +243,16 @@ public class Rotation<T extends Number>
     public static <T extends Number> Rotation<T> rotationX(
             final Number rotationAngle, final Class<? extends T> type) {
 
-        return new Rotation<>(Vector4.I_UNIT_VECTOR(type), rotationAngle, type);
+        return new Rotation<>(Vector4.iUnitVector(type), rotationAngle, type);
     }
 
 
     /**
      * Provides a rotation by the provided rotation angle around the y axis.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the resulting {@code Rotation}.
-     * 
+     *
      * @param rotationAngle
      *            the rotation angle.
      * @param type
@@ -262,16 +262,16 @@ public class Rotation<T extends Number>
     public static <T extends Number> Rotation<T> rotationY(
             final Number rotationAngle, final Class<? extends T> type) {
 
-        return new Rotation<>(Vector4.J_UNIT_VECTOR(type), rotationAngle, type);
+        return new Rotation<>(Vector4.jUnitVector(type), rotationAngle, type);
     }
 
 
     /**
      * Provides a rotation by the provided rotation angle around the z axis.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the resulting {@code Rotation}.
-     * 
+     *
      * @param rotationAngle
      *            the rotation angle.
      * @param type
@@ -281,7 +281,7 @@ public class Rotation<T extends Number>
     public static <T extends Number> Rotation<T> rotationZ(
             final Number rotationAngle, final Class<? extends T> type) {
 
-        return new Rotation<>(Vector4.K_UNIT_VECTOR(type), rotationAngle, type);
+        return new Rotation<>(Vector4.kUnitVector(type), rotationAngle, type);
     }
 
 
@@ -292,11 +292,9 @@ public class Rotation<T extends Number>
         if (obj != null && obj instanceof Rotation<?>) {
             Rotation<?> other = (Rotation<?>) obj;
 
-            if (this.getRotationAxis().equals(other.getRotationAxis())
+            return this.getRotationAxis().equals(other.getRotationAxis())
                     && NumberComparator.equals(this.getRotationAngle(),
-                            other.getRotationAngle())) {
-                return true;
-            }
+                    other.getRotationAngle());
         }
 
         return false;

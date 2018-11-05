@@ -9,9 +9,9 @@ package org.jutility.io.database.annotation;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,7 +24,7 @@ package org.jutility.io.database.annotation;
 /**
  * The generic <CODE>KeyValuePair</CODE> class provides a pairwise mapping
  * between keys and values.
- * 
+ *
  * @param <KEY>
  *            The key type.
  * @param <VALUE>
@@ -41,7 +41,7 @@ public class KeyValuePair<KEY, VALUE> {
 
     /**
      * Returns the key.
-     * 
+     *
      * @return the key.
      */
     public KEY getKey() {
@@ -51,7 +51,7 @@ public class KeyValuePair<KEY, VALUE> {
 
     /**
      * Returns the value.
-     * 
+     *
      * @return the value.
      */
     public VALUE getValue() {
@@ -61,7 +61,7 @@ public class KeyValuePair<KEY, VALUE> {
 
     /**
      * Sets the value to the value provided.
-     * 
+     *
      * @param value
      *            the new value.
      */
@@ -74,7 +74,7 @@ public class KeyValuePair<KEY, VALUE> {
     /**
      * Creates a new instance of the <CODE>KeyValuePair</CODE> class with the
      * provided key.
-     * 
+     *
      * @param key
      *            the key.
      */
@@ -86,7 +86,7 @@ public class KeyValuePair<KEY, VALUE> {
     /**
      * Creates a new instance of the <CODE>KeyValuePair</CODE> class with the
      * provided key and value.
-     * 
+     *
      * @param key
      *            the key.
      * @param value
@@ -120,12 +120,9 @@ public class KeyValuePair<KEY, VALUE> {
                         other.getKey()))) {
             return false;
         }
-        if (this.getValue() != other.getValue()
-                && (this.getValue() == null || !this.getValue().equals(
-                        other.getValue()))) {
-            return false;
-        }
-        return true;
+        return this.getValue() == other.getValue()
+                || (this.getValue() != null && this.getValue().equals(
+                other.getValue()));
     }
 
     @Override

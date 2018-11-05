@@ -9,9 +9,9 @@ package org.jutility.javafx.events;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,12 +32,12 @@ import javafx.event.EventType;
 
 /**
  * Custom event that contains information of a changed selection of an item.
- * 
+ *
  * @author Peter J. Radics
  * @version 0.1
  * @param <T>
  *            the content type of the list.
- * 
+ *
  */
 public class MultiSelectionIndexChangedEvent<T extends Number>
         extends Event {
@@ -56,7 +56,7 @@ public class MultiSelectionIndexChangedEvent<T extends Number>
 
     /**
      * Returns the old values.
-     * 
+     *
      * @return the old values.
      */
     public List<T> getOldValues() {
@@ -67,7 +67,7 @@ public class MultiSelectionIndexChangedEvent<T extends Number>
 
     /**
      * Returns the new values.
-     * 
+     *
      * @return the new values.
      */
     public List<T> getNewValues() {
@@ -79,7 +79,7 @@ public class MultiSelectionIndexChangedEvent<T extends Number>
     /**
      * Creates a new {@link MultiSelectionIndexChangedEvent} with the provided
      * old and new values.
-     * 
+     *
      * @param oldValues
      *            the old selection values.
      * @param newValues
@@ -93,7 +93,7 @@ public class MultiSelectionIndexChangedEvent<T extends Number>
     /**
      * Creates a new {@link MultiSelectionIndexChangedEvent} with the provided
      * event type, old and new values.
-     * 
+     *
      * @param eventType
      *            The event type
      * @param oldValues
@@ -115,7 +115,7 @@ public class MultiSelectionIndexChangedEvent<T extends Number>
     /**
      * Creates a new {@link MultiSelectionIndexChangedEvent} with the provided
      * source, target, event type, old and new values.
-     * 
+     *
      * @param source
      *            The source of the event.
      * @param target

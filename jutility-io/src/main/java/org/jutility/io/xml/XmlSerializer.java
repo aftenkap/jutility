@@ -48,7 +48,7 @@ import org.jutility.io.SerializationException;
  * @author Peter J. Radics
  * @version 0.1
  */
-public class XmlSerializer
+public final class XmlSerializer
         implements ISerializer {
 
     private final List<Class<?>> contextBounds;
@@ -175,10 +175,12 @@ public class XmlSerializer
                     streamWriter);
             m.marshal(document, cdataStreamWriter);
 
-        } catch (java.io.FileNotFoundException e) {
+        }
+        catch (java.io.FileNotFoundException e) {
 
             throw new SerializationException("Could not write to resource.", e);
-        } catch (JAXBException | XMLStreamException e) {
+        }
+        catch (JAXBException | XMLStreamException e) {
 
             throw new SerializationException("Could not serialize resource.",
                     e);
@@ -199,7 +201,8 @@ public class XmlSerializer
         try {
 
             return this.deserialize(uri.toURL(), type);
-        } catch (MalformedURLException e) {
+        }
+        catch (MalformedURLException e) {
 
             throw new SerializationException("URI " + uri + " is malformed.", e);
         }
@@ -226,14 +229,17 @@ public class XmlSerializer
                     deserializedObject.getClass())) {
 
                 doc = type.cast(deserializedObject);
-            } else {
+            }
+            else {
 
                 throw new SerializationException("Could not deserialize resource -- resource appears to be empty!");
             }
-        } catch (JAXBException e) {
+        }
+        catch (JAXBException e) {
 
             throw new SerializationException("Could not deserialize resource!", e);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
 
             throw new SerializationException("Could not connect to resource!", e);
         }

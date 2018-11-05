@@ -13,9 +13,9 @@ package org.jutility.math.geometry;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -40,10 +40,10 @@ import org.jutility.common.datatype.util.NumberUtils;
 /**
  * The generic {@code ShearFactor} class provides a reference implementation of
  * the {@link IShearFactor} interface.
- * 
+ *
  * @param <T>
  *            the {@link Number} type of this {@code ShearFactor}.
- * 
+ *
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.0
@@ -100,7 +100,7 @@ public class ShearFactor<T extends Number>
     /**
      * Constructs a new instance of the {@code ShearFactor} class with the
      * provided parameters and type.
-     * 
+     *
      * @param shearCoefficient
      *            the shear coefficient.
      * @param shearComponent
@@ -117,7 +117,7 @@ public class ShearFactor<T extends Number>
     /**
      * Constructs a new instance of the {@code ShearFactor} class with the
      * provided parameters and type.
-     * 
+     *
      * @param shearCoefficient
      *            the shear coefficient.
      * @param shearComponent
@@ -152,7 +152,7 @@ public class ShearFactor<T extends Number>
 
     /**
      * Copy Constructor.
-     * 
+     *
      * @param shearToCopy
      *            the shear to copy.
      */
@@ -163,7 +163,7 @@ public class ShearFactor<T extends Number>
 
     /**
      * Copy Constructor.
-     * 
+     *
      * @param shearToCopy
      *            the shear to copy.
      * @param type

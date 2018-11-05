@@ -3,22 +3,22 @@ package org.jutility.javafx.control.validation;
 
 // @formatter:off
 /*
- * #%L 
- * jutility-javafx 
- * %% 
- * Copyright (C) 2013 - 2014 jutility.org 
- * %% 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not 
- * use this file except in compliance with the License. You may obtain a copy 
+ * #%L
+ * jutility-javafx
+ * %%
+ * Copyright (C) 2013 - 2014 jutility.org
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy
  * of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations under
- * the License. 
+ * the License.
  * #L%
  */
 
@@ -38,7 +38,7 @@ import org.jutility.common.datatype.util.NumberUtils;
 /**
  * The {@code ValidationUtils} class provides utility methods for creating
  * various {@link Validator Validators}.
- * 
+ *
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.0
@@ -50,14 +50,14 @@ public class ValidationUtils {
     /**
      * Factory method to create a {@link Validator} which checks whether the
      * string representation of a value represents a valid boolean.
-     * 
+     *
      * @param <T>
-     *            the type of the {@link Validator}.
-     * 
+     *         the type of the {@link Validator}.
      * @param message
-     *            text of a message to be created if value is invalid
+     *         text of a message to be created if value is invalid
      * @param severity
-     *            severity of a message to be created if value is invalid
+     *         severity of a message to be created if value is invalid
+     *
      * @return new {@link Validator}
      */
     public static <T> Validator<T> createBooleanFormatValidator(
@@ -80,12 +80,12 @@ public class ValidationUtils {
     /**
      * Factory method to create a {@link Validator}, which checks whether the
      * string representation of a value represents a valid boolean.
-     * 
+     *
      * @param <T>
-     *            the type of the {@link Validator}.
-     * 
+     *         the type of the {@link Validator}.
      * @param message
-     *            text of a message to be created if value is invalid.
+     *         text of a message to be created if value is invalid.
+     *
      * @return new {@link Validator}.
      */
     public static <T> Validator<T> createBooleanFormatValidator(
@@ -100,16 +100,16 @@ public class ValidationUtils {
      * Factory method to create a {@link Validator}, which checks whether the
      * string representation of a value represents a valid instance of the
      * provided number type.
-     * 
+     *
      * @param <T>
-     *            the type of the {@link Validator}.
-     * 
+     *         the type of the {@link Validator}.
      * @param type
-     *            the number type to check for.
+     *         the number type to check for.
      * @param message
-     *            text of a message to be created if value is invalid
+     *         text of a message to be created if value is invalid
      * @param severity
-     *            severity of a message to be created if value is invalid
+     *         severity of a message to be created if value is invalid
+     *
      * @return new {@link Validator}
      */
     public static <T> Validator<T> createNumberFormatValidator(
@@ -164,14 +164,14 @@ public class ValidationUtils {
      * Factory method to create a {@link Validator} which checks whether the
      * string representation of a value represents a valid instance of the
      * provided number type.
-     * 
+     *
      * @param <T>
-     *            the type of the {@link Validator}.
-     * 
+     *         the type of the {@link Validator}.
      * @param type
-     *            the number type to check for.
+     *         the number type to check for.
      * @param message
-     *            text of a message to be created if value is invalid
+     *         text of a message to be created if value is invalid
+     *
      * @return new {@link Validator}.
      */
     public static <T> Validator<T> createNumberFormatValidator(
@@ -189,24 +189,24 @@ public class ValidationUtils {
      * Note: if the value does not evaluate to a valid number type, the
      * {@link Validator} evaluates to {@code false}.
      * </p>
-     * 
+     *
      * @param <T>
-     *            the type of the {@link Validator}.
+     *         the type of the {@link Validator}.
      * @param <S>
-     *            the type of the number range.
-     * 
+     *         the type of the number range.
      * @param min
-     *            the lower boundary of the range.
+     *         the lower boundary of the range.
      * @param max
-     *            the upper boundary of the range.
+     *         the upper boundary of the range.
      * @param includeMin
-     *            whether to include the lower boundary of the range (i.e.,
-     *            smaller or equal).
+     *         whether to include the lower boundary of the range (i.e.,
+     *         smaller or equal).
      * @param includeMax
-     *            whether to include the upper boundary of the range (i.e.,
-     *            greater or equal).
+     *         whether to include the upper boundary of the range (i.e.,
+     *         greater or equal).
      * @param message
-     *            text of a message to be created if value is invalid
+     *         text of a message to be created if value is invalid
+     *
      * @return new {@link Validator}.
      */
     public static <T, S extends Number> Validator<T> createNumberRangeValidator(
@@ -226,26 +226,26 @@ public class ValidationUtils {
      * Note: if the value does not evaluate to a valid number type, the
      * validator evaluates to {@code false}.
      * </p>
-     * 
+     *
      * @param <T>
-     *            the type of the {@link Validator}.
+     *         the type of the {@link Validator}.
      * @param <S>
-     *            the type of the number range.
-     * 
+     *         the type of the number range.
      * @param min
-     *            the lower boundary of the range.
+     *         the lower boundary of the range.
      * @param max
-     *            the upper boundary of the range.
+     *         the upper boundary of the range.
      * @param includeMin
-     *            whether to include the lower boundary of the range (i.e.,
-     *            smaller or equal).
+     *         whether to include the lower boundary of the range (i.e.,
+     *         smaller or equal).
      * @param includeMax
-     *            whether to include the upper boundary of the range (i.e.,
-     *            greater or equal).
+     *         whether to include the upper boundary of the range (i.e.,
+     *         greater or equal).
      * @param message
-     *            text of a message to be created if value is invalid
+     *         text of a message to be created if value is invalid
      * @param severity
-     *            severity of a message to be created if value is invalid
+     *         severity of a message to be created if value is invalid
+     *
      * @return new {@link Validator}.
      */
     public static <T, S extends Number> Validator<T> createNumberRangeValidator(
@@ -308,14 +308,14 @@ public class ValidationUtils {
     /**
      * Factory method to create a {@link Validator} which checks if the string
      * representation of a value represents a valid URI.
-     * 
+     *
      * @param <T>
-     *            the type of the {@link Validator}.
-     * 
+     *         the type of the {@link Validator}.
      * @param message
-     *            text of a message to be created if value is invalid.
+     *         text of a message to be created if value is invalid.
      * @param severity
-     *            severity of a message to be created if value is invalid.
+     *         severity of a message to be created if value is invalid.
+     *
      * @return new {@link Validator}.
      */
     public static <T> Validator<T> createURIFormatValidator(
@@ -345,12 +345,12 @@ public class ValidationUtils {
     /**
      * Factory method to create a {@link Validator} which checks if the string
      * representation of a value represents a valid URI.
-     * 
+     *
      * @param <T>
-     *            the type of the {@link Validator}.
-     * 
+     *         the type of the {@link Validator}.
      * @param message
-     *            text of a message to be created if value is invalid.
+     *         text of a message to be created if value is invalid.
+     *
      * @return new {@link Validator}.
      */
     public static <T> Validator<T> createURIFormatValidator(final String message) {

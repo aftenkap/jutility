@@ -6,9 +6,9 @@ package org.jutility.io.database.mysql;
  * under the Apache License, Version 2.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the
  * License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -40,23 +40,23 @@ import org.jutility.io.database.ISQLPrivileges;
  * @since 1.0
  *
  */
-public class MySQLDriver {
+public final class MySQLDriver {
 
-    private static MySQLDriver s_Instance;
+    private static MySQLDriver instance;
 
     /**
      * @return the instance of the {@link MySQLDriver} singleton class.
      * @throws ClassNotFoundException
      *             if the MySQL driver is not found.
      */
-    public static MySQLDriver Instance()
+    public static MySQLDriver instance()
             throws ClassNotFoundException {
 
-        if (s_Instance == null) {
-            s_Instance = new MySQLDriver();
+        if (instance == null) {
+            instance = new MySQLDriver();
         }
 
-        return s_Instance;
+        return instance;
     }
 
 
@@ -298,7 +298,7 @@ public class MySQLDriver {
 
     /**
      * Creates a user.
-     * 
+     *
      * @param username
      *            the user name.
      * @param hostname
@@ -341,7 +341,7 @@ public class MySQLDriver {
 
     /**
      * Drops a user.
-     * 
+     *
      * @param username
      *            the user name.
      * @param hostname
@@ -378,7 +378,7 @@ public class MySQLDriver {
 
     /**
      * Grants privileges on an object to a user.
-     * 
+     *
      * @param privileges
      *            the privileges to grant.
      * @param object
@@ -439,7 +439,7 @@ public class MySQLDriver {
 
     /**
      * Revokes privileges on an object of a user.
-     * 
+     *
      * @param privileges
      *            the privileges to grant.
      * @param object
@@ -507,7 +507,7 @@ public class MySQLDriver {
     public List<String> getAvailableDatabaseSchemas()
             throws SQLException {
 
-        ArrayList<String> databaseNames = new ArrayList<String>();
+        ArrayList<String> databaseNames = new ArrayList<>();
 
         String query = "SHOW DATABASES;";
 
@@ -666,7 +666,6 @@ public class MySQLDriver {
                 for (String key : this.preparedStatementKeySet) {
 
                     Object value = valueMap.get(key);
-                    ;
                     if (value == null) {
 
                         this.preparedStatement.setObject(i, null);
@@ -967,7 +966,7 @@ public class MySQLDriver {
         String selectQuery = DBUtils.prepareSelectQuery(database, table,
                 valueColumns, keyColumns);
 
-        Set<String> keys = new LinkedHashSet<String>();
+        Set<String> keys = new LinkedHashSet<>();
         keys.addAll(valueColumns);
         keys.addAll(keyColumns);
 
@@ -1038,7 +1037,7 @@ public class MySQLDriver {
         String insertStatement = DBUtils.prepareUpdateStatement(database,
                 table, keyColumns, valueColumns);
 
-        Set<String> keys = new LinkedHashSet<String>();
+        Set<String> keys = new LinkedHashSet<>();
 
         keys.addAll(valueColumns);
         keys.addAll(keyColumns);

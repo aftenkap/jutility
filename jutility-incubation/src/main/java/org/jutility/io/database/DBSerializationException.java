@@ -9,9 +9,9 @@ package org.jutility.io.database;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -29,9 +29,9 @@ package org.jutility.io.database;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,7 +44,7 @@ package org.jutility.io.database;
 /**
  * @author Peter J. Radics
  * @version 0.1
- * 
+ *
  */
 public class DBSerializationException
         extends Exception {
@@ -62,7 +62,7 @@ public class DBSerializationException
 
     /**
      * Creates a new instance of the {@link DBSerializationException} class.
-     * 
+     *
      * @param message
      */
     public DBSerializationException(String message) {
@@ -72,7 +72,7 @@ public class DBSerializationException
 
     /**
      * Creates a new instance of the {@link DBSerializationException} class.
-     * 
+     *
      * @param cause
      */
     public DBSerializationException(Throwable cause) {
@@ -82,7 +82,7 @@ public class DBSerializationException
 
     /**
      * Creates a new instance of the {@link DBSerializationException} class.
-     * 
+     *
      * @param message
      * @param cause
      */

@@ -9,9 +9,9 @@ package org.jutility.javafx.control.validation;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -53,7 +53,7 @@ public class ValidationGroup {
 
     /**
      * Returns the invalid property.
-     * 
+     *
      * @return the invalid property.
      */
     public ReadOnlyBooleanProperty invalidProperty() {
@@ -63,7 +63,7 @@ public class ValidationGroup {
 
     /**
      * Returns the value of the invalid property.
-     * 
+     *
      * @return the value of the invalid property.
      */
     public Boolean isInvalid() {
@@ -74,7 +74,7 @@ public class ValidationGroup {
 
     /**
      * Returns the value of the validation result property.
-     * 
+     *
      * @return the value of the validation result property.
      */
     public ValidationResult getValidationResult() {
@@ -84,7 +84,7 @@ public class ValidationGroup {
 
     /**
      * Returns the validation result property.
-     * 
+     *
      * @return the validation result property.
      */
     public ReadOnlyObjectProperty<ValidationResult> validationResultProperty() {
@@ -106,7 +106,7 @@ public class ValidationGroup {
 
     /**
      * Registers the validation support of a sub node.
-     * 
+     *
      * @param node
      *            the sub node.
      * @param validationSupport
@@ -127,7 +127,7 @@ public class ValidationGroup {
 
     /**
      * Registers the validation group of a sub node.
-     * 
+     *
      * @param node
      *            the sub node.
      * @param validationGroup
@@ -148,7 +148,7 @@ public class ValidationGroup {
 
     /**
      * Removes all sub validation for the provided {@link Node}.
-     * 
+     *
      * @param node
      *            the {@link Node}.
      * @return {@code true}, if a removal took place; {@code false} otherwise.

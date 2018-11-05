@@ -6,9 +6,9 @@ package org.jutility.math.geometry;
  * the Apache License, Version 2.0 (the "License"); you may not use this file
  * except in compliance with the License. You may obtain a copy of the License
  * at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 /**
  * The {@link IShearFactor} interface provides a contract for classes
  * implementing a shear around a certain component.
- * 
+ *
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.0
@@ -41,14 +41,14 @@ public interface IShearFactor<T extends Number> {
 
     /**
      * Returns the type of the {@code ShearFactor}.
-     * 
+     *
      * @return the type.
      */
     Class<? extends T> getType();
 
     /**
      * Returns the shear coefficient.
-     * 
+     *
      * @return the shear coefficient.
      */
     T getShearCoefficient();
@@ -56,7 +56,7 @@ public interface IShearFactor<T extends Number> {
 
     /**
      * Returns the identifier of the shear
-     * 
+     *
      * @return the identifier.
      */
     ShearComponent getShearComponent();

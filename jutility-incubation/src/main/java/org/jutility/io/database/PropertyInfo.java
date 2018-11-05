@@ -9,9 +9,9 @@ package org.jutility.io.database;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -72,7 +72,7 @@ public class PropertyInfo
      */
     public Set<String> getAliasedColumns() {
 
-        Set<String> aliasedColumns = new LinkedHashSet<String>();
+        Set<String> aliasedColumns = new LinkedHashSet<>();
 
         for (String key : this.columnMap.keySet()) {
 
@@ -183,14 +183,7 @@ public class PropertyInfo
      */
     public Set<String> getAliasedColumnNames() {
 
-        Set<String> columnNames = new LinkedHashSet<String>();
-
-        for (String columnName : this.columnMap.values()) {
-
-            columnNames.add(columnName);
-        }
-
-        return columnNames;
+        return new LinkedHashSet<>(this.columnMap.values());
     }
 
     /**
@@ -288,26 +281,26 @@ public class PropertyInfo
     @Override
     public String toString() {
 
-        String returnValue = this.getPropertyName() + "->";
+        StringBuilder returnValue = new StringBuilder(this.getPropertyName() + "->");
 
-        returnValue += "{";
+        returnValue.append("{");
         int i = 0;
         for (String primaryKey : this.columnMap.keySet()) {
             if (i > 0) {
-                returnValue += ", ";
+                returnValue.append(", ");
             }
-            returnValue += primaryKey + "=" + this.columnMap.get(primaryKey);
+            returnValue.append(primaryKey).append("=").append(this.columnMap.get(primaryKey));
         }
 
-        returnValue += "{";
-        returnValue += ": Field: " + (this.getField() != null);
+        returnValue.append("{");
+        returnValue.append(": Field: ").append(this.getField() != null);
 
-        returnValue += ", Getter: " + (this.getGetter() != null);
+        returnValue.append(", Getter: ").append(this.getGetter() != null);
 
-        returnValue += ", Setter: " + (this.getSetter() != null);
+        returnValue.append(", Setter: ").append(this.getSetter() != null);
 
 
-        return returnValue;
+        return returnValue.toString();
     }
 
 }

@@ -11,9 +11,9 @@ package org.jutility.javafx.control.wizard;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -103,7 +103,7 @@ public abstract class WizardPage
 
     /**
      * Returns the button bar.
-     * 
+     *
      * @return the button bar.
      */
     HBox getButtons() {
@@ -120,7 +120,7 @@ public abstract class WizardPage
 
     /**
      * Returns the content of the page
-     * 
+     *
      * @return the content of the page
      */
     abstract Parent getContent();
@@ -198,7 +198,7 @@ public abstract class WizardPage
 
     /**
      * Returns the {@link IWizard Wizard}.
-     * 
+     *
      * @return the {@link IWizard Wizard}.
      */
     IWizard getWizard() {
@@ -237,7 +237,7 @@ public abstract class WizardPage
 
     /**
      * Returns the id of the page.
-     * 
+     *
      * @return the id of the page.
      */
     String getByID() {

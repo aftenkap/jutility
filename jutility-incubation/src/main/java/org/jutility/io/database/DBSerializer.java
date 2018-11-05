@@ -9,9 +9,9 @@ package org.jutility.io.database;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -196,7 +196,7 @@ public class DBSerializer {
     public void serialize(Object object)
             throws DBSerializationException {
 
-        List<Object> list = new LinkedList<Object>();
+        List<Object> list = new LinkedList<>();
         list.add(object);
         this.serialize(list);
     }
@@ -229,7 +229,7 @@ public class DBSerializer {
     private void serializeObjects(Collection<?> objects)
             throws DBSerializationException {
 
-        Set<Object> objectsToSerialize = new LinkedHashSet<Object>();
+        Set<Object> objectsToSerialize = new LinkedHashSet<>();
         for (Object object : objects) {
 
             this.crawlObjects(object, objectsToSerialize);
@@ -460,7 +460,7 @@ public class DBSerializer {
         if (!info.getElementTypeProperties().isEmpty()) {
 
 
-            Map<String, Object> elementPrimaryKeyMap = new LinkedHashMap<String, Object>();
+            Map<String, Object> elementPrimaryKeyMap = new LinkedHashMap<>();
 
             for (PropertyInfo propertyInfo : info.getElementTypeProperties()) {
 
@@ -506,7 +506,7 @@ public class DBSerializer {
             // int id = -1;
             this.databaseDriver.executeUpdate(elementPrimaryKeyMap);
             // id =
-            // MySQLDriver.Instance().executePreparedStatement(valueList);
+            // MySQLDriver.instance().executePreparedStatement(valueList);
 
             this.databaseDriver.closePreparedStatement();
         }
@@ -519,7 +519,7 @@ public class DBSerializer {
             throws DBSerializationException {
 
 
-        Map<String, Object> propertyValueMap = new LinkedHashMap<String, Object>();
+        Map<String, Object> propertyValueMap = new LinkedHashMap<>();
 
         for (PropertyInfo property : properties) {
 
@@ -571,7 +571,7 @@ public class DBSerializer {
         Collection<?> values = this
                 .getValueCollection(object, listPropertyInfo);
 
-        List<Map<String, ?>> valueMaps = new LinkedList<Map<String, ?>>();
+        List<Map<String, ?>> valueMaps = new LinkedList<>();
 
         if (values.isEmpty()) {
 
@@ -582,7 +582,7 @@ public class DBSerializer {
             // System.out.println("Values: " + values);
             for (Object value : values) {
 
-                Map<String, Object> valueMap = new LinkedHashMap<String, Object>(
+                Map<String, Object> valueMap = new LinkedHashMap<>(
                         aliasedPrimaryKeyToValueMap);
 
                 DBSerializationInfo valueInfo = this.parser
@@ -642,7 +642,7 @@ public class DBSerializer {
             ListPropertyInfo listPropertyInfo)
             throws DBSerializationException {
 
-        List<Map<String, ?>> updateList = new LinkedList<Map<String, ?>>();
+        List<Map<String, ?>> updateList = new LinkedList<>();
 
 
 
@@ -693,8 +693,8 @@ public class DBSerializer {
 
 
 
-        List<T> objectList = new LinkedList<T>();
-        LinkedList<Prototype<?>> prototypeList = new LinkedList<Prototype<?>>();
+        List<T> objectList = new LinkedList<>();
+        LinkedList<Prototype<?>> prototypeList = new LinkedList<>();
 
         // System.out.println(info.selectStatement(null));
 
@@ -711,7 +711,7 @@ public class DBSerializer {
         this.databaseDriver.closePreparedQuery();
         for (Map<String, ?> result : convertedResults) {
 
-            Map<String, Object> keyMap = new LinkedHashMap<String, Object>();
+            Map<String, Object> keyMap = new LinkedHashMap<>();
 
             for (PropertyInfo primaryKey : info.getPrimaryKeys()) {
                 // System.out.println("PrimaryKey " +
@@ -732,7 +732,7 @@ public class DBSerializer {
 
 
             // System.out.println("KeyMap: " + keyMap);
-            Prototype<T> prototype = new Prototype<T>(clazz, keyMap);
+            Prototype<T> prototype = new Prototype<>(clazz, keyMap);
 
             prototypeList.add(prototype);
         }
@@ -820,9 +820,9 @@ public class DBSerializer {
 
         this.parser.getSerializationInformation(clazz);
 
-        Prototype<T> prototype = new Prototype<T>(clazz, primaryKeyValueMap);
+        Prototype<T> prototype = new Prototype<>(clazz, primaryKeyValueMap);
 
-        LinkedList<Prototype<?>> prototypeList = new LinkedList<Prototype<?>>();
+        LinkedList<Prototype<?>> prototypeList = new LinkedList<>();
 
         prototypeList.add(prototype);
 
@@ -839,7 +839,7 @@ public class DBSerializer {
             throws DBSerializationException {
 
 
-        LinkedList<Prototype<?>> parsedPrototypes = new LinkedList<Prototype<?>>();
+        LinkedList<Prototype<?>> parsedPrototypes = new LinkedList<>();
 
         this.deserializePrototypes(prototypes, parsedPrototypes);
 
@@ -970,7 +970,7 @@ public class DBSerializer {
 
         T retrievedInstance = prototype.getDeserializedObject();
 
-        List<Prototype<?>> elementPropertyPrototypes = new LinkedList<Prototype<?>>();
+        List<Prototype<?>> elementPropertyPrototypes = new LinkedList<>();
 
         for (PropertyInfo pkProperty : info.getPrimaryKeys()) {
 
@@ -1024,7 +1024,7 @@ public class DBSerializer {
                 + prototype.getType());
 
 
-        List<Prototype<?>> elementListPropertyPrototypes = new LinkedList<Prototype<?>>();
+        List<Prototype<?>> elementListPropertyPrototypes = new LinkedList<>();
 
         Map<String, ?> keyValueMap = prototype.getPrimaryKeyValueMap();
 
@@ -1074,7 +1074,7 @@ public class DBSerializer {
 
 
         this.databaseDriver.prepareUniversalSelection(listProperty
-                .getTableName(), new LinkedHashSet<String>(listProperty
+                .getTableName(), new LinkedHashSet<>(listProperty
                 .getContainerClassAliasMap().values()));
 
         // System.out.println("\t\t" + query);
@@ -1086,13 +1086,13 @@ public class DBSerializer {
 
         this.databaseDriver.closePreparedQuery();
         // System.out.println("\t\tResults: " + results);
-        List<Map<String, ?>> dealiasedResults = new LinkedList<Map<String, ?>>();
+        List<Map<String, ?>> dealiasedResults = new LinkedList<>();
         for (Map<String, ?> result : results) {
 
             // System.out.println("\t\tSerialized element of type "
             // + listProperty.getListType() + ":");
 
-            Map<String, Object> dealiasedResult = new LinkedHashMap<String, Object>();
+            Map<String, Object> dealiasedResult = new LinkedHashMap<>();
 
             for (String key : listProperty.getListTypeAliasMap().keySet()) {
 
@@ -1114,7 +1114,7 @@ public class DBSerializer {
     private Map<String, ?> translatePropertyValueMapKeys(
             PropertyInfo propertyInfo, Map<String, ?> propertyValueMap) {
 
-        Map<String, Object> translatedPropertyValueMap = new LinkedHashMap<String, Object>(
+        Map<String, Object> translatedPropertyValueMap = new LinkedHashMap<>(
                 propertyValueMap.size());
 
         for (String ownColumnName : propertyInfo.getAliasedColumnNames()) {
@@ -1291,7 +1291,7 @@ public class DBSerializer {
         }
         // Element type
         else {
-            Map<String, Object> primaryKeyValueMap = new LinkedHashMap<String, Object>();
+            Map<String, Object> primaryKeyValueMap = new LinkedHashMap<>();
 
             for (String foreignKeyColumnName : propertyInfo.getColumnNames()) {
                 // System.out.println("ForeignKey column name: "
@@ -1309,10 +1309,8 @@ public class DBSerializer {
                 primaryKeyValueMap.put(foreignKeyColumnName, columnValue);
             }
 
-            Prototype<?> elementPrototype = Prototype.createPrototype(
+            return Prototype.createPrototype(
                     propertyInfo.getPropertyType(), primaryKeyValueMap);
-
-            return elementPrototype;
         }
     }
 
@@ -1328,7 +1326,7 @@ public class DBSerializer {
 
         }
 
-        List<Prototype<?>> elementPrototypes = new LinkedList<Prototype<?>>();
+        List<Prototype<?>> elementPrototypes = new LinkedList<>();
 
         for (Map<String, ?> propertyValueMap : propertyValueMaps) {
 
@@ -1349,7 +1347,7 @@ public class DBSerializer {
             List<Prototype<? extends T>> elementListPrototypes)
             throws DBSerializationException {
 
-        List<T> elementList = new LinkedList<T>();
+        List<T> elementList = new LinkedList<>();
 
         for (Prototype<? extends T> prototype : elementListPrototypes) {
 
@@ -1363,7 +1361,7 @@ public class DBSerializer {
             Map<String, ?> propertyValueMap)
             throws DBSerializationException {
 
-        Object initargs[] = new Object[info.getConstructorParameters().size()];
+        Object[] initargs = new Object[info.getConstructorParameters().size()];
         int i = 0;
         // System.out.println("Listing constructor parameters.");
         for (String constructorParameter : info.getConstructorParameters()) {

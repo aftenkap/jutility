@@ -9,9 +9,9 @@ package org.jutility.io.xml;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * @author Peter J. Radics
- * 
+ *
  */
 @XmlRootElement()
 @XmlType(name = "CDATA")
@@ -54,7 +54,7 @@ public class XmlCData {
 
     /**
      * Returns the content of the CDATA section.
-     * 
+     *
      * @return the content of the CDATA section.
      */
     public String getValue() {
@@ -65,7 +65,7 @@ public class XmlCData {
 
     /**
      * Sets the content of the CDATA section.
-     * 
+     *
      * @param value
      *            the content of the CDATA section.
      */
@@ -86,7 +86,7 @@ public class XmlCData {
     /**
      * Creates a new instance of the {@link XmlCData} class with the provided
      * value.
-     * 
+     *
      * @param value
      *            the content of the CDATA section.
      */
@@ -97,7 +97,7 @@ public class XmlCData {
 
     /**
      * Determines if the string is valid CDATA.
-     * 
+     *
      * @param string
      *            the string to check.
      * @return {@code true}, if the string is valid CDATA; {@code false}
@@ -121,7 +121,7 @@ public class XmlCData {
 
     /**
      * Converts a string into a valid CDATA string.
-     * 
+     *
      * @param string
      *            the string to convert.
      * @return a valid CDATA string.
@@ -146,7 +146,7 @@ public class XmlCData {
 
     /**
      * Converts a CDATA string into a string.
-     * 
+     *
      * @param cdata
      *            the CDATA string.
      * @return the content of the CDATA section.

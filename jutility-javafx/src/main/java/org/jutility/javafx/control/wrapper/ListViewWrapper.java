@@ -13,9 +13,9 @@ package org.jutility.javafx.control.wrapper;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -51,10 +51,10 @@ import javafx.util.StringConverter;
 /**
  * The {@code ListViewWrapper} class provides a {@link ControlWrapper Wrapper}
  * around a {@link ListView}.
- * 
+ *
  * @param <T>
  *            the content type of the {@link ListView}.
- * 
+ *
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.2
@@ -66,7 +66,7 @@ public class ListViewWrapper<T>
 
     /**
      * Returns the converter property.
-     * 
+     *
      * @return the converter property.
      */
     public ObjectProperty<StringConverter<T>> converterProperty() {
@@ -76,7 +76,7 @@ public class ListViewWrapper<T>
 
     /**
      * Returns the value of the converter property.
-     * 
+     *
      * @return the value of the converter property.
      */
     public StringConverter<T> getConverter() {
@@ -86,7 +86,7 @@ public class ListViewWrapper<T>
 
     /**
      * Sets the value of the converter property.
-     * 
+     *
      * @param value
      *            the value of the converter property.
      */
@@ -98,7 +98,7 @@ public class ListViewWrapper<T>
     /**
      * The underlying data model for the ListView. Note that it has a generic
      * type that must match the type of the ListView itself.
-     * 
+     *
      * @return the items property.
      */
     public ObjectProperty<ObservableList<T>> itemsProperty() {
@@ -111,7 +111,7 @@ public class ListViewWrapper<T>
      * to show. This may be the case because the table model has no data in the
      * first place or that a filter has been applied to the list model,
      * resulting in there being nothing to show the user.
-     * 
+     *
      * @return the placeholder property.
      */
     public final ObjectProperty<Node> placeholderProperty() {
@@ -124,7 +124,7 @@ public class ListViewWrapper<T>
      * select single or multiple items within a ListView, as well as inspect
      * which items have been selected by the user. Note that it has a generic
      * type that must match the type of the ListView itself.
-     * 
+     *
      * @return the selection model property.
      */
     public final ObjectProperty<MultipleSelectionModel<T>> selectionModelProperty() {
@@ -136,7 +136,7 @@ public class ListViewWrapper<T>
      * The FocusModel provides the API through which it is possible to both get
      * and set the focus on a single item within a ListView. Note that it has a
      * generic type that must match the type of the ListView itself.
-     * 
+     *
      * @return the focus model property.
      */
     public final ObjectProperty<FocusModel<T>> focusModelProperty() {
@@ -147,7 +147,7 @@ public class ListViewWrapper<T>
     /**
      * The orientation of the ListView - this can either be horizontal or
      * vertical.
-     * 
+     *
      * @return the orientatio property.
      */
     public final ObjectProperty<Orientation> orientationProperty() {
@@ -161,9 +161,9 @@ public class ListViewWrapper<T>
      * ListView is responsible for reusing ListCells - all that is necessary is
      * for the custom cell factory to return from this function a ListCell which
      * might be usable for representing any item in the ListView.
-     * 
+     *
      * Refer to the Cell class documentation for more detail.
-     * 
+     *
      * @return the cell factory property.
      */
     public final ObjectProperty<Callback<ListView<T>, ListCell<T>>> cellFactoryProperty() {
@@ -190,7 +190,7 @@ public class ListViewWrapper<T>
      * performance matters use -fx-fixed-cell-size, instead of -fx-cell-size. If
      * both properties are specified in CSS, -fx-fixed-cell-size takes
      * precedence.
-     * 
+     *
      * @return the fixedCellSize property
      */
     public final DoubleProperty fixedCellSizeProperty() {
@@ -202,7 +202,7 @@ public class ListViewWrapper<T>
      * Specifies whether this ListView is editable - only if the ListView and
      * the ListCells within it are both editable will a ListCell be able to go
      * into their editing state.
-     * 
+     *
      * @return the editable property.
      */
     public final BooleanProperty editableProperty() {
@@ -214,10 +214,10 @@ public class ListViewWrapper<T>
      * A property used to represent the index of the item currently being edited
      * in the ListView, if editing is taking place, or -1 if no item is being
      * edited.
-     * 
+     *
      * It is not possible to set the editing index, instead it is required that
      * you call edit(int).
-     * 
+     *
      * @return the editingIndex property.
      */
     public final ReadOnlyIntegerProperty editingIndexProperty() {
@@ -229,7 +229,7 @@ public class ListViewWrapper<T>
     /**
      * This event handler will be fired when the user successfully initiates
      * editing.
-     * 
+     *
      * @return the onEditStart property.
      */
     public final ObjectProperty<EventHandler<ListView.EditEvent<T>>> onEditStartProperty() {
@@ -240,12 +240,12 @@ public class ListViewWrapper<T>
     /**
      * This property is used when the user performs an action that should result
      * in their editing input being persisted.
-     * 
+     *
      * The EventHandler in this property should not be called directly - instead
      * call ListCell.commitEdit(java.lang.Object) from within your custom
      * ListCell. This will handle firing this event, updating the view, and
      * switching out of the editing state.
-     * 
+     *
      * @return the onEditCommit property.
      */
     public final ObjectProperty<EventHandler<ListView.EditEvent<T>>> onEditCommitProperty() {
@@ -255,7 +255,7 @@ public class ListViewWrapper<T>
 
     /**
      * This event handler will be fired when the user cancels editing a cell.
-     * 
+     *
      * @return the onEditCancel property.
      */
     public final ObjectProperty<EventHandler<ListView.EditEvent<T>>> onEditCancelProperty() {
@@ -266,7 +266,7 @@ public class ListViewWrapper<T>
     /**
      * Called when there's a request to scroll an index into view using
      * scrollTo(int) or #scrollTo(S)
-     * 
+     *
      * @return the onScrollTo property.
      */
     public ObjectProperty<EventHandler<ScrollToEvent<Integer>>> onScrollToProperty() {
@@ -295,15 +295,15 @@ public class ListViewWrapper<T>
 
     /**
      * Creates a new instance of the {@code ListViewWrapper} class.
-     * 
+     *
      * Internally, creates a default ListView which will stack the contents
      * retrieved from the provided ObservableList vertically. Attempts to add a
      * listener to the ObservableList, such that all subsequent changes inside
      * the list will be shown to the user.
-     * 
+     *
      * Refer to the ListView class documentation for details on the default
      * state of other properties.
-     * 
+     *
      * @param items
      *            the initial list of items presented by the {@link ListView}.
      */
@@ -315,15 +315,15 @@ public class ListViewWrapper<T>
 
     /**
      * Creates a new instance of the {@code ListViewWrapper} class.
-     * 
+     *
      * Internally, creates a default ListView which will stack the contents
      * retrieved from the provided ObservableList vertically. Attempts to add a
      * listener to the ObservableList, such that all subsequent changes inside
      * the list will be shown to the user.
-     * 
+     *
      * Refer to the ListView class documentation for details on the default
      * state of other properties.
-     * 
+     *
      * @param items
      *            the initial list of items presented by the {@link ListView}.
      * @param converter
@@ -343,7 +343,7 @@ public class ListViewWrapper<T>
     /**
      * Sets the underlying data model for the ListView. Note that it has a
      * generic type that must match the type of the ListView itself.
-     * 
+     *
      * @param value
      *            the data model.
      */
@@ -357,7 +357,7 @@ public class ListViewWrapper<T>
      * to the user. This may be null if
      * setItems(javafx.collections.ObservableList) has previously been called,
      * however, by default it is an empty ObservableList.
-     * 
+     *
      * @return An ObservableList containing the items to be shown to the user,
      *         or null if the items have previously been set to null.
      */
@@ -369,7 +369,7 @@ public class ListViewWrapper<T>
 
     /**
      * Sets the value of the property placeholder.
-     * 
+     *
      * @param value
      *            the placeholder.
      */
@@ -380,7 +380,7 @@ public class ListViewWrapper<T>
 
     /**
      * Gets the value of the property placeholder.
-     * 
+     *
      * @return the placeholder.
      */
     public final Node getPlaceholder() {
@@ -394,7 +394,7 @@ public class ListViewWrapper<T>
      * it to only allow single selection (see
      * MultipleSelectionModel.setSelectionMode
      * (javafx.scene.control.SelectionMode) for more information).
-     * 
+     *
      * @param value
      *            the selection model.
      */
@@ -405,7 +405,7 @@ public class ListViewWrapper<T>
 
     /**
      * Returns the currently installed selection model.
-     * 
+     *
      * @return the selection model.
      */
     public final MultipleSelectionModel<T> getSelectionModel() {
@@ -415,7 +415,7 @@ public class ListViewWrapper<T>
 
     /**
      * Sets the FocusModel to be used in the ListView.
-     * 
+     *
      * @param value
      *            the focus model.
      */
@@ -426,7 +426,7 @@ public class ListViewWrapper<T>
 
     /**
      * Returns the currently installed FocusModel.
-     * 
+     *
      * @return the focus model.
      */
     public final FocusModel<T> getFocusModel() {
@@ -437,7 +437,7 @@ public class ListViewWrapper<T>
     /**
      * Sets the orientation of the ListView, which dictates whether it scrolls
      * vertically or horizontally.
-     * 
+     *
      * @param value
      *            the orientation.
      */
@@ -449,7 +449,7 @@ public class ListViewWrapper<T>
     /**
      * Returns the current orientation of the ListView, which dictates whether
      * it scrolls vertically or horizontally.
-     * 
+     *
      * @return the orientation.
      */
     public final Orientation getOrientation() {
@@ -461,7 +461,7 @@ public class ListViewWrapper<T>
      * Sets a new cell factory to use in the ListView. This forces all old
      * ListCell's to be thrown away, and new ListCell's created with the new
      * cell factory.
-     * 
+     *
      * @param value
      *            the cell factory.
      */
@@ -472,7 +472,7 @@ public class ListViewWrapper<T>
 
     /**
      * Returns the current cell factory.
-     * 
+     *
      * @return the cell factory.
      */
     public final Callback<ListView<T>, ListCell<T>> getCellFactory() {
@@ -485,7 +485,7 @@ public class ListViewWrapper<T>
      * zero will enable fixed cell size mode, whereas a zero or negative value
      * (or Region.USE_COMPUTED_SIZE) will be used to disabled fixed cell size
      * mode.
-     * 
+     *
      * @param value
      *            The new fixed cell size value, or a value less than or equal
      *            to zero (or Region.USE_COMPUTED_SIZE) to disable.
@@ -499,7 +499,7 @@ public class ListViewWrapper<T>
      * Returns the fixed cell size value. A value less than or equal to zero is
      * used to represent that fixed cell size mode is disabled, and a value
      * greater than zero represents the size of all cells in this control.
-     * 
+     *
      * @return A double representing the fixed cell size of this control, or a
      *         value less than or equal to zero if fixed cell size mode is
      *         disabled.
@@ -511,7 +511,7 @@ public class ListViewWrapper<T>
 
     /**
      * Sets the value of the property editable.
-     * 
+     *
      * @param value
      *            whether or not the {@link ListView} is editable.
      */
@@ -522,7 +522,7 @@ public class ListViewWrapper<T>
 
     /**
      * Gets the value of the property editable.
-     * 
+     *
      * @return whether or not the {@link ListView} is editable.
      */
     public final boolean isEditable() {
@@ -533,7 +533,7 @@ public class ListViewWrapper<T>
     /**
      * Returns the index of the item currently being edited in the ListView, or
      * -1 if no item is being edited.
-     * 
+     *
      * @return the editing index.
      */
     public final int getEditingIndex() {
@@ -545,7 +545,7 @@ public class ListViewWrapper<T>
      * Sets the EventHandler that will be called when the user begins an edit.
      * This is a convenience method - the same result can be achieved by calling
      * addEventHandler(ListView.EDIT_START_EVENT, eventHandler).
-     * 
+     *
      * @param value
      *            the onEditStart event handler.
      */
@@ -558,7 +558,7 @@ public class ListViewWrapper<T>
     /**
      * Returns the EventHandler that will be called when the user begins an
      * edit.
-     * 
+     *
      * @return the onEditStart event handler.
      */
     public final EventHandler<ListView.EditEvent<T>> getOnEditStart() {
@@ -572,7 +572,7 @@ public class ListViewWrapper<T>
      * ListCell.commitEdit(java.lang.Object) method. This is a convenience
      * method - the same result can be achieved by calling
      * addEventHandler(ListView.EDIT_START_EVENT, eventHandler).
-     * 
+     *
      * @param value
      *            the onEditCommit event handler.
      */
@@ -585,7 +585,7 @@ public class ListViewWrapper<T>
     /**
      * Returns the EventHandler that will be called when the user commits an
      * edit.
-     * 
+     *
      * @return the onEditCommit event handler.
      */
     public final EventHandler<ListView.EditEvent<T>> getOnEditCommit() {
@@ -595,7 +595,7 @@ public class ListViewWrapper<T>
 
     /**
      * Sets the EventHandler that will be called when the user cancels an edit.
-     * 
+     *
      * @param value
      *            the onEditCancel event handler.
      */
@@ -607,7 +607,7 @@ public class ListViewWrapper<T>
     /**
      * Returns the EventHandler that will be called when the user cancels an
      * edit.
-     * 
+     *
      * @return the onEditCancel event handler.
      */
     public final EventHandler<ListView.EditEvent<T>> getOnEditCancel() {
@@ -620,7 +620,7 @@ public class ListViewWrapper<T>
      * the ListView is editable. Once this method is called, if the current
      * cellFactoryProperty() is set up to support editing, the Cell will switch
      * its visual state to enable for user input to take place.
-     * 
+     *
      * @param itemIndex
      *            itemIndex - The index of the item in the ListView that should
      *            be edited.
@@ -633,7 +633,7 @@ public class ListViewWrapper<T>
     /**
      * Scrolls the ListView such that the item in the given index is visible to
      * the end user.
-     * 
+     *
      * @param index
      *            The index that should be made visible to the user, assuming of
      *            course that it is greater than, or equal to 0, and less than
@@ -648,7 +648,7 @@ public class ListViewWrapper<T>
     /**
      * Scrolls the TableView so that the given object is visible within the
      * viewport.
-     * 
+     *
      * @param object
      *            The object that should be visible to the user.
      */
@@ -659,7 +659,7 @@ public class ListViewWrapper<T>
 
     /**
      * Sets the value of the property onScrollTo.
-     * 
+     *
      * @param value
      *            the onScrollTo event handler
      */
@@ -670,7 +670,7 @@ public class ListViewWrapper<T>
 
     /**
      * Gets the value of the property onScrollTo.
-     * 
+     *
      * @return the onScrollTo event handler
      */
     public EventHandler<ScrollToEvent<Integer>> getOnScrollTo() {
@@ -681,7 +681,7 @@ public class ListViewWrapper<T>
     /**
      * The CssMetaData associated with this class, which may include the
      * CssMetaData of its super classes.
-     * 
+     *
      * @return the CssMetaData associated with this class
      */
     public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() {
@@ -691,7 +691,7 @@ public class ListViewWrapper<T>
 
     /**
      * Returns an unmodifiable list of the controls css styleable properties
-     * 
+     *
      * @return an unmodifiable list of the controls css styleable properties
      */
     public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() {

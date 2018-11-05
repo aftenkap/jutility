@@ -11,9 +11,9 @@ package org.jutility.math.arithmetics;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -46,7 +46,7 @@ public final class ArithmeticOperations {
      * @return the sum of the numbers.
      */
     @SafeVarargs
-    public static final <T extends Number> T sum(final T... numbers) {
+    public static <T extends Number> T sum(final T... numbers) {
 
         if (numbers.length == 0) {
 
@@ -82,7 +82,7 @@ public final class ArithmeticOperations {
      *            the numbers.
      * @return the sum of the numbers.
      */
-    public static final <R extends Number> R sum(
+    public static <R extends Number> R sum(
             final Class<? extends R> returnType, final Number... numbers) {
 
         if (numbers.length == 0) {
@@ -119,7 +119,7 @@ public final class ArithmeticOperations {
      * @return the product of the numbers.
      */
     @SafeVarargs
-    public static final <T extends Number> T product(final T... numbers) {
+    public static <T extends Number> T product(final T... numbers) {
 
         if (numbers.length == 0) {
 
@@ -157,7 +157,7 @@ public final class ArithmeticOperations {
      *            the numbers.
      * @return the product of the numbers.
      */
-    public static final <R extends Number> R product(
+    public static <R extends Number> R product(
             final Class<? extends R> returnType, final Number... numbers) {
 
         if (numbers.length == 0) {
@@ -195,7 +195,7 @@ public final class ArithmeticOperations {
      * @return the sum of the numbers.
      */
     @SuppressWarnings("unchecked")
-    public static final <T extends Number> T add(final T lhs, final T rhs) {
+    public static <T extends Number> T add(final T lhs, final T rhs) {
 
 
         final Number result = ArithmeticOperations
@@ -219,7 +219,7 @@ public final class ArithmeticOperations {
      *            the return type.
      * @return the sum of the numbers.
      */
-    public static final <R extends Number> R add(final Number lhs,
+    public static <R extends Number> R add(final Number lhs,
             final Number rhs, final Class<R> returnType) {
 
         Number result = null;
@@ -374,7 +374,7 @@ public final class ArithmeticOperations {
      * @return the difference of the numbers.
      */
     @SuppressWarnings("unchecked")
-    public static final <T extends Number> T subtract(final T lhs, final T rhs) {
+    public static <T extends Number> T subtract(final T lhs, final T rhs) {
 
         final Number result = ArithmeticOperations.subtract(lhs, rhs,
                 lhs.getClass());
@@ -396,7 +396,7 @@ public final class ArithmeticOperations {
      *            the return type.
      * @return the difference of the numbers.
      */
-    public static final <R extends Number> R subtract(final Number lhs,
+    public static <R extends Number> R subtract(final Number lhs,
             final Number rhs, final Class<R> returnType) {
 
         Number result = null;
@@ -570,7 +570,7 @@ public final class ArithmeticOperations {
      * @return the product of the numbers.
      */
     @SuppressWarnings("unchecked")
-    public static final <T extends Number> T multiply(final T lhs, final T rhs) {
+    public static <T extends Number> T multiply(final T lhs, final T rhs) {
 
         final Number result = ArithmeticOperations.multiply(lhs, rhs,
                 lhs.getClass());
@@ -592,7 +592,7 @@ public final class ArithmeticOperations {
      *            the return type.
      * @return the product of the numbers.
      */
-    public static final <R extends Number> R multiply(final Number lhs,
+    public static <R extends Number> R multiply(final Number lhs,
             final Number rhs, final Class<R> returnType) {
 
         Number result = null;
@@ -750,7 +750,7 @@ public final class ArithmeticOperations {
      * @return the quotient of the numbers.
      */
     @SuppressWarnings("unchecked")
-    public static final <T extends Number> T divide(final T lhs, final T rhs) {
+    public static <T extends Number> T divide(final T lhs, final T rhs) {
 
         final Number result = ArithmeticOperations.divide(lhs, rhs,
                 lhs.getClass());
@@ -773,7 +773,7 @@ public final class ArithmeticOperations {
      *            the return type.
      * @return the quotient of the numbers.
      */
-    public static final <R extends Number> R divide(final Number lhs,
+    public static <R extends Number> R divide(final Number lhs,
             final Number rhs, final Class<R> returnType) {
 
         Number result = null;

@@ -11,9 +11,9 @@ package org.jutility.math.vectoralgebra;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -55,8 +55,8 @@ public class Tuple4Test {
                         final Tuple4<Float> testTuple = new Tuple4<>(ux, uy, uz,
                                 uw, Float.class);
 
-                        final Float expected[] = { ux, uy, uz, uw };
-                        final Float actual[] = testTuple.toArray();
+                        final Float[] expected = { ux, uy, uz, uw };
+                        final Float[] actual = testTuple.toArray();
 
                         Assert.assertNotNull(expected);
                         Assert.assertNotNull(actual);
@@ -88,10 +88,9 @@ public class Tuple4Test {
                         final Tuple4<Float> notTestTuple = new Tuple4<>(2 + uw,
                                 2 + uy, 2 + uz, 2 + uw, Float.class);
                         Assert.assertEquals(testTuple, testTuple);
-                        Assert.assertEquals(false,
-                                testTuple.equals(notTestTuple));
-                        Assert.assertEquals(false, testTuple.equals(5));
-                        Assert.assertEquals(false, testTuple.equals(null));
+                        Assert.assertFalse(testTuple.equals(notTestTuple));
+                        Assert.assertFalse(testTuple.equals(5));
+                        Assert.assertFalse(testTuple.equals(null));
                     }
                 }
             }

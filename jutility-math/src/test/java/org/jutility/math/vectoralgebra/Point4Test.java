@@ -11,9 +11,9 @@ package org.jutility.math.vectoralgebra;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -46,14 +46,14 @@ public class Point4Test {
 
         try {
             final Point4<Float> testVector = new Point4<>(
-                    Vector4.I_UNIT_VECTOR(Float.class));
+                    Vector4.iUnitVector(Float.class));
 
             Assert.fail("Shouldn't be able to copy vector into point: "
                     + testVector);
         }
         catch (final IllegalArgumentException e) {
             Assert.assertEquals(
-                    "Error copying Tuple " + Vector4.I_UNIT_VECTOR(Float.class)
+                    "Error copying Tuple " + Vector4.iUnitVector(Float.class)
                             + ": Provided parameter is not a point!",
                     e.getMessage());
         }

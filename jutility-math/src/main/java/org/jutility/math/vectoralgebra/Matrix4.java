@@ -11,9 +11,9 @@ package org.jutility.math.vectoralgebra;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -40,7 +40,7 @@ import org.jutility.common.datatype.util.NumberUtils;
  *
  * @param <T>
  *            the {@link Number} type of the {@code Matrix4}.
- * 
+ *
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.0
@@ -241,7 +241,7 @@ public class Matrix4<T extends Number>
     public T[] toColumnMajorArray() {
 
         @SuppressWarnings("unchecked")
-        final T array[] = NumberUtils.createArray(this.type,
+        final T[] array = NumberUtils.createArray(this.type,
 
         this.getI().getX(), this.getI().getY(), this.getI().getZ(), this.getI()
                 .getW(),
@@ -266,7 +266,7 @@ public class Matrix4<T extends Number>
     public T[] toRowMajorArray() {
 
         @SuppressWarnings("unchecked")
-        final T array[] = NumberUtils.createArray(this.type,
+        final T[] array = NumberUtils.createArray(this.type,
 
         this.getI().getX(), this.getJ().getX(), this.getK().getX(), this.getS()
                 .getX(),
@@ -354,7 +354,7 @@ public class Matrix4<T extends Number>
     public String toString() {
 
         final StringBuilder returnValue = new StringBuilder("\n|");
-        final Number array[] = new Number[16];
+        final Number[] array = new Number[16];
 
         array[0] = this.getI().getX();
         array[1] = this.getJ().getX();

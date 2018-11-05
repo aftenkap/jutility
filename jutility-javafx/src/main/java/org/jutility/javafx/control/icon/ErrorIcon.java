@@ -12,9 +12,9 @@ package org.jutility.javafx.control.icon;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -154,10 +154,10 @@ public class ErrorIcon
         stops.add(new Stop(0.0f, Color.web("#e8e8e8")));
         stops.add(new Stop(0.5f, Color.web("#c6c6c6")));
         stops.add(new Stop(1.0f, Color.web("#a6a6a6")));
-        final LinearGradient FRAME_FILL = new LinearGradient(0.271, 0.065,
+        final LinearGradient frameFill = new LinearGradient(0.271, 0.065,
                 0.7735, 0.91, true, CycleMethod.NO_CYCLE, stops);
 
-        this.frame.setFill(FRAME_FILL);
+        this.frame.setFill(frameFill);
 
         this.shadow = new DropShadow();
         this.shadow.setBlurType(BlurType.ONE_PASS_BOX);
@@ -206,11 +206,11 @@ public class ErrorIcon
 
 
         // -fx-background-color : linear-gradient(from 27.1% 6.5% to 77.35% 91%,
-        final LinearGradient FRAME1_FILL = new LinearGradient(0.271, 0.065,
+        final LinearGradient frame1Fill = new LinearGradient(0.271, 0.065,
                 0.7735, 0.91, true, CycleMethod.NO_CYCLE, stops2);
 
 
-        this.frame1.setFill(FRAME1_FILL);
+        this.frame1.setFill(frame1Fill);
 
         // -fx-border-color : linear-gradient(from 27.1% 6.5% to 77.35% 91%,
         // #d5d5d5 0%,
@@ -225,24 +225,24 @@ public class ErrorIcon
         stops3.add(new Stop(0.5f, Color.web("#747474")));
         // #8f8f8f 100%
         stops3.add(new Stop(1.0f, Color.web("#8f8f8f")));
-        final LinearGradient FRAME1_STROKE = new LinearGradient(0.271, 0.065,
+        final LinearGradient frame1Stroke = new LinearGradient(0.271, 0.065,
                 0.7735, 0.91, true, CycleMethod.NO_CYCLE, stops3);
 
 
 
-        this.frame1.setStroke(FRAME1_STROKE);
+        this.frame1.setStroke(frame1Stroke);
         this.frame1.setStrokeWidth(2.0);
 
         this.frame2 = new Circle();
         // -fx-background-color : linear-gradient(from 27.1% 6.5% to 77.35% 91%,
-        final Paint FRAME2_FILL = this.redIconBackground();
+        final Paint frame2Fill = this.redIconBackground();
 
 
         // -fx-border-width : 1;
         // -fx-border-color : #212121;
-        this.frame2.setFill(FRAME2_FILL);
-        final Paint FRAME2_STROKE = Color.web("#212121");
-        this.frame2.setStroke(FRAME2_STROKE);
+        this.frame2.setFill(frame2Fill);
+        final Paint frame2Stroke = Color.web("#212121");
+        this.frame2.setStroke(frame2Stroke);
 
         this.lightEffect = new Ellipse();
         this.lightEffect.setFill(Color.rgb(255, 255, 255, 0.7));
@@ -252,12 +252,12 @@ public class ErrorIcon
         this.r1 = this.createRectangle();
         this.r1.setRotate(-45);
         this.r1.setStrokeWidth(1);
-        this.r1.setStroke(FRAME1_STROKE);
+        this.r1.setStroke(frame1Stroke);
 
         this.r2 = this.createRectangle();
         this.r2.setRotate(45);
         this.r2.setStrokeWidth(1);
-        this.r2.setStroke(FRAME1_STROKE);
+        this.r2.setStroke(frame1Stroke);
 
         this.r3 = this.createRectangle();
         this.r3.setRotate(-45);

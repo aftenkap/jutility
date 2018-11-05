@@ -11,9 +11,9 @@ package org.jutility.math.common;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,6 +25,7 @@ package org.jutility.math.common;
 
 
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.jutility.common.datatype.range.Interval;
 import org.jutility.common.datatype.util.NumberConstants;
@@ -40,24 +41,28 @@ import org.slf4j.LoggerFactory;
  * @version 0.1.2
  * @since 0.1.0
  */
-@SuppressWarnings({ "ObjectEqualsNull", "EqualsWithItself" })
+@SuppressWarnings({"ObjectEqualsNull", "EqualsWithItself"})
 public class IntervalTest {
 
-    private static final Logger LOG = LoggerFactory
-                                                .getLogger(IntervalTest.class);
+    private static final Logger LOG = LoggerFactory.getLogger(IntervalTest.class);
 
-    private final Integer intMin        = 0;
-    private final Integer intMax        = 2;
-    private final Integer intWithin     = 1;
-    private final Integer intSmaller    = -1;
-    private final Integer intLarger     = 3;
+    private final Integer intMin = 0;
+    private final Integer intMax = 2;
+    private final Integer intWithin = 1;
+    private final Integer intSmaller = -1;
+    private final Integer intLarger = 3;
 
-    private final Double  doubleMin     = 0.000000000001;
-    private final Double  doubleMax     = 0.00000000001;
-    private final Double  doubleWithin  = 0.000000000009;
-    private final Double  doubleSmaller = 0.0000000000001;
-    private final Double  doubleLarger  = 0.00000000002;
+    private final Double doubleMin = 0.000000000001;
+    private final Double doubleMax = 0.00000000001;
+    private final Double doubleWithin = 0.000000000009;
+    private final Double doubleSmaller = 0.0000000000001;
+    private final Double doubleLarger = 0.00000000002;
 
+    @BeforeClass
+    public static void setUpClass() {
+
+        NumberConstants.setDeltaD(0.00000000000001);
+    }
 
     /**
      * Test of the constructor of class Interval.
@@ -222,69 +227,67 @@ public class IntervalTest {
      * Test of contains method, of class Interval.
      */
     @Test
-    public void testContains_GenericType() {
+    public void testContainsGenericType() {
 
         IntervalTest.LOG.info("contains (Generic Type)");
 
-        this.testContains_GenericType(this.intMin, this.intMax, this.intWithin,
-                this.intSmaller, this.intLarger);
-        this.testContains_GenericType(this.doubleMin, this.doubleMax,
-                this.doubleWithin, this.doubleSmaller, this.doubleLarger);
+        this.testContainsGenericType(this.intMin, this.intMax, this.intWithin, this.intSmaller, this.intLarger);
+        this.testContainsGenericType(this.doubleMin, this.doubleMax, this.doubleWithin, this.doubleSmaller,
+                this.doubleLarger);
 
         IntervalTest.LOG.info("\tSuccess.");
     }
 
-    private <T extends Number & Comparable<T>> void testContains_GenericType(
-            final T min, final T max, final T within, final T smaller,
-            final T larger) {
+    private <T extends Number & Comparable<T>> void testContainsGenericType(
+            final T min, final T max, final T within, final T smaller, final T larger) {
 
         // [min]
         final Interval<T> a = new Interval<>(min, min);
-        Assert.assertEquals(Boolean.TRUE, a.contains(min));
-        Assert.assertEquals(Boolean.FALSE, a.contains(max));
-        Assert.assertEquals(Boolean.FALSE, a.contains(within));
-        Assert.assertEquals(Boolean.FALSE, a.contains(smaller));
-        Assert.assertEquals(Boolean.FALSE, a.contains(larger));
+        Assert.assertEquals(a.toString() + " should contain " + min, Boolean.TRUE, a.contains(min));
+        Assert.assertEquals(a.toString() + " should not contain " + max, Boolean.FALSE, a.contains(max));
+        Assert.assertEquals(a.toString() + " should not contain " + within, Boolean.FALSE, a.contains(within));
+        Assert.assertEquals(a.toString() + " should not contain " + smaller, Boolean.FALSE, a.contains(smaller));
+        Assert.assertEquals(a.toString() + " should not contain " + larger, Boolean.FALSE, a.contains(larger));
 
         // [max]
         final Interval<T> b = new Interval<>(max, max);
-        Assert.assertEquals(Boolean.FALSE, b.contains(min));
-        Assert.assertEquals(Boolean.TRUE, b.contains(max));
-        Assert.assertEquals(Boolean.FALSE, b.contains(within));
-        Assert.assertEquals(Boolean.FALSE, b.contains(smaller));
-        Assert.assertEquals(Boolean.FALSE, b.contains(larger));
+        Assert.assertEquals(b.toString() + " should not contain " + min, Boolean.FALSE, b.contains(min));
+        Assert.assertEquals(b.toString() + " should contain " + max, Boolean.TRUE, b.contains(max));
+        Assert.assertEquals(b.toString() + " should not contain " + within, Boolean.FALSE, b.contains(within));
+        Assert.assertEquals(b.toString() + " should not contain " + smaller, Boolean.FALSE, b.contains(smaller));
+        Assert.assertEquals(b.toString() + " should not contain " + larger, Boolean.FALSE, b.contains(larger));
 
         // [min, max]
         final Interval<T> c = new Interval<>(min, max);
-        Assert.assertEquals(Boolean.TRUE, c.contains(min));
-        Assert.assertEquals(Boolean.TRUE, c.contains(max));
-        Assert.assertEquals(Boolean.TRUE, c.contains(within));
-        Assert.assertEquals(Boolean.FALSE, c.contains(smaller));
-        Assert.assertEquals(Boolean.FALSE, c.contains(larger));
+        Assert.assertEquals(c.toString() + " should contain " + min, Boolean.TRUE, c.contains(min));
+        Assert.assertEquals(c.toString() + " should contain " + max, Boolean.TRUE, c.contains(max));
+        Assert.assertEquals(c.toString() + " should contain " + within, Boolean.TRUE, c.contains(within));
+        Assert.assertEquals(c.toString() + " should not contain " + smaller, Boolean.FALSE, c.contains(smaller));
+        Assert.assertEquals(c.toString() + " should not contain " + larger, Boolean.FALSE, c.contains(larger));
 
         // (min, max]
         final Interval<T> d = new Interval<>(min, max, false, true);
-        Assert.assertEquals(Boolean.FALSE, d.contains(min));
-        Assert.assertEquals(Boolean.TRUE, d.contains(max));
-        Assert.assertEquals(Boolean.TRUE, d.contains(within));
-        Assert.assertEquals(Boolean.FALSE, d.contains(smaller));
-        Assert.assertEquals(Boolean.FALSE, d.contains(larger));
+        Assert.assertEquals(d.toString() + " should not contain " + min, Boolean.FALSE, d.contains(min));
+        Assert.assertEquals(d.toString() + " should contain " + max, Boolean.TRUE, d.contains(max));
+        Assert.assertEquals(d.toString() + " should contain " + within, Boolean.TRUE, d.contains(within));
+        Assert.assertEquals(d.toString() + " should not contain " + smaller, Boolean.FALSE, d.contains(smaller));
+        Assert.assertEquals(d.toString() + " should not contain " + larger, Boolean.FALSE, d.contains(larger));
 
         // [min, max)
         final Interval<T> e = new Interval<>(min, max, true, false);
-        Assert.assertEquals(Boolean.TRUE, e.contains(min));
-        Assert.assertEquals(Boolean.FALSE, e.contains(max));
-        Assert.assertEquals(Boolean.TRUE, e.contains(within));
-        Assert.assertEquals(Boolean.FALSE, e.contains(smaller));
-        Assert.assertEquals(Boolean.FALSE, e.contains(larger));
+        Assert.assertEquals(e.toString() + " should contain " + min, Boolean.TRUE, e.contains(min));
+        Assert.assertEquals(e.toString() + " should not contain " + max, Boolean.FALSE, e.contains(max));
+        Assert.assertEquals(e.toString() + " should contain " + within, Boolean.TRUE, e.contains(within));
+        Assert.assertEquals(e.toString() + " should not contain " + smaller, Boolean.FALSE, e.contains(smaller));
+        Assert.assertEquals(e.toString() + " should not contain " + larger, Boolean.FALSE, e.contains(larger));
 
         // (min, max)
         final Interval<T> f = new Interval<>(min, max, false, false);
-        Assert.assertEquals(Boolean.FALSE, f.contains(min));
-        Assert.assertEquals(Boolean.FALSE, f.contains(max));
-        Assert.assertEquals(Boolean.TRUE, f.contains(within));
-        Assert.assertEquals(Boolean.FALSE, f.contains(smaller));
-        Assert.assertEquals(Boolean.FALSE, f.contains(larger));
+        Assert.assertEquals(a.toString() + " should not contain " + min, Boolean.FALSE, f.contains(min));
+        Assert.assertEquals(a.toString() + " should not contain " + max, Boolean.FALSE, f.contains(max));
+        Assert.assertEquals(a.toString() + " should contain " + within, Boolean.TRUE, f.contains(within));
+        Assert.assertEquals(a.toString() + " should not contain " + smaller, Boolean.FALSE, f.contains(smaller));
+        Assert.assertEquals(a.toString() + " should not contain " + larger, Boolean.FALSE, f.contains(larger));
 
     }
 
@@ -292,22 +295,20 @@ public class IntervalTest {
      * Test of contains method, of class Interval.
      */
     @Test
-    public void testContains_Interval() {
+    public void testContainsInterval() {
 
         IntervalTest.LOG.info("contains (Interval)");
 
-        this.testContains_Interval(this.intMin, this.intMax, this.intWithin,
+        this.testContainsInterval(this.intMin, this.intMax, this.intWithin,
                 this.intSmaller, this.intLarger);
-        NumberConstants.DELTA_D = 0.00000000000001;
-        this.testContains_Interval(this.doubleMin, this.doubleMax,
-                this.doubleWithin, this.doubleSmaller, this.doubleLarger);
+        this.testContainsInterval(this.doubleMin, this.doubleMax, this.doubleWithin, this.doubleSmaller,
+                this.doubleLarger);
 
         IntervalTest.LOG.info("\tSuccess.");
     }
 
-    private <T extends Number & Comparable<T>> void testContains_Interval(
-            final T min, final T max, final T within, final T smaller,
-            final T larger) {
+    private <T extends Number & Comparable<T>> void testContainsInterval(final T min, final T max, final T within,
+            final T smaller, final T larger) {
 
         // [smaller]
         final Interval<T> smallerI = new Interval<>(smaller, smaller);
@@ -453,12 +454,10 @@ public class IntervalTest {
                 false, false, false, false, false, false, false, false, false,
                 false, false, false, false);
 
-
     }
 
-    private <T extends Number & Comparable<T>> void simpleContainmentTest(
-            final Interval<T> left, final Interval<T> right,
-            final Boolean leftContainsRight, final Boolean rightContainsLeft) {
+    private <T extends Number & Comparable<T>> void simpleContainmentTest(final Interval<T> left,
+            final Interval<T> right, final Boolean leftContainsRight, final Boolean rightContainsLeft) {
 
         Assert.assertEquals(leftContainsRight, left.contains(right));
         Assert.assertEquals(rightContainsLeft, right.contains(left));
@@ -488,7 +487,6 @@ public class IntervalTest {
         Interval<T> rightCopy = new Interval<>(right.getLowerBound(),
                 right.getUpperBound(), rightContainsLowerBound,
                 rightContainsUpperBound);
-
 
 
         leftCopy = new Interval<>(leftCopy.getLowerBound(),
@@ -759,7 +757,6 @@ public class IntervalTest {
             final Boolean leftrightL, final Boolean leftright) {
 
 
-
         Interval<T> leftCopy = new Interval<>(left.getLowerBound(),
                 left.getUpperBound(), true, true);
 
@@ -875,7 +872,6 @@ public class IntervalTest {
 
         Assert.assertEquals(minMax.isContainedIn(null), false);
 
-
     }
 
     /**
@@ -894,7 +890,7 @@ public class IntervalTest {
         IntervalTest.LOG.info("\tSuccess.");
     }
 
-    @SuppressWarnings({ "EqualsBetweenInconvertibleTypes", "EqualsWithItself" })
+    @SuppressWarnings({"EqualsBetweenInconvertibleTypes", "EqualsWithItself"})
     private <T extends Number & Comparable<T>> void testEquals(final T min,
             final T max, final T within, final T smaller, final T larger) {
 
@@ -912,19 +908,19 @@ public class IntervalTest {
         final Interval<T> minLarger = new Interval<>(within, larger);
         final Interval<T> withinI = new Interval<>(within, within);
 
-        Assert.assertEquals(interval.equals(null), false);
+        Assert.assertNotEquals(null, interval);
         //noinspection EqualsBetweenInconvertibleTypes
-        Assert.assertEquals(interval.equals(max), false);
+        Assert.assertNotEquals(interval, max);
 
-        Assert.assertEquals(interval.equals(interval), true);
-        Assert.assertEquals(interval.equals(equalInterval), true);
-        Assert.assertEquals(interval.equals(intervalWithoutLowerBound), false);
-        Assert.assertEquals(interval.equals(intervalWithoutUpperBound), false);
-        Assert.assertEquals(interval.equals(intervalWithoutBounds), false);
+        Assert.assertEquals(interval, interval);
+        Assert.assertEquals(interval, equalInterval);
+        Assert.assertNotEquals(interval, intervalWithoutLowerBound);
+        Assert.assertNotEquals(interval, intervalWithoutUpperBound);
+        Assert.assertNotEquals(interval, intervalWithoutBounds);
 
-        Assert.assertEquals(interval.equals(smallerMax), false);
-        Assert.assertEquals(interval.equals(minLarger), false);
-        Assert.assertEquals(interval.equals(withinI), false);
+        Assert.assertNotEquals(interval, smallerMax);
+        Assert.assertNotEquals(interval, minLarger);
+        Assert.assertNotEquals(interval, withinI);
     }
 
     /**

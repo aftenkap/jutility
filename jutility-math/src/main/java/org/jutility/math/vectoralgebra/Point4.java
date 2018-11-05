@@ -13,9 +13,9 @@ package org.jutility.math.vectoralgebra;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -29,11 +29,9 @@ package org.jutility.math.vectoralgebra;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
 
 
 /**
@@ -41,13 +39,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * {@link IPoint4} interface.
  *
  * @param <T>
- *            the {@link Number} type of the {@code Point4}.
+ *         the {@link Number} type of the {@code Point4}.
  *
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.0
  */
-@JsonPropertyOrder(value = { "type", "x", "y", "z", "w" })
+@JsonPropertyOrder(value = {"type", "x", "y", "z", "w"})
 @XmlRootElement(name = "Point4")
 @XmlType(name = "Point4")
 public class Point4<T extends Number>
@@ -58,24 +56,23 @@ public class Point4<T extends Number>
     /**
      * Serial Version UID.
      */
-    private static final long   serialVersionUID = -6003872889030855594L;
+    private static final long serialVersionUID = -6003872889030855594L;
 
-    private static final Logger LOG              = LoggerFactory
-                                                         .getLogger(Point4.class);
+    private static final Logger LOG = LoggerFactory
+            .getLogger(Point4.class);
 
 
     /**
      * The origin.
      *
      * @param <T>
-     *            the {@link Number} type of the {@link IPoint4 Point}.
-     *
+     *         the {@link Number} type of the {@link IPoint4 Point}.
      * @param type
-     *            the type of the desired Origin.
+     *         the type of the desired Origin.
+     *
      * @return the Origin.
      */
-    public static <T extends Number> IPoint4<T> ORIGIN(
-            final Class<? extends T> type) {
+    public static <T extends Number> IPoint4<T> origin(final Class<? extends T> type) {
 
         return new Point4<>(0, 0, 0, type);
     }
@@ -95,13 +92,13 @@ public class Point4<T extends Number>
      * and values.
      *
      * @param x
-     *            The X coordinate.
+     *         The X coordinate.
      * @param y
-     *            The Y coordinate.
+     *         The Y coordinate.
      * @param z
-     *            The Y coordinate.
+     *         The Y coordinate.
      * @param type
-     *            The type of this tuple.
+     *         The type of this tuple.
      */
     public Point4(final Number x, final Number y, final Number z,
             final Class<? extends T> type) {
@@ -111,13 +108,14 @@ public class Point4<T extends Number>
 
     /**
      * Copy constructor.
-     *
+     * <p>
      * Creates a new point from the tuple provided.
      *
      * @param tuple
-     *            The tuple to be copied.
+     *         The tuple to be copied.
+     *
      * @throws IllegalArgumentException
-     *             if the tuple provided is not a point
+     *         if the tuple provided is not a point
      */
     public Point4(final ITuple4<T> tuple) {
 
@@ -126,15 +124,16 @@ public class Point4<T extends Number>
 
     /**
      * Copy constructor.
-     *
+     * <p>
      * Creates a new point from the tuple provided.
      *
      * @param tuple
-     *            The tuple to be copied.
+     *         The tuple to be copied.
      * @param returnType
-     *            the desired return type.
+     *         the desired return type.
+     *
      * @throws IllegalArgumentException
-     *             if the tuple provided is not a point
+     *         if the tuple provided is not a point
      */
     public Point4(final ITuple4<? extends Number> tuple,
             final Class<? extends T> returnType) {

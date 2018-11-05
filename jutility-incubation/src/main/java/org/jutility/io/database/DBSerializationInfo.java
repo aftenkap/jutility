@@ -6,9 +6,9 @@ package org.jutility.io.database;
  * under the Apache License, Version 2.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the
  * License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -29,29 +29,28 @@ import org.jutility.io.database.annotation.DBValueType;
 /**
  * @author Peter J. Radics
  * @version 0.1
- *
  */
 public class DBSerializationInfo {
 
-    private final Class<?>        type;
+    private final Class<?> type;
 
-    private String                table;
+    private String table;
 
-    private Set<String>           constructorParameters;
+    private Set<String> constructorParameters;
 
-    private Set<PropertyInfo>     primaryKeys;
+    private Set<PropertyInfo> primaryKeys;
 
-    private Set<PropertyInfo>     valueTypeProperties;
+    private Set<PropertyInfo> valueTypeProperties;
     private Set<ListPropertyInfo> valueTypeListProperties;
 
 
-    private Set<PropertyInfo>     elementTypeProperties;
+    private Set<PropertyInfo> elementTypeProperties;
     private Set<ListPropertyInfo> elementTypeListProperties;
 
 
     /**
      * Returns the type.
-     * 
+     *
      * @return the type.
      */
     public Class<?> getType() {
@@ -69,12 +68,12 @@ public class DBSerializationInfo {
 
     /**
      * Returns the value type property keys.
-     * 
+     *
      * @return the value type property keys.
      */
     public Set<String> getValueTypePropertyKeys() {
 
-        Set<String> valueTypePropertyKeys = new LinkedHashSet<String>();
+        Set<String> valueTypePropertyKeys = new LinkedHashSet<>();
 
         for (PropertyInfo propertyInfo : this.getValueTypeProperties()) {
 
@@ -106,7 +105,7 @@ public class DBSerializationInfo {
      */
     public Set<String> getElementTypePropertyKeys() {
 
-        Set<String> elementTypePropertyKeys = new LinkedHashSet<String>();
+        Set<String> elementTypePropertyKeys = new LinkedHashSet<>();
 
         for (PropertyInfo propertyInfo : this.getElementTypeProperties()) {
 
@@ -143,7 +142,7 @@ public class DBSerializationInfo {
 
     /**
      * @param table
-     *            the table to set
+     *         the table to set
      */
     public void setTable(String table) {
 
@@ -153,7 +152,7 @@ public class DBSerializationInfo {
 
     /**
      * Returns the constructor parameters.
-     * 
+     *
      * @return the constructor parameters.
      */
     public Set<String> getConstructorParameters() {
@@ -171,12 +170,12 @@ public class DBSerializationInfo {
 
     /**
      * Returns the primary key set.
-     * 
+     *
      * @return the primary key set.
      */
     public Set<String> getPrimaryKeySet() {
 
-        Set<String> primaryKeySet = new LinkedHashSet<String>();
+        Set<String> primaryKeySet = new LinkedHashSet<>();
 
         for (PropertyInfo pkInfo : this.getPrimaryKeys()) {
 
@@ -188,12 +187,12 @@ public class DBSerializationInfo {
 
     /**
      * Returns the primary key map.
-     * 
+     *
      * @return the primary key map.
      */
     public Map<String, ?> getPrimaryKeyMap() {
 
-        Map<String, Object> propertyMap = new LinkedHashMap<String, Object>();
+        Map<String, Object> propertyMap = new LinkedHashMap<>();
 
         for (PropertyInfo propertyInfo : this.primaryKeys) {
 
@@ -209,9 +208,9 @@ public class DBSerializationInfo {
 
     /**
      * Returns whether or not the described element is a primitive.
-     * 
+     *
      * @return {@code true}, if the described element is a primitive;
-     *         {@code false} otherwise.
+     * {@code false} otherwise.
      */
     public boolean isPrimitive() {
 
@@ -220,9 +219,9 @@ public class DBSerializationInfo {
 
     /**
      * Returns whether or not the described element is a value type.
-     * 
+     *
      * @return {@code true}, if the described element is a value type;
-     *         {@code false} otherwise.
+     * {@code false} otherwise.
      */
     public boolean isValueType() {
 
@@ -231,9 +230,9 @@ public class DBSerializationInfo {
 
     /**
      * Returns whether or not the described element is an element type.
-     * 
+     *
      * @return {@code true}, if the described element is an element type;
-     *         {@code false} otherwise.
+     * {@code false} otherwise.
      */
     public boolean isElementType() {
 
@@ -243,21 +242,21 @@ public class DBSerializationInfo {
 
     /**
      * Creates a new SerializationInfo object for the provided type.
-     * 
+     *
      * @param type
-     *            the type.
+     *         the type.
      */
     public DBSerializationInfo(Class<?> type) {
 
         this.type = type;
 
-        this.constructorParameters = new LinkedHashSet<String>();
-        this.primaryKeys = new LinkedHashSet<PropertyInfo>();
+        this.constructorParameters = new LinkedHashSet<>();
+        this.primaryKeys = new LinkedHashSet<>();
 
-        this.valueTypeProperties = new LinkedHashSet<PropertyInfo>();
-        this.elementTypeProperties = new LinkedHashSet<PropertyInfo>();
-        this.valueTypeListProperties = new LinkedHashSet<ListPropertyInfo>();
-        this.elementTypeListProperties = new LinkedHashSet<ListPropertyInfo>();
+        this.valueTypeProperties = new LinkedHashSet<>();
+        this.elementTypeProperties = new LinkedHashSet<>();
+        this.valueTypeListProperties = new LinkedHashSet<>();
+        this.elementTypeListProperties = new LinkedHashSet<>();
     }
 
 
@@ -266,9 +265,10 @@ public class DBSerializationInfo {
      * information for the field with the provided name.
      *
      * @param fieldName
-     *            the name of the field to look up.
+     *         the name of the field to look up.
+     *
      * @return <CODE>true</CODE> if the serialization information contains
-     *         property information for the field; <CODE>false</CODE> otherwise.
+     * property information for the field; <CODE>false</CODE> otherwise.
      */
     public boolean containsPropertyInfoForField(String fieldName) {
 
@@ -299,10 +299,11 @@ public class DBSerializationInfo {
      * Retrieves the property information for the field with the provided name.
      *
      * @param fieldName
-     *            the name of the field to look up.
+     *         the name of the field to look up.
+     *
      * @return the property information if the serialization information
-     *         contains property information for the field; <CODE>null</CODE>
-     *         otherwise.
+     * contains property information for the field; <CODE>null</CODE>
+     * otherwise.
      */
     public PropertyInfo getPropertyInfoForField(String fieldName) {
 
@@ -335,9 +336,10 @@ public class DBSerializationInfo {
      * information for the field with the provided name.
      *
      * @param fieldName
-     *            the name of the field to look up.
+     *         the name of the field to look up.
+     *
      * @return <CODE>true</CODE> if the serialization information contains list
-     *         property information for the field; <CODE>false</CODE> otherwise.
+     * property information for the field; <CODE>false</CODE> otherwise.
      */
     public boolean containsListPropertyInfoForField(String fieldName) {
 
@@ -362,10 +364,11 @@ public class DBSerializationInfo {
      * name.
      *
      * @param fieldName
-     *            the name of the field to look up.
+     *         the name of the field to look up.
+     *
      * @return the property information if the serialization information
-     *         contains list property information for the field;
-     *         <CODE>null</CODE> otherwise.
+     * contains list property information for the field;
+     * <CODE>null</CODE> otherwise.
      */
     public ListPropertyInfo getListPropertyInfoForField(String fieldName) {
 
@@ -389,10 +392,11 @@ public class DBSerializationInfo {
      * information for the column with the provided name.
      *
      * @param columnName
-     *            the name of the column to look up.
+     *         the name of the column to look up.
+     *
      * @return <CODE>true</CODE> if the serialization information contains
-     *         property information for the column; <CODE>false</CODE>
-     *         otherwise.
+     * property information for the column; <CODE>false</CODE>
+     * otherwise.
      */
     public boolean containsPropertyInfoForColumn(String columnName) {
 
@@ -423,10 +427,11 @@ public class DBSerializationInfo {
      * Retrieves the property information for the column with the provided name.
      *
      * @param columnName
-     *            the name of the column to look up.
+     *         the name of the column to look up.
+     *
      * @return the property information if the serialization information
-     *         contains property information for the column; <CODE>null</CODE>
-     *         otherwise.
+     * contains property information for the column; <CODE>null</CODE>
+     * otherwise.
      */
     public PropertyInfo getPropertyInfoForColumn(String columnName) {
 
@@ -454,7 +459,6 @@ public class DBSerializationInfo {
     }
 
 
-
     /**
      * @param info
      */
@@ -478,12 +482,16 @@ public class DBSerializationInfo {
 
         StringBuilder string = new StringBuilder();
 
-        string.append("  Table: " + this.table + "\n");
+        string.append("  Table: ")
+                .append(this.table)
+                .append("\n");
 
         if (!primaryKeys.isEmpty()) {
             string.append("  Primary Keys: \n");
             for (PropertyInfo primaryKey : this.primaryKeys) {
-                string.append("    " + primaryKey + "\n");
+                string.append("    ")
+                        .append(primaryKey)
+                        .append("\n");
             }
         }
 
@@ -491,24 +499,32 @@ public class DBSerializationInfo {
         string.append("\n  SimpleProperties:\n");
 
         for (PropertyInfo info : this.valueTypeProperties) {
-            string.append("    " + info.toString() + "\n");
+            string.append("    ")
+                    .append(info.toString())
+                    .append("\n");
         }
 
         string.append("\n  ComplexProperties:\n");
 
         for (PropertyInfo info : this.elementTypeProperties) {
-            string.append("    " + info.toString() + "\n");
+            string.append("    ")
+                    .append(info.toString())
+                    .append("\n");
         }
 
         string.append("\n  SimpleListProperties:\n");
 
         for (ListPropertyInfo info : this.valueTypeListProperties) {
-            string.append("    " + info.toString() + "\n");
+            string.append("    ")
+                    .append(info.toString())
+                    .append("\n");
         }
         string.append("\n  ComplexListProperties:\n");
 
         for (ListPropertyInfo info : this.elementTypeListProperties) {
-            string.append("    " + info.toString() + "\n");
+            string.append("    ")
+                    .append(info.toString())
+                    .append("\n");
         }
         return string.toString();
     }

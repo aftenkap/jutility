@@ -9,9 +9,9 @@ package org.jutility.io.database;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -39,14 +39,14 @@ public interface IProperty {
      *
      * @return the property name.
      */
-    public String getPropertyName();
+    String getPropertyName();
 
     /**
      * Returns the property type.
      *
      * @return the property type.
      */
-    public Class<?> getPropertyType();
+    Class<?> getPropertyType();
 
 
 
@@ -55,7 +55,7 @@ public interface IProperty {
      *
      * @return the field.
      */
-    public Field getField();
+    Field getField();
 
     /**
      * Sets the field.
@@ -63,7 +63,7 @@ public interface IProperty {
      * @param field
      *            the field.
      */
-    public void setField(final Field field);
+    void setField(final Field field);
 
 
     /**
@@ -71,7 +71,7 @@ public interface IProperty {
      *
      * @return the getter.
      */
-    public Method getGetter();
+    Method getGetter();
 
 
     /**
@@ -80,7 +80,7 @@ public interface IProperty {
      * @param getter
      *            the getter.
      */
-    public void setGetter(final Method getter);
+    void setGetter(final Method getter);
 
 
     /**
@@ -88,7 +88,7 @@ public interface IProperty {
      *
      * @return the setter.
      */
-    public Method getSetter();
+    Method getSetter();
 
 
     /**
@@ -97,7 +97,7 @@ public interface IProperty {
      * @param setter
      *            the setter.
      */
-    public void setSetter(final Method setter);
+    void setSetter(final Method setter);
 
 
     /**
@@ -105,19 +105,19 @@ public interface IProperty {
      *
      * @return {@code true} if it is a primitive; {@code false} otherwise.
      */
-    public boolean isPrimitive();
+    boolean isPrimitive();
 
     /**
      * Determines whether or not this list property is a value type.
      *
      * @return {@code true} if it is a value type; {@code false} otherwise.
      */
-    public boolean isValueType();
+    boolean isValueType();
 
     /**
      * Determines whether or not this list property is an element type.
      *
      * @return {@code true} if it is an element type; {@code false} otherwise.
      */
-    public boolean isElementType();
+    boolean isElementType();
 }

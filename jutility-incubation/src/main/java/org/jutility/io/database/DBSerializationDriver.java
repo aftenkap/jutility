@@ -9,9 +9,9 @@ package org.jutility.io.database;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -108,7 +108,7 @@ public class DBSerializationDriver {
             throws DBSerializationException {
 
         try {
-            this.databaseDriver = MySQLDriver.Instance();
+            this.databaseDriver = MySQLDriver.instance();
         }
         catch (ClassNotFoundException e) {
 
@@ -662,7 +662,7 @@ public class DBSerializationDriver {
             Class<? extends T> indexType)
             throws DBSerializationException {
 
-        List<Map<T, ?>> resultRows = new LinkedList<Map<T, ?>>();
+        List<Map<T, ?>> resultRows = new LinkedList<>();
 
         try {
 
@@ -700,7 +700,7 @@ public class DBSerializationDriver {
                     + "or Integer!");
         }
 
-        Map<T, Object> convertedResult = new LinkedHashMap<T, Object>();
+        Map<T, Object> convertedResult = new LinkedHashMap<>();
 
         try {
             if (result.isBeforeFirst()) {

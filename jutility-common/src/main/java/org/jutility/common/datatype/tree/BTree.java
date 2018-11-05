@@ -11,9 +11,9 @@ package org.jutility.common.datatype.tree;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -1018,28 +1018,31 @@ public class BTree<VALUE extends Comparable<VALUE>>
 
     private String toStringHelper(final BTreeNode node, final String indent) {
 
-        String returnValue = "";
+        StringBuilder returnValue = new StringBuilder();
         final List<VALUE> entries = node.getEntries();
         final List<BTreeNode> children = node.getChildren();
 
         int j = 0;
         final int max = Math.max(entries.size(), children.size());
         if (entries.size() == 0) {
-            returnValue += indent + "[]\n";
+            returnValue.append(indent)
+                    .append("[]\n");
         }
         for (; j < max; j++) {
             if (j < children.size()) {
-                returnValue += this.toStringHelper(children.get(j),
-                        indent + "\t");
+                returnValue.append(this.toStringHelper(children.get(j),
+                        indent + "\t"));
             }
             if (j < entries.size()) {
-                returnValue += indent + entries.get(j) + "\n";
+                returnValue.append(indent)
+                        .append(entries.get(j))
+                        .append("\n");
             }
         }
         if (j < children.size()) {
-            returnValue += this.toStringHelper(children.get(j), indent + "\t");
+            returnValue.append(this.toStringHelper(children.get(j), indent + "\t"));
         }
-        return returnValue;
+        return returnValue.toString();
     }
 
     /**

@@ -6,9 +6,9 @@ package org.jutility.io.database;
  * under the Apache License, Version 2.0 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain a copy of the
  * License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -24,12 +24,10 @@ import java.util.Map;
 import java.util.Set;
 
 
-
 /**
  * @author Peter J. Radics
  * @version 0.1.0
  * @since 0.1.0
- *
  */
 public class DBUtils {
 
@@ -38,11 +36,12 @@ public class DBUtils {
      * Prepares an {@code INSERT} statement for a key {@link Set}.
      *
      * @param database
-     *            the database.
+     *         the database.
      * @param table
-     *            the table.
+     *         the table.
      * @param keySet
-     *            the key {@link Set}.
+     *         the key {@link Set}.
+     *
      * @return a {@code INSERT} statement.
      */
     public static String prepareInsertStatement(String database, String table,
@@ -56,11 +55,12 @@ public class DBUtils {
      * Generates a {@code INSERT} statement from a value {@link Map}.
      *
      * @param database
-     *            the database.
+     *         the database.
      * @param table
-     *            the table.
+     *         the table.
      * @param valueMap
-     *            the value {@link Map}.
+     *         the value {@link Map}.
+     *
      * @return a {@code INSERT} statement.
      */
     public static String insertStatement(String database, String table,
@@ -75,7 +75,11 @@ public class DBUtils {
 
         StringBuilder query = new StringBuilder();
 
-        query.append("INSERT INTO `" + database + "`.`" + table + "` (");
+        query.append("INSERT INTO `")
+                .append(database)
+                .append("`.`")
+                .append(table)
+                .append("` (");
         int i = 0;
         for (String key : valueMap.keySet()) {
 
@@ -118,11 +122,12 @@ public class DBUtils {
      * Prepares a {@code SELECT *} statement for a {@link Set} of key columns.
      *
      * @param database
-     *            the database.
+     *         the database.
      * @param table
-     *            the table.
+     *         the table.
      * @param keyColumns
-     *            the {@link Set} of key columns.
+     *         the {@link Set} of key columns.
+     *
      * @return a {@code UPDATE} statement.
      */
     public static String prepareSelectAllQuery(String database, String table,
@@ -136,11 +141,12 @@ public class DBUtils {
      * Generates a {@code SELECT *} query from a key {@link Map}.
      *
      * @param database
-     *            the database.
+     *         the database.
      * @param table
-     *            the table.
+     *         the table.
      * @param keyMap
-     *            the key {@link Map}.
+     *         the key {@link Map}.
+     *
      * @return a {@code SELECT *} query.
      */
     public static String selectAllQuery(String database, String table,
@@ -154,13 +160,14 @@ public class DBUtils {
      * a {@link Set} of value columns.
      *
      * @param database
-     *            the database.
+     *         the database.
      * @param table
-     *            the table.
+     *         the table.
      * @param keyColumns
-     *            the {@link Set} of key columns.
+     *         the {@link Set} of key columns.
      * @param valueColumns
-     *            the {@link Set} of value columns.
+     *         the {@link Set} of value columns.
+     *
      * @return a {@code UPDATE} statement.
      */
     public static String prepareSelectQuery(String database, String table,
@@ -175,13 +182,14 @@ public class DBUtils {
      * Generates a {@code SELECT} query from a key {@link Map}.
      *
      * @param database
-     *            the database.
+     *         the database.
      * @param table
-     *            the table.
+     *         the table.
      * @param keyMap
-     *            the key {@link Map}.
+     *         the key {@link Map}.
      * @param valueColumns
-     *            the {@link Set} of value columns.
+     *         the {@link Set} of value columns.
+     *
      * @return a {@code SELECT} query.
      */
     public static String selectQuery(String database, String table,
@@ -219,16 +227,17 @@ public class DBUtils {
             }
 
         }
-        query.append(" FROM `" + database + "`.`" + table + "`");
+        query.append(" FROM `")
+                .append(database)
+                .append("`.`")
+                .append(table)
+                .append("`");
 
         query.append(DBUtils.createWhereStatement(keyMap, prepareStatement));
-
-        query.append("");
 
         System.out.println("Select query generated: " + query.toString());
         return query.toString();
     }
-
 
 
     /**
@@ -236,13 +245,14 @@ public class DBUtils {
      * a {@link Set} of value columns.
      *
      * @param database
-     *            the database.
+     *         the database.
      * @param table
-     *            the table.
+     *         the table.
      * @param keyColumns
-     *            the {@link Set} of key columns.
+     *         the {@link Set} of key columns.
      * @param valueColumns
-     *            the {@link Set} of value columns.
+     *         the {@link Set} of value columns.
+     *
      * @return a {@code UPDATE} statement.
      */
     public static String prepareUpdateStatement(String database, String table,
@@ -258,13 +268,14 @@ public class DBUtils {
      * Generates a {@code UPDATE} statement from key and value {@link Map Maps}.
      *
      * @param database
-     *            the database.
+     *         the database.
      * @param table
-     *            the table.
+     *         the table.
      * @param keyMap
-     *            the key {@link Map}.
+     *         the key {@link Map}.
      * @param valueMap
-     *            the value {@link Map}.
+     *         the value {@link Map}.
+     *
      * @return a {@code UPDATE} statement.
      */
     public static String updateStatement(String database, String table,
@@ -281,7 +292,11 @@ public class DBUtils {
 
         StringBuilder query = new StringBuilder();
 
-        query.append("UPDATE `" + database + "`.`" + table + "` SET ");
+        query.append("UPDATE `")
+                .append(database)
+                .append("`.`")
+                .append(table)
+                .append("` SET ");
 
 
         query.append(DBUtils.createValueAssignment(valueMap, prepareStatement));
@@ -296,16 +311,16 @@ public class DBUtils {
     }
 
 
-
     /**
      * Prepares a {@code DELETE} statement for a key {@link Set}.
      *
      * @param database
-     *            the database.
+     *         the database.
      * @param table
-     *            the table.
+     *         the table.
      * @param keySet
-     *            the key {@link Set}.
+     *         the key {@link Set}.
+     *
      * @return a {@code DELETE} statement.
      */
     public static String prepareDeleteStatement(String database, String table,
@@ -320,11 +335,12 @@ public class DBUtils {
      * Generates a {@code DELETE} statement from a key {@link Map}.
      *
      * @param database
-     *            the database.
+     *         the database.
      * @param table
-     *            the table.
+     *         the table.
      * @param keyMap
-     *            the key {@link Map}.
+     *         the key {@link Map}.
+     *
      * @return a {@code DELETE} statement.
      */
     public static String deleteStatement(String database, String table,
@@ -341,7 +357,11 @@ public class DBUtils {
         StringBuilder query = new StringBuilder();
 
 
-        query.append("DELETE FROM `" + database + "`.`" + table + "`");
+        query.append("DELETE FROM `")
+                .append(database)
+                .append("`.`")
+                .append(table)
+                .append("`");
 
         query.append(DBUtils.createWhereStatement(keyMap, prepareStatement));
 
@@ -352,12 +372,12 @@ public class DBUtils {
     }
 
 
-
     /**
      * Prepares a {@code value assignment} statement for a key {@link Set}.
      *
      * @param keySet
-     *            the key {@link Set}.
+     *         the key {@link Set}.
+     *
      * @return a {@code value assignment} statement.
      */
     public static String prepareValueAssignment(Set<String> keySet) {
@@ -371,7 +391,8 @@ public class DBUtils {
      * Generates a {@code value assignment} statement from a value {@link Map}.
      *
      * @param valueMap
-     *            the value {@link Map}.
+     *         the value {@link Map}.
+     *
      * @return a {@code value assignment} statement.
      */
     public static String valueAssignment(Map<String, ?> valueMap) {
@@ -398,7 +419,8 @@ public class DBUtils {
             }
             else {
 
-                query.append("= " + valueMap.get(key));
+                query.append("= ")
+                        .append(valueMap.get(key));
             }
             i++;
         }
@@ -407,12 +429,12 @@ public class DBUtils {
     }
 
 
-
     /**
      * Prepares a {@code WHERE} statement for a key {@link Set}.
      *
      * @param keySet
-     *            the key {@link Set}.
+     *         the key {@link Set}.
+     *
      * @return a {@code WHERE} statement.
      */
     public static String prepareWhereStatement(Set<String> keySet) {
@@ -427,7 +449,8 @@ public class DBUtils {
      * Generates a {@code WHERE} statement from a key {@link Map}.
      *
      * @param keyMap
-     *            the key {@link Map}.
+     *         the key {@link Map}.
+     *
      * @return a {@code WHERE} statement.
      */
     public static String whereStatement(Map<String, ?> keyMap) {
@@ -459,7 +482,8 @@ public class DBUtils {
                 }
                 else {
 
-                    query.append("= " + keyMap.get(key));
+                    query.append("= ")
+                            .append(keyMap.get(key));
                 }
                 j++;
             }
@@ -468,16 +492,15 @@ public class DBUtils {
     }
 
 
-
     /**
      * Prepares a duplicate check query.
      *
      * @param database
-     *            the database.
+     *         the database.
      * @param table
-     *            the table.
+     *         the table.
      * @param keyColumns
-     *            the key columns.
+     *         the key columns.
      *
      * @return the duplicate query.
      */
@@ -493,11 +516,12 @@ public class DBUtils {
      * Generates a duplicate query.
      *
      * @param database
-     *            the database.
+     *         the database.
      * @param table
-     *            the table.
+     *         the table.
      * @param keyMap
-     *            the key map.
+     *         the key map.
+     *
      * @return the duplicate query.
      */
     public static String duplicateQuery(String database, String table,
@@ -518,10 +542,9 @@ public class DBUtils {
         query += ");";
 
 
-        System.out.println("Duplicate query generated: " + query.toString());
+        System.out.println("Duplicate query generated: " + query);
         return query;
     }
-
 
 
     /**
@@ -529,7 +552,8 @@ public class DBUtils {
      * {@code null} values.
      *
      * @param keySet
-     *            the key {@link Set} to convert
+     *         the key {@link Set} to convert
+     *
      * @return an equivalent {@link Map} with {@code null} values
      */
     public static Map<String, ?> keySetToKeyMap(Set<String> keySet) {
@@ -539,7 +563,7 @@ public class DBUtils {
             return null;
         }
 
-        Map<String, ?> keyMap = new LinkedHashMap<String, Object>();
+        Map<String, ?> keyMap = new LinkedHashMap<>();
 
         for (String key : keySet) {
 
@@ -554,12 +578,13 @@ public class DBUtils {
      * Converts a key-value {@link Map} into a {@link List} of values.
      *
      * @param keyValueMap
-     *            the key-value {@link Map}.
+     *         the key-value {@link Map}.
+     *
      * @return a {@link List} of values.
      */
     public static List<?> keyValueMapToValueList(Map<String, ?> keyValueMap) {
 
-        List<Object> valueList = new LinkedList<Object>();
+        List<Object> valueList = new LinkedList<>();
 
         for (String key : keyValueMap.keySet()) {
 

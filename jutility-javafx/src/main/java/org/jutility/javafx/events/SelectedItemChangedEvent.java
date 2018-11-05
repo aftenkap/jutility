@@ -9,9 +9,9 @@ package org.jutility.javafx.events;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,7 +21,6 @@ package org.jutility.javafx.events;
  */
 
 
-
 import javafx.event.Event;
 import javafx.event.EventTarget;
 import javafx.event.EventType;
@@ -29,10 +28,9 @@ import javafx.event.EventType;
 
 /**
  * Custom event that contains information of a changed selection of an item.
- * 
+ *
  * @author Peter J. Radics
  * @version 0.1
- * 
  */
 public class SelectedItemChangedEvent
         extends Event {
@@ -40,20 +38,18 @@ public class SelectedItemChangedEvent
     /**
      * Defines the event type SELECTED_ITEM_CHANGED.
      */
-    public final static EventType<SelectedItemChangedEvent> SELECTED_ITEM_CHANGED = new EventType<>(
-                                                                                             "SELECTED_ITEM_CHANGED");
-
+    public static final EventType<SelectedItemChangedEvent> SELECTED_ITEM_CHANGED = new EventType<>(
+            "SELECTED_ITEM_CHANGED");
 
 
     private static final long serialVersionUID = 1L;
-    private final Object           oldValue;
-    private final Object           newValue;
-
+    private final Object oldValue;
+    private final Object newValue;
 
 
     /**
      * Returns the old value.
-     * 
+     *
      * @return the old value.
      */
     public Object getOldValue() {
@@ -64,7 +60,7 @@ public class SelectedItemChangedEvent
 
     /**
      * Returns the new value.
-     * 
+     *
      * @return the new value.
      */
     public Object getNewValue() {
@@ -76,11 +72,11 @@ public class SelectedItemChangedEvent
     /**
      * Creates a new {@link SelectedItemChangedEvent} with the provided old and
      * new value.
-     * 
+     *
      * @param oldValue
-     *            the old value.
+     *         the old value.
      * @param newValue
-     *            the new value.
+     *         the new value.
      */
     public SelectedItemChangedEvent(Object oldValue, Object newValue) {
 
@@ -90,13 +86,13 @@ public class SelectedItemChangedEvent
     /**
      * Creates a new {@link SelectedItemChangedEvent} with the provided event
      * type, old value, and new value.
-     * 
+     *
      * @param eventType
-     *            the type of the event.
+     *         the type of the event.
      * @param oldValue
-     *            the old value.
+     *         the old value.
      * @param newValue
-     *            the new value.
+     *         the new value.
      */
     public SelectedItemChangedEvent(EventType<? extends Event> eventType,
             Object oldValue, Object newValue) {
@@ -108,21 +104,20 @@ public class SelectedItemChangedEvent
     }
 
 
-
     /**
      * Creates a new {@link SelectedItemChangedEvent} with the provided source,
      * target, event type, old value, and new value.
-     * 
+     *
      * @param source
-     *            The source of the event.
+     *         The source of the event.
      * @param target
-     *            The event target.
+     *         The event target.
      * @param eventType
-     *            The event type
+     *         The event type
      * @param oldValue
-     *            the old value.
+     *         the old value.
      * @param newValue
-     *            the new value.
+     *         the new value.
      */
     public SelectedItemChangedEvent(Object source, EventTarget target,
             EventType<? extends Event> eventType, Object oldValue,
@@ -133,6 +128,5 @@ public class SelectedItemChangedEvent
         this.oldValue = oldValue;
         this.newValue = newValue;
     }
-
 
 }

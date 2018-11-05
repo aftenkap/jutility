@@ -9,9 +9,9 @@ package org.jutility.javafx.events;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -29,10 +29,10 @@ import javafx.event.EventType;
 
 /**
  * Custom event that contains information of a changed selection index.
- * 
+ *
  * @author Peter J. Radics
  * @version 0.1
- * 
+ *
  */
 public class SelectedIndexChangedEvent
         extends Event {
@@ -51,7 +51,7 @@ public class SelectedIndexChangedEvent
 
     /**
      * Returns the old value.
-     * 
+     *
      * @return the old value.
      */
     public Object getOldValue() {
@@ -62,7 +62,7 @@ public class SelectedIndexChangedEvent
 
     /**
      * Returns the new value.
-     * 
+     *
      * @return the new value.
      */
     public Object getNewValue() {
@@ -74,7 +74,7 @@ public class SelectedIndexChangedEvent
     /**
      * Creates a new {@link SelectedIndexChangedEvent} with the provided old and
      * new value.
-     * 
+     *
      * @param oldValue
      *            the old value.
      * @param newValue
@@ -88,7 +88,7 @@ public class SelectedIndexChangedEvent
     /**
      * Creates a new {@link SelectedIndexChangedEvent} with the provided event
      * type, old value, and new value.
-     * 
+     *
      * @param eventType
      *            the type of the event.
      * @param oldValue
@@ -110,7 +110,7 @@ public class SelectedIndexChangedEvent
     /**
      * Creates a new {@link SelectedIndexChangedEvent} with the provided source,
      * target, event type, old value, and new value.
-     * 
+     *
      * @param source
      *            The source of the event.
      * @param target

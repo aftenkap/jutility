@@ -13,9 +13,9 @@ package org.jutility.math.geometry;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -40,10 +40,10 @@ import org.jutility.math.vectoralgebra.Point2;
 /**
  * The generic {@code Line2} class provides a reference implementation of the
  * {@link ILine2} interface.
- * 
+ *
  * @param <T>
  *            the {@link Number} type of the {@code Line2}.
- * 
+ *
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.0
@@ -100,7 +100,7 @@ public class Line2<T extends Number>
     /**
      * Creates a new instance of the {@code Line2} class with the provided type
      * and parameters.
-     * 
+     *
      * @param source
      *            the source of the line.
      * @param sink
@@ -117,7 +117,7 @@ public class Line2<T extends Number>
     /**
      * Creates a new instance of the {@code Line2} class with the provided type
      * and parameters.
-     * 
+     *
      * @param source
      *            the source of the line.
      * @param sink
@@ -166,7 +166,7 @@ public class Line2<T extends Number>
 
     /**
      * Copy Constructor.
-     * 
+     *
      * @param lineToCopy
      *            the line to copy.
      */
@@ -177,7 +177,7 @@ public class Line2<T extends Number>
 
     /**
      * Copy Constructor.
-     * 
+     *
      * @param lineToCopy
      *            the line to copy.
      * @param type

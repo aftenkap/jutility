@@ -13,9 +13,9 @@ package org.jutility.javafx.control.wrapper;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -59,7 +59,7 @@ public class TableViewWrapper<T>
 
     /**
      * Returns the converter property.
-     * 
+     *
      * @return the converter property.
      */
     public ObjectProperty<StringConverter<T>> converterProperty() {
@@ -69,7 +69,7 @@ public class TableViewWrapper<T>
 
     /**
      * Returns the value of the converter property.
-     * 
+     *
      * @return the value of the converter property.
      */
     public StringConverter<T> getConverter() {
@@ -79,7 +79,7 @@ public class TableViewWrapper<T>
 
     /**
      * Sets the value of the converter property.
-     * 
+     *
      * @param value
      *            the value of the converter property.
      */
@@ -219,7 +219,7 @@ public class TableViewWrapper<T>
      * appropriate function to the cellFactory property in the TableColumn
      * class.
      * </p>
-     * 
+     *
      * @see TableViewWrapper#getRowFactory()
      * @see TableViewWrapper#setRowFactory(Callback)
      *
@@ -435,7 +435,7 @@ public class TableViewWrapper<T>
      * Note: to display any data in a TableView, there must be at least one
      * TableColumn in this ObservableList.
      * </p>
-     * 
+     *
      * @return the TableColumns that are part of this TableView
      */
     public final ObservableList<TableColumn<T, ?>> getColumns() {
@@ -591,7 +591,7 @@ public class TableViewWrapper<T>
 
     /**
      * Creates a new instance of the {@code TableViewWrapper} class.
-     * 
+     *
      * @param tableView
      *            the {@link TableView} to wrap.
      * @param converter

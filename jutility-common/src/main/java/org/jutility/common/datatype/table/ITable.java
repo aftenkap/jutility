@@ -11,9 +11,9 @@ package org.jutility.common.datatype.table;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -67,7 +67,7 @@ public interface ITable<T>
      *            the table column.
      * @param value
      *            the value to set.
-     * 
+     *
      * @return {@code true} if the table did not already contain the value;
      *         {@code false} otherwise.
      */
@@ -81,7 +81,7 @@ public interface ITable<T>
      *            the row.
      * @param column
      *            the column.
-     * 
+     *
      * @return the value in the cell or {@code null} if no value exists.
      */
     T get(int row, int column);
@@ -95,7 +95,7 @@ public interface ITable<T>
      *            the table row.
      * @param column
      *            the table column.
-     * 
+     *
      * @return {@code true}, if the table contained the cell; {@code false}
      *         otherwise.
      */
@@ -104,12 +104,12 @@ public interface ITable<T>
 
     /**
      * Adds the value to the table at the specified location.
-     * 
+     *
      * @param location
      *            the location.
      * @param value
      *            the value.
-     * 
+     *
      * @return {@code true} if the table did not already contain the value;
      *         {@code false} otherwise.
      */
@@ -121,7 +121,7 @@ public interface ITable<T>
      *
      * @param location
      *            the location.
-     * 
+     *
      * @return the value in the cell or {@code null} if no value exists.
      */
     T get(CellLocation location);
@@ -131,7 +131,7 @@ public interface ITable<T>
      *
      * @param location
      *            the location.
-     * 
+     *
      * @return {@code true}, if the table contained the cell; {@code false}
      *         otherwise.
      */

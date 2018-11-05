@@ -1,24 +1,25 @@
 package org.jutility.io.database;
 
-
+// @formatter:off
 /*
- * #%L 
- * jutility-incubation 
- * %% 
- * Copyright (C) 2013 - 2014 jutility.org 
- * %% Licensed under the Apache License, Version 2.0 (the "License"); you may 
- * not use this file except in compliance with the License. You may obtain a copy 
+ * #%L
+ * jutility-incubation
+ * %%
+ * Copyright (C) 2013 - 2014 jutility.org
+ * %% Licensed under the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License. You may obtain a copy
  * of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations under
- * the License. 
+ * the License.
  * #L%
  */
+// @formatter:on
 
 
 import java.util.Collection;
@@ -32,13 +33,13 @@ import org.jutility.common.reflection.ReflectionUtils;
 
 
 /**
- * 
- * 
+ *
+ *
  * @author Peter J. Radics
  * @version 0.1
  * @param <T>
  *            the type of the prototype.
- * 
+ *
  */
 public class Prototype<T> {
 
@@ -51,7 +52,7 @@ public class Prototype<T> {
 
     /**
      * Getter for the type
-     * 
+     *
      * @return the type.
      */
     public Class<? extends T> getType() {
@@ -62,7 +63,7 @@ public class Prototype<T> {
 
     /**
      * Getter for the primary key-value map.
-     * 
+     *
      * @return the primary key-value map.
      */
     public Map<String, ?> getPrimaryKeyValueMap() {
@@ -72,7 +73,7 @@ public class Prototype<T> {
 
     /**
      * Returns the prototype of the provided element property.
-     * 
+     *
      * @param elementProperty
      *            the element property.
      * @return the element property prototype.
@@ -84,7 +85,7 @@ public class Prototype<T> {
 
     /**
      * Returns the element properties.
-     * 
+     *
      * @return the element properties.
      */
     public Collection<PropertyInfo> getElementProperties() {
@@ -94,7 +95,7 @@ public class Prototype<T> {
 
     /**
      * Returns the element property prototypes.
-     * 
+     *
      * @return the element property prototypes.
      */
     public Map<PropertyInfo, Prototype<?>> getElementPrototypes() {
@@ -104,7 +105,7 @@ public class Prototype<T> {
 
     /**
      * Adds an element property prototype.
-     * 
+     *
      * @param elementProperty
      *            the element property.
      * @param elementPrototype
@@ -119,7 +120,7 @@ public class Prototype<T> {
 
     /**
      * Removes an element property prototype.
-     * 
+     *
      * @param elementProperty
      *            the element property.
      * @return the removed element prototype.
@@ -140,7 +141,7 @@ public class Prototype<T> {
 
     /**
      * Returns the prototype list for the element list property.
-     * 
+     *
      * @param elementListProperty
      *            the element list property.
      * @return the prototype list for the element list property.
@@ -153,7 +154,7 @@ public class Prototype<T> {
 
     /**
      * Returns the element list properties.
-     * 
+     *
      * @return the element list properties.
      */
     public Collection<ListPropertyInfo> getElementListProperties() {
@@ -163,7 +164,7 @@ public class Prototype<T> {
 
     /**
      * Returns the element list property prototypes.
-     * 
+     *
      * @return the element list property prototypes.
      */
     public Map<ListPropertyInfo, List<Prototype<?>>> getElementListPrototypes() {
@@ -173,7 +174,7 @@ public class Prototype<T> {
 
     /**
      * Adds element list property prototypes.
-     * 
+     *
      * @param elementListProperty
      *            the element list property.
      * @param elementListPrototypes
@@ -190,7 +191,7 @@ public class Prototype<T> {
 
     /**
      * Removes element list property prototypes.
-     * 
+     *
      * @param elementListProperty
      *            the element list property.
      * @return the removed element prototypes.
@@ -212,7 +213,7 @@ public class Prototype<T> {
 
     /**
      * Sets the reference prototype.
-     * 
+     *
      * @param referencePrototype
      *            the reference prototype.
      */
@@ -226,7 +227,7 @@ public class Prototype<T> {
 
     /**
      * Returns whether or not this is a referenced prototype.
-     * 
+     *
      * @return {@code true} if this is a referenced prototype; {@code false}
      *         otherwise.
      */
@@ -237,7 +238,7 @@ public class Prototype<T> {
 
     /**
      * Getter for the deserialized object.
-     * 
+     *
      * @return the deserialized object.
      * @throws DBSerializationException
      */
@@ -261,7 +262,7 @@ public class Prototype<T> {
 
     /**
      * Setter for the deserialized object.
-     * 
+     *
      * @param deserializedObject
      *            the new value.
      * @throws DBSerializationException
@@ -280,7 +281,7 @@ public class Prototype<T> {
 
     /**
      * Creates a new prototype
-     * 
+     *
      * @param type
      *            the type of the prototype.
      * @param primaryKeyValueMap
@@ -297,8 +298,8 @@ public class Prototype<T> {
 
         this.type = type;
         this.primaryKeyValueMap = primaryKeyValueMap;
-        this.elementPrototypes = new LinkedHashMap<PropertyInfo, Prototype<?>>();
-        this.elementListPrototypes = new LinkedHashMap<ListPropertyInfo, List<Prototype<?>>>();
+        this.elementPrototypes = new LinkedHashMap<>();
+        this.elementListPrototypes = new LinkedHashMap<>();
         this.deserializedObject = null;
         this.referencePrototype = null;
     }
@@ -327,6 +328,6 @@ public class Prototype<T> {
     static <T> Prototype<T> createPrototype(Class<T> type,
             Map<String, ?> primaryKeyValueMap) {
 
-        return new Prototype<T>(type, primaryKeyValueMap);
+        return new Prototype<>(type, primaryKeyValueMap);
     }
 }

@@ -11,9 +11,9 @@ package org.jutility.common.datatype.range;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,7 +25,6 @@ package org.jutility.common.datatype.range;
 
 
 import java.io.Serializable;
-
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -35,7 +34,6 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
-
 
 
 /**
@@ -50,11 +48,12 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
  * @since 0.1.0
  */
 @JsonTypeInfo(use = Id.NAME, include = As.PROPERTY, property = "intervalType")
-@JsonSubTypes({ @JsonSubTypes.Type(value = Interval.class, name = "Interval") })
+@JsonSubTypes({@JsonSubTypes.Type(value = Interval.class, name = "Interval")})
 @XmlRootElement(name = "IntervalBase")
-@XmlType(name = "IntervalBase", propOrder = { "lowerBound", "upperBound" })
+@XmlType(name = "IntervalBase", propOrder = {"lowerBound", "upperBound"})
 public abstract class IntervalBase<T>
-        implements IInterval<T>, Serializable {
+        implements IInterval<T>,
+                   Serializable {
 
 
     /**
@@ -63,11 +62,15 @@ public abstract class IntervalBase<T>
     private static final long serialVersionUID = 6346153056134408820L;
 
 
-    @XmlElement(name = "LowerBound") private T lowerBound;
-    @XmlElement(name = "UpperBound") private T upperBound;
+    @XmlElement(name = "LowerBound")
+    private T lowerBound;
+    @XmlElement(name = "UpperBound")
+    private T upperBound;
 
-    @XmlAttribute private Boolean containsLowerBound;
-    @XmlAttribute private Boolean containsUpperBound;
+    @XmlAttribute
+    private Boolean containsLowerBound;
+    @XmlAttribute
+    private Boolean containsUpperBound;
 
 
     @Override
@@ -209,7 +212,6 @@ public abstract class IntervalBase<T>
     protected abstract int compareTo(final T lhs, final T rhs);
 
 
-
     @Override
     public boolean contains(final T element) {
 
@@ -235,21 +237,18 @@ public abstract class IntervalBase<T>
         }
         // if the element is equal to our upper bound and the upper bound is not
         // part of the interval, the element is not contained in the interval.
-        else if ((compareToUpperBound == 0) && !this.containsUpperBound()) {
-            return false;
+        else {
+            return (compareToUpperBound != 0) || this.containsUpperBound();
         }
 
-        return true;
     }
 
 
     @Override
     public boolean contains(final IInterval<T> otherInterval) {
 
-        final int compareToLowerBound = this.compareTo(this.getLowerBound(),
-                otherInterval.getLowerBound());
-        final int compareToUpperBound = this.compareTo(this.getUpperBound(),
-                otherInterval.getUpperBound());
+        final int compareToLowerBound = this.compareTo(this.getLowerBound(), otherInterval.getLowerBound());
+        final int compareToUpperBound = this.compareTo(this.getUpperBound(), otherInterval.getUpperBound());
 
         // if our lower bound is greater than the other interval's lower bound,
         // it cannot be contained in the interval.
@@ -259,30 +258,25 @@ public abstract class IntervalBase<T>
         // if our lower bound equals the other interval's lower bound, and if
         // the bound is included either in both intervals or only in the other
         // interval, it cannot be contained in the interval
-        else if ((compareToLowerBound == 0) && (this.containsLowerBound()
-                                                        .compareTo(
-                                                                otherInterval
-                                                                        .containsLowerBound())
-                                                < 0)) {
+        else if ((compareToLowerBound == 0)
+                && (this.containsLowerBound().compareTo(otherInterval.containsLowerBound()) < 0)) {
+
             return false;
         }
         // if our upper bound is smaller than the other interval's upper bound,
         // it cannot be contained in the interval.
         else if (compareToUpperBound < 0) {
+
             return false;
         }
         // if our lower bound equals the other interval's lower bound, and if
         // the bound is included either in both intervals or only in the other
         // interval, it cannot be contained in the interval
-        else if ((compareToUpperBound == 0) && (this.containsUpperBound()
-                                                        .compareTo(
-                                                                otherInterval
-                                                                        .containsUpperBound())
-                                                < 0)) {
-            return false;
+        else {
+            return (compareToUpperBound != 0)
+                    || (this.containsUpperBound().compareTo(otherInterval.containsUpperBound()) >= 0);
         }
 
-        return true;
     }
 
     @Override
@@ -296,33 +290,29 @@ public abstract class IntervalBase<T>
 
 
         final Boolean greater = (this.containsUpperBound()
-                                 && otherInterval.containsLowerBound());
+                && otherInterval.containsLowerBound());
         final Boolean smaller = (this.containsLowerBound()
-                                 && otherInterval.containsUpperBound());
+                && otherInterval.containsUpperBound());
 
         if (greater && smaller) {
+
             return !((this.compareTo(b, x) < 0) || (this.compareTo(a, y) > 0));
         }
         else if (greater) {
+
             return !((this.compareTo(b, x) <= 0) || (this.compareTo(a, y) > 0));
         }
         else if (smaller) {
+
             return !((this.compareTo(b, x) < 0) || (this.compareTo(a, y) >= 0));
         }
         else {
-            return !((this.compareTo(b, x) <= 0) || (this.compareTo(a, y)
-                                                     >= 0));
+
+            return !((this.compareTo(b, x) <= 0) || (this.compareTo(a, y) >= 0));
         }
     }
 
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.jutility.math.common.IInterval#isContainedIn(org.jutility.math.common
-     * .IInterval)
-     */
     @Override
     public Boolean isContainedIn(final IInterval<T> otherInterval) {
 
@@ -330,24 +320,24 @@ public abstract class IntervalBase<T>
     }
 
 
-
     @Override
     public boolean equals(final Object obj) {
 
         if (obj == null) {
+
             return false;
         }
         if (this.getClass() != obj.getClass()) {
+
             return false;
         }
         else {
             final IInterval<?> other = (IInterval<?>) obj;
 
             return (this.containsLowerBound.equals(other.containsLowerBound())
-                    && this.containsUpperBound.equals(
-                    other.containsUpperBound()) && this.lowerBound.equals(
-                    other.getLowerBound()) && this.upperBound.equals(
-                    other.getUpperBound()));
+                    && this.containsUpperBound.equals(other.containsUpperBound())
+                    && this.lowerBound.equals(other.getLowerBound())
+                    && this.upperBound.equals(other.getUpperBound()));
         }
     }
 

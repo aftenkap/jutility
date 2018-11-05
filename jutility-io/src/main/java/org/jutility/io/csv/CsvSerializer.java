@@ -10,9 +10,9 @@ package org.jutility.io.csv;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -57,7 +57,7 @@ import org.supercsv.prefs.CsvPreference;
  * @version 0.1.2
  * @since 0.1.0
  */
-public class CsvSerializer
+public final class CsvSerializer
         implements ISerializer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CsvSerializer.class);
@@ -107,7 +107,7 @@ public class CsvSerializer
             throw new SerializationException("Serialization of type " + documentType + " is not supported!");
         }
 
-        Table<?> table = Table.class.cast(document);
+        Table<?> table = (Table) document;
         try (ICsvMapWriter mapWriter = new CsvMapWriter(new FileWriter(filename),
                 CsvPreference.STANDARD_PREFERENCE)) {
 
@@ -120,7 +120,8 @@ public class CsvSerializer
                 if (value != null) {
 
                     header[i] = value.toString();
-                } else {
+                }
+                else {
 
                     header[i] = "";
                 }
@@ -140,7 +141,8 @@ public class CsvSerializer
                     if (value != null) {
 
                         values.put(key, value.toString());
-                    } else {
+                    }
+                    else {
 
                         values.put(key, "");
                     }
@@ -148,7 +150,8 @@ public class CsvSerializer
 
                 mapWriter.write(values, header);
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
 
             LOGGER.info("Could not serialize resource.");
             throw new SerializationException("Could not serialize resource.",
@@ -170,7 +173,8 @@ public class CsvSerializer
         try {
 
             return this.deserialize(uri.toURL(), type);
-        } catch (MalformedURLException e) {
+        }
+        catch (MalformedURLException e) {
 
             LOGGER.info("URI {} is malformed.", uri);
             throw new SerializationException("URI " + uri + " is malformed.",
@@ -237,7 +241,8 @@ public class CsvSerializer
                         column.incrementAndGet();
                     });
 
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
 
             LOGGER.info("Could not deserialize CSV file {}!", url);
             throw new SerializationException(

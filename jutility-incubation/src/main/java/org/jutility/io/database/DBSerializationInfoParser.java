@@ -12,9 +12,9 @@ package org.jutility.io.database;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -45,11 +45,9 @@ import org.jutility.io.database.annotation.DBEntryList;
 import org.jutility.io.database.annotation.DBValueType;
 
 
-
 /**
  * @author Peter J. Radics
  * @version 0.1
- *
  */
 public class DBSerializationInfoParser {
 
@@ -72,11 +70,12 @@ public class DBSerializationInfoParser {
      * provided class.
      *
      * @param clazz
-     *            the class.
+     *         the class.
      *
      * @return the {@link DBSerializationInfo SerializationInformation}.
+     *
      * @throws DBSerializationException
-     *             if parsing the class fails.
+     *         if parsing the class fails.
      */
     public DBSerializationInfo getSerializationInformation(Class<?> clazz)
             throws DBSerializationException {
@@ -94,7 +93,6 @@ public class DBSerializationInfoParser {
      * Creates and instantiates a new DatabaseSerializationInfoParserer object.
      *
      * @throws DBSerializationException
-     *
      */
     public DBSerializationInfoParser()
             throws DBSerializationException {
@@ -106,12 +104,13 @@ public class DBSerializationInfoParser {
      * Creates and instantiates a new DatabaseSerializationInfoParserer object.
      *
      * @param theClass
+     *
      * @throws DBSerializationException
      */
     public DBSerializationInfoParser(Class<?> theClass)
             throws DBSerializationException {
 
-        this.serializationInformation = new LinkedHashMap<Class<?>, DBSerializationInfo>();
+        this.serializationInformation = new LinkedHashMap<>();
         if (theClass != null) {
 
             this.parse(theClass);
@@ -124,7 +123,8 @@ public class DBSerializationInfoParser {
      * class' ancestors before parsing the class itself.
      *
      * @param theClass
-     *            the class to be parsed.
+     *         the class to be parsed.
+     *
      * @throws DBSerializationException
      */
     public void parse(Class<?> theClass)
@@ -134,7 +134,7 @@ public class DBSerializationInfoParser {
         // Check to see whether we need to parse the class.
         if (!this.serializationInformation.containsKey(theClass)) {
 
-            Deque<Class<?>> classHierarchy = new LinkedList<Class<?>>();
+            Deque<Class<?>> classHierarchy = new LinkedList<>();
 
             Class<?> current = theClass;
 
@@ -191,9 +191,10 @@ public class DBSerializationInfoParser {
      * class.
      *
      * @param clazz
-     *            the class to be parsed
+     *         the class to be parsed
      * @param serializationInfo
-     *            the information required for serializing the class
+     *         the information required for serializing the class
+     *
      * @throws DBSerializationException
      */
     private void parseClass(Class<?> clazz,
@@ -277,9 +278,9 @@ public class DBSerializationInfoParser {
 
 
     /**
-     *
      * @param fields
      * @param serializationInfo
+     *
      * @throws DBSerializationException
      */
     private void parseFields(List<Field> fields,
@@ -580,9 +581,8 @@ public class DBSerializationInfoParser {
     // }
 
     /**
-     *
-     * @param fields
      * @param serializationInfo
+     *
      * @throws DBSerializationException
      */
     private void parseDBEntries(
@@ -613,7 +613,6 @@ public class DBSerializationInfoParser {
                         .getAnnotation(DBEntry.class);
 
 
-
                 String propertyName = this.getPropertyName(annotatedElement);
                 Class<?> propertyType = this.getPropertyType(annotatedElement);
 
@@ -624,14 +623,14 @@ public class DBSerializationInfoParser {
                 boolean notNull = elementAnnotation.notNull();
 
 
-                Map<String, String> columnMap = new LinkedHashMap<String, String>();
+                Map<String, String> columnMap = new LinkedHashMap<>();
 
                 columnMap = this.parseMappings(columnMappings);
                 if (columnMap.isEmpty()) {
 
 
                     String columnName = elementAnnotation.column();
-                    if (columnName == null || "".equals(columnName)) {
+                    if ("".equals(columnName)) {
 
                         System.err.println("No map and column name");
                         columnMap.put(propertyName, propertyName);
@@ -657,7 +656,7 @@ public class DBSerializationInfoParser {
                 boolean primaryKey = elementAnnotation.primaryKey();
 
                 // Primary Key
-                if (primaryKey == true) {
+                if (primaryKey) {
 
                     serializationInfo.getPrimaryKeys().add(entry);
 
@@ -697,7 +696,6 @@ public class DBSerializationInfoParser {
                 System.out.println(" column: " + columnMap + ", isPrimaryKey: "
                         + primaryKey);
 
-
             }
             else {
                 System.out.println(" is not a DBEntry.");
@@ -707,9 +705,8 @@ public class DBSerializationInfoParser {
     }
 
     /**
-     *
-     * @param fields
      * @param serializationInfo
+     *
      * @throws DBSerializationException
      */
     private void parseDBListEntries(
@@ -766,7 +763,7 @@ public class DBSerializationInfoParser {
 
                 System.out.println("Container type aliases: "
                         + Arrays.toString(elementListAnnotation
-                                .containerClassAliasMap()));
+                        .containerClassAliasMap()));
                 Map<String, String> keyMappings = this
                         .parseMappings(elementListAnnotation
                                 .containerClassAliasMap());
@@ -775,7 +772,7 @@ public class DBSerializationInfoParser {
 
                 System.out.println("List type aliases: "
                         + Arrays.toString(elementListAnnotation
-                                .listTypeAliasMap()));
+                        .listTypeAliasMap()));
                 Map<String, String> valueMappings = this
                         .parseMappings(elementListAnnotation.listTypeAliasMap());
                 System.out
@@ -794,7 +791,6 @@ public class DBSerializationInfoParser {
 
                 this.addPropertyAccess(entry, annotatedElement,
                         serializationInfo);
-
 
 
                 if (this.isElementType(listPropertyType)) {
@@ -887,7 +883,6 @@ public class DBSerializationInfoParser {
 
                 }
 
-
             }
             else {
                 // System.out.println(" is not a DBEntryList.");
@@ -900,7 +895,7 @@ public class DBSerializationInfoParser {
     private Map<String, String> parseMappings(String[] keyValuePairs)
             throws DBSerializationException {
 
-        Map<String, String> keyMappings = new LinkedHashMap<String, String>();
+        Map<String, String> keyMappings = new LinkedHashMap<>();
 
         for (String keyValuePair : keyValuePairs) {
 
@@ -1112,8 +1107,7 @@ public class DBSerializationInfoParser {
 
             if (this.isAccessor(method)) {
 
-                Type returnType = method.getGenericReturnType();
-                genericPropertyType = returnType;
+                genericPropertyType = method.getGenericReturnType();
             }
             else if (this.isMutator(method)) {
 
@@ -1134,36 +1128,27 @@ public class DBSerializationInfoParser {
 
         String methodName = method.getName();
         Class<?> returnType = method.getReturnType();
-        Class<?> parameterTypes[] = method.getParameterTypes();
+        Class<?>[] parameterTypes = method.getParameterTypes();
 
-        if (returnType != null
+        return returnType != null
                 && returnType != void.class
                 && parameterTypes.length == 0
-                && (methodName.startsWith("get") || methodName.startsWith("is"))) {
-
-            return true;
-        }
-        return false;
+                && (methodName.startsWith("get") || methodName.startsWith("is"));
     }
 
     private boolean isMutator(Method method) {
 
         String methodName = method.getName();
         Class<?> returnType = method.getReturnType();
-        Class<?> parameterTypes[] = method.getParameterTypes();
-        if (returnType == void.class && parameterTypes.length == 1
-                && methodName.startsWith("set")) {
+        Class<?>[] parameterTypes = method.getParameterTypes();
+        return returnType == void.class && parameterTypes.length == 1
+                && methodName.startsWith("set");
 
-            return true;
-        }
-
-        return false;
     }
 
     private void addPropertyAccess(IProperty property,
             AnnotatedElement annotatedElement,
-            DBSerializationInfo serializationInfo)
-            throws DBSerializationException {
+            DBSerializationInfo serializationInfo) {
 
         System.out.println("\n**** Adding Property Access for: "
                 + property.getPropertyName() + "****");

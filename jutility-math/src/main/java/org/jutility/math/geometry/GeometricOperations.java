@@ -13,9 +13,9 @@ package org.jutility.math.geometry;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -47,7 +47,7 @@ import org.jutility.math.vectoralgebra.VectorAlgebraicOperations;
 /**
  * The {@code GeometricOperations} class provides a convenience wrapper around
  * the {@link VectorAlgebraicOperations} class.
- * 
+ *
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.0
@@ -57,18 +57,18 @@ public final class GeometricOperations {
 
     /**
      * Scales the {@link IVector4 Vector} by the provided {@link Number Scalar}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link IVector4 Vector} to
      *            scale.
-     * 
+     *
      * @param vectorToScale
      *            The {@link IVector4 Vector} to scale.
      * @param scalar
      *            The {@link Number Scalar}.
      * @return The scaled {@link IVector4 Vector}.
      */
-    public static final <T extends Number> IVector4<T> scale(
+    public static <T extends Number> IVector4<T> scale(
             final IVector4<T> vectorToScale, final Number scalar) {
 
         return VectorAlgebraicOperations.multiply(vectorToScale, scalar,
@@ -77,10 +77,10 @@ public final class GeometricOperations {
 
     /**
      * Scales the {@link IVector4 Vector} by the provided {@link Number Scalar}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the scaled {@link IVector4 Vector}.
-     * 
+     *
      * @param vectorToScale
      *            The {@link IVector4 Vector} to scale.
      * @param scalar
@@ -89,7 +89,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return The scaled {@link IVector4 Vector}.
      */
-    public static final <R extends Number> IVector4<R> scale(
+    public static <R extends Number> IVector4<R> scale(
             final IVector4<?> vectorToScale, final Number scalar,
             Class<? extends R> returnType) {
 
@@ -100,18 +100,18 @@ public final class GeometricOperations {
 
     /**
      * Scales the {@link IVector4 Vector} by the provided {@link Number Scalar}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link IVector4 Vector} to
      *            scale.
-     * 
+     *
      * @param scalar
      *            The {@link Number Scalar}.
      * @param vectorToScale
      *            The {@link IVector4 Vector} to scale.
      * @return The scaled {@link IVector4 Vector}.
      */
-    public static final <T extends Number> IVector4<T> scale(
+    public static <T extends Number> IVector4<T> scale(
             final Number scalar, final IVector4<T> vectorToScale) {
 
         return VectorAlgebraicOperations.multiply(scalar, vectorToScale,
@@ -121,10 +121,10 @@ public final class GeometricOperations {
 
     /**
      * Scales the {@link IVector4 Vector} by the provided {@link Number Scalar}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the scaled {@link IVector4 Vector}.
-     * 
+     *
      * @param scalar
      *            The {@link Number Scalar}.
      * @param vectorToScale
@@ -133,7 +133,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return The scaled {@link IVector4 Vector}.
      */
-    public static final <R extends Number> IVector4<R> scale(
+    public static <R extends Number> IVector4<R> scale(
             final Number scalar, final IVector4<?> vectorToScale,
             Class<? extends R> returnType) {
 
@@ -145,18 +145,18 @@ public final class GeometricOperations {
     /**
      * Reverts the scaling of the {@link IVector4 Vector} by the provided
      * {@link Number Scalar}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link IVector4 Vector} to
      *            scale.
-     * 
+     *
      * @param vectorToScale
      *            the {@link IVector4 Vector} to scale.
      * @param scalar
      *            the {@link Number Scalar}.
      * @return the scaled {@link IVector4 Vector}.
      */
-    public static final <T extends Number> IVector4<T> revertScale(
+    public static <T extends Number> IVector4<T> revertScale(
             final IVector4<T> vectorToScale, final Number scalar) {
 
         Number inverseScalar = ArithmeticOperations.divide(1.0, scalar,
@@ -169,10 +169,10 @@ public final class GeometricOperations {
     /**
      * Reverts the scaling of the {@link IVector4 Vector} by the provided
      * {@link Number Scalar}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the scaled {@link IVector4 Vector}.
-     * 
+     *
      * @param vectorToScale
      *            the {@link IVector4 Vector} to scale.
      * @param scalar
@@ -181,7 +181,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the scaled {@link IVector4 Vector}.
      */
-    public static final <R extends Number> IVector4<R> revertScale(
+    public static <R extends Number> IVector4<R> revertScale(
             final IVector4<?> vectorToScale, final Number scalar,
             final Class<? extends R> returnType) {
 
@@ -197,18 +197,18 @@ public final class GeometricOperations {
     /**
      * Translates the {@link IPoint4 Point} by the provided {@link ITranslation
      * Translation}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link IPoint4 Point} to
      *            translate.
-     * 
+     *
      * @param pointToTranslate
      *            the {@link IPoint4 Point} to translate.
      * @param translation
      *            the {@link ITranslation Translation}.
      * @return the translated {@link IPoint4 Point}.
      */
-    public static final <T extends Number> IPoint4<T> translate(
+    public static <T extends Number> IPoint4<T> translate(
             final IPoint4<T> pointToTranslate, final ITranslation<?> translation) {
 
         IMatrix4<? extends Number> translationMatrix = GeometricOperations
@@ -221,11 +221,11 @@ public final class GeometricOperations {
     /**
      * Translates the {@link IPoint4 Point} by the provided {@link ITranslation
      * Translation}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the translated {@link IPoint4
      *            Point}.
-     * 
+     *
      * @param pointToTranslate
      *            the {@link IPoint4 Point} to translate.
      * @param translation
@@ -234,7 +234,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the translated {@link IPoint4 Point}.
      */
-    public static final <R extends Number> IPoint4<R> translate(
+    public static <R extends Number> IPoint4<R> translate(
             final IPoint4<?> pointToTranslate,
             final ITranslation<?> translation, Class<? extends R> returnType) {
 
@@ -249,18 +249,18 @@ public final class GeometricOperations {
     /**
      * Reverts the translation of a {@link IPoint4 Point} by a given
      * {@link ITranslation Translation}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link IPoint4 Point} to
      *            translate.
-     * 
+     *
      * @param pointToTranslate
      *            the {@link IPoint4 Point} to translate.
      * @param translation
      *            the {@link ITranslation Translation}.
      * @return the translated {@link IPoint4 Point}.
      */
-    public static final <T extends Number> IPoint4<T> revertTranslate(
+    public static <T extends Number> IPoint4<T> revertTranslate(
             final IPoint4<T> pointToTranslate, final ITranslation<?> translation) {
 
         IMatrix4<? extends Number> translationMatrix = GeometricOperations
@@ -273,11 +273,11 @@ public final class GeometricOperations {
     /**
      * Reverts the translation of a {@link IPoint4 Point} by a given
      * {@link ITranslation Translation}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the translated {@link IPoint4
      *            Point}.
-     * 
+     *
      * @param pointToTranslate
      *            the {@link IPoint4 Point} to translate.
      * @param translation
@@ -286,7 +286,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the translated point.
      */
-    public static final <R extends Number> IPoint4<R> revertTranslate(
+    public static <R extends Number> IPoint4<R> revertTranslate(
             final IPoint4<?> pointToTranslate,
             final ITranslation<?> translation, Class<? extends R> returnType) {
 
@@ -302,17 +302,17 @@ public final class GeometricOperations {
     /**
      * Shears the {@link IPoint4 Point} by the provided {@link IShearFactor
      * ShearFactor Factor}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link IPoint4 Point} to shear.
-     * 
+     *
      * @param pointToShear
      *            the {@link IPoint4 Point} to shear.
      * @param shearFactor
      *            the {@link IShearFactor ShearFactor Factor}.
      * @return the sheared {@link IPoint4 Point}.
      */
-    public static final <T extends Number> IPoint4<T> shear(
+    public static <T extends Number> IPoint4<T> shear(
             final IPoint4<T> pointToShear, final IShearFactor<?> shearFactor) {
 
         IMatrix4<? extends Number> shearMatrix = GeometricOperations
@@ -325,10 +325,10 @@ public final class GeometricOperations {
     /**
      * Shears the {@link IPoint4 Point} by the provided {@link IShearFactor
      * ShearFactor Factor}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the sheared {@link IPoint4 Point}.
-     * 
+     *
      * @param pointToShear
      *            the {@link IPoint4 Point} to shear.
      * @param shearFactor
@@ -337,7 +337,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the sheared {@link IPoint4 Point}.
      */
-    public static final <R extends Number> IPoint4<R> shear(
+    public static <R extends Number> IPoint4<R> shear(
             final IPoint4<?> pointToShear, final IShearFactor<?> shearFactor,
             final Class<? extends R> returnType) {
 
@@ -352,17 +352,17 @@ public final class GeometricOperations {
     /**
      * Reverts the shear of the {@link IPoint4 Point} by the provided
      * {@link IShearFactor ShearFactor Factor}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link IPoint4 Point} to shear.
-     * 
+     *
      * @param pointToShear
      *            the {@link IPoint4 Point} to shear.
      * @param shearFactor
      *            the {@link IShearFactor ShearFactor Factor}.
      * @return the sheared {@link IPoint4 Point}.
      */
-    public static final <T extends Number> IPoint4<T> revertShear(
+    public static <T extends Number> IPoint4<T> revertShear(
             final IPoint4<T> pointToShear, final IShearFactor<?> shearFactor) {
 
         IMatrix4<? extends Number> shearMatrix = GeometricOperations
@@ -375,10 +375,10 @@ public final class GeometricOperations {
     /**
      * Reverts the shear of the {@link IPoint4 Point} by the provided
      * {@link IShearFactor ShearFactor Factor}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the sheared {@link IPoint4 Point}.
-     * 
+     *
      * @param pointToShear
      *            the {@link IPoint4 Point} to shear.
      * @param shearFactor
@@ -387,7 +387,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the sheared {@link IPoint4 Point}.
      */
-    public static final <R extends Number> IPoint4<R> revertShear(
+    public static <R extends Number> IPoint4<R> revertShear(
             final IPoint4<?> pointToShear, final IShearFactor<?> shearFactor,
             Class<? extends R> returnType) {
 
@@ -402,18 +402,18 @@ public final class GeometricOperations {
     /**
      * Rotates the {@link IPoint4 Point} by the provided {@link IRotation
      * Angle-Axis Rotation}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link IPoint4 Point} to
      *            rotate.
-     * 
+     *
      * @param pointToRotate
      *            the {@link IPoint4 Point} to rotate.
      * @param rotation
      *            the {@link IRotation Angle-Axis Rotation}.
      * @return the rotated {@link IPoint4 Point}.
      */
-    public static final <T extends Number> IPoint4<T> rotate(
+    public static <T extends Number> IPoint4<T> rotate(
             final IPoint4<T> pointToRotate, final IRotation<?> rotation) {
 
         IMatrix4<? extends Number> rotationMatrix = GeometricOperations
@@ -426,10 +426,10 @@ public final class GeometricOperations {
     /**
      * Rotates the {@link IPoint4 Point} by the provided {@link IRotation
      * Angle-Axis Rotation}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotated {@link IPoint4 Point}.
-     * 
+     *
      * @param pointToRotate
      *            the {@link IPoint4 Point} to rotate.
      * @param rotation
@@ -438,7 +438,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotated {@link IPoint4 Point}.
      */
-    public static final <R extends Number> IPoint4<R> rotate(
+    public static <R extends Number> IPoint4<R> rotate(
             final IPoint4<?> pointToRotate, final IRotation<?> rotation,
             Class<? extends R> returnType) {
 
@@ -453,19 +453,19 @@ public final class GeometricOperations {
     /**
      * Reverts the rotation of the {@link IPoint4 Point} by the provided
      * {@link IRotation Angle-Axis Rotation}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link IPoint4 Point} to
      *            rotate.
-     * 
+     *
      * @param pointToRotate
      *            the {@link IPoint4 Point} to rotate.
      * @param rotation
      *            the {@link IRotation Angle-Axis Rotation}.
      * @return the rotated {@link IPoint4 Point}.
-     * 
+     *
      */
-    public static final <T extends Number> IPoint4<T> revertRotate(
+    public static <T extends Number> IPoint4<T> revertRotate(
             final IPoint4<T> pointToRotate, final IRotation<?> rotation) {
 
         IMatrix4<? extends Number> rotationMatrix = GeometricOperations
@@ -478,10 +478,10 @@ public final class GeometricOperations {
     /**
      * Reverts the rotation of the {@link IPoint4 Point} by the provided
      * {@link IRotation Angle-Axis Rotation}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotated {@link IPoint4 Point}.
-     * 
+     *
      * @param pointToRotate
      *            the {@link IPoint4 Point} to rotate.
      * @param rotation
@@ -490,7 +490,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotated {@link IPoint4 Point}.
      */
-    public static final <R extends Number> IPoint4<R> revertRotate(
+    public static <R extends Number> IPoint4<R> revertRotate(
             final IPoint4<?> pointToRotate, final IRotation<?> rotation,
             final Class<? extends R> returnType) {
 
@@ -504,18 +504,18 @@ public final class GeometricOperations {
     /**
      * Rotates the {@link IPoint4 Point} around the x-axis by the provided
      * rotation angle.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link IPoint4 Point} to
      *            rotate.
-     * 
+     *
      * @param pointToRotate
      *            the {@link IPoint4 Point} to rotate.
      * @param rotationAngle
      *            the rotation angle.
      * @return the rotated {@link IPoint4 Point}.
      */
-    public static final <T extends Number> IPoint4<T> rotateX(
+    public static <T extends Number> IPoint4<T> rotateX(
             final IPoint4<T> pointToRotate, final Number rotationAngle) {
 
         IMatrix4<T> rotationMatrix = GeometricOperations.xRotationMatrix(
@@ -528,10 +528,10 @@ public final class GeometricOperations {
     /**
      * Rotates the {@link IPoint4 Point} around the x-axis by the provided
      * rotation angle.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotated {@link IPoint4 Point}.
-     * 
+     *
      * @param pointToRotate
      *            the {@link IPoint4 Point} to rotate.
      * @param rotationAngle
@@ -540,7 +540,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotated {@link IPoint4 Point}.
      */
-    public static final <R extends Number> IPoint4<R> rotateX(
+    public static <R extends Number> IPoint4<R> rotateX(
             final IPoint4<?> pointToRotate, final Number rotationAngle,
             Class<? extends R> returnType) {
 
@@ -555,18 +555,18 @@ public final class GeometricOperations {
     /**
      * Reverts the rotation of the {@link IPoint4 Point} around the x-axis by
      * the provided rotation angle.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link IPoint4 Point} to
      *            rotate.
-     * 
+     *
      * @param pointToRotate
      *            the {@link IPoint4 Point} to rotate.
      * @param rotationAngle
      *            the rotation angle.
      * @return the rotated {@link IPoint4 Point}.
      */
-    public static final <T extends Number> IPoint4<T> revertRotateX(
+    public static <T extends Number> IPoint4<T> revertRotateX(
             final IPoint4<T> pointToRotate, final Number rotationAngle) {
 
         IMatrix4<T> rotationMatrix = GeometricOperations
@@ -579,10 +579,10 @@ public final class GeometricOperations {
     /**
      * Reverts the rotation of the {@link IPoint4 Point} around the x-axis by
      * the provided rotation angle.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotated {@link IPoint4 Point}.
-     * 
+     *
      * @param pointToRotate
      *            the {@link IPoint4 Point} to rotate.
      * @param rotationAngle
@@ -591,7 +591,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotated {@link IPoint4 Point}.
      */
-    public static final <R extends Number> IPoint4<R> revertRotateX(
+    public static <R extends Number> IPoint4<R> revertRotateX(
             final IPoint4<?> pointToRotate, final Number rotationAngle,
             final Class<? extends R> returnType) {
 
@@ -607,18 +607,18 @@ public final class GeometricOperations {
     /**
      * Rotates the {@link IPoint4 Point} around the y-axis by the provided
      * rotation angle.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link IPoint4 Point} to
      *            rotate.
-     * 
+     *
      * @param pointToRotate
      *            the {@link IPoint4 Point} to rotate.
      * @param rotationAngle
      *            the rotation angle.
      * @return the rotated {@link IPoint4 Point}.
      */
-    public static final <T extends Number> IPoint4<T> rotateY(
+    public static <T extends Number> IPoint4<T> rotateY(
             final IPoint4<T> pointToRotate, final Number rotationAngle) {
 
         IMatrix4<T> rotationMatrix = GeometricOperations.yRotationMatrix(
@@ -632,10 +632,10 @@ public final class GeometricOperations {
     /**
      * Rotates the {@link IPoint4 Point} around the y-axis by the provided
      * rotation angle.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotated {@link IPoint4 Point}.
-     * 
+     *
      * @param pointToRotate
      *            the {@link IPoint4 Point} to rotate.
      * @param rotationAngle
@@ -644,7 +644,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotated {@link IPoint4 Point}.
      */
-    public static final <R extends Number> IPoint4<R> rotateY(
+    public static <R extends Number> IPoint4<R> rotateY(
             final IPoint4<?> pointToRotate, final Number rotationAngle,
             Class<? extends R> returnType) {
 
@@ -659,18 +659,18 @@ public final class GeometricOperations {
     /**
      * Reverts the rotation of the {@link IPoint4 Point} around the y-axis by
      * the provided rotation angle.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link IPoint4 Point} to
      *            rotate.
-     * 
+     *
      * @param pointToRotate
      *            the {@link IPoint4 Point} to rotate.
      * @param rotationAngle
      *            the rotation angle.
      * @return the rotated {@link IPoint4 Point}.
      */
-    public static final <T extends Number> IPoint4<T> revertRotateY(
+    public static <T extends Number> IPoint4<T> revertRotateY(
             final IPoint4<T> pointToRotate, final Number rotationAngle) {
 
         IMatrix4<T> rotationMatrix = GeometricOperations
@@ -684,10 +684,10 @@ public final class GeometricOperations {
     /**
      * Reverts the rotation of the {@link IPoint4 Point} around the y-axis by
      * the provided rotation angle.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotated {@link IPoint4 Point}.
-     * 
+     *
      * @param pointToRotate
      *            the {@link IPoint4 Point} to rotate.
      * @param rotationAngle
@@ -696,7 +696,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotated {@link IPoint4 Point}.
      */
-    public static final <R extends Number> IPoint4<R> revertRotateY(
+    public static <R extends Number> IPoint4<R> revertRotateY(
             final IPoint4<?> pointToRotate, final Number rotationAngle,
             final Class<? extends R> returnType) {
 
@@ -712,18 +712,18 @@ public final class GeometricOperations {
     /**
      * Rotates the {@link IPoint4 Point} around the z-axis by the provided
      * rotation angle.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link IPoint4 Point} to
      *            rotate.
-     * 
+     *
      * @param pointToRotate
      *            the {@link IPoint4 Point} to rotate.
      * @param rotationAngle
      *            the rotation angle.
      * @return the rotated {@link IPoint4 Point}.
      */
-    public static final <T extends Number> IPoint4<T> rotateZ(
+    public static <T extends Number> IPoint4<T> rotateZ(
             final IPoint4<T> pointToRotate, final Number rotationAngle) {
 
         IMatrix4<T> rotationMatrix = GeometricOperations.zRotationMatrix(
@@ -737,10 +737,10 @@ public final class GeometricOperations {
     /**
      * Rotates the {@link IPoint4 Point} around the z-axis by the provided
      * rotation angle.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotated {@link IPoint4 Point}.
-     * 
+     *
      * @param pointToRotate
      *            the {@link IPoint4 Point} to rotate.
      * @param rotationAngle
@@ -749,7 +749,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotated {@link IPoint4 Point}.
      */
-    public static final <R extends Number> IPoint4<R> rotateZ(
+    public static <R extends Number> IPoint4<R> rotateZ(
             final IPoint4<?> pointToRotate, final Number rotationAngle,
             Class<? extends R> returnType) {
 
@@ -764,18 +764,18 @@ public final class GeometricOperations {
     /**
      * Reverts the rotation of the {@link IPoint4 Point} around the z-axis by
      * the provided rotation angle.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link IPoint4 Point} to
      *            rotate.
-     * 
+     *
      * @param pointToRotate
      *            the {@link IPoint4 Point} to rotate.
      * @param rotationAngle
      *            the rotation angle.
      * @return the rotated {@link IPoint4 Point}.
      */
-    public static final <T extends Number> IPoint4<T> revertRotateZ(
+    public static <T extends Number> IPoint4<T> revertRotateZ(
             final IPoint4<T> pointToRotate, final Number rotationAngle) {
 
         IMatrix4<T> rotationMatrix = GeometricOperations
@@ -789,10 +789,10 @@ public final class GeometricOperations {
     /**
      * Reverts the rotation of the {@link IPoint4 Point} around the z-axis by
      * the provided rotation angle.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotated {@link IPoint4 Point}.
-     * 
+     *
      * @param pointToRotate
      *            the {@link IPoint4 Point} to rotate.
      * @param rotationAngle
@@ -801,7 +801,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotated {@link IPoint4 Point}.
      */
-    public static final <R extends Number> IPoint4<R> revertRotateZ(
+    public static <R extends Number> IPoint4<R> revertRotateZ(
             final IPoint4<?> pointToRotate, final Number rotationAngle,
             final Class<? extends R> returnType) {
 
@@ -817,18 +817,18 @@ public final class GeometricOperations {
     /**
      * Translates the {@link ILine4 Line} by the provided {@link ITranslation
      * Translation}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ILine4 Line} to
      *            translate.
-     * 
+     *
      * @param lineToTranslate
      *            the {@link ILine4 Line} to translate.
      * @param translation
      *            the {@link ITranslation Translation}.
      * @return the translated {@link ILine4 Line}.
      */
-    public static final <T extends Number> ILine4<T> translate(
+    public static <T extends Number> ILine4<T> translate(
             final ILine4<T> lineToTranslate, final Translation<?> translation) {
 
 
@@ -846,10 +846,10 @@ public final class GeometricOperations {
     /**
      * Translates the {@link ILine4 Line} by the provided {@link ITranslation
      * Translation}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the translated {@link ILine4 Line}.
-     * 
+     *
      * @param lineToTranslate
      *            the {@link ILine4 Line} to translate.
      * @param translation
@@ -858,7 +858,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the translated {@link ILine4 Line}.
      */
-    public static final <R extends Number> ILine4<R> translate(
+    public static <R extends Number> ILine4<R> translate(
             final ILine4<?> lineToTranslate, final Translation<?> translation,
             final Class<? extends R> returnType) {
 
@@ -877,18 +877,18 @@ public final class GeometricOperations {
     /**
      * Reverts the translation of the {@link ILine4 Line} by the provided
      * {@link ITranslation Translation}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ILine4 Line} to
      *            translate.
-     * 
+     *
      * @param lineToTranslate
      *            the {@link ILine4 Line} to translate.
      * @param translation
      *            the {@link ITranslation Translation}.
      * @return the translated {@link ILine4 Line}.
      */
-    public static final <T extends Number> ILine4<T> revertTranslate(
+    public static <T extends Number> ILine4<T> revertTranslate(
             final ILine4<T> lineToTranslate, final ITranslation<?> translation) {
 
         IPoint4<T> translatedSource = GeometricOperations.revertTranslate(
@@ -906,10 +906,10 @@ public final class GeometricOperations {
     /**
      * Reverts the translation of the {@link ILine4 Line} by the provided
      * {@link ITranslation Translation}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the translated {@link ILine4 Line}.
-     * 
+     *
      * @param lineToTranslate
      *            the {@link ILine4 Line} to translate.
      * @param translation
@@ -918,7 +918,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the translated {@link ILine4 Line}.
      */
-    public static final <R extends Number> ILine4<R> revertTranslate(
+    public static <R extends Number> ILine4<R> revertTranslate(
             final ILine4<?> lineToTranslate, final ITranslation<?> translation,
             Class<? extends R> returnType) {
 
@@ -936,17 +936,17 @@ public final class GeometricOperations {
     /**
      * Scales the {@link ILine4 Line} by the provided {@link IScaleFactor
      * Scaling Factor}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ILine4 Line} to scale.
-     * 
+     *
      * @param lineToScale
      *            the {@link ILine4 Line} to scale.
      * @param scalingFactor
      *            the {@link IScaleFactor Scaling Factor}.
      * @return the scaled {@link ILine4 Line}.
      */
-    public static final <T extends Number> ILine4<T> scaleFactor(
+    public static <T extends Number> ILine4<T> scaleFactor(
             final ILine4<T> lineToScale, final IScaleFactor<?> scalingFactor) {
 
         IMatrix4<?> scalingMatrix = GeometricOperations
@@ -966,10 +966,10 @@ public final class GeometricOperations {
     /**
      * Scales the {@link ILine4 Line} by the provided {@link IScaleFactor
      * Scaling Factor}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the scaled {@link ILine4 Line}.
-     * 
+     *
      * @param lineToScale
      *            the {@link ILine4 Line} to scale.
      * @param scalingFactor
@@ -978,7 +978,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the scaled {@link ILine4 Line}.
      */
-    public static final <R extends Number> ILine4<R> scaleFactor(
+    public static <R extends Number> ILine4<R> scaleFactor(
             final ILine4<?> lineToScale, final IScaleFactor<?> scalingFactor,
             final Class<? extends R> returnType) {
 
@@ -998,17 +998,17 @@ public final class GeometricOperations {
     /**
      * Reverts the scaling of the {@link ILine4 Line} by the provided
      * {@link IScaleFactor Scaling Factor}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ILine4 Line} to scale.
-     * 
+     *
      * @param lineToScale
      *            the {@link ILine4 Line} to scale.
      * @param scalingFactor
      *            the {@link IScaleFactor Scaling Factor}.
      * @return the scaled {@link ILine4 Line}.
      */
-    public static final <T extends Number> ILine4<T> revertScale(
+    public static <T extends Number> ILine4<T> revertScale(
             final ILine4<T> lineToScale, final IScaleFactor<?> scalingFactor) {
 
         IMatrix4<?> scalingMatrix = GeometricOperations
@@ -1027,10 +1027,10 @@ public final class GeometricOperations {
     /**
      * Reverts the scaling of the {@link ILine4 Line} by the provided
      * {@link IScaleFactor Scaling Factor}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the scaled {@link ILine4 Line}.
-     * 
+     *
      * @param lineToScale
      *            the {@link ILine4 Line} to scale.
      * @param scalingFactor
@@ -1039,7 +1039,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the scaled {@link ILine4 Line}.
      */
-    public static final <R extends Number> ILine4<R> revertScale(
+    public static <R extends Number> ILine4<R> revertScale(
             final ILine4<?> lineToScale, final IScaleFactor<?> scalingFactor,
             final Class<? extends R> returnType) {
 
@@ -1060,17 +1060,17 @@ public final class GeometricOperations {
     /**
      * Uniformly scales the {@link ILine4 Line} by the provided {@link Number
      * Scaling Factor}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ILine4 Line} to scale.
-     * 
+     *
      * @param lineToScale
      *            the {@link ILine4 Line} to scale.
      * @param scalingFactor
      *            the {@link Number Scaling Factor}.
      * @return the scaled {@link ILine4 Line}.
      */
-    public static final <T extends Number> ILine4<T> linearScale(
+    public static <T extends Number> ILine4<T> linearScale(
             final ILine4<T> lineToScale, final Number scalingFactor) {
 
         IMatrix4<T> scalingMatrix = GeometricOperations.linearScalingMatrix(
@@ -1089,10 +1089,10 @@ public final class GeometricOperations {
     /**
      * Uniformly scales the {@link ILine4 Line} by the provided {@link Number
      * Scaling Factor}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the scaled {@link ILine4 Line}.
-     * 
+     *
      * @param lineToScale
      *            the {@link ILine4 Line} to scale.
      * @param scalingFactor
@@ -1101,7 +1101,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the scaled {@link ILine4 Line}.
      */
-    public static final <R extends Number> ILine4<R> linearScale(
+    public static <R extends Number> ILine4<R> linearScale(
             final ILine4<?> lineToScale, final Number scalingFactor,
             final Class<? extends R> returnType) {
 
@@ -1121,17 +1121,17 @@ public final class GeometricOperations {
     /**
      * Reverts the uniform scaling of the {@link ILine4 Line} by the provided
      * {@link Number Scaling Factor}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ILine4 Line} to scale.
-     * 
+     *
      * @param lineToScale
      *            the {@link ILine4 Line} to scale.
      * @param scalingFactor
      *            the {@link Number Scaling Factor}.
      * @return the scaled {@link ILine4 Line}.
      */
-    public static final <T extends Number> ILine4<? extends Number> revertLinearScale(
+    public static <T extends Number> ILine4<? extends Number> revertLinearScale(
             final ILine4<T> lineToScale, final Number scalingFactor) {
 
         IMatrix4<T> scalingMatrix = GeometricOperations
@@ -1151,10 +1151,10 @@ public final class GeometricOperations {
     /**
      * Reverts the uniform scaling of the {@link ILine4 Line} by the provided
      * {@link Number Scaling Factor}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the scaled {@link ILine4 Line}.
-     * 
+     *
      * @param lineToScale
      *            the {@link ILine4 Line} to scale.
      * @param scalingFactor
@@ -1163,7 +1163,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the scaled {@link ILine4 Line}.
      */
-    public static final <R extends Number> ILine4<R> revertLinearScale(
+    public static <R extends Number> ILine4<R> revertLinearScale(
             final ILine4<?> lineToScale, final Number scalingFactor,
             final Class<? extends R> returnType) {
 
@@ -1183,17 +1183,17 @@ public final class GeometricOperations {
     /**
      * Shears the {@link ILine4 Line} by the provided {@link IShearFactor
      * ShearFactor Factor}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ILine4 Line} to shear.
-     * 
+     *
      * @param lineToShear
      *            the {@link ILine4 Line} to shear.
      * @param shearFactor
      *            the {@link IShearFactor ShearFactor Factor}.
      * @return the sheared {@link ILine4 Line}.
      */
-    public static final <T extends Number> ILine4<T> shear(
+    public static <T extends Number> ILine4<T> shear(
             final ILine4<T> lineToShear, final IShearFactor<?> shearFactor) {
 
         IPoint4<T> shearedSource = GeometricOperations.shear(
@@ -1209,10 +1209,10 @@ public final class GeometricOperations {
     /**
      * Shears the {@link ILine4 Line} by the provided {@link IShearFactor
      * ShearFactor Factor}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the sheared {@link ILine4 Line}.
-     * 
+     *
      * @param lineToShear
      *            the {@link ILine4 Line} to shear.
      * @param shearFactor
@@ -1221,7 +1221,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the sheared {@link ILine4 Line}.
      */
-    public static final <R extends Number> ILine4<R> shear(
+    public static <R extends Number> ILine4<R> shear(
             final ILine4<?> lineToShear, final IShearFactor<?> shearFactor,
             final Class<? extends R> returnType) {
 
@@ -1238,17 +1238,17 @@ public final class GeometricOperations {
     /**
      * Reverts the shear of the {@link ILine4 Line} by the provided
      * {@link IShearFactor ShearFactor Factor}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ILine4 Line} to shear.
-     * 
+     *
      * @param lineToShear
      *            the {@link ILine4 Line} to shear.
      * @param shearFactor
      *            the {@link IShearFactor ShearFactor Factor}.
      * @return the sheared {@link ILine4 Line}.
      */
-    public static final <T extends Number> ILine4<T> revertShear(
+    public static <T extends Number> ILine4<T> revertShear(
             final ILine4<T> lineToShear, final IShearFactor<?> shearFactor) {
 
         IPoint4<T> shearedSource = GeometricOperations.revertShear(
@@ -1264,10 +1264,10 @@ public final class GeometricOperations {
     /**
      * Reverts the shear of the {@link ILine4 Line} by the provided
      * {@link IShearFactor ShearFactor Factor}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the sheared {@link ILine4 Line}.
-     * 
+     *
      * @param lineToShear
      *            the {@link ILine4 Line} to shear.
      * @param shearFactor
@@ -1276,7 +1276,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the sheared {@link ILine4 Line}.
      */
-    public static final <R extends Number> ILine4<R> revertShear(
+    public static <R extends Number> ILine4<R> revertShear(
             final ILine4<?> lineToShear, final IShearFactor<?> shearFactor,
             final Class<? extends R> returnType) {
 
@@ -1292,17 +1292,17 @@ public final class GeometricOperations {
     /**
      * Rotates the {@link ILine4 Line} by the provided {@link IRotation
      * Angle-Axis Rotation}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ILine4 Line} to rotate.
-     * 
+     *
      * @param lineToRotate
      *            the {@link ILine4 Line} to rotate.
      * @param rotation
      *            the {@link IRotation Angle-Axis Rotation}.
      * @return the rotated {@link ILine4 Line}.
      */
-    public static final <T extends Number> ILine4<T> rotate(
+    public static <T extends Number> ILine4<T> rotate(
             final ILine4<T> lineToRotate, final IRotation<?> rotation) {
 
         IPoint4<T> rotatedSource = GeometricOperations.rotate(
@@ -1318,10 +1318,10 @@ public final class GeometricOperations {
     /**
      * Rotates the {@link ILine4 Line} by the provided {@link IRotation
      * Angle-Axis Rotation}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotated {@link ILine4 Line}.
-     * 
+     *
      * @param lineToRotate
      *            the {@link ILine4 Line} to rotate.
      * @param rotation
@@ -1330,7 +1330,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotated {@link ILine4 Line}.
      */
-    public static final <R extends Number> ILine4<R> rotate(
+    public static <R extends Number> ILine4<R> rotate(
             final ILine4<?> lineToRotate, final Rotation<?> rotation,
             final Class<? extends R> returnType) {
 
@@ -1347,17 +1347,17 @@ public final class GeometricOperations {
     /**
      * Reverts the rotation of the {@link ILine4 Line} by the provided
      * {@link IRotation Angle-Axis Rotation}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ILine4 Line} to rotate.
-     * 
+     *
      * @param lineToRotate
      *            the {@link ILine4 Line} to rotate.
      * @param rotation
      *            the {@link IRotation Angle-Axis Rotation}.
      * @return the rotated {@link ILine4 Line}.
      */
-    public static final <T extends Number> ILine4<T> revertRotate(
+    public static <T extends Number> ILine4<T> revertRotate(
             final ILine4<T> lineToRotate, final IRotation<?> rotation) {
 
         IPoint4<T> rotatedSource = GeometricOperations.revertRotate(
@@ -1373,10 +1373,10 @@ public final class GeometricOperations {
     /**
      * Reverts the rotation of the {@link ILine4 Line} by the provided
      * {@link IRotation Angle-Axis Rotation}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotated {@link ILine4 Line}.
-     * 
+     *
      * @param lineToRotate
      *            the {@link ILine4 Line} to rotate.
      * @param rotation
@@ -1385,7 +1385,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotated {@link ILine4 Line}.
      */
-    public static final <R extends Number> ILine4<? extends Number> revertRotate(
+    public static <R extends Number> ILine4<? extends Number> revertRotate(
             final ILine4<?> lineToRotate, final IRotation<?> rotation,
             final Class<? extends R> returnType) {
 
@@ -1401,17 +1401,17 @@ public final class GeometricOperations {
     /**
      * Rotates the {@link ILine4 Line} around the x-axis by the provided
      * rotation angle.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ILine4 Line} to rotate.
-     * 
+     *
      * @param lineToRotate
      *            the {@link ILine4 Line} to rotate.
      * @param rotationAngle
      *            the rotation angle.
      * @return the rotated {@link ILine4 Line}.
      */
-    public static final <T extends Number> ILine4<T> rotateX(
+    public static <T extends Number> ILine4<T> rotateX(
             final ILine4<T> lineToRotate, final Number rotationAngle) {
 
         IPoint4<T> rotatedSource = GeometricOperations.rotateX(
@@ -1427,10 +1427,10 @@ public final class GeometricOperations {
     /**
      * Rotates the {@link ILine4 Line} around the x-axis by the provided
      * rotation angle.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotated {@link ILine4 Line}.
-     * 
+     *
      * @param lineToRotate
      *            the {@link ILine4 Line} to rotate.
      * @param rotationAngle
@@ -1439,7 +1439,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotated {@link ILine4 Line}.
      */
-    public static final <R extends Number> ILine4<R> rotateX(
+    public static <R extends Number> ILine4<R> rotateX(
             final ILine4<?> lineToRotate, final Number rotationAngle,
             final Class<? extends R> returnType) {
 
@@ -1456,17 +1456,17 @@ public final class GeometricOperations {
     /**
      * Reverts the rotation of the {@link ILine4 Line} around the x-axis by the
      * provided rotation angle.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ILine4 Line} to rotate.
-     * 
+     *
      * @param lineToRotate
      *            the {@link ILine4 Line} to rotate.
      * @param rotationAngle
      *            the rotation angle.
      * @return the rotated {@link ILine4 Line}.
      */
-    public static final <T extends Number> ILine4<T> revertRotateX(
+    public static <T extends Number> ILine4<T> revertRotateX(
             final ILine4<T> lineToRotate, final Number rotationAngle) {
 
         IPoint4<T> rotatedSource = GeometricOperations.revertRotateX(
@@ -1482,10 +1482,10 @@ public final class GeometricOperations {
     /**
      * Reverts the rotation of the {@link ILine4 Line} around the x-axis by the
      * provided rotation angle.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotated {@link ILine4 Line}.
-     * 
+     *
      * @param lineToRotate
      *            the {@link ILine4 Line} to rotate.
      * @param rotationAngle
@@ -1494,7 +1494,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotated {@link ILine4 Line}.
      */
-    public static final <R extends Number> ILine4<R> revertRotateX(
+    public static <R extends Number> ILine4<R> revertRotateX(
             final ILine4<?> lineToRotate, final Number rotationAngle,
             final Class<? extends R> returnType) {
 
@@ -1510,17 +1510,17 @@ public final class GeometricOperations {
     /**
      * Rotates the {@link ILine4 Line} around the y-axis by the provided
      * rotation angle.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ILine4 Line} to rotate.
-     * 
+     *
      * @param lineToRotate
      *            the {@link ILine4 Line} to rotate.
      * @param rotationAngle
      *            the rotation angle.
      * @return the rotated {@link ILine4 Line}.
      */
-    public static final <T extends Number> ILine4<T> rotateY(
+    public static <T extends Number> ILine4<T> rotateY(
             final ILine4<T> lineToRotate, final Number rotationAngle) {
 
         IPoint4<T> rotatedSource = GeometricOperations.rotateY(
@@ -1536,10 +1536,10 @@ public final class GeometricOperations {
     /**
      * Rotates the {@link ILine4 Line} around the y-axis by the provided
      * rotation angle.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotated {@link ILine4 Line}.
-     * 
+     *
      * @param lineToRotate
      *            the {@link ILine4 Line} to rotate.
      * @param rotationAngle
@@ -1548,7 +1548,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotated {@link ILine4 Line}.
      */
-    public static final <R extends Number> ILine4<R> rotateY(
+    public static <R extends Number> ILine4<R> rotateY(
             final ILine4<?> lineToRotate, final Number rotationAngle,
             final Class<? extends R> returnType) {
 
@@ -1565,17 +1565,17 @@ public final class GeometricOperations {
     /**
      * Reverts the rotation of the {@link ILine4 Line} around the y-axis by the
      * provided rotation angle.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ILine4 Line} to rotate.
-     * 
+     *
      * @param lineToRotate
      *            the {@link ILine4 Line} to rotate.
      * @param rotationAngle
      *            the rotation angle.
      * @return the rotated {@link ILine4 Line}.
      */
-    public static final <T extends Number> ILine4<T> revertRotateY(
+    public static <T extends Number> ILine4<T> revertRotateY(
             final ILine4<T> lineToRotate, final Number rotationAngle) {
 
         IPoint4<T> rotatedSource = GeometricOperations.revertRotateY(
@@ -1591,10 +1591,10 @@ public final class GeometricOperations {
     /**
      * Reverts the rotation of the {@link ILine4 Line} around the y-axis by the
      * provided rotation angle.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotated {@link ILine4 Line}.
-     * 
+     *
      * @param lineToRotate
      *            the {@link ILine4 Line} to rotate.
      * @param rotationAngle
@@ -1603,7 +1603,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotated {@link ILine4 Line}.
      */
-    public static final <R extends Number> ILine4<R> revertRotateY(
+    public static <R extends Number> ILine4<R> revertRotateY(
             final ILine4<?> lineToRotate, final Number rotationAngle,
             final Class<? extends R> returnType) {
 
@@ -1619,17 +1619,17 @@ public final class GeometricOperations {
     /**
      * Rotates the {@link ILine4 Line} around the z-axis by the provided
      * rotation angle.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ILine4 Line} to rotate.
-     * 
+     *
      * @param lineToRotate
      *            the {@link ILine4 Line} to rotate.
      * @param rotationAngle
      *            the rotation angle.
      * @return the rotated {@link ILine4 Line}.
      */
-    public static final <T extends Number> ILine4<T> rotateZ(
+    public static <T extends Number> ILine4<T> rotateZ(
             final ILine4<T> lineToRotate, final Number rotationAngle) {
 
         IPoint4<T> rotatedSource = GeometricOperations.rotateZ(
@@ -1645,10 +1645,10 @@ public final class GeometricOperations {
     /**
      * Rotates the {@link ILine4 Line} around the z-axis by the provided
      * rotation angle.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotated {@link ILine4 Line}.
-     * 
+     *
      * @param lineToRotate
      *            the {@link ILine4 Line} to rotate.
      * @param rotationAngle
@@ -1657,7 +1657,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotated {@link ILine4 Line}.
      */
-    public static final <R extends Number> ILine4<R> rotateZ(
+    public static <R extends Number> ILine4<R> rotateZ(
             final ILine4<?> lineToRotate, final Number rotationAngle,
             final Class<? extends R> returnType) {
 
@@ -1674,17 +1674,17 @@ public final class GeometricOperations {
     /**
      * Reverts the rotation of the {@link ILine4 Line} around the z-axis by the
      * provided rotation angle.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ILine4 Line} to rotate.
-     * 
+     *
      * @param lineToRotate
      *            the {@link ILine4 Line} to rotate.
      * @param rotationAngle
      *            the rotation angle.
      * @return the rotated {@link ILine4 Line}.
      */
-    public static final <T extends Number> ILine4<T> revertRotateZ(
+    public static <T extends Number> ILine4<T> revertRotateZ(
             final ILine4<T> lineToRotate, final Number rotationAngle) {
 
         IPoint4<T> rotatedSource = GeometricOperations.revertRotateZ(
@@ -1700,10 +1700,10 @@ public final class GeometricOperations {
     /**
      * Reverts the rotation of the {@link ILine4 Line} around the z-axis by the
      * provided rotation angle.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotated {@link ILine4 Line}.
-     * 
+     *
      * @param lineToRotate
      *            the {@link ILine4 Line} to rotate.
      * @param rotationAngle
@@ -1712,7 +1712,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotated {@link ILine4 Line}.
      */
-    public static final <R extends Number> ILine4<R> revertRotateZ(
+    public static <R extends Number> ILine4<R> revertRotateZ(
             final ILine4<?> lineToRotate, final Number rotationAngle,
             final Class<? extends R> returnType) {
 
@@ -1728,15 +1728,15 @@ public final class GeometricOperations {
     /**
      * Creates the translation {@link IMatrix4 Matrix} from the provided
      * {@link ITranslation}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ITranslation}.
-     * 
+     *
      * @param translation
      *            the {@link ITranslation}.
      * @return the translation {@link IMatrix4 Matrix}.
      */
-    public static final <T extends Number> IMatrix4<T> translationMatrix(
+    public static <T extends Number> IMatrix4<T> translationMatrix(
             final ITranslation<T> translation) {
 
         return GeometricOperations.translationMatrix(
@@ -1747,18 +1747,18 @@ public final class GeometricOperations {
     /**
      * Creates the translation {@link IMatrix4 Matrix} from the provided
      * {@link ITranslation}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the translation {@link IMatrix4
      *            Matrix}.
-     * 
+     *
      * @param translation
      *            the {@link ITranslation}.
      * @param returnType
      *            the desired return type.
      * @return the translation {@link IMatrix4 Matrix}.
      */
-    public static final <R extends Number> IMatrix4<R> translationMatrix(
+    public static <R extends Number> IMatrix4<R> translationMatrix(
             final ITranslation<?> translation, Class<? extends R> returnType) {
 
         return GeometricOperations.translationMatrix(
@@ -1770,11 +1770,11 @@ public final class GeometricOperations {
     /**
      * Creates the translation {@link IMatrix4 Matrix} from the provided
      * components.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the translation {@link IMatrix4
      *            Matrix}.
-     * 
+     *
      * @param tx
      *            the x translation component.
      * @param ty
@@ -1785,29 +1785,29 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the translation {@link IMatrix4 Matrix}.
      */
-    public static final <R extends Number> IMatrix4<R> translationMatrix(
+    public static <R extends Number> IMatrix4<R> translationMatrix(
             final Number tx, final Number ty, final Number tz,
             Class<? extends R> returnType) {
 
 
-        return new Matrix4<>(Vector4.I_UNIT_VECTOR(returnType),
-                Vector4.J_UNIT_VECTOR(returnType),
-                Vector4.K_UNIT_VECTOR(returnType),
+        return new Matrix4<>(Vector4.iUnitVector(returnType),
+                Vector4.jUnitVector(returnType),
+                Vector4.kUnitVector(returnType),
                 new Point4<R>(tx, ty, tz, returnType), returnType);
     }
 
     /**
      * Creates the inverse translation {@link IMatrix4 Matrix} from the provided
      * {@link ITranslation}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ITranslation}.
-     * 
+     *
      * @param translation
      *            the {@link ITranslation}.
      * @return the inverse translation {@link IMatrix4 Matrix}.
      */
-    public static final <T extends Number> IMatrix4<T> inverseTranslationMatrix(
+    public static <T extends Number> IMatrix4<T> inverseTranslationMatrix(
             final ITranslation<T> translation) {
 
         return GeometricOperations.inverseTranslationMatrix(
@@ -1818,18 +1818,18 @@ public final class GeometricOperations {
     /**
      * Creates the inverse translation {@link IMatrix4 Matrix} from the provided
      * {@link ITranslation}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the translation {@link IMatrix4
      *            Matrix}.
-     * 
+     *
      * @param translation
      *            the {@link ITranslation}.
      * @param returnType
      *            the desired return type.
      * @return the inverse translation {@link IMatrix4 Matrix}.
      */
-    public static final <R extends Number> IMatrix4<R> inverseTranslationMatrix(
+    public static <R extends Number> IMatrix4<R> inverseTranslationMatrix(
             final ITranslation<?> translation, Class<? extends R> returnType) {
 
         return GeometricOperations.inverseTranslationMatrix(
@@ -1841,11 +1841,11 @@ public final class GeometricOperations {
     /**
      * Creates the inverse translation {@link IMatrix4 Matrix} from the provided
      * components.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the translation {@link IMatrix4
      *            Matrix}.
-     * 
+     *
      * @param tx
      *            the x translation component.
      * @param ty
@@ -1856,7 +1856,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the translation {@link IMatrix4 Matrix}.
      */
-    public static final <R extends Number> IMatrix4<R> inverseTranslationMatrix(
+    public static <R extends Number> IMatrix4<R> inverseTranslationMatrix(
             final Number tx, final Number ty, final Number tz,
             Class<? extends R> returnType) {
 
@@ -1871,16 +1871,16 @@ public final class GeometricOperations {
     /**
      * Creates the scaling {@link IMatrix4 Matrix} from the provided
      * {@link IScaleFactor ScaleFactor}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link IScaleFactor
      *            ScaleFactor}.
-     * 
+     *
      * @param scaling
      *            the {@link IScaleFactor ScaleFactor}.
      * @return the scaling {@link IMatrix4 Matrix}.
      */
-    public static final <T extends Number> IMatrix4<T> scalingMatrix(
+    public static <T extends Number> IMatrix4<T> scalingMatrix(
             final IScaleFactor<T> scaling) {
 
         return GeometricOperations.scalingMatrix(scaling.getScaleFactorX(),
@@ -1891,17 +1891,17 @@ public final class GeometricOperations {
     /**
      * Creates the scaling {@link IMatrix4 Matrix} from the provided
      * {@link IScaleFactor ScaleFactor}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the scale {@link IMatrix4 Matrix}.
-     * 
+     *
      * @param scaling
      *            {@link IScaleFactor ScaleFactor}.
      * @param returnType
      *            the desired return type.
      * @return the scaling {@link IMatrix4 Matrix}.
      */
-    public static final <R extends Number> IMatrix4<R> scalingMatrix(
+    public static <R extends Number> IMatrix4<R> scalingMatrix(
             final IScaleFactor<?> scaling, final Class<? extends R> returnType) {
 
         return GeometricOperations.scalingMatrix(scaling.getScaleFactorX(),
@@ -1912,10 +1912,10 @@ public final class GeometricOperations {
 
     /**
      * Creates the scaling {@link IMatrix4 Matrix} from the provided components.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the scale {@link IMatrix4 Matrix}.
-     * 
+     *
      * @param sx
      *            the x scaling component.
      * @param sy
@@ -1926,7 +1926,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the scaling {@link IMatrix4 Matrix}.
      */
-    public static final <R extends Number> IMatrix4<R> scalingMatrix(
+    public static <R extends Number> IMatrix4<R> scalingMatrix(
             final Number sx, final Number sy, final Number sz,
             final Class<? extends R> returnType) {
 
@@ -1938,27 +1938,27 @@ public final class GeometricOperations {
                 .greatestPrecisionType(classes);
 
         return new Matrix4<>(VectorAlgebraicOperations.multiply(
-                Vector4.I_UNIT_VECTOR(highestPrecision), sx),
+                Vector4.iUnitVector(highestPrecision), sx),
                 VectorAlgebraicOperations.multiply(
-                        Vector4.J_UNIT_VECTOR(highestPrecision), sy),
+                        Vector4.jUnitVector(highestPrecision), sy),
                 VectorAlgebraicOperations.multiply(
-                        Vector4.K_UNIT_VECTOR(highestPrecision), sz),
-                Point4.ORIGIN(highestPrecision), returnType);
+                        Vector4.kUnitVector(highestPrecision), sz),
+                Point4.origin(highestPrecision), returnType);
     }
 
     /**
      * Creates the inverse scaling {@link IMatrix4 Matrix} from the provided
      * {@link IScaleFactor ScaleFactor}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link IScaleFactor
      *            ScaleFactor}.
-     * 
+     *
      * @param scaling
      *            the {@link IScaleFactor ScaleFactor}
      * @return the inverse scaling {@link IMatrix4 Matrix}.
      */
-    public static final <T extends Number> IMatrix4<T> inverseScalingMatrix(
+    public static <T extends Number> IMatrix4<T> inverseScalingMatrix(
             final IScaleFactor<T> scaling) {
 
         return GeometricOperations.inverseScalingMatrix(
@@ -1969,17 +1969,17 @@ public final class GeometricOperations {
     /**
      * Creates the inverse scaling {@link IMatrix4 Matrix} from the provided
      * {@link IScaleFactor ScaleFactor}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the scale {@link IMatrix4 Matrix}.
-     * 
+     *
      * @param scaling
      *            the {@link IScaleFactor ScaleFactor}
      * @param returnType
      *            the desired return type.
      * @return the inverse scaling {@link IMatrix4 Matrix}.
      */
-    public static final <R extends Number> IMatrix4<R> inverseScalingMatrix(
+    public static <R extends Number> IMatrix4<R> inverseScalingMatrix(
             final IScaleFactor<?> scaling, final Class<? extends R> returnType) {
 
         return GeometricOperations.inverseScalingMatrix(
@@ -1991,10 +1991,10 @@ public final class GeometricOperations {
     /**
      * Creates the inverse scaling {@link IMatrix4 Matrix} from the provided
      * components.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the scale {@link IMatrix4 Matrix}.
-     * 
+     *
      * @param sx
      *            the x scaling component.
      * @param sy
@@ -2005,7 +2005,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the scaling {@link IMatrix4 Matrix}.
      */
-    public static final <R extends Number> IMatrix4<R> inverseScalingMatrix(
+    public static <R extends Number> IMatrix4<R> inverseScalingMatrix(
             final Number sx, final Number sy, final Number sz,
             final Class<? extends R> returnType) {
 
@@ -2020,17 +2020,17 @@ public final class GeometricOperations {
     /**
      * Creates the linear scaling {@link IMatrix4 Matrix} from the provided
      * component.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the scale {@link IMatrix4 Matrix}.
-     * 
+     *
      * @param scalingFactor
      *            the scaling factor .
      * @param returnType
      *            the desired return type.
      * @return the linear scaling {@link IMatrix4 Matrix}.
      */
-    public static final <R extends Number> IMatrix4<R> linearScalingMatrix(
+    public static <R extends Number> IMatrix4<R> linearScalingMatrix(
             final Number scalingFactor, final Class<? extends R> returnType) {
 
 
@@ -2041,17 +2041,17 @@ public final class GeometricOperations {
     /**
      * Creates the inverse linear scaling {@link IMatrix4 Matrix} from the
      * provided component.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the scale {@link IMatrix4 Matrix}.
-     * 
+     *
      * @param scalingFactor
      *            the scaling factor .
      * @param returnType
      *            the desired return type.
      * @return the inverse linear scaling {@link IMatrix4 Matrix}.
      */
-    public static final <R extends Number> IMatrix4<R> inverseLinearScalingMatrix(
+    public static <R extends Number> IMatrix4<R> inverseLinearScalingMatrix(
             final Number scalingFactor, final Class<? extends R> returnType) {
 
 
@@ -2063,16 +2063,16 @@ public final class GeometricOperations {
     /**
      * Creates the shear {@link IMatrix4 Matrix} from the provided
      * {@link IShearFactor ShearFactor Factor}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link IShearFactor ShearFactor
      *            Factor}.
-     * 
+     *
      * @param shearFactor
      *            the {@link IShearFactor ShearFactor Factor}
      * @return the shear {@link IMatrix4 Matrix}.
      */
-    public static final <T extends Number> IMatrix4<T> shearMatrix(
+    public static <T extends Number> IMatrix4<T> shearMatrix(
             final IShearFactor<T> shearFactor) {
 
         return GeometricOperations.shearMatrix(
@@ -2084,17 +2084,17 @@ public final class GeometricOperations {
     /**
      * Creates the shear {@link IMatrix4 Matrix} from the provided
      * {@link IShearFactor ShearFactor Factor}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the shear {@link IMatrix4 Matrix}.
-     * 
+     *
      * @param shearFactor
      *            the {@link IShearFactor ShearFactor Factor}.
      * @param returnType
      *            the desired return type.
      * @return the shear {@link IMatrix4 Matrix}.
      */
-    public static final <R extends Number> IMatrix4<R> shearMatrix(
+    public static <R extends Number> IMatrix4<R> shearMatrix(
             final IShearFactor<?> shearFactor,
             final Class<? extends R> returnType) {
 
@@ -2108,10 +2108,10 @@ public final class GeometricOperations {
     /**
      * Creates the shear {@link IMatrix4 Matrix} for shearing by the provided
      * shear coefficient and shear component.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the shear {@link IMatrix4 Matrix}.
-     * 
+     *
      * @param shearCoefficient
      *            the shear coefficient.
      * @param shearComponent
@@ -2120,7 +2120,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the shear {@link IMatrix4 Matrix}.
      */
-    public static final <R extends Number> IMatrix4<R> shearMatrix(
+    public static <R extends Number> IMatrix4<R> shearMatrix(
             final Number shearCoefficient, final ShearComponent shearComponent,
             Class<? extends R> returnType) {
 
@@ -2130,57 +2130,57 @@ public final class GeometricOperations {
 
         switch (shearComponent) {
             case X_BY_Y:
-                i = Vector4.I_UNIT_VECTOR(returnType);
+                i = Vector4.iUnitVector(returnType);
                 j = new Vector4<R>(shearCoefficient, 1, 0, returnType);
-                k = Vector4.K_UNIT_VECTOR(returnType);
+                k = Vector4.kUnitVector(returnType);
                 break;
             case X_BY_Z:
-                i = Vector4.I_UNIT_VECTOR(returnType);
-                j = Vector4.J_UNIT_VECTOR(returnType);
+                i = Vector4.iUnitVector(returnType);
+                j = Vector4.jUnitVector(returnType);
                 k = new Vector4<R>(shearCoefficient, 0, 1, returnType);
                 break;
             case Y_BY_X:
                 i = new Vector4<R>(1, shearCoefficient, 0, returnType);
-                j = Vector4.J_UNIT_VECTOR(returnType);
-                k = Vector4.K_UNIT_VECTOR(returnType);
+                j = Vector4.jUnitVector(returnType);
+                k = Vector4.kUnitVector(returnType);
                 break;
             case Y_BY_Z:
-                i = Vector4.I_UNIT_VECTOR(returnType);
-                j = Vector4.J_UNIT_VECTOR(returnType);
+                i = Vector4.iUnitVector(returnType);
+                j = Vector4.jUnitVector(returnType);
                 k = new Vector4<R>(0, shearCoefficient, 1, returnType);
                 break;
             case Z_BY_X:
                 i = new Vector4<R>(1, 0, shearCoefficient, returnType);
-                j = Vector4.J_UNIT_VECTOR(returnType);
-                k = Vector4.K_UNIT_VECTOR(returnType);
+                j = Vector4.jUnitVector(returnType);
+                k = Vector4.kUnitVector(returnType);
                 break;
             case Z_BY_Y:
-                i = Vector4.I_UNIT_VECTOR(returnType);
+                i = Vector4.iUnitVector(returnType);
                 j = new Vector4<R>(0, 1, shearCoefficient, returnType);
-                k = Vector4.K_UNIT_VECTOR(returnType);
+                k = Vector4.kUnitVector(returnType);
                 break;
             default:
                 throw new IllegalArgumentException(
                         "Cannot shear by provided component!");
         }
 
-        return new Matrix4<>(i, j, k, Point4.ORIGIN(returnType), returnType);
+        return new Matrix4<>(i, j, k, Point4.origin(returnType), returnType);
     }
 
 
     /**
      * Creates the inverse shear {@link IMatrix4 Matrix} for the provided
      * {@link IShearFactor ShearFactor Factor}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link IShearFactor ShearFactor
      *            Factor}.
-     * 
+     *
      * @param shearFactor
      *            the {@link IShearFactor ShearFactor Factor}.
      * @return the inverse shear {@link IMatrix4 Matrix}.
      */
-    public static final <T extends Number> IMatrix4<T> inverseShearMatrix(
+    public static <T extends Number> IMatrix4<T> inverseShearMatrix(
             final IShearFactor<T> shearFactor) {
 
         return GeometricOperations.inverseShearMatrix(
@@ -2191,17 +2191,17 @@ public final class GeometricOperations {
     /**
      * Creates the inverse shear {@link IMatrix4 Matrix} for the provided
      * {@link IShearFactor ShearFactor Factor}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the shear {@link IMatrix4 Matrix}.
-     * 
+     *
      * @param shear
      *            the {@link IShearFactor ShearFactor Factor}.
      * @param returnType
      *            the desired return type.
      * @return the inverse shear {@link IMatrix4 Matrix}.
      */
-    public static final <R extends Number> IMatrix4<R> inverseShearMatrix(
+    public static <R extends Number> IMatrix4<R> inverseShearMatrix(
             final IShearFactor<?> shear, final Class<? extends R> returnType) {
 
         return GeometricOperations.inverseShearMatrix(
@@ -2213,10 +2213,10 @@ public final class GeometricOperations {
     /**
      * Creates the inverse shear {@link IMatrix4 Matrix} for shearing by the
      * provided shear coefficient and shear component.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the shear {@link IMatrix4 Matrix}.
-     * 
+     *
      * @param shearCoefficient
      *            the shear coefficient.
      * @param shearComponent
@@ -2225,7 +2225,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the inverse shear {@link IMatrix4 Matrix}.
      */
-    public static final <R extends Number> IMatrix4<R> inverseShearMatrix(
+    public static <R extends Number> IMatrix4<R> inverseShearMatrix(
             final Number shearCoefficient, final ShearComponent shearComponent,
             final Class<? extends R> returnType) {
 
@@ -2237,16 +2237,16 @@ public final class GeometricOperations {
     /**
      * Creates the rotation {@link IMatrix4 Matrix} for the provided
      * {@link IRotation Angle-Axis Rotation}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link IRotation Angle-Axis
      *            Rotation}.
-     * 
+     *
      * @param rotation
      *            the {@link IRotation Angle-Axis Rotation}.
      * @return the rotation {@link IMatrix4 Matrix}.
      */
-    public static final <T extends Number> IMatrix4<T> rotationMatrix(
+    public static <T extends Number> IMatrix4<T> rotationMatrix(
             final IRotation<T> rotation) {
 
         return GeometricOperations.rotationMatrix(rotation.getRotationAxis(),
@@ -2256,18 +2256,18 @@ public final class GeometricOperations {
     /**
      * Creates the rotation {@link IMatrix4 Matrix} for the provided
      * {@link IRotation Angle-Axis Rotation}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotation {@link IMatrix4
      *            Matrix}.
-     * 
+     *
      * @param rotation
      *            the {@link IRotation Angle-Axis Rotation}.
      * @param returnType
      *            the desired return type.
      * @return the rotation {@link IMatrix4 Matrix}.
      */
-    public static final <R extends Number> IMatrix4<R> rotationMatrix(
+    public static <R extends Number> IMatrix4<R> rotationMatrix(
             final IRotation<?> rotation, final Class<? extends R> returnType) {
 
         return GeometricOperations.rotationMatrix(rotation.getRotationAxis(),
@@ -2277,17 +2277,17 @@ public final class GeometricOperations {
     /**
      * Creates the rotation {@link IMatrix4 Matrix} for a rotation around the
      * provided rotation {@link IVector4 Axis} by the provided angle.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the rotation {@link IVector4 Axis}.
-     * 
+     *
      * @param rotationAxis
      *            the {@link IVector4 Axis} of rotation.
      * @param rotationAngle
      *            the rotation angle.
      * @return the rotation {@link IMatrix4 Matrix}.
      */
-    public static final <T extends Number> IMatrix4<T> rotationMatrix(
+    public static <T extends Number> IMatrix4<T> rotationMatrix(
             final ITuple4<T> rotationAxis, final T rotationAngle) {
 
         Double cos = Math.cos(NumberUtils.cast(rotationAngle, Double.class));
@@ -2299,6 +2299,7 @@ public final class GeometricOperations {
         T uy = rotationAxis.getY();
         T uz = rotationAxis.getZ();
 
+        //CHECKSTYLE:OFF LocalVariableName LocalFinalVariableName
         Number ux_2 = ArithmeticOperations.multiply(ux, ux);
         Number uy_2 = ArithmeticOperations.multiply(uy, uy);
         Number uz_2 = ArithmeticOperations.multiply(uz, uz);
@@ -2332,6 +2333,7 @@ public final class GeometricOperations {
                 ArithmeticOperations.multiply(uy_uz, oneMinusCos), ux_sin);
         Number r_zk = ArithmeticOperations.add(
                 ArithmeticOperations.multiply(uz_2, oneMinusCos), cos);
+        //CHECKSTYLE:ON LocalVariableName LocalFinalVariableName
 
 
         Class<? extends Number> highestPrecisionI = NumberComparator
@@ -2350,18 +2352,18 @@ public final class GeometricOperations {
                 highestPrecisionK);
 
 
-        return new Matrix4<>(i, j, k, Point4.ORIGIN(rotationAxis.getType()),
+        return new Matrix4<>(i, j, k, Point4.origin(rotationAxis.getType()),
                 rotationAxis.getType());
     }
 
     /**
      * Creates the rotation {@link IMatrix4 Matrix} for a rotation around the
      * provided rotation {@link IVector4 Axis} by the provided angle.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotation {@link IMatrix4
      *            Matrix}.
-     * 
+     *
      * @param rotationAxis
      *            the {@link IVector4 Axis} of rotation.
      * @param rotationAngle
@@ -2370,7 +2372,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotation {@link IMatrix4 Matrix}.
      */
-    public static final <R extends Number> IMatrix4<R> rotationMatrix(
+    public static <R extends Number> IMatrix4<R> rotationMatrix(
             final ITuple4<?> rotationAxis, final Number rotationAngle,
             final Class<? extends R> returnType) {
 
@@ -2383,6 +2385,7 @@ public final class GeometricOperations {
         Number uy = rotationAxis.getY();
         Number uz = rotationAxis.getZ();
 
+        //CHECKSTYLE:OFF LocalVariableName LocalFinalVariableName
         Number ux_2 = ArithmeticOperations.multiply(ux, ux);
         Number uy_2 = ArithmeticOperations.multiply(uy, uy);
         Number uz_2 = ArithmeticOperations.multiply(uz, uz);
@@ -2416,6 +2419,7 @@ public final class GeometricOperations {
                 ArithmeticOperations.multiply(uy_uz, oneMinusCos), ux_sin);
         Number r_zk = ArithmeticOperations.add(
                 ArithmeticOperations.multiply(uz_2, oneMinusCos), cos);
+        //CHECKSTYLE:ON LocalVariableName LocalFinalVariableName
 
         Class<? extends Number> highestPrecisionI = NumberComparator
                 .greaterPrecisionType(r_xi, r_yi, r_zi);
@@ -2432,22 +2436,22 @@ public final class GeometricOperations {
         IVector4<? extends Number> k = new Vector4<Number>(r_xk, r_yk, r_zk,
                 highestPrecisionK);
 
-        return new Matrix4<>(i, j, k, Point4.ORIGIN(returnType), returnType);
+        return new Matrix4<>(i, j, k, Point4.origin(returnType), returnType);
     }
 
     /**
      * Creates the inverse rotation {@link IMatrix4 Matrix} for the provided
      * {@link IRotation Angle-Axis Rotation}.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link IRotation Angle-Axis
      *            Rotation}.
-     * 
+     *
      * @param rotation
      *            the {@link IRotation Angle-Axis Rotation}.
      * @return the rotation {@link IMatrix4 Matrix}.
      */
-    public static final <T extends Number> IMatrix4<T> inverseRotationMatrix(
+    public static <T extends Number> IMatrix4<T> inverseRotationMatrix(
             final IRotation<T> rotation) {
 
         return GeometricOperations.inverseRotationMatrix(
@@ -2458,18 +2462,18 @@ public final class GeometricOperations {
     /**
      * Creates the inverse rotation {@link IMatrix4 Matrix} for the provided
      * {@link IRotation Angle-Axis Rotation}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotation {@link IMatrix4
      *            Matrix}.
-     * 
+     *
      * @param rotation
      *            the {@link IRotation Angle-Axis Rotation}.
      * @param returnType
      *            the desired return type.
      * @return the rotation {@link IMatrix4 Matrix}.
      */
-    public static final <R extends Number> IMatrix4<R> inverseRotationMatrix(
+    public static <R extends Number> IMatrix4<R> inverseRotationMatrix(
             final IRotation<?> rotation, final Class<? extends R> returnType) {
 
         return GeometricOperations.inverseRotationMatrix(
@@ -2480,18 +2484,18 @@ public final class GeometricOperations {
     /**
      * Creates the inverse rotation {@link IMatrix4 Matrix} for a rotation
      * around the provided rotation {@link IVector4 Axis} by the provided angle.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the rotation {@link IVector4 Axis}
      *            and angle.
-     * 
+     *
      * @param rotationAxis
      *            the {@link IVector4 Axis} of rotation.
      * @param rotationAngle
      *            the rotation angle.
      * @return the rotation {@link IMatrix4 Matrix}.
      */
-    public static final <T extends Number> IMatrix4<T> inverseRotationMatrix(
+    public static <T extends Number> IMatrix4<T> inverseRotationMatrix(
             final IVector4<T> rotationAxis, final T rotationAngle) {
 
         return GeometricOperations.rotationMatrix(rotationAxis, rotationAngle)
@@ -2501,11 +2505,11 @@ public final class GeometricOperations {
     /**
      * Creates the inverse rotation {@link IMatrix4 Matrix} for a rotation
      * around the provided rotation {@link IVector4 Axis} by the provided angle.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotation {@link IMatrix4
      *            Matrix}.
-     * 
+     *
      * @param rotationAxis
      *            the {@link IVector4 Axis} of rotation.
      * @param rotationAngle
@@ -2514,7 +2518,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotation {@link IMatrix4 Matrix}.
      */
-    public static final <R extends Number> IMatrix4<R> inverseRotationMatrix(
+    public static <R extends Number> IMatrix4<R> inverseRotationMatrix(
             final IVector4<?> rotationAxis, final Number rotationAngle,
             final Class<? extends R> returnType) {
 
@@ -2526,22 +2530,22 @@ public final class GeometricOperations {
     /**
      * Creates the rotation {@link IMatrix4 Matrix} around the x-axis by the
      * provided rotation angle.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotation {@link IMatrix4
      *            Matrix}.
-     * 
+     *
      * @param rotationAngle
      *            the rotation angle.
      * @param returnType
      *            the desired return type.
      * @return the rotation {@link IMatrix4 Matrix}.
      */
-    public static final <R extends Number> IMatrix4<R> xRotationMatrix(
+    public static <R extends Number> IMatrix4<R> xRotationMatrix(
             final Number rotationAngle, final Class<? extends R> returnType) {
 
         return GeometricOperations.rotationMatrix(
-                Vector4.I_UNIT_VECTOR(rotationAngle.getClass()), rotationAngle,
+                Vector4.iUnitVector(rotationAngle.getClass()), rotationAngle,
                 returnType);
     }
 
@@ -2550,22 +2554,22 @@ public final class GeometricOperations {
     /**
      * Creates the inverse rotation {@link IMatrix4 Matrix} around the x-axis by
      * the provided rotation angle.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotation {@link IMatrix4
      *            Matrix}.
-     * 
+     *
      * @param rotationAngle
      *            the rotation angle.
      * @param returnType
      *            the desired return type.
      * @return the rotation {@link IMatrix4 Matrix}.
      */
-    public static final <R extends Number> IMatrix4<R> inverseXRotationMatrix(
+    public static <R extends Number> IMatrix4<R> inverseXRotationMatrix(
             final Number rotationAngle, final Class<? extends R> returnType) {
 
         return GeometricOperations.rotationMatrix(
-                Vector4.I_UNIT_VECTOR(rotationAngle.getClass()), rotationAngle,
+                Vector4.iUnitVector(rotationAngle.getClass()), rotationAngle,
                 returnType).transpose();
     }
 
@@ -2574,22 +2578,22 @@ public final class GeometricOperations {
     /**
      * Creates the rotation {@link IMatrix4 Matrix} around the y-axis by the
      * provided rotation angle.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotation {@link IMatrix4
      *            Matrix}.
-     * 
+     *
      * @param rotationAngle
      *            the rotation angle.
      * @param returnType
      *            the desired return type.
      * @return the rotation {@link IMatrix4 Matrix}.
      */
-    public static final <R extends Number> IMatrix4<R> yRotationMatrix(
+    public static <R extends Number> IMatrix4<R> yRotationMatrix(
             final Number rotationAngle, final Class<? extends R> returnType) {
 
         return GeometricOperations.rotationMatrix(
-                Vector4.J_UNIT_VECTOR(rotationAngle.getClass()), rotationAngle,
+                Vector4.jUnitVector(rotationAngle.getClass()), rotationAngle,
                 returnType);
     }
 
@@ -2598,22 +2602,22 @@ public final class GeometricOperations {
     /**
      * Creates the inverse rotation {@link IMatrix4 Matrix} around the y-axis by
      * the provided rotation angle.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotation {@link IMatrix4
      *            Matrix}.
-     * 
+     *
      * @param rotationAngle
      *            the rotation angle.
      * @param returnType
      *            the desired return type.
      * @return the rotation {@link IMatrix4 Matrix}.
      */
-    public static final <R extends Number> IMatrix4<R> inverseYRotationMatrix(
+    public static <R extends Number> IMatrix4<R> inverseYRotationMatrix(
             final Number rotationAngle, final Class<? extends R> returnType) {
 
         return GeometricOperations.rotationMatrix(
-                Vector4.J_UNIT_VECTOR(rotationAngle.getClass()), rotationAngle,
+                Vector4.jUnitVector(rotationAngle.getClass()), rotationAngle,
                 returnType).transpose();
     }
 
@@ -2621,22 +2625,22 @@ public final class GeometricOperations {
     /**
      * Creates the rotation {@link IMatrix4 Matrix} around the z-axis by the
      * provided rotation angle.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotation {@link IMatrix4
      *            Matrix}.
-     * 
+     *
      * @param rotationAngle
      *            the rotation angle.
      * @param returnType
      *            the desired return type.
      * @return the rotation {@link IMatrix4 Matrix}.
      */
-    public static final <R extends Number> IMatrix4<R> zRotationMatrix(
+    public static <R extends Number> IMatrix4<R> zRotationMatrix(
             final Number rotationAngle, final Class<? extends R> returnType) {
 
         return GeometricOperations.rotationMatrix(
-                Vector4.K_UNIT_VECTOR(rotationAngle.getClass()), rotationAngle,
+                Vector4.kUnitVector(rotationAngle.getClass()), rotationAngle,
                 returnType);
     }
 
@@ -2644,33 +2648,33 @@ public final class GeometricOperations {
     /**
      * Creates the inverse rotation {@link IMatrix4 Matrix} around the z-axis by
      * the provided rotation angle.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotation {@link IMatrix4
      *            Matrix}.
-     * 
+     *
      * @param rotationAngle
      *            the rotation angle.
      * @param returnType
      *            the desired return type.
      * @return the rotation {@link IMatrix4 Matrix}.
      */
-    public static final <R extends Number> IMatrix4<R> inverseZRotationMatrix(
+    public static <R extends Number> IMatrix4<R> inverseZRotationMatrix(
             final Number rotationAngle, final Class<? extends R> returnType) {
 
         return GeometricOperations.rotationMatrix(
-                Vector4.K_UNIT_VECTOR(rotationAngle.getClass()), rotationAngle,
+                Vector4.kUnitVector(rotationAngle.getClass()), rotationAngle,
                 returnType).transpose();
     }
 
 
     /**
      * Translates the {@link ITuple4 Tuple} by the x, y, and z translation.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ITuple4 Tuple} to
      *            translate.
-     * 
+     *
      * @param tupleToTranslate
      *            the {@link ITuple4 Tuple} to translate.
      * @param xTranslation
@@ -2681,7 +2685,7 @@ public final class GeometricOperations {
      *            the z-translation.
      * @return the translated {@link ITuple4 Tuple}.
      */
-    public static final <T extends Number> ITuple4<T> translate(
+    public static <T extends Number> ITuple4<T> translate(
             final ITuple4<T> tupleToTranslate, final Number xTranslation,
             final Number yTranslation, final Number zTranslation) {
 
@@ -2695,11 +2699,11 @@ public final class GeometricOperations {
 
     /**
      * Translates the {@link ITuple4 Tuple} by the x, y, and z translation.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the translated {@link ITuple4
      *            Tuple}.
-     * 
+     *
      * @param tupleToTranslate
      *            the {@link ITuple4 Tuple} to translate.
      * @param xTranslation
@@ -2712,7 +2716,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the translated {@link ITuple4 Tuple}.
      */
-    public static final <R extends Number> ITuple4<R> translate(
+    public static <R extends Number> ITuple4<R> translate(
             final ITuple4<?> tupleToTranslate, final Number xTranslation,
             final Number yTranslation, final Number zTranslation,
             final Class<? extends R> returnType) {
@@ -2728,11 +2732,11 @@ public final class GeometricOperations {
     /**
      * Reverts the translation of the {@link ITuple4 Tuple} by the x, y, and z
      * translation.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ITuple4 Tuple} to
      *            translate.
-     * 
+     *
      * @param tupleToTranslate
      *            the {@link ITuple4 Tuple} to translate.
      * @param xTranslation
@@ -2743,7 +2747,7 @@ public final class GeometricOperations {
      *            the z-translation.
      * @return the translated {@link ITuple4 Tuple}.
      */
-    public static final <T extends Number> ITuple4<T> revertTranslate(
+    public static <T extends Number> ITuple4<T> revertTranslate(
             final ITuple4<T> tupleToTranslate, final Number xTranslation,
             final Number yTranslation, final Number zTranslation) {
 
@@ -2758,11 +2762,11 @@ public final class GeometricOperations {
     /**
      * Reverts the translation of the {@link ITuple4 Tuple} by the x, y, and z
      * translation.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the translated {@link ITuple4
      *            Tuple}.
-     * 
+     *
      * @param tupleToTranslate
      *            the {@link ITuple4 Tuple} to translate.
      * @param xTranslation
@@ -2775,7 +2779,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the translated {@link ITuple4 Tuple}.
      */
-    public static final <R extends Number> ITuple4<R> revertTranslate(
+    public static <R extends Number> ITuple4<R> revertTranslate(
             final ITuple4<?> tupleToTranslate, final Number xTranslation,
             final Number yTranslation, final Number zTranslation,
             Class<? extends R> returnType) {
@@ -2791,10 +2795,10 @@ public final class GeometricOperations {
 
     /**
      * Scales the {@link ITuple4 Tuple} by the x, y, and z scaling factor.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ITuple4 Tuple} to scale.
-     * 
+     *
      * @param tupleToScale
      *            the {@link ITuple4 Tuple} to scale.
      * @param xScalingFactor
@@ -2805,7 +2809,7 @@ public final class GeometricOperations {
      *            the z scaling factor.
      * @return the scaled {@link ITuple4 Tuple}.
      */
-    public static final <T extends Number> ITuple4<T> scale(
+    public static <T extends Number> ITuple4<T> scale(
             final ITuple4<T> tupleToScale, final Number xScalingFactor,
             final Number yScalingFactor, final Number zScalingFactor) {
 
@@ -2819,10 +2823,10 @@ public final class GeometricOperations {
 
     /**
      * Scales the {@link ITuple4 Tuple} by the x, y, and z scaling factor.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the scaled {@link ITuple4 Tuple}.
-     * 
+     *
      * @param tupleToScale
      *            the {@link ITuple4 Tuple} to scale.
      * @param xScalingFactor
@@ -2835,7 +2839,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the scaled {@link ITuple4 Tuple}.
      */
-    public static final <R extends Number> ITuple4<R> scale(
+    public static <R extends Number> ITuple4<R> scale(
             final ITuple4<?> tupleToScale, final Number xScalingFactor,
             final Number yScalingFactor, final Number zScalingFactor,
             final Class<? extends R> returnType) {
@@ -2851,10 +2855,10 @@ public final class GeometricOperations {
     /**
      * Reverts the scaling of the {@link ITuple4 Tuple} by the x, y, and z
      * scaling factor.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ITuple4 Tuple} to scale.
-     * 
+     *
      * @param tupleToScale
      *            the {@link ITuple4 Tuple} to scale.
      * @param xScalingFactor
@@ -2865,7 +2869,7 @@ public final class GeometricOperations {
      *            the z scaling factor.
      * @return the scaled {@link ITuple4 Tuple}.
      */
-    public static final <T extends Number> ITuple4<T> revertScale(
+    public static <T extends Number> ITuple4<T> revertScale(
             final ITuple4<T> tupleToScale, final Number xScalingFactor,
             final Number yScalingFactor, final Number zScalingFactor) {
 
@@ -2880,10 +2884,10 @@ public final class GeometricOperations {
     /**
      * Reverts the scaling of the {@link ITuple4 Tuple} by the x, y, and z
      * scaling factor.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the scaled {@link ITuple4 Tuple}.
-     * 
+     *
      * @param tupleToScale
      *            the {@link ITuple4 Tuple} to scale.
      * @param xScalingFactor
@@ -2896,7 +2900,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the scaled {@link ITuple4 Tuple}.
      */
-    public static final <R extends Number> ITuple4<R> revertScale(
+    public static <R extends Number> ITuple4<R> revertScale(
             final ITuple4<?> tupleToScale, final Number xScalingFactor,
             final Number yScalingFactor, final Number zScalingFactor,
             final Class<? extends R> returnType) {
@@ -2911,17 +2915,17 @@ public final class GeometricOperations {
 
     /**
      * Uniformly scales the {@link ITuple4 Tuple} by the scaling factor.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ITuple4 Tuple} to scale.
-     * 
+     *
      * @param tupleToScale
      *            the {@link ITuple4 Tuple} to scale.
      * @param scalingFactor
      *            the scaling factor.
      * @return the uniformly scaled {@link ITuple4 Tuple}.
      */
-    public static final <T extends Number> ITuple4<T> linearScale(
+    public static <T extends Number> ITuple4<T> linearScale(
             final ITuple4<T> tupleToScale, final Number scalingFactor) {
 
         return GeometricOperations.scale(tupleToScale, scalingFactor,
@@ -2930,10 +2934,10 @@ public final class GeometricOperations {
 
     /**
      * Uniformly scales the {@link ITuple4 Tuple} by the scaling factor.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the scaled {@link ITuple4 Tuple}.
-     * 
+     *
      * @param tupleToScale
      *            the {@link ITuple4 Tuple} to scale.
      * @param scalingFactor
@@ -2942,7 +2946,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the uniformly scaled {@link ITuple4 Tuple}.
      */
-    public static final <R extends Number> ITuple4<R> linearScale(
+    public static <R extends Number> ITuple4<R> linearScale(
             final ITuple4<?> tupleToScale, final Number scalingFactor,
             final Class<? extends R> returnType) {
 
@@ -2954,17 +2958,17 @@ public final class GeometricOperations {
     /**
      * Reverts the uniform scaling of the {@link ITuple4 Tuple} by the scaling
      * factor.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ITuple4 Tuple} to scale.
-     * 
+     *
      * @param tupleToScale
      *            the {@link ITuple4 Tuple} to scale.
      * @param scalingFactor
      *            the scaling factor.
      * @return the uniformly scaled {@link ITuple4 Tuple}.
      */
-    public static final <T extends Number> ITuple4<T> revertLinearScale(
+    public static <T extends Number> ITuple4<T> revertLinearScale(
             final ITuple4<T> tupleToScale, final Number scalingFactor) {
 
         return GeometricOperations.revertScale(tupleToScale, scalingFactor,
@@ -2974,10 +2978,10 @@ public final class GeometricOperations {
     /**
      * Reverts the uniform scaling of the {@link ITuple4 Tuple} by the scaling
      * factor.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the scaled {@link ITuple4 Tuple}.
-     * 
+     *
      * @param tupleToScale
      *            the {@link ITuple4 Tuple} to scale.
      * @param scalingFactor
@@ -2986,7 +2990,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the uniformly scaled {@link ITuple4 Tuple}.
      */
-    public static final <R extends Number> ITuple4<R> revertLinearScale(
+    public static <R extends Number> ITuple4<R> revertLinearScale(
             final ITuple4<?> tupleToScale, final Number scalingFactor,
             final Class<? extends R> returnType) {
 
@@ -2998,10 +3002,10 @@ public final class GeometricOperations {
     /**
      * Shears the {@link ITuple4 Tuple} by the provided shear coefficient and
      * the shear component.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ITuple4 Tuple} to shear.
-     * 
+     *
      * @param tupleToShear
      *            the {@link ITuple4 Tuple} to shear.
      * @param shearCoefficient
@@ -3010,7 +3014,7 @@ public final class GeometricOperations {
      *            the shear component
      * @return the sheared {@link ITuple4 Tuple}.
      */
-    public static final <T extends Number> ITuple4<T> shear(
+    public static <T extends Number> ITuple4<T> shear(
             final ITuple4<T> tupleToShear, final Number shearCoefficient,
             final ShearComponent shearComponent) {
 
@@ -3025,10 +3029,10 @@ public final class GeometricOperations {
     /**
      * Shears the {@link ITuple4 Tuple} by the provided shear coefficient and
      * the shear component.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the {@link ITuple4 Tuple} to shear.
-     * 
+     *
      * @param tupleToShear
      *            the {@link ITuple4 Tuple} to shear.
      * @param shearCoefficient
@@ -3039,7 +3043,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the sheared {@link ITuple4 Tuple}.
      */
-    public static final <R extends Number> ITuple4<R> shear(
+    public static <R extends Number> ITuple4<R> shear(
             final ITuple4<?> tupleToShear, final Number shearCoefficient,
             final ShearComponent shearComponent,
             final Class<? extends R> returnType) {
@@ -3056,10 +3060,10 @@ public final class GeometricOperations {
     /**
      * Reverts the shear of the {@link ITuple4 Tuple} by the provided shear
      * coefficient and the shear component.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ITuple4 Tuple} to shear.
-     * 
+     *
      * @param tupleToShear
      *            the {@link ITuple4 Tuple} to shear.
      * @param shearCoefficient
@@ -3068,7 +3072,7 @@ public final class GeometricOperations {
      *            the shear component
      * @return the sheared {@link ITuple4 Tuple}.
      */
-    public static final <T extends Number> ITuple4<T> revertShear(
+    public static <T extends Number> ITuple4<T> revertShear(
             final ITuple4<T> tupleToShear, final Number shearCoefficient,
             final ShearComponent shearComponent) {
 
@@ -3083,10 +3087,10 @@ public final class GeometricOperations {
     /**
      * Reverts the shear of the {@link ITuple4 Tuple} by the provided shear
      * coefficient and the shear component.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the sheared {@link ITuple4 Tuple}.
-     * 
+     *
      * @param tupleToShear
      *            the {@link ITuple4 Tuple} to shear.
      * @param shearCoefficient
@@ -3097,7 +3101,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the sheared {@link ITuple4 Tuple}.
      */
-    public static final <R extends Number> ITuple4<R> revertShear(
+    public static <R extends Number> ITuple4<R> revertShear(
             final ITuple4<?> tupleToShear, final Number shearCoefficient,
             final ShearComponent shearComponent,
             final Class<? extends R> returnType) {
@@ -3114,11 +3118,11 @@ public final class GeometricOperations {
     /**
      * Rotates the {@link ITuple4 Tuple} around the {@link IVector4 Rotation
      * Axis} by the rotation angle .
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ITuple4 Tuple} to
      *            rotate.
-     * 
+     *
      * @param tupleToRotate
      *            the {@link ITuple4 Tuple} to rotate.
      * @param rotationAxis
@@ -3127,7 +3131,7 @@ public final class GeometricOperations {
      *            the rotation angle.
      * @return the rotated {@link ITuple4 Tuple}.
      */
-    public static final <T extends Number> ITuple4<T> rotate(
+    public static <T extends Number> ITuple4<T> rotate(
             final ITuple4<T> tupleToRotate, final IVector4<?> rotationAxis,
             final Number rotationAngle) {
 
@@ -3141,10 +3145,10 @@ public final class GeometricOperations {
     /**
      * Rotates the {@link ITuple4 Tuple} around the {@link IVector4 Rotation
      * Axis} by the rotation angle .
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotated {@link ITuple4 Tuple}.
-     * 
+     *
      * @param tupleToRotate
      *            the {@link ITuple4 Tuple} to rotate.
      * @param rotationAxis
@@ -3155,7 +3159,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotated {@link ITuple4 Tuple}.
      */
-    public static final <R extends Number> ITuple4<R> rotate(
+    public static <R extends Number> ITuple4<R> rotate(
             final ITuple4<?> tupleToRotate, final IVector4<?> rotationAxis,
             final Number rotationAngle, final Class<? extends R> returnType) {
 
@@ -3170,11 +3174,11 @@ public final class GeometricOperations {
     /**
      * Reverses the rotation of the {@link ITuple4 Tuple} around the
      * {@link IVector4 Rotation Axis} by the rotation angle .
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ITuple4 Tuple} to
      *            rotate.
-     * 
+     *
      * @param tupleToRotate
      *            the {@link ITuple4 Tuple} to rotate.
      * @param rotationAxis
@@ -3183,7 +3187,7 @@ public final class GeometricOperations {
      *            the rotation angle.
      * @return the rotated {@link ITuple4 Tuple}.
      */
-    public static final <T extends Number> ITuple4<T> revertRotate(
+    public static <T extends Number> ITuple4<T> revertRotate(
             final ITuple4<T> tupleToRotate, final IVector4<?> rotationAxis,
             final Number rotationAngle) {
 
@@ -3197,10 +3201,10 @@ public final class GeometricOperations {
     /**
      * Reverses the rotation of the {@link ITuple4 Tuple} around the
      * {@link IVector4 Rotation Axis} by the rotation angle .
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotated {@link ITuple4 Tuple}.
-     * 
+     *
      * @param tupleToRotate
      *            the {@link ITuple4 Tuple} to rotate.
      * @param rotationAxis
@@ -3211,7 +3215,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotated {@link ITuple4 Tuple}.
      */
-    public static final <R extends Number> ITuple4<R> revertRotate(
+    public static <R extends Number> ITuple4<R> revertRotate(
             final ITuple4<?> tupleToRotate, final IVector4<?> rotationAxis,
             final Number rotationAngle, final Class<? extends R> returnType) {
 
@@ -3226,31 +3230,31 @@ public final class GeometricOperations {
     /**
      * Rotates the {@link ITuple4 Tuple} by the provided rotation angle around
      * the x-axis.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ITuple4 Tuple} to
      *            rotate.
-     * 
+     *
      * @param tupleToRotate
      *            the {@link ITuple4 Tuple} to rotate.
      * @param rotationAngle
      *            the rotation angle.
      * @return the rotated {@link ITuple4 Tuple}.
      */
-    public static final <T extends Number> ITuple4<T> rotateX(
+    public static <T extends Number> ITuple4<T> rotateX(
             final ITuple4<T> tupleToRotate, final Number rotationAngle) {
 
         return GeometricOperations.rotate(tupleToRotate,
-                Vector4.I_UNIT_VECTOR(tupleToRotate.getType()), rotationAngle);
+                Vector4.iUnitVector(tupleToRotate.getType()), rotationAngle);
     }
 
     /**
      * Rotates the {@link ITuple4 Tuple} by the provided rotation angle around
      * the x-axis.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotated {@link ITuple4 Tuple}.
-     * 
+     *
      * @param tupleToRotate
      *            the {@link ITuple4 Tuple} to rotate.
      * @param rotationAngle
@@ -3259,44 +3263,44 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotated {@link ITuple4 Tuple}.
      */
-    public static final <R extends Number> ITuple4<R> rotateX(
+    public static <R extends Number> ITuple4<R> rotateX(
             final ITuple4<?> tupleToRotate, final Number rotationAngle,
             final Class<? extends R> returnType) {
 
 
         return GeometricOperations.rotate(tupleToRotate,
-                Vector4.I_UNIT_VECTOR(returnType), rotationAngle, returnType);
+                Vector4.iUnitVector(returnType), rotationAngle, returnType);
     }
 
 
     /**
      * Reverts rotation of the {@link ITuple4 Tuple} by the provided rotation
      * angle around the x-axis.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ITuple4 Tuple} to
      *            rotate.
-     * 
+     *
      * @param tupleToRotate
      *            the {@link ITuple4 Tuple} to rotate.
      * @param rotationAngle
      *            the rotation angle.
      * @return the rotated {@link ITuple4 Tuple}.
      */
-    public static final <T extends Number> ITuple4<T> revertRotateX(
+    public static <T extends Number> ITuple4<T> revertRotateX(
             final ITuple4<T> tupleToRotate, final Number rotationAngle) {
 
         return GeometricOperations.revertRotate(tupleToRotate,
-                Vector4.I_UNIT_VECTOR(tupleToRotate.getType()), rotationAngle);
+                Vector4.iUnitVector(tupleToRotate.getType()), rotationAngle);
     }
 
     /**
      * Reverts rotation of the {@link ITuple4 Tuple} by the provided rotation
      * angle around the x-axis.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotated {@link ITuple4 Tuple}.
-     * 
+     *
      * @param tupleToRotate
      *            the {@link ITuple4 Tuple} to rotate.
      * @param rotationAngle
@@ -3305,12 +3309,12 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotated {@link ITuple4 Tuple}.
      */
-    public static final <R extends Number> ITuple4<R> revertRotateX(
+    public static <R extends Number> ITuple4<R> revertRotateX(
             final ITuple4<?> tupleToRotate, final Number rotationAngle,
             final Class<? extends R> returnType) {
 
         return GeometricOperations.revertRotate(tupleToRotate,
-                Vector4.I_UNIT_VECTOR(returnType), rotationAngle, returnType);
+                Vector4.iUnitVector(returnType), rotationAngle, returnType);
     }
 
 
@@ -3318,31 +3322,31 @@ public final class GeometricOperations {
     /**
      * Rotates the {@link ITuple4 Tuple} by the provided rotation angle around
      * the y-axis.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ITuple4 Tuple} to
      *            rotate.
-     * 
+     *
      * @param tupleToRotate
      *            the {@link ITuple4 Tuple} to rotate.
      * @param rotationAngle
      *            the rotation angle.
      * @return the rotated {@link ITuple4 Tuple}.
      */
-    public static final <T extends Number> ITuple4<T> rotateY(
+    public static <T extends Number> ITuple4<T> rotateY(
             final ITuple4<T> tupleToRotate, final Number rotationAngle) {
 
         return GeometricOperations.rotate(tupleToRotate,
-                Vector4.J_UNIT_VECTOR(tupleToRotate.getType()), rotationAngle);
+                Vector4.jUnitVector(tupleToRotate.getType()), rotationAngle);
     }
 
     /**
      * Rotates the {@link ITuple4 Tuple} by the provided rotation angle around
      * the y-axis.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotated {@link ITuple4 Tuple}.
-     * 
+     *
      * @param tupleToRotate
      *            the {@link ITuple4 Tuple} to rotate.
      * @param rotationAngle
@@ -3351,44 +3355,44 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotated {@link ITuple4 Tuple}.
      */
-    public static final <R extends Number> ITuple4<R> rotateY(
+    public static <R extends Number> ITuple4<R> rotateY(
             final ITuple4<?> tupleToRotate, final Number rotationAngle,
             final Class<? extends R> returnType) {
 
 
         return GeometricOperations.rotate(tupleToRotate,
-                Vector4.J_UNIT_VECTOR(returnType), rotationAngle, returnType);
+                Vector4.jUnitVector(returnType), rotationAngle, returnType);
     }
 
 
     /**
      * Reverts rotation of the {@link ITuple4 Tuple} by the provided rotation
      * angle around the y-axis.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ITuple4 Tuple} to
      *            rotate.
-     * 
+     *
      * @param tupleToRotate
      *            the {@link ITuple4 Tuple} to rotate.
      * @param rotationAngle
      *            the rotation angle.
      * @return the rotated {@link ITuple4 Tuple}.
      */
-    public static final <T extends Number> ITuple4<T> revertRotateY(
+    public static <T extends Number> ITuple4<T> revertRotateY(
             final ITuple4<T> tupleToRotate, final Number rotationAngle) {
 
         return GeometricOperations.revertRotate(tupleToRotate,
-                Vector4.J_UNIT_VECTOR(tupleToRotate.getType()), rotationAngle);
+                Vector4.jUnitVector(tupleToRotate.getType()), rotationAngle);
     }
 
     /**
      * Reverts rotation of the {@link ITuple4 Tuple} by the provided rotation
      * angle around the y-axis.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotated {@link ITuple4 Tuple}.
-     * 
+     *
      * @param tupleToRotate
      *            the {@link ITuple4 Tuple} to rotate.
      * @param rotationAngle
@@ -3397,12 +3401,12 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotated {@link ITuple4 Tuple}.
      */
-    public static final <R extends Number> ITuple4<R> revertRotateY(
+    public static <R extends Number> ITuple4<R> revertRotateY(
             final ITuple4<?> tupleToRotate, final Number rotationAngle,
             final Class<? extends R> returnType) {
 
         return GeometricOperations.revertRotate(tupleToRotate,
-                Vector4.J_UNIT_VECTOR(returnType), rotationAngle, returnType);
+                Vector4.jUnitVector(returnType), rotationAngle, returnType);
     }
 
 
@@ -3410,31 +3414,31 @@ public final class GeometricOperations {
     /**
      * Rotates the {@link ITuple4 Tuple} by the provided rotation angle around
      * the z-axis.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ITuple4 Tuple} to
      *            rotate.
-     * 
+     *
      * @param tupleToRotate
      *            the {@link ITuple4 Tuple} to rotate.
      * @param rotationAngle
      *            the rotation angle.
      * @return the rotated {@link ITuple4 Tuple}.
      */
-    public static final <T extends Number> ITuple4<T> rotateZ(
+    public static <T extends Number> ITuple4<T> rotateZ(
             final ITuple4<T> tupleToRotate, final Number rotationAngle) {
 
         return GeometricOperations.rotate(tupleToRotate,
-                Vector4.K_UNIT_VECTOR(tupleToRotate.getType()), rotationAngle);
+                Vector4.kUnitVector(tupleToRotate.getType()), rotationAngle);
     }
 
     /**
      * Rotates the {@link ITuple4 Tuple} by the provided rotation angle around
      * the z-axis.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotated {@link ITuple4 Tuple}.
-     * 
+     *
      * @param tupleToRotate
      *            the {@link ITuple4 Tuple} to rotate.
      * @param rotationAngle
@@ -3443,44 +3447,44 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotated {@link ITuple4 Tuple}.
      */
-    public static final <R extends Number> ITuple4<R> rotateZ(
+    public static <R extends Number> ITuple4<R> rotateZ(
             final ITuple4<?> tupleToRotate, final Number rotationAngle,
             final Class<? extends R> returnType) {
 
 
         return GeometricOperations.rotate(tupleToRotate,
-                Vector4.K_UNIT_VECTOR(returnType), rotationAngle, returnType);
+                Vector4.kUnitVector(returnType), rotationAngle, returnType);
     }
 
 
     /**
      * Reverts rotation of the {@link ITuple4 Tuple} by the provided rotation
      * angle around the z-axis.
-     * 
+     *
      * @param <T>
      *            the {@link Number} type of the {@link ITuple4 Tuple} to
      *            rotate.
-     * 
+     *
      * @param tupleToRotate
      *            the {@link ITuple4 Tuple} to rotate.
      * @param rotationAngle
      *            the rotation angle.
      * @return the rotated {@link ITuple4 Tuple}.
      */
-    public static final <T extends Number> ITuple4<T> revertRotateZ(
+    public static <T extends Number> ITuple4<T> revertRotateZ(
             final ITuple4<T> tupleToRotate, final Number rotationAngle) {
 
         return GeometricOperations.revertRotate(tupleToRotate,
-                Vector4.K_UNIT_VECTOR(tupleToRotate.getType()), rotationAngle);
+                Vector4.kUnitVector(tupleToRotate.getType()), rotationAngle);
     }
 
     /**
      * Reverts rotation of the {@link ITuple4 Tuple} by the provided rotation
      * angle around the z-axis.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the rotated {@link ITuple4 Tuple}.
-     * 
+     *
      * @param tupleToRotate
      *            the {@link ITuple4 Tuple} to rotate.
      * @param rotationAngle
@@ -3489,12 +3493,12 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return the rotated {@link ITuple4 Tuple}.
      */
-    public static final <R extends Number> ITuple4<R> revertRotateZ(
+    public static <R extends Number> ITuple4<R> revertRotateZ(
             final ITuple4<?> tupleToRotate, final Number rotationAngle,
             final Class<? extends R> returnType) {
 
         return GeometricOperations.revertRotate(tupleToRotate,
-                Vector4.K_UNIT_VECTOR(returnType), rotationAngle, returnType);
+                Vector4.kUnitVector(returnType), rotationAngle, returnType);
     }
 
 
@@ -3502,7 +3506,7 @@ public final class GeometricOperations {
     /**
      * Calculates the {@link IRotation Angle-Axis Rotation} by projecting the
      * first {@link IVector4 Vector} onto the second {@link IVector4 Vector}.
-     * 
+     *
      * @param <R>
      *            the {@link Number} type of the {@link IRotation Angle-Axis
      *            Rotation}.
@@ -3514,7 +3518,7 @@ public final class GeometricOperations {
      *            the desired return type.
      * @return The {@link IRotation Angle-Axis Rotation}.
      */
-    public static final <R extends Number> IRotation<R> getRotationBetweenVectors(
+    public static <R extends Number> IRotation<R> getRotationBetweenVectors(
             final IVector4<?> firstVector, final IVector4<?> secondVector,
             final Class<? extends R> returnType) {
 

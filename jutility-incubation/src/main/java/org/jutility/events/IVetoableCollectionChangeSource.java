@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.jutility.events;
 
@@ -12,9 +12,9 @@ package org.jutility.events;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,13 +31,13 @@ package org.jutility.events;
  * The <CODE>IVetoableCollectionChangeSource</CODE> provides an interface for
  * classes that want to provide other classes with the ability to veto a change
  * in one or multiple of their collections.
- * 
+ *
  * Use the implementation of this interface to simplify synchronization of the
  * listener list!
- * 
+ *
  * @author Peter J. Radics
  * @version 1.0
- * 
+ *
  * @see IVetoableCollectionChangeListener
  * @see ICollectionChangeEvent
  */
@@ -45,31 +45,31 @@ public interface IVetoableCollectionChangeSource {
 
     /**
      * Adds the provided listener to the list of listeners.
-     * 
+     *
      * @param listener
      *            The listener to be added.
      */
-    public abstract void addVetoableCollectionChangeListener(
+    void addVetoableCollectionChangeListener(
             IVetoableCollectionChangeListener listener);
 
 
     /**
      * Removes the provided listener from the list of listeners.
-     * 
+     *
      * @param listener
      *            The listener to be removed.
      */
-    public abstract void removeVetoableCollectionChangeListener(
+    void removeVetoableCollectionChangeListener(
             IVetoableCollectionChangeListener listener);
 
     /**
      * Removes all listeners from the list of listeners.
      */
-    public abstract void clearVetoableCollectionChangeListeners();
+    void clearVetoableCollectionChangeListeners();
 
     /**
      * Notifies all listeners of the event.
-     * 
+     *
      * @param collectionName
      *            the name of the collection.
      * @param elementAdded
@@ -77,14 +77,14 @@ public interface IVetoableCollectionChangeSource {
      * @throws CollectionChangeVetoException
      *             if the change is rejected.
      */
-    public abstract void fireVetoableElementAddedEvent(String collectionName,
+    void fireVetoableElementAddedEvent(String collectionName,
             Object elementAdded)
             throws CollectionChangeVetoException;
 
 
     /**
      * Notifies all listeners of the event.
-     * 
+     *
      * @param collectionName
      *            the name of the collection.
      * @param removedObject
@@ -92,20 +92,20 @@ public interface IVetoableCollectionChangeSource {
      * @throws CollectionChangeVetoException
      *             if the change is rejected.
      */
-    public void fireVetoableElementRemovedEvent(String collectionName,
+    void fireVetoableElementRemovedEvent(String collectionName,
             Object removedObject)
             throws CollectionChangeVetoException;
 
 
     /**
      * Notifies all listeners of the event.
-     * 
+     *
      * @param collectionName
      *            the name of the collection.
      * @throws CollectionChangeVetoException
      *             if the change is rejected.
      */
-    public void fireVetoableCollectionClearedEvent(String collectionName)
+    void fireVetoableCollectionClearedEvent(String collectionName)
             throws CollectionChangeVetoException;
 
 }
