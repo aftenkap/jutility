@@ -218,15 +218,11 @@
 
             <!-- Jackson JSON Processor -->
             <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-annotations</artifactId>
-                <version>2.9.7</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>2.9.7</version>
+                <groupId>com.fasterxml.jackson</groupId>
+                <artifactId>jackson-bom</artifactId>
+                <version>2.10.3</version>
+                <scope>import</scope>
+                <type>pom</type>
             </dependency>
         </dependencies>
 
